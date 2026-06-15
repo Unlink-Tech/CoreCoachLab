@@ -2,76 +2,49 @@
 @section('title', 'Order Failed')
 @section('main-content')
 
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title"><i class="fas fa-times-circle me-3" style="color: #ef4444;"></i>{{ __('common.payment_unsuccessful') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.failed') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb
+    :title="__('common.payment_unsuccessful')"
+    :routes="[['label' => __('common.failed')]]"
+/>
 
-<section class="failed-section pt-100 pb-100">
+<section class="order-status order-status--failed">
+    <span class="order-status__glow os-glow-peach" aria-hidden="true"></span>
+    <span class="order-status__glow os-glow-sky" aria-hidden="true"></span>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-9">
-                <div class="modern-failed-card p-5 border-0 shadow-lg bg-white" style="border-radius: 20px; background: linear-gradient(135deg, #ffffff 0%, #fff8f8 100%);">
-                    <div class="text-center mb-5">
-                        <div class="failed-icon-container d-inline-block position-relative mb-4">
-                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 120px; height: 120px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.2);">
-                                <i class="fas fa-times-circle" style="font-size: 60px; color: #ef4444;"></i>
-                            </div>
-                        </div>
+                <div class="status-card">
+                    <span class="status-card__accent status-card__accent--failed" aria-hidden="true"></span>
 
-                        <h2 class="fw-bold text-dark mb-2" style="font-size: 32px; letter-spacing: -1px;">{{ __('common.payment_error') }}</h2>
-                        <p class="text-muted mb-5" style="font-size: 16px; line-height: 1.6;">{{ __('common.payment_failure_message') }}</p>
+                    <div class="text-center">
+                        <div class="status-icon status-icon--error">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <h2 class="status-title">{{ __('common.payment_error') }}</h2>
+                        <p class="status-text">{{ __('common.payment_failure_message') }}</p>
                     </div>
 
-                    <div class="help-card p-4 rounded-3 mb-5" style="background: rgba(239, 68, 68, 0.04); border-left: 4px solid #ef4444;">
-                        <h6 class="fw-bold text-dark mb-3" style="font-size: 14px; color: #ef4444; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-lightbulb me-2"></i> {{ __('common.what_you_can_do') }}</h6>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2 small d-flex gap-2" style="color: #0a0e27;">
-                                <i class="fas fa-check text-success mt-1" style="flex-shrink: 0;"></i>
-                                <span>{{ __('common.check_payment_details') }}</span>
-                            </li>
-                            <li class="mb-2 small d-flex gap-2" style="color: #0a0e27;">
-                                <i class="fas fa-check text-success mt-1" style="flex-shrink: 0;"></i>
-                                <span>{{ __('common.contact_bank') }}</span>
-                            </li>
-                            <li class="small d-flex gap-2" style="color: #0a0e27;">
-                                <i class="fas fa-check text-success mt-1" style="flex-shrink: 0;"></i>
-                                <span>{{ __('common.try_different_payment') }}</span>
-                            </li>
+                    <div class="status-help">
+                        <h6 class="status-help__title"><i class="fas fa-lightbulb"></i> {{ __('common.what_you_can_do') }}</h6>
+                        <ul class="status-help__list">
+                            <li><i class="fas fa-check"></i><span>{{ __('common.check_payment_details') }}</span></li>
+                            <li><i class="fas fa-check"></i><span>{{ __('common.contact_bank') }}</span></li>
+                            <li><i class="fas fa-check"></i><span>{{ __('common.try_different_payment') }}</span></li>
                         </ul>
                     </div>
 
-                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mt-5">
-                        <a href="{{ route('home') }}" class="btn btn-light rounded-4 px-5 py-3 fw-bold border border-light" style="background: #f8fbff; transition: all 0.3s ease;">
-                            <i class="fas fa-home me-2"></i>{{ __('common.home') }}
+                    <div class="status-actions">
+                        <a href="{{ route('home') }}" class="status-btn status-btn--primary">
+                            <i class="fas fa-home"></i> {{ __('common.home') }}
                         </a>
                     </div>
 
-                    <div class="mt-5 pt-4 border-top border-light">
-                        <h6 class="fw-bold text-dark mb-3" style="font-size: 14px;">{{ __('common.need_assistance') }}</h6>
-                        <p class="small text-muted mb-0" style="line-height: 1.6;">
+                    <div class="status-note status-note--left">
+                        <h6 class="status-note__title">{{ __('common.need_assistance') }}</h6>
+                        <p>
                             {{ __('common.reach_out') }}
-                            <a href="mailto:{{ __('common.company_email') }}" class="fw-bold" style="color: #1591DC; text-decoration: none;">{{ __('common.company_email') }}</a>.
+                            <a href="mailto:{{ __('common.company_email') }}">{{ __('common.company_email') }}</a>.
                             {{ __('common.we_are_here') }}
                         </p>
                     </div>
@@ -85,63 +58,179 @@
 
 @push('styles')
 <style>
-    .failed-section {
-        background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+    /* =========================================
+       ORDER STATUS PAGE — warm theme
+       ========================================= */
+    .order-status {
+        position: relative;
+        overflow: hidden;
+        background: var(--surface-paper-canvas, #fefdfc);
+        padding: 80px 0 100px;
+    }
+    .order-status__glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.55;
+    }
+    .os-glow-peach { width: 360px; height: 360px; background: var(--color-cream, #fff6f0); top: -120px; left: -80px; }
+    .os-glow-sky   { width: 320px; height: 320px; background: var(--color-sky-wash, #dceaff); bottom: 2%; right: -100px; }
+    .order-status .container { position: relative; z-index: 1; }
+
+    /* card */
+    .status-card {
+        position: relative;
+        overflow: hidden;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 24px;
+        padding: clamp(28px, 4vw, 56px);
+        box-shadow: 0 20px 50px rgba(37, 34, 30, 0.07), 0 2px 8px rgba(37, 34, 30, 0.03);
+        animation: osRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .status-card__accent {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+    }
+    .status-card__accent--failed { background: linear-gradient(90deg, var(--color-ember-red, #e34432), var(--color-deep-ember, #cf3520)); }
+
+    /* icon */
+    .status-icon {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 50px;
+        animation: osPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+    .status-icon--error {
+        background: rgba(227, 68, 50, 0.10);
+        border: 2px solid rgba(227, 68, 50, 0.25);
+        color: var(--color-ember-red, #e34432);
     }
 
-    .failed-icon-container i {
-        animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .status-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: clamp(26px, 3.4vw, 36px);
+        font-weight: var(--font-weight-bold, 700);
+        letter-spacing: -0.02em;
+        color: var(--color-ink, #25221e);
+        margin: 0 0 10px;
+    }
+    .status-text {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0 auto 32px;
+        max-width: 520px;
     }
 
-    @keyframes scaleIn {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
+    /* help card */
+    .status-help {
+        background: var(--color-cream, #fff6f0);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-left: 4px solid var(--color-ember-red, #e34432);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin-bottom: 32px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .help-card {
-        transition: all 0.3s ease;
+    .status-help:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .status-help__title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--color-deep-ember, #cf3520);
+        margin: 0 0 14px;
     }
-
-    .help-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(239, 68, 68, 0.1);
+    .status-help__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .status-help__list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--color-ink, #25221e);
     }
+    .status-help__list li i { color: var(--color-forest, #446c3d); font-size: 12px; margin-top: 4px; flex-shrink: 0; }
 
-    .btn {
-        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* actions */
+    .status-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
     }
-
-    .btn-danger:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(239, 68, 68, 0.3);
+    .status-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 26px;
+        border-radius: var(--radius-buttons, 8px);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
     }
-
-    .btn-light:hover {
-        background: rgba(21, 145, 220, 0.08) !important;
-        transform: translateY(-2px);
+    .status-btn--primary {
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-ember-red, #e34432);
+        box-shadow: 0 8px 20px rgba(227, 68, 50, 0.3);
     }
+    .status-btn--primary:hover { background: var(--color-deep-ember, #cf3520); color: var(--color-paper, #fefdfc); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(227, 68, 50, 0.4); }
 
-    @media (max-width: 768px) {
-        .failed-section {
-            padding-top: 60px !important;
-            padding-bottom: 60px !important;
-        }
+    /* note */
+    .status-note {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+        text-align: center;
+    }
+    .status-note--left { text-align: left; }
+    .status-note__title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 15px;
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        margin: 0 0 8px;
+    }
+    .status-note p {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0;
+    }
+    .status-note a { color: var(--color-cobalt-link, #0f66ae); font-weight: 600; text-decoration: none; }
+    .status-note a:hover { color: var(--color-deep-ember, #cf3520); }
 
-        .modern-failed-card {
-            padding: 30px !important;
-        }
+    @keyframes osRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes osPop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
-        .d-flex.flex-md-row {
-            flex-direction: column !important;
-        }
-
-        .btn {
-            width: 100%;
-        }
+    @media (max-width: 575px) {
+        .order-status { padding: 52px 0 64px; }
+        .status-actions { flex-direction: column; }
+        .status-btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .status-card, .status-icon { animation: none !important; }
+        .status-help { transition: none !important; }
     }
 </style>
 @endpush

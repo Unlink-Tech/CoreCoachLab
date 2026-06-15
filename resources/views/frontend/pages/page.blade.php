@@ -2,36 +2,23 @@
 @section('title', $page_data->page_title)
 @section('main-content')
 
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ $page_data->page_title }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ $page_data->page_title }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb 
+    :title="$page_data->page_title" 
+    :routes="[
+        ['label' => $page_data->page_title]
+    ]" 
+/>
 
-<section class="policy-content-section pt-120 pb-120 bg-light">
-    <div class="container">
+<section class="policy-content-section">
+    <!-- Ambient blurred background shapes for warm creative atmosphere -->
+    <div class="policy-bg-blob blob-mint"></div>
+    <div class="policy-bg-blob blob-sky"></div>
+    <div class="policy-bg-blob blob-peach"></div>
+
+    <div class="container policy-content-container">
         <div class="row justify-content-center">
-            <div class="col-xl-10">
-                <div class="modern-card p-5 p-md-5 border-0 shadow-sm bg-white" style="border-radius: 30px;">
+            <div class="col-xl-9 col-lg-10">
+                <div class="premium-rich-text-card">
                     <div class="policy-rich-text">
                         {!! $page_data->page_desc !!}
                     </div>
@@ -45,81 +32,285 @@
 
 @push('styles')
 <style>
+    /* ============================================================
+       DYNAMIC PAGES - PREMIUM EDITORIAL TEXT STYLING
+       ============================================================ */
+
+    .policy-content-section {
+        background-color: #fffdfb; /* Crisp warm backdrop */
+        position: relative;
+        overflow: hidden;
+        padding: 80px 0 100px;
+    }
+
+    /* faint dotted sketch-grid, masked to fade at the edges */
+    .policy-content-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: radial-gradient(rgba(37, 34, 30, 0.05) 1px, transparent 1px);
+        background-size: 26px 26px;
+        -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 80%);
+                mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 80%);
+        pointer-events: none;
+    }
+
+    /* Ambient light blur glows behind rich text card (gently drifting) */
+    .policy-bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        -webkit-filter: blur(100px);
+        pointer-events: none;
+        opacity: 0.6;
+        z-index: 1;
+        will-change: transform;
+    }
+
+    .policy-bg-blob.blob-mint {
+        width: 380px;
+        height: 380px;
+        background-color: var(--color-mint-wash, #f0f6df);
+        top: -80px;
+        left: -100px;
+        animation: policyDrift 18s ease-in-out infinite;
+    }
+
+    .policy-bg-blob.blob-sky {
+        width: 320px;
+        height: 320px;
+        background-color: var(--color-sky-wash, #dceaff);
+        bottom: 10%;
+        right: -80px;
+        animation: policyDrift 22s ease-in-out infinite reverse;
+    }
+
+    .policy-bg-blob.blob-peach {
+        width: 280px;
+        height: 280px;
+        background-color: var(--surface-cream-wash, #fff6f0);
+        top: 35%;
+        left: 50%;
+        opacity: 0.8;
+        animation: policyDrift 26s ease-in-out infinite;
+    }
+
+    @keyframes policyDrift {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33%      { transform: translate(28px, -34px) scale(1.05); }
+        66%      { transform: translate(-22px, 22px) scale(0.97); }
+    }
+
+    .policy-content-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Premium card container with smooth elevate effects */
+    .premium-rich-text-card {
+        position: relative;
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 18px;
+        padding: 56px clamp(28px, 5vw, 64px);
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.8) inset,
+            0 18px 50px rgba(37, 34, 30, 0.06),
+            0 2px 8px rgba(37, 34, 30, 0.03);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        animation: slideInUp 0.6s ease-out;
+        overflow: hidden;
+    }
+
+    /* gradient accent strip across the top of the card */
+    .premium-rich-text-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg,
+            var(--color-ember-red, #e34432) 0%,
+            var(--color-teal-dusk, #497d7e) 50%,
+            var(--color-forest, #446c3d) 100%);
+    }
+
+    /* faint document watermark in the corner */
+    .premium-rich-text-card::after {
+        content: '\f15c'; /* fa file-alt */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        top: 26px; right: 30px;
+        font-size: 64px;
+        color: var(--color-ember-red, #e34432);
+        opacity: 0.05;
+        pointer-events: none;
+        line-height: 1;
+    }
+
+    .premium-rich-text-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(227, 68, 50, 0.4);
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.8) inset,
+            0 28px 60px rgba(37, 34, 30, 0.10),
+            0 4px 12px rgba(37, 34, 30, 0.05);
+    }
+
     .policy-rich-text {
-        font-size: 16px;
-        line-height: 1.8;
-        color: #4a5568;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body, 16px);
+        line-height: var(--leading-body, 1.6);
+        color: var(--color-pencil, #6f6c69);
     }
-    .policy-rich-text h1, .policy-rich-text h2, .policy-rich-text h3 {
-        color: #1a202c;
-        font-weight: 800;
-        margin-top: 2.5rem;
-        margin-bottom: 1.25rem;
-        letter-spacing: -0.5px;
+
+    .policy-rich-text h1, 
+    .policy-rich-text h2, 
+    .policy-rich-text h3 {
+        font-family: var(--font-graphik), sans-serif;
+        color: var(--color-ink, #25221e);
+        font-weight: var(--font-weight-bold, 700);
+        margin-top: 40px;
+        margin-bottom: 20px;
+        letter-spacing: var(--tracking-heading, -0.19px);
     }
+
     .policy-rich-text p {
-        margin-bottom: 1.5rem;
+        margin-bottom: 24px;
+        color: var(--color-pencil, #6f6c69);
     }
+
+    /* decorative gradient accent under section headings */
+    .policy-rich-text h2 {
+        position: relative;
+        padding-bottom: 14px;
+    }
+    .policy-rich-text h2::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 52px;
+        height: 3px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--color-ember-red, #e34432), var(--color-teal-dusk, #497d7e));
+    }
+
+    /* elegant drop-cap on the opening paragraph */
+    .policy-rich-text > p:first-of-type::first-letter {
+        font-family: var(--font-graphik), Georgia, serif;
+        font-size: 3.4em;
+        font-weight: var(--font-weight-bold, 700);
+        float: left;
+        line-height: 0.78;
+        margin: 6px 14px 0 0;
+        color: var(--color-ember-red, #e34432);
+    }
+
+    /* Links inside editorial rich text */
+    .policy-rich-text a {
+        color: var(--color-cobalt-link, #0f66ae);
+        text-decoration: none;
+        border-bottom: 1px dashed var(--color-cobalt-link, #0f66ae);
+        transition: all 0.2s ease;
+    }
+
+    .policy-rich-text a:hover {
+        color: var(--color-ember-red, #e34432);
+        border-bottom-color: var(--color-ember-red, #e34432);
+        border-bottom-style: solid;
+    }
+
+    /* Ordered List Styling */
     .policy-rich-text ol {
-        margin-bottom: 1.5rem !important;
-        padding-left: 2.5rem !important;
+        margin-bottom: 24px !important;
+        padding-left: 32px !important;
         list-style-type: decimal !important;
         list-style-position: outside !important;
-        counter-reset: ol-counter !important;
     }
+
     .policy-rich-text ol li {
         display: list-item !important;
         list-style-type: decimal !important;
         list-style-position: outside !important;
-        margin-bottom: 1.5rem !important;
-        color: #4a5568 !important;
-        font-size: 16px;
+        margin-bottom: 24px !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        font-size: var(--text-body, 16px);
     }
+
     .policy-rich-text ol li::marker {
-        font-size: 1.8em;
-        font-weight: 800;
-        color: #1a202c;
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 1.6em;
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ink, #25221e);
     }
+
     .policy-rich-text ol li h3 {
         display: inline;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
-        margin-left: 0.3rem !important;
-        font-size: 1.8em;
+        margin-left: 8px !important;
+        font-size: 1.6em;
+        line-height: var(--leading-heading, 1.28);
     }
+
     .policy-rich-text ol li h4 {
-        color: #1591DC;
-        font-weight: 700;
-        margin-top: 1.5rem !important;
-        margin-bottom: 0.75rem !important;
-        font-size: 1.4em;
+        color: var(--color-deep-ember, #cf3520);
+        font-family: var(--font-graphik), sans-serif;
+        font-weight: var(--font-weight-bold, 700);
+        margin-top: 24px !important;
+        margin-bottom: 12px !important;
+        font-size: 1.3em;
     }
+
+    /* Unordered List Styling (Bullet points) */
     .policy-rich-text ul {
-        margin: 1rem 0 1.5rem 2rem !important;
-        padding-left: 1.5rem !important;
+        margin: 6px 0 24px 20px !important;
+        padding-left: 20px !important;
         list-style-type: disc !important;
         list-style-position: outside !important;
     }
+
+    /* tighten the gap between a lead-in paragraph and its list */
+    .policy-rich-text p:has(+ ul),
+    .policy-rich-text p:has(+ ol) {
+        margin-bottom: 8px !important;
+    }
+
+    /* more breathing room between a section heading and its first paragraph */
+    .policy-rich-text ol li h3 + p,
+    .policy-rich-text h2 + p,
+    .policy-rich-text h3 + p {
+        margin-top: 16px !important;
+    }
+
     .policy-rich-text ul li {
         display: list-item !important;
         list-style-type: disc !important;
         list-style-position: outside !important;
-        margin-bottom: 0.5rem !important;
-        color: #4a5568 !important;
+        margin-bottom: 8px !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        font-size: var(--text-body-sm, 14px);
     }
+
+    .policy-rich-text ul li::marker {
+        color: var(--color-ember-red, #e34432) !important;
+    }
+
     .policy-rich-text li {
-        margin-bottom: 0.75rem !important;
-        color: #4a5568 !important;
+        margin-bottom: 12px !important;
+        color: var(--color-pencil, #6f6c69) !important;
     }
 
     /* Table Styling */
     .policy-rich-text table {
         width: 100% !important;
-        margin: 2rem 0 !important;
+        margin: 32px 0 !important;
         border-collapse: collapse !important;
         border: none !important;
-        box-shadow: 0 2px 8px rgba(21, 145, 220, 0.1) !important;
-        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(37, 34, 30, 0.03) !important;
+        border-radius: var(--radius-cards, 8px) !important;
         overflow: hidden !important;
     }
 
@@ -128,7 +319,7 @@
     }
 
     .policy-rich-text table tr:nth-child(odd) {
-        background-color: #f8fafc !important;
+        background-color: #faf9f8 !important;
     }
 
     .policy-rich-text table tr:nth-child(even) {
@@ -136,47 +327,72 @@
     }
 
     .policy-rich-text table tr:hover {
-        background-color: rgba(21, 145, 220, 0.05) !important;
+        background-color: var(--surface-cream-wash, #fff6f0) !important;
         transition: background-color 0.3s ease !important;
     }
 
     .policy-rich-text table td {
         padding: 16px 20px !important;
-        border: 1px solid rgba(21, 145, 220, 0.15) !important;
-        color: #4a5568 !important;
-        font-size: 15px !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        font-size: var(--text-body-sm, 14px) !important;
         line-height: 1.6 !important;
     }
 
     .policy-rich-text table td:first-child {
-        background-color: rgba(21, 145, 220, 0.08) !important;
-        font-weight: 700 !important;
-        color: #1591DC !important;
+        background-color: var(--surface-cream-wash, #fff6f0) !important;
+        font-weight: var(--font-weight-bold, 700) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
         width: 30% !important;
     }
 
     .policy-rich-text table strong {
-        color: #1591DC !important;
-        font-weight: 700 !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        font-weight: var(--font-weight-bold, 700) !important;
     }
 
     .policy-rich-text table img {
         max-width: 100% !important;
         height: auto !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+        border-radius: var(--radius-images, 15px) !important;
+        box-shadow: var(--shadow-subtle, 0px 1px 0px 0px rgba(37, 34, 30, 0.04)) !important;
     }
 
     .policy-rich-text table th {
-        background: linear-gradient(135deg, #1591DC 0%, rgba(21, 145, 220, 0.8) 100%) !important;
+        background: linear-gradient(135deg, var(--color-ember-red, #e34432) 0%, var(--color-deep-ember, #cf3520) 100%) !important;
         color: white !important;
         padding: 18px 20px !important;
-        font-weight: 700 !important;
+        font-weight: var(--font-weight-bold, 700) !important;
         text-align: left !important;
-        font-size: 15px !important;
+        font-size: var(--text-body-sm, 14px) !important;
         letter-spacing: 0.5px !important;
         border: none !important;
     }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .policy-content-section { padding: 48px 0 64px; }
+        .premium-rich-text-card {
+            padding: 32px 22px;
+            border-radius: 14px;
+        }
+        .premium-rich-text-card::after { font-size: 48px; top: 18px; right: 20px; }
+        .policy-rich-text > p:first-of-type::first-letter { font-size: 2.8em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .policy-bg-blob,
+        .premium-rich-text-card { animation: none !important; }
+    }
 </style>
 @endpush
-

@@ -9,141 +9,103 @@
 @endif
 
 @section('main-content')
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">
-                    @if(isset($category->title) && $category->title)
-                        {{$category->title}}
-                    @else
-                        {{ __('common.explore_courses') }}
-                    @endif
-                </h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>
-                            @if(isset($category->title) && $category->title)
-                                {{$category->title}}
-                            @else
-                                {{ __('common.explore_courses') }}
-                            @endif
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+@php
+    $pl_title = (isset($category->title) && $category->title) ? $category->title : __('common.explore_courses');
+@endphp
+<x-breadcrumb
+    :title="$pl_title"
+    :routes="[['label' => $pl_title]]"
+/>
 
 <!-- CATEGORY HEADER SECTION -->
 @if(isset($category->title) && $category->title)
-<section class="category-header-section pt-80 pb-40" style="background: linear-gradient(135deg, #f0f4ff 0%, #e8f1f9 100%);">
+@php
+    $cat_icon = 'fas fa-palette';
+    $cat_slug = strtolower($category->slug);
+    if (strpos($cat_slug, 'blockchain') !== false || strpos($cat_slug, 'web3') !== false) {
+        $cat_icon = 'fas fa-cubes';
+    } elseif (strpos($cat_slug, 'business') !== false || strpos($cat_slug, 'strategy') !== false) {
+        $cat_icon = 'fas fa-chart-line';
+    } elseif (strpos($cat_slug, 'cyber') !== false || strpos($cat_slug, 'security') !== false || strpos($cat_slug, 'intelligence') !== false) {
+        $cat_icon = 'fas fa-shield-alt';
+    } elseif (strpos($cat_slug, 'transformation') !== false || strpos($cat_slug, 'enterprise') !== false || strpos($cat_slug, 'erp') !== false) {
+        $cat_icon = 'fas fa-network-wired';
+    } elseif (strpos($cat_slug, 'ai') !== false || strpos($cat_slug, 'machine') !== false || strpos($cat_slug, 'brain') !== false) {
+        $cat_icon = 'fas fa-brain';
+    } elseif (strpos($cat_slug, 'design') !== false || strpos($cat_slug, 'art') !== false || strpos($cat_slug, 'painting') !== false) {
+        $cat_icon = 'fas fa-paint-brush';
+    }
+@endphp
+@php
+    $pl_count = method_exists($products, 'total') ? $products->total() : count($products);
+@endphp
+<section class="cat-hero">
     <div class="container">
-        <div class="row align-items-center g-5">
-            <!-- Category Image -->
-            @if($category->photo)
-            <div class="col-lg-4 col-md-5">
-                <div class="category-header-image" style="border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(21, 145, 220, 0.15); border: 2px solid rgba(21, 145, 220, 0.1);">
-                    <img src="{{ $category->photo }}" alt="{{ $category->title }}" class="w-100" style="display: block; transition: transform 0.4s ease;">
-                </div>
-            </div>
-            @endif
+        <div class="cat-hero__card" @if($category->photo) style="--cat-cover: url('{{ $category->photo }}');" @endif>
+            <div class="cat-hero__media {{ $category->photo ? '' : 'cat-hero__media--plain' }}"></div>
+            <div class="cat-hero__veil"></div>
 
-            <!-- Category Info -->
-            <div class="col-lg-8 col-md-7">
-                <span class="modern-badge mb-3">{{ __('common.gal_category_explore') }}</span>
-
-                <h1 class="modern-h2 mb-3" style="font-size: 42px; font-weight: 900; color: #0a0e27; line-height: 1.3;">
-                    {{ $category->title }}
-                </h1>
-
+            <div class="cat-hero__inner">
+                <span class="cat-hero__eyebrow"><i class="{{ $cat_icon }}"></i> {{ __('common.gal_category_explore') }}</span>
+                <h2 class="cat-hero__title">{{ $category->title }}</h2>
                 @if($category->summary)
-                <p class="mb-5 text-muted" style="font-size: 16px; color: #666; font-weight: 500; line-height: 1.8;">
-                    {{ $category->summary }}
-                </p>
+                    <p class="cat-hero__summary">{{ $category->summary }}</p>
                 @endif
-
-            
+                <div class="cat-hero__stats">
+                    <span class="cat-hero__chip"><i class="fas fa-graduation-cap"></i> {{ $pl_count }} {{ __('common.courses') }}</span>
+                    <a href="#catalog" class="cat-hero__cta">{{ __('common.view_more') }} <i class="fas fa-arrow-down"></i></a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 @endif
 
-<section class="catalog-section bg-light">
+<section class="catalog-section" id="catalog">
     <div class="container">
-        <div class="row mb-5 align-items-center">
-            <div class="col-md-6">
-                <h4 class="fw-bold text-dark mb-0">
-                   {{ __('common.courses') }} {{ __('common.available') }}
-                </h4>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <div class="catalog-filter d-inline-flex gap-3">
-                    <!-- Placeholder for future filters if needed -->
-                </div>
-            </div>
+        <div class="catalog-head text-center">
+            <span class="catalog-head__badge">{{ __('common.gal_category_explore') }}</span>
+            <h2 class="catalog-head__title">{{ __('common.courses') }} {{ __('common.available') }}</h2>
+            <p class="catalog-head__sub">
+                {{ method_exists($products, 'total') ? $products->total() : count($products) }} {{ __('common.courses') }}
+            </p>
         </div>
 
         <div class="row g-4">
             @foreach($products as $course)
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="modern-card h-100 border-0 bg-white overflow-hidden catalog-card premium-card" style="border-radius: 24px; box-shadow: 0 8px 32px rgba(21, 145, 220, 0.1); border: 1.5px solid rgba(21, 145, 220, 0.12); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
-                        <!-- Image Container with Overlay -->
-                        <div class="position-relative overflow-hidden" style="height: 300px; background: linear-gradient(135deg, #f0f4ff 0%, #e8f1f9 100%);">
-                            <a href="{{route('product-detail',$course->slug)}}" class="d-block h-100">
-                                <img src="{{url($course->photo)}}" class="w-100 h-100 object-fit-cover catalog-card-img" style="transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);">
-                            </a>
-
-                            <!-- Overlay Gradient -->
-                            <div class="position-absolute bottom-0 start-0 w-100" style="height: 100px; background: linear-gradient(to top, rgba(10, 14, 39, 0.3) 0%, transparent 100%);"></div>
-
-                        
-                            
-                        </div>
-
-                        <!-- Content Container -->
-                        <div class="p-6 d-flex flex-column" style="padding: 1.75rem !important;">
-                           
-
-                            <!-- Title -->
-                            <h5 class="fw-900 text-dark line-clamp-2" style="font-size: 20px; line-height: 1.35; color: #0a0e27; margin-bottom: 0.75rem; font-weight: 900;">
-                                <a href="{{route('product-detail',$course->slug)}}" class="text-dark text-decoration-none" style="transition: color 0.3s ease;">
-                                    {{$course->title}}
-                                </a>
-                            </h5>
-
-                            <!-- Summary/Description -->
-                            <p class="text-muted line-clamp-3 flex-grow-1" style="font-size: 14px; line-height: 1.5; color: #666; margin-bottom: 1.25rem;">
-                                {{$course->summary}}
-                            </p>
-
-                            <!-- Footer Section -->
-                            <div class="d-flex align-items-center gap-3 mt-auto" style="border-top: 1.5px solid rgba(21, 145, 220, 0.1); padding-top: 1rem;">
-                                <a href="{{route('product-detail',$course->slug)}}" class="btn btn-sm flex-grow-1" style="background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 14px; padding: 10px 16px; transition: all 0.3s ease; letter-spacing: 0.5px;">
-                                    {{ __('common.view_more') }}
-                                </a>
-                                <a href="{{route('product-detail',$course->slug)}}" class="catalog-card-btn d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background: linear-gradient(135deg, rgba(21, 145, 220, 0.12) 0%, rgba(21, 145, 220, 0.06) 100%); border-radius: 12px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none;">
-                                    <i class="fas fa-arrow-right" style="color: #1591DC; font-size: 18px; transition: transform 0.3s ease;"></i>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="course-tile course-tile--tint-{{ $loop->index % 3 }}">
+                        <!-- Image with hover overlay -->
+                        <div class="course-tile-image">
+                            @if($course->photo)
+                                <img src="{{ url($course->photo) }}" alt="{{ $course->title }}" class="course-tile-img" loading="lazy">
+                            @else
+                                <div class="course-tile-placeholder"><i class="fas fa-palette"></i></div>
+                            @endif
+                            <div class="course-tile-overlay">
+                                <a href="{{ route('product-detail', $course->slug) }}" class="course-tile-explore">
+                                    {{ __('common.view_more') }} <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
                             </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="course-tile-content">
+                            <div class="course-tile-meta">
+                                <div class="course-tile-badge"><i class="fas fa-palette"></i></div>
+                            </div>
+
+                            <h3 class="course-tile-title line-clamp-2">
+                                <a href="{{ route('product-detail', $course->slug) }}">{{ $course->title }}</a>
+                            </h3>
+
+                            <p class="course-tile-desc line-clamp-2">{{ $course->summary }}</p>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        
+
         <div class="row mt-5">
             <div class="col-12 d-flex justify-content-center">
                 {{ $products->links() }}
@@ -152,118 +114,341 @@
     </div>
 </section>
 
-<!-- RELATED CATEGORIES SECTION -->
-<section class="related-categories-section" style="background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);">
-    <div class="container">
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_category_badge') }}</span>
-            <h2 class="modern-h2 mt-3">{{ __('common.explore_more') }}</h2>
-            <p class="text-muted mx-auto mt-3" style="max-width: 600px;">
-                {{ __('common.explore_other_categories') }}
-            </p>
-        </div>
-
-        <div class="row g-4">
-            @php
-                $allCategories = \App\Models\Category::where('status','active')
-                    ->where('is_parent',1)
-                    ->orderBy('title','ASC')
-                    ->limit(6)
-                    ->get();
-            @endphp
-
-            @forelse($allCategories as $cat)
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <a href="{{ route('product-lists', $cat->slug) }}" class="category-link-card">
-                        <div class="category-link-item">
-                            <div class="category-link-icon">
-                                @if($cat->photo)
-                                    <img src="{{ $cat->photo }}" alt="{{ $cat->title }}" class="category-link-img">
-                                @else
-                                    <i class="fas fa-book"></i>
-                                @endif
-                            </div>
-                            <h5 class="category-link-title">{{ $cat->title }}</h5>
-                           
-                        </div>
-                    </a>
-                </div>
-            @empty
-                <div class="col-12 text-center">
-                    <p class="text-muted">{{ __('common.no_categories') }}</p>
-                </div>
-            @endforelse
-        </div>
-    </div>
-</section>
-
 @endsection
 
 @push('styles')
 <style>
-    .catalog-section > .container {
-        padding-top: 60px !important;
-        padding-bottom: 60px !important;
+    /* =========================================
+       CATEGORY COVER HERO (magazine style)
+       ========================================= */
+    .cat-hero {
+        background: var(--surface-paper-canvas, #fefdfc);
+        padding: 32px 0 8px;
     }
-
-    .premium-card {
+    .cat-hero__card {
         position: relative;
         overflow: hidden;
+        border-radius: 24px;
+        min-height: 340px;
+        display: flex;
+        align-items: flex-end;
+        border: 1px solid var(--color-stone, #d7d6d4);
+        box-shadow: var(--shadow-lg);
     }
-
-    .premium-card::before {
+    /* cover image / fallback */
+    .cat-hero__media {
+        position: absolute;
+        inset: 0;
+        background-image: var(--cat-cover, none);
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.02);
+        transition: transform 8s ease;
+    }
+    .cat-hero__card:hover .cat-hero__media { transform: scale(1.08); }
+    .cat-hero__media--plain {
+        background-image: none;
+        background: linear-gradient(135deg, var(--color-teal-dusk, #497d7e), var(--color-ink, #25221e));
+    }
+    /* readability veil */
+    .cat-hero__veil {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(90deg, rgba(37, 34, 30, 0.82) 0%, rgba(37, 34, 30, 0.45) 55%, rgba(37, 34, 30, 0.15) 100%),
+            linear-gradient(0deg, rgba(37, 34, 30, 0.55) 0%, transparent 60%);
+    }
+    /* top gradient accent line */
+    .cat-hero__card::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(21, 145, 220, 0.05) 0%, transparent 100%);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        z-index: 3;
+        background: linear-gradient(90deg, var(--color-ember-red, #e34432), var(--color-teal-dusk, #497d7e), var(--color-forest, #446c3d));
     }
 
-    .catalog-card {
+    .cat-hero__inner {
         position: relative;
+        z-index: 2;
+        padding: clamp(28px, 4vw, 48px);
+        max-width: 720px;
+    }
+    .cat-hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        margin-bottom: 16px;
+        border-radius: 999px;
+        background: rgba(254, 253, 252, 0.14);
+        -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
+        border: 1px solid rgba(254, 253, 252, 0.25);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #fff;
+    }
+    .cat-hero__eyebrow i { color: #ffd9cf; }
+
+    .cat-hero__title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: clamp(30px, 4.4vw, 50px);
+        font-weight: var(--font-weight-bold, 700);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #fff;
+        margin: 0 0 14px;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
+    }
+    .cat-hero__summary {
+        font-family: var(--font-inter), sans-serif;
+        font-size: clamp(15px, 1.4vw, 17px);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.88);
+        margin: 0 0 24px;
+        max-width: 600px;
     }
 
-    .catalog-card:hover {
-        transform: translateY(-16px);
-        box-shadow: 0 32px 64px rgba(21, 145, 220, 0.18) !important;
-        border-color: rgba(21, 145, 220, 0.25) !important;
+    .cat-hero__stats {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
     }
-
-    .catalog-card:hover::before {
-        opacity: 1;
+    .cat-hero__chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: 999px;
+        background: rgba(254, 253, 252, 0.16);
+        -webkit-backdrop-filter: blur(8px);
+                backdrop-filter: blur(8px);
+        border: 1px solid rgba(254, 253, 252, 0.25);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
     }
-
-    .catalog-card-img {
-        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    .cat-hero__chip i { font-size: 13px; color: #ffd9cf; }
+    .cat-hero__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(227, 68, 50, 0.4);
+        transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
-
-    .catalog-card:hover .catalog-card-img {
-        transform: scale(1.1);
-    }
-
-    .catalog-card-btn {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .catalog-card:hover .btn {
-        box-shadow: 0 12px 28px rgba(21, 145, 220, 0.3) !important;
+    .cat-hero__cta:hover {
+        background: var(--color-deep-ember, #cf3520);
+        color: var(--color-paper, #fefdfc);
         transform: translateY(-2px);
     }
+    .cat-hero__cta i { font-size: 12px; transition: transform 0.25s ease; }
+    .cat-hero__cta:hover i { transform: translateY(3px); }
 
-    .catalog-card:hover .catalog-card-btn {
-        background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%) !important;
-        box-shadow: 0 12px 28px rgba(21, 145, 220, 0.3) !important;
-        transform: scale(1.12);
+    /* =========================================
+       CATALOG SECTION + TOOLBAR
+       ========================================= */
+    .catalog-section {
+        background: var(--surface-paper-canvas, #fefdfc);
+        padding: 56px 0 80px;
+    }
+    /* centered section header — matches the home page sections */
+    .catalog-head { margin-bottom: 48px; }
+    .catalog-head__badge {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: var(--radius-badges, 8px);
+        background-color: var(--color-cream, #fff6f0);
+        color: var(--color-deep-ember, #cf3520);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        box-shadow: var(--shadow-subtle);
+        margin-bottom: 16px;
+    }
+    .catalog-head__title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: clamp(28px, 3.6vw, 42px);
+        font-weight: var(--font-weight-bold, 700);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--color-ink, #25221e);
+        margin: 0 0 12px;
+    }
+    .catalog-head__sub {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0 auto;
+        max-width: 600px;
     }
 
-    .catalog-card:hover .catalog-card-btn i {
-        color: white !important;
-        transform: translateX(2px);
+    /* =========================================
+       COURSE TILE (matches home category cards)
+       ========================================= */
+    .course-tile {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-subtle);
+        padding: 18px;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .course-tile:hover {
+        box-shadow: rgba(37, 34, 30, 0.08) 0px 14px 28px, rgba(37, 34, 30, 0.04) 0px 4px 10px;
+        transform: translateY(-6px);
+    }
+
+    /* tint variants (cream / mint / sky) */
+    .course-tile--tint-0 {
+        background-color: var(--color-cream, #fff6f0);
+        border: 1px solid rgba(227, 68, 50, 0.15);
+    }
+    .course-tile--tint-0:hover { border-color: rgba(227, 68, 50, 0.45); }
+    .course-tile--tint-1 {
+        background-color: var(--color-mint-wash, #f0f6df);
+        border: 1px solid rgba(68, 108, 61, 0.15);
+    }
+    .course-tile--tint-1:hover { border-color: rgba(68, 108, 61, 0.45); }
+    .course-tile--tint-2 {
+        background-color: var(--color-sky-wash, #dceaff);
+        border: 1px solid rgba(15, 102, 174, 0.15);
+    }
+    .course-tile--tint-2:hover { border-color: rgba(15, 102, 174, 0.45); }
+
+    /* image with hover overlay */
+    .course-tile-image {
+        position: relative;
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+        border-radius: 12px;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .course-tile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .course-tile:hover .course-tile-img { transform: scale(1.06); }
+    .course-tile-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        color: var(--color-deep-ember, #cf3520);
+        background: var(--color-paper, #fefdfc);
+    }
+    .course-tile-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(37, 34, 30, 0.62);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        -webkit-backdrop-filter: blur(2px);
+                backdrop-filter: blur(2px);
+    }
+    .course-tile:hover .course-tile-overlay { opacity: 1; }
+    .course-tile-explore {
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        padding: 10px 18px;
+        border-radius: var(--radius-buttons, 8px);
+        font-family: var(--font-inter), sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.25);
+        transform: translateY(6px);
+        transition: all 0.3s ease;
+    }
+    .course-tile:hover .course-tile-explore { transform: translateY(0); }
+    .course-tile-explore:hover {
+        background: var(--color-deep-ember, #cf3520);
+        color: var(--color-paper, #fefdfc);
+    }
+
+    /* content */
+    .course-tile-content {
+        padding: 18px 2px 2px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .course-tile-meta {
+        display: flex;
+        align-items: center;
+        margin-bottom: 14px;
+    }
+    .course-tile-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        background: var(--color-paper, #fefdfc);
+        box-shadow: var(--shadow-subtle);
+        transition: all 0.3s ease;
+    }
+    .course-tile--tint-0 .course-tile-badge { color: var(--color-deep-ember, #cf3520); border: 1px solid rgba(227, 68, 50, 0.25); }
+    .course-tile--tint-1 .course-tile-badge { color: var(--color-forest, #446c3d); border: 1px solid rgba(68, 108, 61, 0.25); }
+    .course-tile--tint-2 .course-tile-badge { color: var(--color-cobalt-link, #0f66ae); border: 1px solid rgba(15, 102, 174, 0.25); }
+    .course-tile--tint-0:hover .course-tile-badge { background: var(--color-ember-red, #e34432); color: var(--color-paper, #fefdfc); border-color: var(--color-ember-red, #e34432); }
+    .course-tile--tint-1:hover .course-tile-badge { background: var(--color-forest, #446c3d); color: var(--color-paper, #fefdfc); border-color: var(--color-forest, #446c3d); }
+    .course-tile--tint-2:hover .course-tile-badge { background: var(--color-cobalt-link, #0f66ae); color: var(--color-paper, #fefdfc); border-color: var(--color-cobalt-link, #0f66ae); }
+
+    .course-tile-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.32;
+        margin: 0 0 10px;
+    }
+    .course-tile-title a {
+        color: var(--color-ink, #25221e);
+        text-decoration: none;
+        transition: color 0.25s ease;
+    }
+    .course-tile-title a:hover { color: var(--color-deep-ember, #cf3520); }
+
+    .course-tile-desc {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        line-height: 1.55;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0;
     }
 
     .line-clamp-2 {
@@ -272,7 +457,6 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-
     .line-clamp-3 {
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -281,111 +465,63 @@
     }
 
     /* =========================================
-       RELATED CATEGORIES LINKS
+       PAGINATION (themed)
        ========================================= */
-
-    .category-link-card {
-        text-decoration: none;
-        display: block;
-        height: 100%;
+    .catalog-section .pagination { gap: 6px; }
+    .catalog-section .page-link {
+        color: var(--color-ink, #25221e);
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-buttons, 8px) !important;
+        font-family: var(--font-inter), sans-serif;
+        font-weight: 500;
+        padding: 9px 15px;
+        transition: all 0.2s ease;
     }
-
-    .category-link-item {
-        background: white;
-        border-radius: 14px;
-        padding: 16px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(21, 145, 220, 0.08);
-        border: 1px solid rgba(21, 145, 220, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    .catalog-section .page-link:hover {
+        color: var(--color-deep-ember, #cf3520);
+        background: rgba(227, 68, 50, 0.06);
+        border-color: rgba(227, 68, 50, 0.3);
+        box-shadow: none;
     }
-
-    .category-link-card:hover .category-link-item {
-        box-shadow: 0 12px 32px rgba(21, 145, 220, 0.15);
-        transform: translateY(-4px);
-        border-color: rgba(21, 145, 220, 0.2);
+    .catalog-section .page-item.active .page-link {
+        background: var(--color-ember-red, #e34432);
+        border-color: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.28);
     }
-
-    .category-link-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #f0f4ff 0%, #e8f1f9 100%);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 12px;
-        font-size: 24px;
-        color: #1591DC;
-        overflow: hidden;
-    }
-
-    .category-link-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .category-link-card:hover .category-link-img {
-        transform: scale(1.1);
-    }
-
-    .category-link-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: #0a0e27;
-        margin: 0 0 6px 0;
-        line-height: 1.4;
-    }
-
-    .category-link-count {
-        font-size: 11px;
-        color: #1591DC;
-        font-weight: 600;
-        margin: 0;
+    .catalog-section .page-item.disabled .page-link {
+        color: var(--color-graphite, #94928f);
+        background: var(--color-paper, #fefdfc);
+        border-color: var(--color-stone, #d7d6d4);
+        opacity: 0.6;
     }
 
     /* =========================================
        RESPONSIVE
        ========================================= */
+    /* offset the scroll anchor for the sticky header */
+    #catalog { scroll-margin-top: 90px; }
 
     @media (max-width: 768px) {
-        .catalog-card:hover {
-            transform: translateY(-8px);
+        .cat-hero { padding: 20px 0 4px; }
+        .cat-hero__card { min-height: 300px; border-radius: 18px; }
+        .cat-hero__veil {
+            background: linear-gradient(0deg, rgba(37, 34, 30, 0.85) 0%, rgba(37, 34, 30, 0.3) 70%, rgba(37, 34, 30, 0.15) 100%);
         }
-
-        .related-category-image {
-            height: 120px;
-        }
-
-        .category-header-section {
-            padding-top: 40px !important;
-            padding-bottom: 40px !important;
-        }
+        .catalog-section { padding: 40px 0 56px; }
+        .course-tile:hover { transform: translateY(-4px); }
+        .course-tile-image { height: 170px; }
+        .cat-hero__stats { gap: 10px; }
+        .cat-hero__cta, .cat-hero__chip { font-size: 13px; }
     }
 
-    @media (max-width: 480px) {
-        .related-category-card {
-            border-radius: 12px;
-        }
-
-        .related-category-image {
-            height: 100px;
-        }
-
-        .related-category-content {
-            padding: 10px;
-        }
-
-        .related-category-title {
-            font-size: 12px;
-        }
+    @media (prefers-reduced-motion: reduce) {
+        .course-tile,
+        .course-tile-img,
+        .cat-hero__media { transition: none !important; }
+        .course-tile:hover { transform: none !important; }
+        .cat-hero__card:hover .cat-hero__media { transform: scale(1.02) !important; }
     }
 </style>
 @endpush

@@ -6,107 +6,77 @@ $order = Order::where('trans_id', $transaction_id)->first();
 @endphp
 @section('main-content')
 
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title"><i class="fas fa-check-circle me-3" style="color: #22c55e;"></i>{{ __('common.order_success') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.order_success') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb
+    :title="__('common.order_successful')"
+    :routes="[['label' => __('common.order_success')]]"
+/>
 
-<section class="success-section pt-100 pb-100">
+<section class="order-status order-status--success">
+    <span class="order-status__glow os-glow-mint" aria-hidden="true"></span>
+    <span class="order-status__glow os-glow-sky" aria-hidden="true"></span>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-9">
-                <div class="modern-success-card p-5 border-0 shadow-lg bg-white" style="border-radius: 20px; background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);">
-                    <div class="text-center mb-5">
-                        <div class="success-icon-container d-inline-block position-relative mb-4">
-                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 120px; height: 120px; background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%); border: 2px solid rgba(34, 197, 94, 0.2);">
-                                <i class="fas fa-check-circle" style="font-size: 60px; color: #22c55e;"></i>
-                            </div>
-                        </div>
+                <div class="status-card">
+                    <span class="status-card__accent status-card__accent--success" aria-hidden="true"></span>
 
-                        <h2 class="fw-bold text-dark mb-2" style="font-size: 32px; letter-spacing: -1px;">{{ __('common.order_successful') }}</h2>
-                        <p class="text-muted mb-5" style="font-size: 16px; line-height: 1.6;">{{ __('common.thank_you_order') }} {{ __('common.enrollment_confirmed') }}</p>
+                    <div class="text-center">
+                        <div class="status-icon status-icon--success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 class="status-title">{{ __('common.order_successful') }}</h2>
+                        <p class="status-text">{{ __('common.thank_you_order') }} {{ __('common.enrollment_confirmed') }}</p>
                     </div>
 
                     @if($order)
-                    <div class="order-info-grid mb-5">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="info-card p-4 rounded-3 bg-light border border-light" style="background: rgba(21, 145, 220, 0.04);">
-                                    <div class="text-uppercase small fw-bold mb-2" style="color: #1591DC; letter-spacing: 0.5px;">{{ __('common.order_number') }}</div>
-                                    <div class="fw-bold text-dark" style="font-size: 18px;">{{ $order->order_number }}</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-card p-4 rounded-3 bg-light border border-light" style="background: rgba(21, 145, 220, 0.04);">
-                                    <div class="text-uppercase small fw-bold mb-2" style="color: #1591DC; letter-spacing: 0.5px;">{{ __('common.total_amount') }}</div>
-                                    <div class="fw-bold text-dark" style="font-size: 18px;">
-                                        @php
-                                            $currency = match($order->currency) {
-                                                'USD' => '$',
-                                                'JPY' => '¥',
-                                                'HKD' => 'HK$',
-                                                default => '$',
-                                            };
-                                        @endphp
-                                        {{ $currency }} {{number_format($order->total_amount, $order->currency=='JPY' ? 0 : 2)}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-card p-4 rounded-3 bg-light border border-light" style="background: rgba(21, 145, 220, 0.04);">
-                                    <div class="text-uppercase small fw-bold mb-2" style="color: #1591DC; letter-spacing: 0.5px;">{{ __('common.transaction_id') }}</div>
-                                    <div class="fw-bold text-dark" style="font-size: 18px;">{{ $transaction_id }}</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info-card p-4 rounded-3 bg-light border border-light" style="background: rgba(34, 197, 94, 0.08);">
-                                    <div class="text-uppercase small fw-bold mb-2" style="color: #22c55e; letter-spacing: 0.5px;">{{ __('common.payment_status') }}</div>
-                                    <div class="fw-bold text-dark" style="font-size: 18px;">
-                                        <span class="badge" style="background: #22c55e;">{{ ucwords($order->payment_status) }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="status-grid">
+                        <div class="status-fact">
+                            <span class="status-fact__label">{{ __('common.order_number') }}</span>
+                            <span class="status-fact__value">{{ $order->order_number }}</span>
+                        </div>
+                        <div class="status-fact">
+                            <span class="status-fact__label">{{ __('common.total_amount') }}</span>
+                            <span class="status-fact__value">
+                                @php
+                                    $currency = match($order->currency) {
+                                        'USD' => '$',
+                                        'JPY' => '¥',
+                                        'HKD' => 'HK$',
+                                        default => '$',
+                                    };
+                                @endphp
+                                {{ $currency }} {{number_format($order->total_amount, $order->currency=='JPY' ? 0 : 2)}}
+                            </span>
+                        </div>
+                        <div class="status-fact">
+                            <span class="status-fact__label">{{ __('common.transaction_id') }}</span>
+                            <span class="status-fact__value">{{ $transaction_id }}</span>
+                        </div>
+                        <div class="status-fact status-fact--accent">
+                            <span class="status-fact__label">{{ __('common.payment_status') }}</span>
+                            <span class="status-pill status-pill--success">{{ ucwords($order->payment_status) }}</span>
                         </div>
                     </div>
                     @endif
 
-                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mt-5">
-                        <a href="{{route('user.order.show',$order->id)}}" class="btn btn-primary rounded-4 px-5 py-3 fw-bold shadow-sm" style="background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); border: none; transition: all 0.3s ease;">
-                            <i class="fas fa-eye me-2"></i>{{ __('common.view_details') }}
+                    <div class="status-actions">
+                        <a href="{{route('user.order.show',$order->id)}}" class="status-btn status-btn--primary">
+                            <i class="fas fa-eye"></i> {{ __('common.view_details') }}
                         </a>
-                        <a href="{{route('home')}}" class="btn btn-light rounded-4 px-5 py-3 fw-bold border border-light" style="background: #f8fbff; transition: all 0.3s ease;">
-                            <i class="fas fa-home me-2"></i>{{ __('common.home') }}
+                        <a href="{{route('home')}}" class="status-btn status-btn--ghost">
+                            <i class="fas fa-home"></i> {{ __('common.home') }}
                         </a>
                         @if($order)
-                            <a href="{{route('order.pdf',$order->id)}}" class="btn btn-outline-primary rounded-4 px-5 py-3 fw-bold" style="color: #1591DC; border-color: #1591DC; transition: all 0.3s ease;">
-                                <i class="fas fa-download me-2"></i>{{ __('common.download_pdf_invoice') }}
+                            <a href="{{route('order.pdf',$order->id)}}" class="status-btn status-btn--outline">
+                                <i class="fas fa-download"></i> {{ __('common.download_pdf_invoice') }}
                             </a>
                         @endif
                     </div>
 
                     @if($email_status=='inactive')
-                        <div class="mt-5 pt-4 border-top border-light">
-                            <p class="text-muted mb-0" style="font-size: 14px; line-height: 1.6;">{{ __('common.high_traffic') }} <a href="{{route('order.pdf',$order->id)}}" class="fw-bold" style="color: #1591DC; text-decoration: none;">{{ __('common.download_pdf_invoice') }}</a></p>
+                        <div class="status-note">
+                            <p>{{ __('common.high_traffic') }} <a href="{{route('order.pdf',$order->id)}}">{{ __('common.download_pdf_invoice') }}</a></p>
                         </div>
                     @endif
                 </div>
@@ -119,70 +89,196 @@ $order = Order::where('trans_id', $transaction_id)->first();
 
 @push('styles')
 <style>
-    .success-section {
-        background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+    /* =========================================
+       ORDER STATUS PAGE — warm theme
+       ========================================= */
+    .order-status {
+        position: relative;
+        overflow: hidden;
+        background: var(--surface-paper-canvas, #fefdfc);
+        padding: 80px 0 100px;
+    }
+    .order-status__glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.55;
+    }
+    .os-glow-mint { width: 360px; height: 360px; background: var(--color-mint-wash, #f0f6df); top: -120px; left: -80px; }
+    .os-glow-sky  { width: 320px; height: 320px; background: var(--color-sky-wash, #dceaff); bottom: 2%; right: -100px; }
+    .order-status .container { position: relative; z-index: 1; }
+
+    /* card */
+    .status-card {
+        position: relative;
+        overflow: hidden;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 24px;
+        padding: clamp(28px, 4vw, 56px);
+        box-shadow: 0 20px 50px rgba(37, 34, 30, 0.07), 0 2px 8px rgba(37, 34, 30, 0.03);
+        animation: osRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .status-card__accent {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+    }
+    .status-card__accent--success { background: linear-gradient(90deg, var(--color-forest, #446c3d), var(--color-teal-dusk, #497d7e)); }
+
+    /* icon */
+    .status-icon {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 50px;
+        animation: osPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+    .status-icon--success {
+        background: var(--color-mint-wash, #f0f6df);
+        border: 2px solid rgba(68, 108, 61, 0.25);
+        color: var(--color-forest, #446c3d);
     }
 
-    .success-icon-container i {
-        animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .status-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: clamp(26px, 3.4vw, 36px);
+        font-weight: var(--font-weight-bold, 700);
+        letter-spacing: -0.02em;
+        color: var(--color-ink, #25221e);
+        margin: 0 0 10px;
+    }
+    .status-text {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 16px;
+        line-height: 1.65;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0 auto 36px;
+        max-width: 520px;
     }
 
-    @keyframes scaleIn {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
+    /* facts grid */
+    .status-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 36px;
     }
-
-    .info-card {
-        transition: all 0.3s ease;
+    .status-fact {
+        background: var(--color-cream, #fff6f0);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 14px;
+        padding: 18px 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
-
-    .info-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(21, 145, 220, 0.1);
+    .status-fact:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(227, 68, 50, 0.3);
     }
-
-    .btn {
-        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    .status-fact--accent { background: var(--color-mint-wash, #f0f6df); border-color: rgba(68, 108, 61, 0.2); }
+    .status-fact__label {
+        display: block;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--color-graphite, #94928f);
+        margin-bottom: 8px;
     }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(21, 145, 220, 0.3);
+    .status-fact__value {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 18px;
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        word-break: break-word;
     }
-
-    .btn-light:hover {
-        background: rgba(21, 145, 220, 0.08) !important;
-        transform: translateY(-2px);
+    .status-pill {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 999px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        font-weight: 600;
     }
+    .status-pill--success { background: var(--color-forest, #446c3d); color: #fff; }
 
-    .btn-outline-primary:hover {
-        background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%) !important;
-        color: white !important;
-        border-color: #1591DC !important;
-        transform: translateY(-2px);
+    /* actions */
+    .status-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
     }
+    .status-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 26px;
+        border-radius: var(--radius-buttons, 8px);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+    .status-btn--primary {
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-ember-red, #e34432);
+        box-shadow: 0 8px 20px rgba(227, 68, 50, 0.3);
+    }
+    .status-btn--primary:hover { background: var(--color-deep-ember, #cf3520); color: var(--color-paper, #fefdfc); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(227, 68, 50, 0.4); }
+    .status-btn--ghost {
+        background: var(--color-paper, #fefdfc);
+        color: var(--color-ink, #25221e);
+        border: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .status-btn--ghost:hover { background: var(--color-cream, #fff6f0); color: var(--color-deep-ember, #cf3520); border-color: rgba(227, 68, 50, 0.3); transform: translateY(-2px); }
+    .status-btn--outline {
+        background: transparent;
+        color: var(--color-deep-ember, #cf3520);
+        border: 1.5px solid var(--color-ember-red, #e34432);
+    }
+    .status-btn--outline:hover { background: var(--color-ember-red, #e34432); color: var(--color-paper, #fefdfc); transform: translateY(-2px); }
 
-    @media (max-width: 768px) {
-        .success-section {
-            padding-top: 60px !important;
-            padding-bottom: 60px !important;
-        }
+    /* note */
+    .status-note {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+        text-align: center;
+    }
+    .status-note p {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0;
+    }
+    .status-note a { color: var(--color-cobalt-link, #0f66ae); font-weight: 600; text-decoration: none; }
+    .status-note a:hover { color: var(--color-deep-ember, #cf3520); }
 
-        .modern-success-card {
-            padding: 30px !important;
-        }
+    @keyframes osRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes osPop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
-        .d-flex.flex-md-row {
-            flex-direction: column !important;
-        }
-
-        .btn {
-            width: 100%;
-        }
+    @media (max-width: 575px) {
+        .order-status { padding: 52px 0 64px; }
+        .status-grid { grid-template-columns: 1fr; }
+        .status-actions { flex-direction: column; }
+        .status-btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .status-card, .status-icon { animation: none !important; }
+        .status-fact { transition: none !important; }
     }
 </style>
 @endpush
