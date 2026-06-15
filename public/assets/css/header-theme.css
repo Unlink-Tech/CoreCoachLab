@@ -1,0 +1,787 @@
+/**
+ * HEADER THEME STYLES
+ * Based on new design system (Todoist-inspired light theme)
+ * Warm paper aesthetic with clean typography
+ *
+ * @version 1.0
+ */
+
+/* ============================================================
+   MAIN HEADER STYLING
+   ============================================================ */
+
+header.main-header {
+  background-color: var(--surface-paper-canvas);
+  border-bottom: 1px solid var(--color-stone);
+  padding: var(--spacing-12) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+header.main-header:hover {
+  box-shadow: var(--shadow-subtle);
+}
+
+header.main-header.sticky-top {
+  box-shadow: var(--shadow-subtle);
+}
+
+header.main-header .auto-container {
+  padding: var(--spacing-12) var(--spacing-20);
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  header.main-header {
+    padding: var(--spacing-8) 0;
+  }
+
+  header.main-header .auto-container {
+    padding: var(--spacing-8) var(--spacing-12);
+  }
+}
+
+/* ============================================================
+   HEADER INNER LAYOUT
+   ============================================================ */
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+  width: 100%;
+}
+
+/* ============================================================
+   LOGO STYLING
+   ============================================================ */
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex-shrink: 0;
+}
+
+.logo-box a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform var(--transition-normal);
+  outline: none;
+}
+
+.logo-box a:hover {
+  transform: translateY(-2px);
+}
+
+.logo-box a:focus {
+  outline: 2px solid var(--color-cobalt-link);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.logo-box img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: filter var(--transition-normal);
+}
+
+.logo-box a:hover img {
+  filter: brightness(1.1);
+}
+
+/* Logo text (if added) */
+.logo-text {
+  font-family: var(--font-graphik);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+  letter-spacing: -0.05em;
+  margin-left: var(--spacing-8);
+}
+
+/* ============================================================
+   NAVIGATION STYLING
+   ============================================================ */
+
+nav.modern-nav-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.modern-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-8);
+}
+
+.modern-nav > li {
+  position: relative;
+}
+
+.modern-nav > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+
+  padding: var(--spacing-8) var(--spacing-16);
+  color: var(--color-ink);
+  font-family: var(--font-inter);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-nav);
+  position: relative;
+}
+
+.modern-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: var(--spacing-16);
+  right: var(--spacing-16);
+  height: 2px;
+  background-color: var(--color-ember-red);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal);
+}
+
+.modern-nav > li > a:hover {
+  color: var(--color-deep-ember);
+  background-color: rgba(227, 68, 50, 0.05);
+}
+
+.modern-nav > li > a:hover::after {
+  transform: scaleX(1);
+}
+
+.modern-nav > li.active > a {
+  color: var(--color-deep-ember);
+  background-color: rgba(207, 53, 32, 0.08);
+}
+
+.modern-nav > li.active > a::after {
+  transform: scaleX(1);
+}
+
+.modern-nav > li.dropdown > a {
+  cursor: pointer;
+}
+
+/* ============================================================
+   DROPDOWN STYLING
+   ============================================================ */
+
+.dropdown-menu {
+  background-color: var(--surface-paper-canvas);
+  border: 1px solid var(--color-stone);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8) 0;
+  margin-top: var(--spacing-8);
+  min-width: 200px;
+
+  box-shadow: var(--shadow-lg);
+  animation: slideDown var(--transition-normal) ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+  animation: slideDown var(--transition-normal) ease-out;
+}
+
+/* Dropdown Item Styling */
+.dropdown-item {
+  color: var(--color-ink);
+  font-family: var(--font-inter);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+
+  padding: var(--spacing-12) var(--spacing-16);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+
+  border: none;
+  background-color: transparent;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(227, 68, 50, 0.08);
+  color: var(--color-deep-ember);
+  padding-left: calc(var(--spacing-16) + 4px);
+}
+
+.dropdown-item:focus {
+  background-color: rgba(207, 53, 32, 0.1);
+  outline: none;
+  border-left: 3px solid var(--color-deep-ember);
+  padding-left: calc(var(--spacing-16) - 3px);
+}
+
+.dropdown-item.active {
+  background-color: var(--surface-tinted-wave);
+  color: var(--color-ink);
+  font-weight: var(--font-weight-semibold);
+}
+
+.dropdown-item.active.bg-primary {
+  background-color: var(--color-ember-red) !important;
+  color: var(--color-paper) !important;
+}
+
+.dropdown-item.text-muted {
+  color: var(--color-graphite);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Dropdown icon styling */
+.dropdown-item i {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.dropdown-item.text-muted i {
+  color: var(--color-stone);
+}
+
+/* Dropdown divider */
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--color-stone);
+  margin: var(--spacing-8) 0;
+  border: none;
+}
+
+/* Language dropdown custom styling */
+.dropdown.d-none.d-md-block {
+  display: block;
+}
+
+/* Currency dropdown */
+.currency-dropdown {
+  min-width: 160px;
+}
+
+/* ============================================================
+   HEADER ACTIONS & BUTTONS
+   ============================================================ */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  flex-shrink: 0;
+}
+
+/* Modern Button Styling */
+.modern-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+
+  padding: var(--spacing-8) var(--spacing-12);
+  border: 1px solid transparent;
+  border-radius: var(--radius-buttons);
+
+  font-family: var(--font-inter);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+
+  color: var(--color-ink);
+  background-color: transparent;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+  white-space: nowrap;
+}
+
+.modern-btn:hover {
+  background-color: rgba(227, 68, 50, 0.05);
+  color: var(--color-deep-ember);
+}
+
+.modern-btn:focus {
+  outline: 2px solid var(--color-cobalt-link);
+  outline-offset: 2px;
+}
+
+/* Modern Button Outline Style */
+.modern-btn-outline {
+  border: 1px solid var(--color-stone);
+  background-color: var(--surface-paper-canvas);
+  color: var(--color-ink);
+}
+
+.modern-btn-outline:hover {
+  border-color: var(--color-deep-ember);
+  background-color: rgba(207, 53, 32, 0.05);
+  color: var(--color-deep-ember);
+}
+
+/* Modern Button Solid Style */
+.modern-btn-solid {
+  background-color: var(--color-ember-red);
+  color: var(--color-paper);
+  border: 1px solid var(--color-ember-red);
+  font-weight: var(--font-weight-semibold);
+
+  box-shadow: var(--shadow-lg);
+}
+
+.modern-btn-solid:hover {
+  background-color: var(--color-deep-ember);
+  border-color: var(--color-deep-ember);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.modern-btn-solid:active {
+  background-color: var(--color-charcoal);
+  transform: translateY(0);
+}
+
+/* ============================================================
+   POINTS & BALANCE DISPLAY
+   ============================================================ */
+
+.modern-btn.points-btn {
+  background: linear-gradient(135deg, rgba(227, 68, 50, 0.08) 0%, rgba(79, 125, 126, 0.08) 100%);
+  border: 1px solid rgba(227, 68, 50, 0.2);
+  padding: var(--spacing-8) var(--spacing-14);
+  border-radius: var(--radius-buttons);
+}
+
+.modern-btn.points-btn:hover {
+  background: linear-gradient(135deg, rgba(227, 68, 50, 0.12) 0%, rgba(79, 125, 126, 0.12) 100%);
+  border-color: rgba(227, 68, 50, 0.3);
+}
+
+.points-icon {
+  color: var(--color-ember-red);
+  font-size: 16px;
+}
+
+.points-value {
+  color: var(--color-ink);
+  font-weight: var(--font-weight-bold);
+  font-size: 14px;
+}
+
+.points-label {
+  color: var(--color-cobalt-link);
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================================
+   CART BUTTON
+   ============================================================ */
+
+.ui-btn-outer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.modern-cart-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  color: var(--color-ink);
+  background-color: var(--surface-paper-canvas);
+  border: 1px solid var(--color-stone);
+  border-radius: var(--radius-buttons);
+
+  font-size: 20px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.modern-cart-btn:hover {
+  background-color: rgba(227, 68, 50, 0.08);
+  border-color: var(--color-deep-ember);
+  color: var(--color-deep-ember);
+}
+
+.modern-cart-btn:focus {
+  outline: 2px solid var(--color-cobalt-link);
+  outline-offset: 2px;
+}
+
+/* Cart Count Badge */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+
+  background-color: var(--color-ember-red);
+  color: var(--color-paper);
+  border-radius: 50%;
+
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   MOBILE MENU STYLING
+   ============================================================ */
+
+.mobile-menu {
+  position: fixed;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  transition: left var(--transition-normal);
+}
+
+.mobile-menu.active {
+  left: 0;
+}
+
+.menu-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 34, 30, 0.5);
+  z-index: 0;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.menu-box {
+  position: relative;
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  background-color: var(--surface-paper-canvas);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.menu-box .upper-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-16);
+  border-bottom: 1px solid var(--color-stone);
+}
+
+.nav-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  color: var(--color-ink);
+  background-color: rgba(227, 68, 50, 0.1);
+  border: none;
+  border-radius: var(--radius-buttons);
+
+  font-size: 20px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  outline: none;
+}
+
+.close-btn:hover {
+  background-color: rgba(227, 68, 50, 0.2);
+  color: var(--color-deep-ember);
+}
+
+.close-btn:focus {
+  outline: 2px solid var(--color-cobalt-link);
+  outline-offset: 2px;
+}
+
+.menu-box .navigation {
+  flex: 1;
+  list-style: none;
+  padding: var(--spacing-12) 0;
+  margin: 0;
+}
+
+.menu-box .navigation li {
+  border-bottom: 1px solid var(--color-stone);
+}
+
+.menu-box .navigation li a {
+  display: block;
+  padding: var(--spacing-16);
+
+  color: var(--color-ink);
+  font-family: var(--font-inter);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+
+  text-decoration: none;
+  transition: all var(--transition-normal);
+}
+
+.menu-box .navigation li a:hover {
+  background-color: rgba(227, 68, 50, 0.08);
+  color: var(--color-deep-ember);
+  padding-left: calc(var(--spacing-16) + 4px);
+}
+
+.menu-box .navigation li.active a {
+  background-color: var(--surface-tinted-wave);
+  color: var(--color-ink);
+  font-weight: var(--font-weight-semibold);
+  border-left: 3px solid var(--color-ember-red);
+  padding-left: calc(var(--spacing-16) - 3px);
+}
+
+/* ============================================================
+   HAMBURGER MENU BUTTON
+   ============================================================ */
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-normal);
+}
+
+.hamburger-btn:hover {
+  opacity: 0.7;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+
+  background-color: var(--color-ink);
+  border-radius: 1px;
+  transition: all var(--transition-normal);
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+@media (max-width: 991px) {
+  .hamburger-btn {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 991px) {
+  nav.modern-nav-wrapper {
+    display: none;
+  }
+
+  .header-actions {
+    gap: var(--spacing-8);
+  }
+
+  .modern-btn {
+    padding: var(--spacing-8) var(--spacing-8);
+    font-size: var(--text-caption);
+  }
+
+  .modern-btn span {
+    display: none;
+  }
+
+  .modern-btn.d-none.d-sm-inline {
+    display: inline !important;
+  }
+
+  .modern-btn-solid {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-inner {
+    gap: var(--spacing-12);
+  }
+
+  .header-actions {
+    gap: var(--spacing-8);
+  }
+
+  .dropdown.d-none.d-md-block {
+    display: none;
+  }
+
+  .dropdown.d-none.d-lg-block {
+    display: none;
+  }
+
+  .modern-btn-solid {
+    display: none;
+  }
+
+  .logo-box img {
+    height: 40px;
+  }
+
+  .dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: auto;
+  }
+}
+
+/* ============================================================
+   ANIMATION HELPERS
+   ============================================================ */
+
+.animated-dropdown {
+  animation: slideDown var(--transition-normal) ease-out;
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+.header-actions a:focus-visible,
+.modern-nav a:focus-visible,
+.dropdown-item:focus-visible,
+.modern-cart-btn:focus-visible {
+  outline: 2px solid var(--color-cobalt-link);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+
+  background-color: var(--color-deep-ember);
+  color: var(--color-paper);
+  padding: var(--spacing-8) var(--spacing-16);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+
+  z-index: 2000;
+  transition: top var(--transition-normal);
+}
+
+.skip-to-main:focus {
+  top: 0;
+}

@@ -62,7 +62,7 @@
 
             <!-- Category Info -->
             <div class="col-lg-8 col-md-7">
-                <span class="modern-badge mb-3" style="font-size: 11px; font-weight: 700; color: #1591DC; background: rgba(21, 145, 220, 0.08); padding: 8px 14px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">{{ __('common.gal_category_explore') }}</span>
+                <span class="modern-badge mb-3">{{ __('common.gal_category_explore') }}</span>
 
                 <h1 class="modern-h2 mb-3" style="font-size: 42px; font-weight: 900; color: #0a0e27; line-height: 1.3;">
                     {{ $category->title }}

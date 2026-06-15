@@ -845,35 +845,36 @@ Why Our UI/UX Design Stands Out:',
     'order_canceled' => 'Your order canceled. please try again',
     'invalid_order_number' => 'Invalid order numer please try again',
 
-    // Grand Axis Learning - Hero Section
-    'gal_hero_title' => 'Master Advanced Technology. Lead the Digital Future.',
-    'gal_hero_subtitle' => 'Advance your expertise in cybersecurity, AI, blockchain, enterprise systems, and digital transformation through premium, industry-focused education.',
-    'gal_hero_testimonial' => 'Grand Axis Learning transformed my career. The advanced cybersecurity courses gave me the expertise to land a senior role within 6 months.',
-    'gal_hero_testimonial_author' => 'Sarah Chen, Security Architect',
-    'gal_hero_cta' => 'Explore Programs',
+    // Artify Academy - Hero Section
+    'gal_hero_title' => 'Creativity, finally.',
+    'gal_hero_subtitle' => 'Join 100K+ art enthusiasts who simplify their learning and master drawing, oil painting, and digital art with the world\'s #1 art academy.',
+    'gal_hero_testimonial' => 'Artify Academy transformed my passion. The step-by-step techniques gave me the expertise to create professional artworks within 6 months.',
+    'gal_hero_testimonial_author' => 'Emily Watson, Oil Painter',
+    'gal_hero_cta' => 'Start for free',
 
-    // Grand Axis Learning - About Section
-    'gal_about_section_badge' => 'Why Grand Axis Learning',
-    'gal_about_section_title' => 'Industry-Recognized Education for Technology Leaders',
-    'gal_about_section_description' => 'Grand Axis Learning is a premium platform dedicated to advancing professional expertise in cybersecurity, AI, blockchain, enterprise systems, and digital transformation. Our courses are designed by industry experts and focused on real-world applications.',
-    'gal_about_expert_instruction' => 'Expert-Led Instruction from practicing professionals with real-world experience in cutting-edge technologies.',
-    'gal_about_certifications' => 'Globally recognized',
+    // Artify Academy - About Section
+    'gal_about_section_badge' => 'Why Artify Academy',
+    'gal_about_section_title' => 'Expert Art Instruction for Creative Minds',
+    'gal_about_section_description' => 'Artify Academy is a premium platform dedicated to advancing artistic skills in drawing, watercolor, oil painting, and digital illustration. Our courses are designed by master artists and focused on real-world practical techniques.',
+    'gal_about_expert_instruction' => 'Master-Led Instruction from professional artists with real-world gallery and design experience.',
+    'gal_about_certifications' => 'Certificates of completion',
+    'gal_about_certifications_desc' => 'Gain recognized credentials to showcase your masterwork and boost your professional art portfolio.',
 
-    // Grand Axis Learning - Programs Section
-    'gal_programs_badge' => 'Featured Programs',
-    'gal_programs_title' => 'Advanced Technology Programs',
-    'gal_programs_subtitle' => 'Comprehensive courses in cybersecurity, AI, blockchain, business strategy, and enterprise transformation designed for professionals and organizations.',
-    'gal_programs_cta' => 'Explore All Programs',
+    // Artify Academy - Programs Section
+    'gal_programs_badge' => 'Featured Classes',
+    'gal_programs_title' => 'Premium Art Classes',
+    'gal_programs_subtitle' => 'Comprehensive courses in drawing, oil painting, digital illustration, and watercolor designed for hobbyists and professionals.',
+    'gal_programs_cta' => 'Explore All Classes',
 
-    // Grand Axis Learning - Why Choose Us
+    // Artify Academy - Why Choose Us
     'gal_why_badge' => 'Why Choose Us',
-    'gal_why_title' => 'Why Grand Axis Learning?',
-    'gal_why_expert_title' => 'Expert-Led Instruction',
-    'gal_why_expert_desc' => 'Learn from practicing professionals with years of real-world experience in cutting-edge technologies and enterprise solutions.',
-    'gal_why_industry_title' => 'Industry-Aligned Curriculum',
-    'gal_why_industry_desc' => 'Courses aligned with current market demands, emerging technologies, and enterprise digital transformation needs.',
-    'gal_why_projects_title' => 'Hands-On Projects',
-    'gal_why_projects_desc' => 'Work on real-world scenarios, industry case studies, and practical implementations throughout your learning journey.',
+    'gal_why_title' => 'Why Artify Academy?',
+    'gal_why_expert_title' => 'Master-Led Instruction',
+    'gal_why_expert_desc' => 'Learn from professional artists and illustrators with years of experience exhibiting and teaching internationally.',
+    'gal_why_industry_title' => 'Structured Curriculum',
+    'gal_why_industry_desc' => 'Courses structured from absolute beginner foundations to master-level techniques, helping you build confidence step-by-step.',
+    'gal_why_projects_title' => 'Portfolio Projects',
+    'gal_why_projects_desc' => 'Work on complete, structured art pieces, exercises, and creative projects that build a stunning personal portfolio.',
 
     // Grand Axis Learning - Tech Hero Section
     'gal_tech_hero_title' => 'Advanced Learning Platform',

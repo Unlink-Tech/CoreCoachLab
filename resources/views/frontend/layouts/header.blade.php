@@ -441,6 +441,15 @@
                 color: var(--color-deep-ember) !important;
             }
 
+            .modern-cart-btn:hover .fas {
+                animation: cartWiggle .45s ease !important;
+            }
+            @keyframes cartWiggle {
+                0%,100% { transform: rotate(0); }
+                30% { transform: rotate(-9deg); }
+                60% { transform: rotate(6deg); }
+            }
+
             .modern-cart-btn:focus {
                 outline: 2px solid var(--color-cobalt-link);
                 outline-offset: 2px;
@@ -734,60 +743,6 @@
             .primary-btn:active { transform: translateY(0) !important; }
             .primary-btn--block { display: block !important; width: 100% !important; }
 
-            /* ============================================================
-               CART BUTTON
-               ============================================================ */
-            .cart-btn {
-                position: relative !important;
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                width: 44px !important;
-                height: 44px !important;
-                color: var(--color-ink) !important;
-                background-color: transparent !important;
-                border: 1px solid transparent !important;
-                font-size: 18px !important;
-                cursor: pointer !important;
-                text-decoration: none !important;
-                transition: all .2s ease !important;
-                border-radius: var(--radius-lg) !important;
-                margin-left: 2px !important;
-            }
-
-            .cart-btn:hover {
-                color: var(--color-deep-ember) !important;
-                background-color: rgba(227, 68, 50, 0.08) !important;
-                border-color: rgba(227, 68, 50, 0.25) !important;
-                transform: translateY(-1px) !important;
-            }
-            .cart-btn:hover .fas { animation: cartWiggle .45s ease !important; }
-            @keyframes cartWiggle {
-                0%,100% { transform: rotate(0); }
-                30% { transform: rotate(-9deg); }
-                60% { transform: rotate(6deg); }
-            }
-
-            .cart-btn .cart-badge,
-            .cart-btn .cart-count {
-                position: absolute !important;
-                top: -4px !important;
-                right: -4px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                min-width: 20px !important;
-                height: 20px !important;
-                background-color: var(--color-ember-red) !important;
-                color: var(--color-paper) !important;
-                border: 2px solid var(--surface-paper-canvas) !important;
-                border-radius: 999px !important;
-                font-family: var(--font-inter) !important;
-                font-size: 10px !important;
-                font-weight: var(--font-weight-bold) !important;
-                line-height: 1 !important;
-                padding: 0 4px !important;
-            }
 
             /* ============================================================
                DROPDOWN MENUS (smooth hover, no click/jump)
@@ -968,7 +923,7 @@
                 .language-selector { display: none !important; }
                 .currency-selector { display: none !important; }
                 .account-btn { padding: 7px 8px !important; }
-                .cart-btn { width: 40px !important; height: 40px !important; }
+                .modern-cart-btn { width: 40px !important; height: 40px !important; }
             }
 
             /* ============================================================
@@ -1178,6 +1133,37 @@
             <span></span>
         </div>
     </div>
+
+	<!-- Announcement Banner -->
+	<div class="announcement-banner d-flex align-items-center justify-content-between px-4 py-2" id="topAnnouncementBanner" style="background-color: var(--color-cream, #fff6f0); border-bottom: 1px solid var(--color-stone, #d7d6d4); font-family: var(--font-inter); font-size: 14px; position: relative; z-index: 99999 !important; width: 100%; transition: all 0.3s ease;">
+		<div class="w-100 text-center" style="color: var(--color-ink, #25221e); padding: 4px 20px;">
+			<span>Get ready to turn thinking into doing.</span>
+			<a href="{{ route('product-lists') }}" style="color: var(--color-deep-ember, #cf3520); font-weight: 600; margin-left: 8px; text-decoration: underline; font-family: inherit; font-size: inherit;">Explore Art Classes</a>
+		</div>
+		<button type="button" class="btn-close-banner" id="closeBannerBtn" onclick="document.getElementById('topAnnouncementBanner').style.setProperty('display', 'none', 'important');" aria-label="Close" style="background: none !important; border: none !important; color: var(--color-graphite, #94928f) !important; font-size: 18px !important; cursor: pointer !important; padding: 12px !important; line-height: 1 !important; position: relative !important; z-index: 99999 !important; pointer-events: auto !important;"><i class="fas fa-times"></i></button>
+		<script>
+			(function() {
+				function setupClose() {
+					var closeBtn = document.getElementById('closeBannerBtn');
+					var banner = document.getElementById('topAnnouncementBanner');
+					if (closeBtn && banner) {
+						closeBtn.onclick = function(e) {
+							if (e) {
+								e.preventDefault();
+								e.stopPropagation();
+							}
+							banner.style.setProperty('display', 'none', 'important');
+						};
+					}
+				}
+				setupClose();
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', setupClose);
+				}
+			})();
+		</script>
+	</div>
+
 	<!-- Main Header-->
 	<header class="main-header sticky-top">
 		<div class="container px-3 px-md-5">
@@ -1306,7 +1292,7 @@
 					</div>
 
 					<!-- Cart Button -->
-					<a href="javascript:void(0)" class="cart-btn modern-cart-btn" aria-label="Shopping cart">
+					<a href="javascript:void(0)" class="modern-cart-btn" aria-label="Shopping cart">
 						<i class="fas fa-shopping-bag"></i>
 						<span class="cart-badge cart-count">{{ Helper::totalCartQuantity() }}</span>
 					</a>
@@ -1475,7 +1461,7 @@
                                         @endif
                                     </h4>
                                 </div>
-                                <div class="cart-btn d-flex gap-2">
+                                <div class="cart-footer-actions d-flex gap-2">
                                     @if($has_courses && !$has_topups)
                                         <!-- Courses Only -->
                                         <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 2px solid #1591DC; color: #1591DC; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease;">{{ __('common.view_cart') }}</a>

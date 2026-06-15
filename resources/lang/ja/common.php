@@ -864,35 +864,36 @@ return [
     'order_canceled' => 'ご注文がキャンセルされました。もう一度お試しください',
     'invalid_order_number' => '無効な注文番号です。もう一度お試しください',
 
-    // Grand Axis Learning - Hero Section
-    'gal_hero_title' => '高度なテクノロジーをマスター。デジタルの未来をリード。',
-    'gal_hero_subtitle' => 'サイバーセキュリティ、AI、ブロックチェーン、エンタープライズシステム、デジタル変革における専門知識を、プレミアム業界重視の教育を通じて高めます。',
-    'gal_hero_testimonial' => 'Grand Axis Learningは私のキャリアを大きく変えました。高度なサイバーセキュリティコースで得た専門知識により、わずか6ヶ月でシニアロールを獲得できました。',
-    'gal_hero_testimonial_author' => 'Sarah Chen, セキュリティアーキテクト',
-    'gal_hero_cta' => 'プログラムを探索',
+    // Artify Academy - Hero Section
+    'gal_hero_title' => '創造性を、いよいよ形に。',
+    'gal_hero_subtitle' => '10万人以上のアート愛好家と一緒に学びましょう。Artify Academyは、デッサン、油絵、デジタルアートをシンプルに習得できる世界No.1のアートアカデミーです。',
+    'gal_hero_testimonial' => 'Artify Academyは私の情熱を形にしてくれました。ステップバイステップのテクニックにより、わずか6ヶ月でプロの作品を描けるようになりました。',
+    'gal_hero_testimonial_author' => 'エミリー・ワトソン, 油絵画家',
+    'gal_hero_cta' => '無料で始める',
 
-    // Grand Axis Learning - About Section
-    'gal_about_section_badge' => 'Grand Axis Learningを選ぶ理由',
-    'gal_about_section_title' => 'テクノロジーリーダーのための業界認定教育',
-    'gal_about_section_description' => 'Grand Axis Learningはサイバーセキュリティ、AI、ブロックチェーン、エンタープライズシステム、デジタル変革における専門知識を高めるためのプレミアムプラットフォームです。当社のコースは業界エキスパートによって設計され、実世界の応用に焦点を当てています。',
-    'gal_about_expert_instruction' => '最先端技術と実務経験を備えた実践的専門家による専門家主導の指導。',
-    'gal_about_certifications' => '世界的に認められている',
+    // Artify Academy - About Section
+    'gal_about_section_badge' => 'Artify Academyを選ぶ理由',
+    'gal_about_section_title' => 'クリエイティブな心のための専門的なアート指導',
+    'gal_about_section_description' => 'Artify Academyは、デッサン、水彩画、油絵、デジタルイラストなどの芸術的スキルを向上させるためのプレミアムプラットフォームです。当社のコースは、マスターアーティストによって設計され、実践的なテクニックに焦点を当てています。',
+    'gal_about_expert_instruction' => '個展やデザインの豊富な実務経験を持つ、プロのアート講師による直接指導。',
+    'gal_about_certifications' => '修了証の発行',
+    'gal_about_certifications_desc' => 'コース修了時に正式な修了証を発行。ご自身の実績を証明し、ポートフォリオに箔をつけることができます。',
 
-    // Grand Axis Learning - Programs Section
-    'gal_programs_badge' => '注目プログラム',
-    'gal_programs_title' => '高度なテクノロジープログラム',
-    'gal_programs_subtitle' => 'サイバーセキュリティ、AI、ブロックチェーン、ビジネス戦略、エンタープライズ変革における包括的なコース。',
-    'gal_programs_cta' => 'すべてのプログラムを探索',
+    // Artify Academy - Programs Section
+    'gal_programs_badge' => '注目のクラス',
+    'gal_programs_title' => 'プレミアムアートクラス',
+    'gal_programs_subtitle' => '趣味で楽しむ方からプロを目指す方まで幅広く設計された、デッサン、油絵、デジタルイラスト、水彩画の包括的なコース。',
+    'gal_programs_cta' => 'すべてのクラスを探索',
 
-    // Grand Axis Learning - Why Choose Us
+    // Artify Academy - Why Choose Us
     'gal_why_badge' => 'なぜ選ぶのか',
-    'gal_why_title' => 'Grand Axis Learningを選ぶ理由',
-    'gal_why_expert_title' => '専門家主導の指導',
-    'gal_why_expert_desc' => '最先端技術とエンタープライズソリューションにおける実務経験を持つプロから学びます。',
-    'gal_why_industry_title' => '業界適合カリキュラム',
-    'gal_why_industry_desc' => '現在の市場需要、新興技術、エンタープライズデジタル変革に適合したコース。',
-    'gal_why_projects_title' => 'ハンズオンプロジェクト',
-    'gal_why_projects_desc' => '学習過程全体を通じて実世界のシナリオ、業界ケーススタディ、実践的実装に取り組みます。',
+    'gal_why_title' => 'Artify Academyを選ぶ理由',
+    'gal_why_expert_title' => 'マスターによる直接指導',
+    'gal_why_expert_desc' => '国内外で個展の開催や指導経験を持つ、プロの画家やイラストレーターから直接学びます。',
+    'gal_why_industry_title' => '体系的なカリキュラム',
+    'gal_why_industry_desc' => '初心者のための基礎からマスターレベルのテクニックまで体系化されており、一歩一歩自信を持って描けるようになります。',
+    'gal_why_projects_title' => 'ポートフォリオプロジェクト',
+    'gal_why_projects_desc' => '体系的な練習や創作プロジェクトを通じて、ご自身の素晴らしいアートポートフォリオを作成します。',
 
     // Grand Axis Learning - Tech Hero Section
     'gal_tech_hero_title' => '高度な学習プラットフォーム',

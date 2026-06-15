@@ -2,98 +2,150 @@
 
 @section('main-content')
 
-<section class="modern-hero">
-    <div class="modern-hero-bg"></div>
-    <div class="modern-blob modern-blob-1"></div>
-    <div class="modern-blob modern-blob-2"></div>
-
-    <div class="auto-container">
-        <!-- Hero Text -->
-        <h1 class="modern-h1">
-            {{ __('common.gal_hero_title') }}
-        </h1>
-        <p class="hero-subtitle">
-            {{ __('common.gal_hero_subtitle') }}
-        </p>
-
-        <!-- Featured Component (Video/Image) -->
-        <div class="modern-video-wrapper">
-            <!-- Left Float -->
-            <div class="float-content-left d-none d-xl-block">
-                <div class="float-quote-box">
-                    <p class="float-quote">"{{ __('common.gal_hero_testimonial') }}"</p>
-                    <div class="d-flex align-items-center gap-2 mb-3">
-                        <h6 class="mb-0 small fw-bold">{{ __('common.gal_hero_testimonial_author') }}</h6>
-                    </div>
-                    <a href="{{ route('product-lists') }}" class="modern-btn modern-btn-outline">{{ __('common.gal_hero_cta') }}</a>
-                </div>
-            </div>
-
-            <!-- Main Video Card -->
-            <div class="modern-video-card">
-                <div class="video-container">
-                    <img src="{{ asset('assets/images/h-2.png') }}" alt="Student Success Story">
-                    
-                    <!-- Top UI -->
-                    <div class="video-ui-top-left">
-                        <div class="video-avatar"><img src="{{ asset('assets/images/avatars.png') }}" style="object-fit: cover; object-position: 20% 0;"></div>
-                        <div class="video-avatar"><img src="{{ asset('assets/images/avatars.png') }}" style="object-fit: cover; object-position: 40% 0;"></div>
-                        <div class="video-avatar"><img src="{{ asset('assets/images/avatars.png') }}" style="object-fit: cover; object-position: 60% 0;"></div>
-                    </div>
-
-                    
-                </div>
-            </div>
-
-           
-        </div>
+<section class="af-hero">
+    <!-- Decorative animated background -->
+    <div class="af-hero__bg" aria-hidden="true">
+        <span class="af-hero__blob af-hero__blob--ember"></span>
+        <span class="af-hero__blob af-hero__blob--teal"></span>
+        <span class="af-hero__blob af-hero__blob--sky"></span>
+        <span class="af-hero__grid"></span>
+        <svg class="af-hero__wave" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,180 C240,80 480,260 720,180 C960,100 1200,240 1440,160" fill="none" stroke="rgba(227,68,50,0.18)" stroke-width="2"/>
+            <path d="M0,220 C260,140 520,300 760,210 C1000,130 1220,250 1440,200" fill="none" stroke="rgba(73,125,126,0.18)" stroke-width="2"/>
+        </svg>
     </div>
-</section>
 
-<section class="about-info pt-120 pb-120" style="background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);">
-    <div class="auto-container">
-        <div class="row align-items-center g-5">
-            <!-- LEFT: Images -->
-            <div class="col-xl-6 col-lg-6 col-md-12">
-                <div class="modern-img-wrapper" style="border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(21, 145, 220, 0.15); border: 2px solid rgba(21, 145, 220, 0.1);">
-                    <img src="{{ asset('assets/images/h-3.png') }}" alt="About" class="w-100" style="display: block; transition: transform 0.4s ease;">
+    <div class="auto-container af-hero__inner">
+        <!-- LEFT: copy -->
+        <div class="af-hero__content">
+            <span class="af-hero__eyebrow">
+                <i class="fas fa-palette"></i> {{ $misc['Company Name'] ?? __('Artify Academy') }}
+            </span>
+
+            <h1 class="af-hero__title">{{ __('common.gal_hero_title') }}</h1>
+
+            <p class="af-hero__subtitle">{{ __('common.gal_hero_subtitle') }}</p>
+
+            <div class="af-hero__actions">
+                <a href="{{ route('product-lists') }}" class="af-hero__btn af-hero__btn--primary">
+                    {{ __('common.gal_hero_cta') }} <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT: studio video + multiple artwork accents -->
+        <div class="af-hero__media">
+            <!-- Main looping studio video -->
+            <div class="af-hero__videocard">
+                <video autoplay loop muted playsinline preload="metadata" poster="{{ asset('assets/art-classes/10.jpg') }}">
+                    <source src="{{ asset('assets/art-classes/hero.mp4') }}" type="video/mp4">
+                </video>
+                <span class="af-hero__livetag"><span class="af-hero__live-dot"></span> In the studio</span>
+                <div class="af-hero__caption">
+                    <p class="af-hero__caption-text">&ldquo;{{ __('common.gal_hero_testimonial') }}&rdquo;</p>
                 </div>
             </div>
 
-            <!-- RIGHT: Content -->
-            <div class="col-xl-6 col-lg-6 col-md-12 ps-xl-5">
-                <span class="modern-badge mb-3" style="font-size: 11px; font-weight: 700; color: #1591DC; background: rgba(21, 145, 220, 0.08); padding: 8px 14px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">{{ __('common.gal_about_section_badge') }}</span>
-                <h2 class="modern-h2 mb-4" style="font-size: 36px; font-weight: 900; color: #0a0e27; line-height: 1.3;">{{ __('common.gal_about_section_title') }}</h2>
-                <p class="mb-5 text-muted" style="font-size: 15px; color: #666; font-weight: 500; line-height: 1.8;">{{ __('common.gal_about_section_description') }}</p>
+            <!-- Floating Artwork Accent 1 (Left / Top Overlap) -->
+            <div class="af-hero__accent af-hero__accent--left">
+                <img src="{{ asset('assets/art-classes/3.jpg') }}" alt="Watercolor drawing artwork">
+            </div>
 
-                <div class="row g-4">
-                    <div class="col-md-12">
-                        <div class="d-flex align-items-start gap-3 p-4 rounded-3" style="background: white; border: 1px solid rgba(21, 145, 220, 0.12); transition: all 0.3s ease;">
-                            <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <p class="mb-0 fw-bold" style="font-size: 14px; color: #0a0e27;">{{ __('common.gal_about_expert_instruction') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="d-flex align-items-start gap-3 p-4 rounded-3" style="background: white; border: 1px solid rgba(21, 145, 220, 0.12); transition: all 0.3s ease;">
-                            <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0;">
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <div>
-                                <p class="mb-0 fw-bold" style="font-size: 14px; color: #0a0e27;">{{ __('common.gal_about_certifications') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Floating Artwork Accent 2 (Right Overlap - Original) -->
+            <div class="af-hero__accent af-hero__accent--right">
+                <img src="{{ asset('assets/art-classes/10.jpg') }}" alt="Acrylic pour artwork">
+            </div>
+
+            <!-- Floating Artwork Accent 3 (Bottom Overlap) -->
+            <div class="af-hero__accent af-hero__accent--bottom">
+                <img src="{{ asset('assets/art-classes/6.jpg') }}" alt="Oil painting artwork">
             </div>
         </div>
     </div>
 </section>
 
-<section class="prduct-info pt-120 pb-120" style="background: #E8F1F9;">
+<!-- CATEGORY SECTION -->
+<section class="category-section pt-120 pb-120" style="background: var(--surface-cream-wash, #fff6f0); border-top: 1px solid var(--color-stone, #d7d6d4); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
+    <div class="auto-container">
+        <div class="text-center mb-5">
+            <span class="modern-badge">{{ __('common.gal_category_badge') }}</span>
+            <h2 class="modern-h2 mt-3">{{ __('common.gal_category_title') }}</h2>
+            <p class="text-muted mx-auto mt-3" style="max-width: 600px;">
+                {{ __('common.gal_category_subtitle') }}
+            </p>
+        </div>
+
+        <div class="row g-4">
+            @if(isset($category_lists) && $category_lists->count() > 0)
+                @foreach($category_lists as $category)
+                    @php
+                        $category_icon = 'fas fa-palette';
+                        $slug = strtolower($category->slug);
+                        if (strpos($slug, 'blockchain') !== false || strpos($slug, 'web3') !== false) {
+                            $category_icon = 'fas fa-cubes';
+                        } elseif (strpos($slug, 'business') !== false || strpos($slug, 'strategy') !== false) {
+                            $category_icon = 'fas fa-chart-line';
+                        } elseif (strpos($slug, 'cyber') !== false || strpos($slug, 'security') !== false || strpos($slug, 'intelligence') !== false) {
+                            $category_icon = 'fas fa-shield-alt';
+                        } elseif (strpos($slug, 'transformation') !== false || strpos($slug, 'enterprise') !== false || strpos($slug, 'erp') !== false) {
+                            $category_icon = 'fas fa-network-wired';
+                        } elseif (strpos($slug, 'ai') !== false || strpos($slug, 'machine') !== false || strpos($slug, 'brain') !== false) {
+                            $category_icon = 'fas fa-brain';
+                        } elseif (strpos($slug, 'design') !== false || strpos($slug, 'art') !== false || strpos($slug, 'painting') !== false) {
+                            $category_icon = 'fas fa-paint-brush';
+                        }
+                    @endphp
+                    <div class="col-custom-5">
+                        <div class="category-card-premium category-card-premium--tint-{{ $loop->index % 3 }}">
+                            <div class="category-card-image">
+                                @if($category->photo)
+                                    <img src="{{ $category->photo }}" alt="{{ $category->title }}" class="category-img">
+                                @else
+                                    <div class="category-img-placeholder">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                @endif
+                                <div class="category-overlay">
+                                    <a href="{{ route('product-lists', $category->slug) }}" class="category-explore-btn">
+                                        {{ __('common.gal_category_explore') }}
+                                        <i class="fas fa-arrow-right ms-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="category-card-content">
+                                <div class="category-meta-row d-flex align-items-center justify-content-between mb-3">
+                                    <div class="category-icon-badge">
+                                        <i class="{{ $category_icon }}"></i>
+                                    </div>
+                                    <span class="category-count mb-0">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        {{ $category->products_count }} {{ __('common.gal_category_courses') }}
+                                    </span>
+                                </div>
+
+                                <h3 class="category-title">
+                                    <a href="{{ route('product-lists', $category->slug) }}">
+                                        {{ $category->title }}
+                                    </a>
+                                </h3>
+                                @if($category->summary)
+                                    <p class="category-description">
+                                        {{ Str::limit($category->summary, 80) }}
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</section>
+
+
+
+<section class="prduct-info pt-120 pb-120" style="background: var(--color-paper, #fefdfc); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
     <div class="auto-container">
         <div class="text-center mb-5">
             <span class="modern-badge">{{ __('common.gal_programs_badge') }}</span>
@@ -101,29 +153,26 @@
             <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{{ __('common.gal_programs_subtitle') }}</p>
         </div>
 
-        <div class="row g-4">
+        <div class="courses-carousel owl-carousel owl-theme">
             @php $products = Helper::getRandomProduct(6); @endphp
 
             @foreach($products as $product)
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="modern-course-card">
-                        <div class="course-img-container">
-                            @php $photo = explode(',', $product->photo); @endphp
-                            <img src="{{ $photo[0] }}" alt="{{ $product->title }}">
-                        </div>
-                        
-                        <div class="course-content">
-                           
+                <div class="modern-course-card">
+                    <div class="course-img-container">
+                        @php $photo = explode(',', $product->photo); @endphp
+                        <img src="{{ $photo[0] }}" alt="{{ $product->title }}">
+                    </div>
+                    
+                    <div class="course-content">
+                        <h4 class="course-title">
+                            <a href="{{ route('product-detail', $product->slug) }}">{{ $product->title }}</a>
+                        </h4>
+                        <p class="course-summary">{{ Str::limit($product->summary, 85) }}</p>
 
-                            <h4 class="course-title"><a href="{{ route('product-detail', $product->slug) }}">{{ $product->title }}</a></h4>
-                            <p class="course-summary">{{ Str::limit($product->summary, 85) }}</p>
-
-                            <div class="course-footer">
-                               
-                                <a href="{{ route('product-detail', $product->slug) }}" class="course-enroll-link">
-                                    {{ __('common.enroll_now') }} <i class="fas fa-chevron-right ms-2"></i>
-                                </a>
-                            </div>
+                        <div class="course-footer">
+                            <a href="{{ route('product-detail', $product->slug) }}" class="course-enroll-link">
+                                {{ __('common.enroll_now') }} <i class="fas fa-chevron-right ms-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -138,44 +187,88 @@
     </div>
 </section>
 
-<section class="chse_secton pt-120 pb-120 bg-white">
+<section class="chse_secton pt-120 pb-120" style="background: var(--color-paper, #fefdfc); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
     <div class="auto-container">
         <div class="text-center mb-5">
             <span class="modern-badge">{{ __('common.gal_why_badge') }}</span>
-            <h2 class="modern-h2">{{ __('common.gal_why_title') }}</h2>
+            <h2 class="modern-h2 mt-3">{{ __('common.gal_why_title') }}</h2>
         </div>
 
         <div class="row g-4">
             <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="modern-card text-center">
-                    <div class="mx-auto mb-4 bg-primary text-white d-flex align-items-center justify-content-center"
-     style="width: 60px; height: 60px; font-size: 24px; border-radius: 20%;">
-                     <i class="fas fa-graduation-cap"></i>
+                <div class="why-card-premium why-card-premium--tint-0">
+                    <div class="why-icon-badge">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>{{ __('common.gal_why_expert_title') }}</h3>
-                    <p class="text-muted">{{ __('common.gal_why_expert_desc') }}</p>
+                    <h3 class="why-title">{{ __('common.gal_why_expert_title') }}</h3>
+                    <p class="why-desc">{{ __('common.gal_why_expert_desc') }}</p>
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="modern-card text-center">
-                    <div class="mx-auto mb-4 bg-primary text-white d-flex align-items-center justify-content-center"
-     style="width: 60px; height: 60px; font-size: 24px; border-radius: 20%;">
+                <div class="why-card-premium why-card-premium--tint-1">
+                    <div class="why-icon-badge">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>{{ __('common.gal_why_industry_title') }}</h3>
-                    <p class="text-muted">{{ __('common.gal_why_industry_desc') }}</p>
+                    <h3 class="why-title">{{ __('common.gal_why_industry_title') }}</h3>
+                    <p class="why-desc">{{ __('common.gal_why_industry_desc') }}</p>
                 </div>
             </div>
 
             <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="modern-card text-center">
-                    <div class="mx-auto mb-4 bg-primary text-white d-flex align-items-center justify-content-center"
-     style="width: 60px; height: 60px; font-size: 24px; border-radius: 20%;">
+                <div class="why-card-premium why-card-premium--tint-2">
+                    <div class="why-icon-badge">
                         <i class="fas fa-project-diagram"></i>
                     </div>
-                    <h3>{{ __('common.gal_why_projects_title') }}</h3>
-                    <p class="text-muted">{{ __('common.gal_why_projects_desc') }}</p>
+                    <h3 class="why-title">{{ __('common.gal_why_projects_title') }}</h3>
+                    <p class="why-desc">{{ __('common.gal_why_projects_desc') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-info pt-120 pb-120" style="background: var(--color-cream, #fff6f0); border-top: 1px solid var(--color-stone, #d7d6d4); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
+    <div class="auto-container">
+        <div class="row align-items-center g-5">
+            <!-- LEFT: Content -->
+            <div class="col-xl-7 col-lg-7 col-md-12 pe-xl-5">
+                <span class="modern-badge mb-3">{{ __('common.gal_about_section_badge') }}</span>
+                <h2 class="modern-h2 mb-4" style="color: var(--color-ink, #25221e);">{{ __('common.gal_about_section_title') }}</h2>
+                <p class="mb-5 text-muted" style="font-size: 15px; color: var(--color-pencil, #6f6c69) !important; font-weight: 500; line-height: 1.8;">{{ __('common.gal_about_section_description') }}</p>
+
+                <div class="row g-4">
+                    <div class="col-md-12">
+                        <div class="about-feature-item">
+                            <div class="about-feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="about-feature-title">{{ __('common.gal_why_expert_title') }}</h4>
+                                <p class="about-feature-desc">{{ __('common.gal_about_expert_instruction') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="about-feature-item">
+                            <div class="about-feature-icon icon-forest">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="about-feature-title">{{ __('common.gal_about_certifications') }}</h4>
+                                <p class="about-feature-desc">{{ __('common.gal_about_certifications_desc') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Video (Portrait) -->
+            <div class="col-xl-5 col-lg-5 col-md-12">
+                <div class="modern-video-wrapper" style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--color-stone, #d7d6d4); max-width: 350px; margin: 0 auto; aspect-ratio: 9/16; background: #000;">
+                    <video class="w-100 h-100" autoplay loop muted playsinline style="object-fit: cover; display: block;">
+                        <source src="{{ asset('assets/art-classes/v1.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
@@ -1063,66 +1156,130 @@ document.querySelectorAll('.enroll-form').forEach(form => {
 });
 </script>
 
-<!-- CATEGORY SECTION -->
-<section class="category-section pt-120 pb-120" style="background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);">
-    <div class="auto-container">
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_category_badge') }}</span>
-            <h2 class="modern-h2 mt-3">{{ __('common.gal_category_title') }}</h2>
-            <p class="text-muted mx-auto mt-3" style="max-width: 600px;">
-                {{ __('common.gal_category_subtitle') }}
-            </p>
-        </div>
 
-        <div class="row g-4">
-            @if(isset($category_lists) && $category_lists->count() > 0)
-                @foreach($category_lists as $category)
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="category-card-premium">
-                            <div class="category-card-image">
-                                @if($category->photo)
-                                    <img src="{{ $category->photo }}" alt="{{ $category->title }}" class="category-img">
-                                @else
-                                    <div class="category-img-placeholder">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                @endif
-                                <div class="category-overlay">
-                                    <a href="{{ route('product-lists', $category->slug) }}" class="category-explore-btn">
-                                        {{ __('common.gal_category_explore') }}
-                                        <i class="fas fa-arrow-right ms-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="category-card-content">
-                                <h3 class="category-title">
-                                    <a href="{{ route('product-lists', $category->slug) }}">
-                                        {{ $category->title }}
-                                    </a>
-                                </h3>
-                                <p class="category-count">
-                                    <i class="fas fa-graduation-cap"></i>
-                                    {{ $category->products_count }} {{ __('common.gal_category_courses') }}
-                                </p>
-                                @if($category->summary)
-                                    <p class="category-description">
-                                        {{ Str::limit($category->summary, 80) }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section>
 
 <style>
     /* =========================================
+       HERO MULTIPLE ARTWORK ACCENTS
+       ========================================= */
+    .af-hero__accent--left {
+        left: -50px !important;
+        right: auto !important;
+        top: 10% !important;
+        transform: translateY(0) rotate(-6deg) !important;
+        width: 28% !important;
+        max-width: 130px !important;
+        z-index: 2 !important;
+        animation: afCardFloat 18s ease-in-out infinite !important;
+    }
+    .af-hero__accent--right {
+        right: -30px !important;
+        top: 50% !important;
+        transform: translateY(-50%) rotate(4deg) !important;
+        width: 34% !important;
+        max-width: 165px !important;
+        z-index: 4 !important;
+        animation: afCardFloat 14s ease-in-out infinite !important;
+    }
+    .af-hero__accent--bottom {
+        left: 20% !important;
+        right: auto !important;
+        bottom: -35px !important;
+        top: auto !important;
+        transform: rotate(-3deg) !important;
+        width: 25% !important;
+        max-width: 120px !important;
+        z-index: 3 !important;
+        animation: afCardFloat 16s ease-in-out infinite 1s !important;
+    }
+
+    @media (max-width: 991px) {
+        .af-hero__accent--left {
+            left: -20px !important;
+            width: 24% !important;
+        }
+        .af-hero__accent--right {
+            right: -10px !important;
+            width: 28% !important;
+        }
+        .af-hero__accent--bottom {
+            bottom: -20px !important;
+            left: 25% !important;
+            width: 22% !important;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .af-hero__accent--left,
+        .af-hero__accent--bottom {
+            display: none !important;
+        }
+        .af-hero__accent--right {
+            right: -10px !important;
+            top: 50% !important;
+            width: 38% !important;
+            transform: translateY(-50%) rotate(4deg) !important;
+        }
+    }
+
+    /* =========================================
        PREMIUM CATEGORY CARDS
        ========================================= */
+
+    /* Custom 5-column grid columns */
+    .col-custom-5 {
+        position: relative;
+        width: 100%;
+        padding-right: 12px;
+        padding-left: 12px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    @media (min-width: 576px) {
+        .col-custom-5 {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .col-custom-5 {
+            flex: 0 0 33.3333% !important;
+            max-width: 33.3333% !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-custom-5 {
+            flex: 0 0 25% !important;
+            max-width: 25% !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col-custom-5 {
+            flex: 0 0 20% !important;
+            max-width: 20% !important;
+        }
+    }
+
+    .modern-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        font-family: var(--font-inter) !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.08em !important;
+        padding: 6px 12px !important;
+        border-radius: var(--radius-badges, 8px) !important;
+        background-color: var(--color-cream, #fff6f0) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        text-transform: uppercase !important;
+        box-shadow: var(--shadow-subtle) !important;
+        margin-bottom: 15px !important;
+    }
 
     .category-section {
         position: relative;
@@ -1130,36 +1287,110 @@ document.querySelectorAll('.enroll-form').forEach(form => {
     }
 
     .category-card-premium {
-        background: white;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 2px 8px rgba(21, 145, 220, 0.08);
-        border: 1px solid rgba(21, 145, 220, 0.1);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-subtle, 0 1px 3px rgba(0,0,0,0.05));
+        padding: 18px;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         height: 100%;
         display: flex;
         flex-direction: column;
     }
 
     .category-card-premium:hover {
-        box-shadow: 0 12px 32px rgba(21, 145, 220, 0.15);
-        transform: translateY(-4px);
-        border-color: rgba(21, 145, 220, 0.2);
+        box-shadow: rgba(37, 34, 30, 0.08) 0px 14px 28px, rgba(37, 34, 30, 0.04) 0px 4px 10px;
+        transform: translateY(-6px);
+    }
+
+    /* Dynamic tint background colors by default */
+    .category-card-premium--tint-0 {
+        background-color: var(--color-cream, #fff6f0) !important;
+        border: 1px solid rgba(227, 68, 50, 0.15) !important;
+    }
+    .category-card-premium--tint-0:hover {
+        border-color: rgba(227, 68, 50, 0.45) !important;
+        background-color: var(--color-cream, #fff6f0) !important;
+    }
+
+    .category-card-premium--tint-1 {
+        background-color: var(--color-mint-wash, #f0f6df) !important;
+        border: 1px solid rgba(68, 108, 61, 0.15) !important;
+    }
+    .category-card-premium--tint-1:hover {
+        border-color: rgba(68, 108, 61, 0.45) !important;
+        background-color: var(--color-mint-wash, #f0f6df) !important;
+    }
+
+    .category-card-premium--tint-2 {
+        background-color: var(--color-sky-wash, #dceaff) !important;
+        border: 1px solid rgba(15, 102, 174, 0.15) !important;
+    }
+    .category-card-premium--tint-2:hover {
+        border-color: rgba(15, 102, 174, 0.45) !important;
+        background-color: var(--color-sky-wash, #dceaff) !important;
+    }
+
+    .category-icon-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        box-shadow: var(--shadow-subtle);
+        transition: all 0.3s ease;
+    }
+
+    /* Icon badge default coloring per tint */
+    .category-card-premium--tint-0 .category-icon-badge {
+        color: var(--color-deep-ember, #cf3520) !important;
+        border-color: rgba(227, 68, 50, 0.25) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+    .category-card-premium--tint-1 .category-icon-badge {
+        color: var(--color-forest, #446c3d) !important;
+        border-color: rgba(68, 108, 61, 0.25) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+    .category-card-premium--tint-2 .category-icon-badge {
+        color: var(--color-cobalt-link, #0f66ae) !important;
+        border-color: rgba(15, 102, 174, 0.25) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+
+    /* Badge hover logic based on card tint */
+    .category-card-premium--tint-0:hover .category-icon-badge {
+        background-color: var(--color-ember-red, #e34432) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-ember-red, #e34432) !important;
+    }
+    .category-card-premium--tint-1:hover .category-icon-badge {
+        background-color: var(--color-forest, #446c3d) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-forest, #446c3d) !important;
+    }
+    .category-card-premium--tint-2:hover .category-icon-badge {
+        background-color: var(--color-cobalt-link, #0f66ae) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-cobalt-link, #0f66ae) !important;
     }
 
     .category-card-image {
         position: relative;
         width: 100%;
-        height: 220px;
+        height: 200px;
         overflow: hidden;
-        background: linear-gradient(135deg, #f0f4ff 0%, #e8f1f9 100%);
+        border-radius: 12px;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
     }
 
     .category-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: transform var(--transition-normal, 0.25s ease);
     }
 
     .category-card-premium:hover .category-img {
@@ -1173,8 +1404,8 @@ document.querySelectorAll('.enroll-form').forEach(form => {
         align-items: center;
         justify-content: center;
         font-size: 48px;
-        color: #1591DC;
-        background: linear-gradient(135deg, #f0f4ff 0%, #e8f1f9 100%);
+        color: var(--color-deep-ember, #cf3520);
+        background: var(--color-paper, #fefdfc);
     }
 
     .category-overlay {
@@ -1183,12 +1414,12 @@ document.querySelectorAll('.enroll-form').forEach(form => {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(10, 14, 39, 0.7);
+        background: rgba(37, 34, 30, 0.65);
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity var(--transition-normal, 0.25s ease);
         backdrop-filter: blur(2px);
     }
 
@@ -1197,25 +1428,25 @@ document.querySelectorAll('.enroll-form').forEach(form => {
     }
 
     .category-explore-btn {
-        background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%);
-        color: white;
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
         padding: 10px 20px;
-        border-radius: 8px;
+        border-radius: var(--radius-buttons, 8px);
         font-weight: 600;
         font-size: 14px;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(21, 145, 220, 0.3);
+        transition: all var(--transition-normal, 0.25s ease);
+        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.2);
     }
 
     .category-explore-btn:hover {
-        background: linear-gradient(135deg, #0e7ab8 0%, #1f4a7f 100%);
-        box-shadow: 0 6px 16px rgba(21, 145, 220, 0.4);
+        background: var(--color-deep-ember, #cf3520);
+        box-shadow: 0 6px 16px rgba(227, 68, 50, 0.35);
         transform: translateY(-2px);
-        color: white;
+        color: var(--color-paper, #fefdfc);
     }
 
     .category-card-content {
@@ -1226,25 +1457,26 @@ document.querySelectorAll('.enroll-form').forEach(form => {
     }
 
     .category-title {
-        font-size: 16px;
+        font-family: var(--font-graphik, sans-serif);
+        font-size: 17px;
         font-weight: 700;
-        color: #0a0e27;
+        color: var(--color-ink, #25221e);
         margin: 0 0 12px 0;
     }
 
     .category-title a {
-        color: #0a0e27;
+        color: var(--color-ink, #25221e);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: color var(--transition-normal, 0.25s ease);
     }
 
     .category-title a:hover {
-        color: #1591DC;
+        color: var(--color-deep-ember, #cf3520);
     }
 
     .category-count {
         font-size: 12px;
-        color: #1591DC;
+        color: var(--color-deep-ember, #cf3520);
         font-weight: 600;
         display: flex;
         align-items: center;
@@ -1258,7 +1490,7 @@ document.querySelectorAll('.enroll-form').forEach(form => {
 
     .category-description {
         font-size: 13px;
-        color: #666;
+        color: var(--color-pencil, #6f6c69);
         margin: 0;
         line-height: 1.5;
     }
@@ -1302,6 +1534,347 @@ document.querySelectorAll('.enroll-form').forEach(form => {
             padding: 8px 14px;
             font-size: 12px;
         }
+    }
+
+    /* =========================================
+       REVAMPED COURSE CARDS & CAROUSEL
+       ========================================= */
+
+    .courses-carousel {
+        position: relative;
+        padding: 0 10px;
+    }
+
+    .courses-carousel .owl-item {
+        padding: 15px;
+    }
+
+    .courses-carousel .owl-stage-outer {
+        padding-top: 15px !important;
+        padding-bottom: 25px !important;
+        margin-top: -15px !important;
+        margin-bottom: -25px !important;
+    }
+
+    .courses-carousel .owl-nav {
+        position: absolute;
+        top: 50%;
+        left: -60px;
+        right: -60px;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 10 !important;
+    }
+
+    .courses-carousel .owl-nav .owl-prev,
+    .courses-carousel .owl-nav .owl-next {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        background: var(--color-paper, #fefdfc) !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        color: var(--color-ink, #25221e) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 16px !important;
+        box-shadow: 0 4px 10px rgba(37, 34, 30, 0.06) !important;
+        transition: all 0.3s ease !important;
+        pointer-events: auto !important;
+    }
+
+    .courses-carousel .owl-nav .owl-prev:hover,
+    .courses-carousel .owl-nav .owl-next:hover {
+        background: var(--color-cream, #fff6f0) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        border-color: rgba(227, 68, 50, 0.35) !important;
+        box-shadow: 0 6px 15px rgba(37, 34, 30, 0.1) !important;
+        transform: translateY(-2px);
+    }
+
+    .courses-carousel .owl-dots {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .courses-carousel .owl-dots .owl-dot {
+        width: 8px !important;
+        height: 8px !important;
+        border-radius: 50% !important;
+        background-color: var(--color-stone, #d7d6d4) !important;
+        margin: 0 5px !important;
+        display: inline-block !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .courses-carousel .owl-dots .owl-dot.active {
+        background-color: var(--color-deep-ember, #cf3520) !important;
+        transform: scale(1.3);
+    }
+
+    @media (max-width: 1300px) {
+        .courses-carousel .owl-nav {
+            position: static;
+            transform: none;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            pointer-events: auto;
+        }
+    }
+
+    /* Course Card Overrides */
+    .modern-course-card {
+        background: var(--color-paper, #fefdfc) !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        box-shadow: var(--shadow-subtle, rgba(37, 34, 30, 0.04) 0px 1px 0px 0px) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modern-course-card:hover {
+        transform: translateY(-6px) !important;
+        box-shadow: rgba(37, 34, 30, 0.08) 0px 14px 28px, rgba(37, 34, 30, 0.04) 0px 4px 10px !important;
+        border-color: rgba(227, 68, 50, 0.35) !important;
+    }
+
+    .course-img-container {
+        border-radius: 0 !important;
+        border-bottom: 1px solid var(--color-stone, #d7d6d4) !important;
+    }
+
+    .course-content {
+        padding: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        flex-grow: 1 !important;
+    }
+
+    .course-title {
+        font-family: var(--font-graphik, sans-serif) !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+    }
+
+    .course-title a {
+        color: var(--color-ink, #25221e) !important;
+        transition: color 0.3s ease !important;
+    }
+
+    .course-title a:hover {
+        color: var(--color-deep-ember, #cf3520) !important;
+    }
+
+    .course-summary {
+        color: var(--color-pencil, #6f6c69) !important;
+        font-family: var(--font-inter, sans-serif) !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .course-footer {
+        border-top: 1px solid var(--color-stone, #d7d6d4) !important;
+        margin-top: auto !important;
+        padding-top: 15px !important;
+    }
+
+    .course-enroll-link {
+        color: var(--color-deep-ember, #cf3520) !important;
+        font-family: var(--font-inter) !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .course-enroll-link:hover {
+        color: var(--color-ink, #25221e) !important;
+        transform: translateX(3px) !important;
+    }
+
+    /* =========================================
+       REVAMPED ABOUT SECTION
+       ========================================= */
+    .about-feature-item {
+        background: var(--color-paper, #fefdfc) !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        display: flex !important;
+        align-items: start !important;
+        gap: 16px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: var(--shadow-subtle) !important;
+    }
+
+    .about-feature-item:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: rgba(37, 34, 30, 0.06) 0px 8px 16px !important;
+        border-color: rgba(227, 68, 50, 0.25) !important;
+    }
+
+    .about-feature-icon {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 18px !important;
+        flex-shrink: 0 !important;
+        background-color: var(--color-cream, #fff6f0) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        border: 1px solid rgba(227, 68, 50, 0.15) !important;
+    }
+
+    .about-feature-icon.icon-forest {
+        background-color: var(--color-mint-wash, #f0f6df) !important;
+        color: var(--color-forest, #446c3d) !important;
+        border: 1px solid rgba(68, 108, 61, 0.15) !important;
+    }
+
+    .about-feature-title {
+        font-family: var(--font-graphik, sans-serif) !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: var(--color-ink, #25221e) !important;
+        margin-bottom: 6px !important;
+    }
+
+    .about-feature-desc {
+        font-family: var(--font-inter, sans-serif) !important;
+        font-size: 13.5px !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        line-height: 1.5 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .modern-img-wrapper:hover img {
+        transform: scale(1.03) !important;
+    }
+
+    .modern-video-wrapper {
+        position: relative;
+        transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+    }
+
+    .modern-video-wrapper:hover {
+        transform: scale(1.02) translateY(-4px) !important;
+        box-shadow: rgba(37, 34, 30, 0.12) 0px 20px 40px !important;
+    }
+
+    /* =========================================
+       REVAMPED WHY CHOOSE US SECTION
+       ========================================= */
+    .why-card-premium {
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        box-shadow: var(--shadow-subtle, rgba(37, 34, 30, 0.04) 0px 1px 0px 0px) !important;
+        padding: 40px 30px !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .why-card-premium:hover {
+        transform: translateY(-6px) !important;
+        box-shadow: rgba(37, 34, 30, 0.08) 0px 14px 28px, rgba(37, 34, 30, 0.04) 0px 4px 10px !important;
+    }
+
+    /* Tint backgrounds by default */
+    .why-card-premium--tint-0 {
+        background-color: var(--color-cream, #fff6f0) !important;
+        border: 1px solid rgba(227, 68, 50, 0.15) !important;
+    }
+    .why-card-premium--tint-0:hover {
+        border-color: rgba(227, 68, 50, 0.45) !important;
+    }
+
+    .why-card-premium--tint-1 {
+        background-color: var(--color-mint-wash, #f0f6df) !important;
+        border: 1px solid rgba(68, 108, 61, 0.15) !important;
+    }
+    .why-card-premium--tint-1:hover {
+        border-color: rgba(68, 108, 61, 0.45) !important;
+    }
+
+    .why-card-premium--tint-2 {
+        background-color: var(--color-sky-wash, #dceaff) !important;
+        border: 1px solid rgba(15, 102, 174, 0.15) !important;
+    }
+    .why-card-premium--tint-2:hover {
+        border-color: rgba(15, 102, 174, 0.45) !important;
+    }
+
+    .why-icon-badge {
+        width: 64px !important;
+        height: 64px !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 24px !important;
+        margin-bottom: 24px !important;
+        box-shadow: var(--shadow-subtle) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Icon color per tint */
+    .why-card-premium--tint-0 .why-icon-badge {
+        color: var(--color-deep-ember, #cf3520) !important;
+        border: 1px solid rgba(227, 68, 50, 0.2) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+    .why-card-premium--tint-1 .why-icon-badge {
+        color: var(--color-forest, #446c3d) !important;
+        border: 1px solid rgba(68, 108, 61, 0.2) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+    .why-card-premium--tint-2 .why-icon-badge {
+        color: var(--color-cobalt-link, #0f66ae) !important;
+        border: 1px solid rgba(15, 102, 174, 0.2) !important;
+        background-color: var(--color-paper, #fefdfc) !important;
+    }
+
+    /* Icon hover states */
+    .why-card-premium--tint-0:hover .why-icon-badge {
+        background-color: var(--color-ember-red, #e34432) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-ember-red, #e34432) !important;
+    }
+    .why-card-premium--tint-1:hover .why-icon-badge {
+        background-color: var(--color-forest, #446c3d) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-forest, #446c3d) !important;
+    }
+    .why-card-premium--tint-2:hover .why-icon-badge {
+        background-color: var(--color-cobalt-link, #0f66ae) !important;
+        color: var(--color-paper, #fefdfc) !important;
+        border-color: var(--color-cobalt-link, #0f66ae) !important;
+    }
+
+    .why-title {
+        font-family: var(--font-graphik, sans-serif) !important;
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        color: var(--color-ink, #25221e) !important;
+        margin-bottom: 12px !important;
+    }
+
+    .why-desc {
+        font-family: var(--font-inter, sans-serif) !important;
+        font-size: 14px !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        line-height: 1.6 !important;
+        margin-bottom: 0 !important;
     }
 </style>
 
