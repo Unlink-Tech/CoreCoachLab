@@ -3,30 +3,12 @@
 @section('title', __('common.points_top_up'))
 
 @section('main-content')
-<div class="tl-breadcrumb topup-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ __('common.top_up_points') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.top_up_points') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb 
+    :title="__('common.top_up_points')" 
+    :routes="[
+        ['label' => __('common.top_up_points')]
+    ]" 
+/>
 
 <!-- POINTS TOP UP SECTION - PREMIUM LUXURY DESIGN -->
 <section class="points-topup-section pt-120 pb-120" id="topup">
