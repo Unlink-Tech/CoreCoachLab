@@ -882,13 +882,13 @@ Why Our UI/UX Design Stands Out:',
     'gal_tech_hero_cta' => 'Explore Programs',
 
     // Grand Axis Learning - Points Top Up Section
-    'gal_topup_badge' => 'Accelerate Your Learning',
-    'gal_topup_title' => 'Unlock Learning with Credits',
-    'gal_topup_description' => 'Purchase credits and unlock premium courses instantly. Our reward system provides bonus credits based on your investment tier, accelerating your access to advanced technology education.',
+    'gal_topup_badge' => 'Creative Progression',
+    'gal_topup_title' => 'Choose Your Learning Path',
+    'gal_topup_description' => 'Earn bonus credits as your learning journey grows and unlock premium courses faster.',
 
     // Grand Axis Learning - Learning Tiers Section
-    'gal_tiers_title' => 'Learning Tiers',
-    'gal_tiers_subtitle' => 'Invest more, learn more - bonus credits with higher tiers',
+    'gal_tiers_title' => 'Choose Your Learning Path',
+    'gal_tiers_subtitle' => 'Earn bonus credits as your learning journey grows and unlock premium courses faster.',
 
     // Grand Axis Learning - General
     'enroll_now' => 'Enroll Now',
@@ -979,18 +979,18 @@ Why Our UI/UX Design Stands Out:',
     'remember_password' => 'Remember your password?',
 
     // Grand Axis Learning - Points Calculator Section
-    'gal_calc_title' => 'Credits Calculator',
-    'gal_calc_tagline' => 'Calculate your learning investment and bonus credits',
-    'gal_calc_input_label' => 'Investment Amount',
+    'gal_calc_title' => 'Learning Commitment',
+    'gal_calc_tagline' => 'Calculate your learning progression and bonus credits',
+    'gal_calc_input_label' => 'Learning Commitment',
     'gal_calc_base_points' => 'Base Credits',
     'gal_calc_tier_bonus' => 'Tier Bonus',
-    'gal_calc_youll_get' => 'You\'ll Get',
+    'gal_calc_youll_get' => 'Total Progression Credits',
     'gal_calc_points_unit' => 'Credits',
-    'gal_calc_benefit_access' => 'Instant Access',
-    'gal_calc_benefit_payment' => 'Secure Payment',
-    'gal_calc_benefit_lifetime' => 'Ongoing Access',
-    'gal_calc_button' => 'Get Credits',
-    'gal_calc_trust_message' => 'Trusted by technology professionals worldwide',
+    'gal_calc_benefit_access' => 'Access Masterclasses',
+    'gal_calc_benefit_payment' => 'Flexible Study',
+    'gal_calc_benefit_lifetime' => 'Lifetime Portfolio Access',
+    'gal_calc_button' => 'Unlock More Courses',
+    'gal_calc_trust_message' => 'Join thousands of creative minds advancing their art skills',
 
     // Top Up Points Page
     'top_up_points' => 'Top Up Credits',

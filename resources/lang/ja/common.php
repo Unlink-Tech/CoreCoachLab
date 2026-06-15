@@ -901,13 +901,13 @@ return [
     'gal_tech_hero_cta' => 'プログラムを探索',
 
     // Grand Axis Learning - Points Top Up Section
-    'gal_topup_badge' => 'あなたの学習を加速',
-    'gal_topup_title' => 'クレジットで学習をアンロック',
-    'gal_topup_description' => 'ラーニングクレジットを購入して、プレミアムコースにすぐにアクセスできます。当社の報酬システムは投資レベルに基づいてボーナスクレジットを提供し、高度なテクノロジー教育へのアクセスを加速します。',
+    'gal_topup_badge' => 'クリエイティブ進捗',
+    'gal_topup_title' => 'あなたの学習パスを選択',
+    'gal_topup_description' => '学習の旅が進むにつれてボーナスクレジットを獲得し、プレミアムコースをより早くアンロックしましょう。',
 
     // Grand Axis Learning - Learning Tiers Section
-    'gal_tiers_title' => '学習層',
-    'gal_tiers_subtitle' => 'より多く投資すればより多く学べます。より高い層でボーナスクレジットを獲得。',
+    'gal_tiers_title' => 'あなたの学習パスを選択',
+    'gal_tiers_subtitle' => '学習の旅が進むにつれてボーナスクレジットを獲得し、プレミアムコースをより早くアンロックしましょう。',
 
     // Grand Axis Learning - General
     'enroll_now' => '今すぐ登録',
@@ -998,18 +998,18 @@ return [
     'remember_password' => 'パスワードを覚えていますか？',
 
     // Grand Axis Learning - Points Calculator Section
-    'gal_calc_title' => 'ラーニングクレジット計算機',
-    'gal_calc_tagline' => 'あなたの学習投資とボーナスクレジットを計算します',
-    'gal_calc_input_label' => '投資額',
+    'gal_calc_title' => '学習コミットメント',
+    'gal_calc_tagline' => 'あなたの学習の進捗とボーナスクレジットを計算します',
+    'gal_calc_input_label' => '学習へのコミットメント',
     'gal_calc_base_points' => 'ベースクレジット',
     'gal_calc_tier_bonus' => 'ティアボーナス',
-    'gal_calc_youll_get' => 'あなたは得られます',
+    'gal_calc_youll_get' => '総進捗クレジット',
     'gal_calc_points_unit' => 'クレジット',
-    'gal_calc_benefit_access' => '即座アクセス',
-    'gal_calc_benefit_payment' => 'セキュアな支払い',
-    'gal_calc_benefit_lifetime' => '継続アクセス',
-    'gal_calc_button' => 'クレジットを取得する',
-    'gal_calc_trust_message' => '世界中のテクノロジープロフェッショナルから信頼されています',
+    'gal_calc_benefit_access' => 'マスタークラスへのアクセス',
+    'gal_calc_benefit_payment' => '柔軟な学習ペース',
+    'gal_calc_benefit_lifetime' => 'ライフタイムポートフォリオアクセス',
+    'gal_calc_button' => 'もっとコースをアンロックする',
+    'gal_calc_trust_message' => 'アートスキルを高めている何千人ものクリエイティブな仲間に加わりましょう',
 
     // Top Up Points Page
     'top_up_points' => 'クレジットをチャージ',

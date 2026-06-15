@@ -33,12 +33,11 @@ class PointsController extends Controller
      */
     public function topup()
     {
-        // Available point bundles for purchase
         $bundles = [
-            ['id' => 1001, 'points' => 100, 'price' => 100, 'title' => 'Starter Pack', 'description' => 'Perfect for a single course.'],
-            ['id' => 1002, 'points' => 1000, 'price' => 500, 'title' => 'Growth Pack', 'description' => 'Get 2x points on your purchase.'],
-            ['id' => 1003, 'points' => 2500, 'price' => 1000, 'title' => 'Pro Pack', 'description' => 'Get 2.5x points on your purchase.'],
-            ['id' => 1004, 'points' => 4500, 'price' => 1500, 'title' => 'Elite Pack', 'description' => 'Get 3x points on your purchase.'],
+            ['id' => 1001, 'points' => 100, 'price' => 100, 'title' => 'Standard Pack', 'description' => 'Perfect for a single course.'],
+            ['id' => 1002, 'points' => 1000, 'price' => 500, 'title' => 'Premium Pack', 'description' => 'Get 2x bonus credits on your purchase.'],
+            ['id' => 1003, 'points' => 2500, 'price' => 1000, 'title' => 'Elite Pack', 'description' => 'Get 2.5x bonus credits on your purchase.'],
+            ['id' => 1004, 'points' => 4500, 'price' => 1500, 'title' => 'VIP Pack', 'description' => 'Get 3x bonus credits on your purchase.'],
         ];
         
         return view('frontend.pages.topup', compact('bundles'));

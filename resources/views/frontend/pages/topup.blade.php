@@ -70,7 +70,7 @@
                         <div class="tier-card tier-card-1">
                             <div class="tier-badge-large">1</div>
                             <h4 class="tier-card-label">{{ __('common.tier_standard') }}</h4>
-                            <div class="tier-range-text">1 - 79,999 ¥</div>
+                            <div class="tier-range-text"><strong>1 - 79,999 ¥</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text">×1</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -84,7 +84,7 @@
                         <div class="tier-card tier-card-2">
                             <div class="tier-badge-large tier-badge-premium">2</div>
                             <h4 class="tier-card-label">{{ __('common.tier_premium') }}</h4>
-                            <div class="tier-range-text">80,000 - 159,999 ¥</div>
+                            <div class="tier-range-text"><strong>80,000 - 159,999 ¥</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×2</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -98,7 +98,7 @@
                         <div class="tier-card tier-card-3">
                             <div class="tier-badge-large tier-badge-elite">3</div>
                             <h4 class="tier-card-label">{{ __('common.tier_elite') }}</h4>
-                            <div class="tier-range-text">160,000 - 239,999 ¥</div>
+                            <div class="tier-range-text"><strong>160,000 - 239,999 ¥</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×2.5</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -112,7 +112,7 @@
                         <div class="tier-card tier-card-4">
                             <div class="tier-badge-large tier-badge-vip">4</div>
                             <h4 class="tier-card-label">{{ __('common.tier_vip') }}</h4>
-                            <div class="tier-range-text">240,000+ ¥</div>
+                            <div class="tier-range-text"><strong>240,000+ ¥</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×3</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -122,14 +122,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="currency-note">{{ __('common.jpy_conversion_note') }}</div>
+                    <div class="currency-note"><strong>{{ __('common.jpy_conversion_note') }}</strong></div>
                     @else
                     <div class="tier-cards-grid">
                         <!-- Tier 1 -->
                         <div class="tier-card tier-card-1">
                             <div class="tier-badge-large">1</div>
                             <h4 class="tier-card-label">{{ __('common.tier_standard') }}</h4>
-                            <div class="tier-range-text">$1 - $499</div>
+                            <div class="tier-range-text"><strong>$1 - $499</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text">×1</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -143,7 +143,7 @@
                         <div class="tier-card tier-card-2">
                             <div class="tier-badge-large tier-badge-premium">2</div>
                             <h4 class="tier-card-label">{{ __('common.tier_premium') }}</h4>
-                            <div class="tier-range-text">$500 - $999</div>
+                            <div class="tier-range-text"><strong>$500 - $999</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×2</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -157,7 +157,7 @@
                         <div class="tier-card tier-card-3">
                             <div class="tier-badge-large tier-badge-elite">3</div>
                             <h4 class="tier-card-label">{{ __('common.tier_elite') }}</h4>
-                            <div class="tier-range-text">$1,000 - $1,499</div>
+                            <div class="tier-range-text"><strong>$1,000 - $1,499</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×2.5</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -171,7 +171,7 @@
                         <div class="tier-card tier-card-4">
                             <div class="tier-badge-large tier-badge-vip">4</div>
                             <h4 class="tier-card-label">{{ __('common.tier_vip') }}</h4>
-                            <div class="tier-range-text">$1,500+</div>
+                            <div class="tier-range-text"><strong>$1,500+</strong></div>
                             <div class="tier-multiplier">
                                 <span class="multiplier-text multiplier-active">×3</span>
                                 <span class="multiplier-label">{{ __('common.bonus') }}</span>
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="currency-note">{{ __('common.usd_conversion_note') }}</div>
+                    <div class="currency-note"><strong>{{ __('common.usd_conversion_note') }}</strong></div>
                     @endif
                 </div>
             </div>
@@ -200,7 +200,7 @@
                                 <h2 class="calc-title-premium">{{ __('common.instant_recharge') }}</h2>
                                 <p class="calc-tagline">{{ __('common.get_more_points_faster') }}</p>
                             </div>
-                            <div class="calc-currency-badge">{{ session('currency') == 'JPY' ? '¥' : '$' }}</div>
+                            <div class="calc-currency-badge"><strong>{{ session('currency') == 'JPY' ? '¥' : '$' }}</strong></div>
                         </div>
 
                         <!-- Main Form -->
@@ -220,7 +220,7 @@
                                         min="1"
                                         required
                                     >
-                                    <span class="input-currency">{{ session('currency') == 'JPY' ? '¥' : '$' }}</span>
+                                    <span class="input-currency"><strong>{{ session('currency') == 'JPY' ? '¥' : '$' }}</strong></span>
                                 </div>
                             </div>
 
@@ -270,6 +270,10 @@
                                 <span class="btn-shine"></span>
                             </button>
                         </form>
+                        <!-- Dynamic Currency Conversion Note -->
+                        <div class="currency-note-calc mt-3 mb-3 text-center" style="font-size: 12px; color: #666; font-weight: 600;">
+                            <strong>{{ session('currency') == 'JPY' ? '*160 JPY = 1 Credit' : '*1 USD = 1 Credit' }}</strong>
+                        </div>
 
                         <!-- Trust Badge -->
                         <div class="trust-indicator">
