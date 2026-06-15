@@ -49,7 +49,7 @@
                 <span class="cat-hero__eyebrow"><i class="{{ $cat_icon }}"></i> {{ __('common.gal_category_explore') }}</span>
                 <h2 class="cat-hero__title">{{ $category->title }}</h2>
                 @if($category->summary)
-                    <p class="cat-hero__summary">{{ $category->summary }}</p>
+                     <p class="cat-hero__summary">{{ $category->summary }}</p>
                 @endif
                 <div class="cat-hero__stats">
                     <span class="cat-hero__chip"><i class="fas fa-graduation-cap"></i> {{ $pl_count }} {{ __('common.courses') }}</span>
@@ -67,13 +67,39 @@
             <span class="catalog-head__badge">{{ __('common.gal_category_explore') }}</span>
             <h2 class="catalog-head__title">{{ __('common.courses') }} {{ __('common.available') }}</h2>
             <p class="catalog-head__sub">
-                {{ method_exists($products, 'total') ? $products->total() : count($products) }} {{ __('common.courses') }}
+                Explore our creative courses syllabus
             </p>
         </div>
 
-        <div class="row g-4">
+        <!-- 3. Dynamic Catalog Filter Toolbar -->
+        <div class="catalog-toolbar mb-5">
+            <div class="row align-items-center g-3">
+                <div class="col-md-5 col-lg-6">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="catalog-search" class="catalog-search-control" placeholder="Search for courses...">
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-6 d-flex justify-content-md-end gap-2 flex-wrap">
+                    <button class="filter-btn active" data-filter="all">All Courses</button>
+                    @php
+                        $unique_cats = [];
+                        foreach($products as $course) {
+                            if($course->cat_info && !in_array($course->cat_info->id, array_keys($unique_cats))) {
+                                $unique_cats[$course->cat_info->id] = $course->cat_info->title;
+                            }
+                        }
+                    @endphp
+                    @foreach($unique_cats as $cat_id => $cat_title)
+                        <button class="filter-btn" data-filter="{{ $cat_id }}">{{ $cat_title }}</button>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="course-list-container">
             @foreach($products as $course)
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 course-card-item" data-category="{{ $course->cat_id }}" data-title="{{ strtolower($course->title) }}">
                     <div class="course-tile course-tile--tint-{{ $loop->index % 3 }}">
                         <!-- Image with hover overlay -->
                         <div class="course-tile-image">
@@ -93,6 +119,9 @@
                         <div class="course-tile-content">
                             <div class="course-tile-meta">
                                 <div class="course-tile-badge"><i class="fas fa-palette"></i></div>
+                                @if(isset($course->levels) && count($course->levels))
+                                    <span class="course-tile-levels"><i class="fas fa-layer-group"></i> {{ count($course->levels) }} {{ __('common.level') }}</span>
+                                @endif
                             </div>
 
                             <h3 class="course-tile-title line-clamp-2">
@@ -100,6 +129,23 @@
                             </h3>
 
                             <p class="course-tile-desc line-clamp-2">{{ $course->summary }}</p>
+
+                            <!-- Custom Price Display Footer -->
+                            <div class="course-tile-footer">
+                                <div class="course-tile-price">
+                                    @if(isset($course->levels) && count($course->levels))
+                                        @php
+                                            $min_points = $course->levels->min('price_in_points');
+                                        @endphp
+                                        <span class="price-prefix">From</span>
+                                        <span class="price-value">{{ number_format($min_points) }} <small>CREDS</small></span>
+                                    @endif
+                                </div>
+                                <a href="{{ route('product-detail', $course->slug) }}" class="course-tile-btn">
+                                    <span>Learn</span>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,6 +181,14 @@
         border: 1px solid var(--color-stone, #d7d6d4);
         box-shadow: var(--shadow-lg);
     }
+    /* generic catalog cover if no category */
+    .cat-hero__media--generic {
+        background: linear-gradient(135deg, var(--color-teal-dusk, #497d7e), var(--color-ember-red, #e34432));
+    }
+    .cat-hero__card--generic {
+        background: var(--color-cream, #fff6f0);
+    }
+    
     /* cover image / fallback */
     .cat-hero__media {
         position: absolute;
@@ -265,7 +319,6 @@
         background: var(--surface-paper-canvas, #fefdfc);
         padding: 56px 0 80px;
     }
-    /* centered section header — matches the home page sections */
     .catalog-head { margin-bottom: 48px; }
     .catalog-head__badge {
         display: inline-flex;
@@ -301,8 +354,69 @@
         max-width: 600px;
     }
 
+    /* CATALOG TOOLBAR (Search & Filters) */
+    .catalog-toolbar {
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 16px;
+        padding: 18px 24px;
+        box-shadow: var(--shadow-subtle);
+    }
+    .search-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .search-icon {
+        position: absolute;
+        left: 16px;
+        color: var(--color-graphite, #94928f);
+        font-size: 14px;
+        pointer-events: none;
+    }
+    .catalog-search-control {
+        width: 100%;
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-buttons, 8px);
+        padding: 11px 16px 11px 42px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        color: var(--color-ink, #25221e);
+        transition: all 0.25s ease;
+    }
+    .catalog-search-control:focus {
+        outline: none;
+        border-color: var(--color-ember-red, #e34432);
+        box-shadow: 0 0 0 3px rgba(227, 68, 50, 0.08);
+    }
+    .filter-btn {
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        color: var(--color-pencil, #6f6c69);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 9px 18px;
+        border-radius: var(--radius-buttons, 8px);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .filter-btn:hover {
+        border-color: rgba(227, 68, 50, 0.3);
+        color: var(--color-deep-ember, #cf3520);
+        background: var(--color-cream, #fff6f0);
+    }
+    .filter-btn.active {
+        background: var(--color-ember-red, #e34432);
+        border-color: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.2);
+    }
+
     /* =========================================
-       COURSE TILE (matches home category cards)
+       COURSE TILE
        ========================================= */
     .course-tile {
         border-radius: 16px;
@@ -319,7 +433,7 @@
         transform: translateY(-6px);
     }
 
-    /* tint variants (cream / mint / sky) */
+    /* tint variants */
     .course-tile--tint-0 {
         background-color: var(--color-cream, #fff6f0);
         border: 1px solid rgba(227, 68, 50, 0.15);
@@ -336,7 +450,7 @@
     }
     .course-tile--tint-2:hover { border-color: rgba(15, 102, 174, 0.45); }
 
-    /* image with hover overlay */
+    /* image overlay */
     .course-tile-image {
         position: relative;
         width: 100%;
@@ -411,13 +525,13 @@
         margin-bottom: 14px;
     }
     .course-tile-badge {
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 17px;
+        font-size: 14px;
         background: var(--color-paper, #fefdfc);
         box-shadow: var(--shadow-subtle);
         transition: all 0.3s ease;
@@ -425,9 +539,17 @@
     .course-tile--tint-0 .course-tile-badge { color: var(--color-deep-ember, #cf3520); border: 1px solid rgba(227, 68, 50, 0.25); }
     .course-tile--tint-1 .course-tile-badge { color: var(--color-forest, #446c3d); border: 1px solid rgba(68, 108, 61, 0.25); }
     .course-tile--tint-2 .course-tile-badge { color: var(--color-cobalt-link, #0f66ae); border: 1px solid rgba(15, 102, 174, 0.25); }
-    .course-tile--tint-0:hover .course-tile-badge { background: var(--color-ember-red, #e34432); color: var(--color-paper, #fefdfc); border-color: var(--color-ember-red, #e34432); }
-    .course-tile--tint-1:hover .course-tile-badge { background: var(--color-forest, #446c3d); color: var(--color-paper, #fefdfc); border-color: var(--color-forest, #446c3d); }
-    .course-tile--tint-2:hover .course-tile-badge { background: var(--color-cobalt-link, #0f66ae); color: var(--color-paper, #fefdfc); border-color: var(--color-cobalt-link, #0f66ae); }
+    
+    .course-tile-levels {
+        margin-left: auto;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-pencil, #6f6c69);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
 
     .course-tile-title {
         font-family: var(--font-graphik), sans-serif;
@@ -448,7 +570,60 @@
         font-size: 13px;
         line-height: 1.55;
         color: var(--color-pencil, #6f6c69);
-        margin: 0;
+        margin: 0 0 18px 0;
+    }
+
+    /* Course Tile Footer Details */
+    .course-tile-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px dashed var(--color-stone, #d7d6d4);
+    }
+    .course-tile-price {
+        display: flex;
+        flex-direction: column;
+    }
+    .price-prefix {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-graphite, #94928f);
+    }
+    .price-value {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--color-ember-red, #e34432);
+    }
+    .price-value small {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-pencil, #6f6c69);
+    }
+    .course-tile-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+        text-decoration: none;
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .course-tile-btn i {
+        font-size: 10px;
+        transition: transform 0.2s ease;
+    }
+    .course-tile:hover .course-tile-btn {
+        color: var(--color-ember-red, #e34432);
+    }
+    .course-tile:hover .course-tile-btn i {
+        transform: translateX(3px);
     }
 
     .line-clamp-2 {
@@ -457,15 +632,9 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
 
     /* =========================================
-       PAGINATION (themed)
+       PAGINATION
        ========================================= */
     .catalog-section .pagination { gap: 6px; }
     .catalog-section .page-link {
@@ -500,7 +669,6 @@
     /* =========================================
        RESPONSIVE
        ========================================= */
-    /* offset the scroll anchor for the sticky header */
     #catalog { scroll-margin-top: 90px; }
 
     @media (max-width: 768px) {
@@ -514,6 +682,7 @@
         .course-tile-image { height: 170px; }
         .cat-hero__stats { gap: 10px; }
         .cat-hero__cta, .cat-hero__chip { font-size: 13px; }
+        .catalog-toolbar { padding: 14px 16px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -524,4 +693,45 @@
         .cat-hero__card:hover .cat-hero__media { transform: scale(1.02) !important; }
     }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('catalog-search');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const courseCards = document.querySelectorAll('.course-card-item');
+
+        function filterCourses() {
+            const searchQuery = searchInput.value.toLowerCase().trim();
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+
+            courseCards.forEach(card => {
+                const title = card.getAttribute('data-title') || '';
+                const category = card.getAttribute('data-category') || '';
+
+                const matchesSearch = title.includes(searchQuery);
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterCourses);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterCourses();
+            });
+        });
+    });
+</script>
 @endpush

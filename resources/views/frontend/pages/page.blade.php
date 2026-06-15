@@ -200,6 +200,14 @@
     /* elegant drop-cap on the opening paragraph */
     .policy-rich-text > p:first-of-type::first-letter {
         font-family: var(--font-graphik), Georgia, serif;
+        font-size: 3.2em;
+        float: left;
+        line-height: 0.8;
+        margin-right: 8px;
+        color: var(--color-ember-red, #e34432);
+        font-weight: 700;
+    }
+
     /* Modern Sliding Underline Link Effects */
     .policy-rich-text a {
         color: var(--color-cobalt-link, #0f66ae);

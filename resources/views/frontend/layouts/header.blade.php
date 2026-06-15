@@ -626,6 +626,119 @@
                 .account-btn { padding: 7px 8px !important; }
                 .cart-btn { width: 40px !important; height: 40px !important; }
             }
+
+            /* ============================================================
+               MODERN CART SIDEBAR DRAWER (REVAMPED THEME)
+               ============================================================ */
+            .modern-cart-drawer {
+                background: linear-gradient(180deg, var(--surface-paper-canvas, #fefdfc) 0%, var(--surface-cream-wash, #fff6f0) 100%) !important;
+                border-left: 1px solid var(--color-stone, #d7d6d4) !important;
+                box-shadow: -10px 0 35px rgba(37, 34, 30, 0.08) !important;
+                width: 420px !important;
+                max-width: 100% !important;
+            }
+
+            .modern-cart-drawer .offcanvas__wrapper {
+                padding: 30px clamp(15px, 4vw, 30px) !important;
+            }
+
+            /* Cart list items style overrides */
+            .modern-cart-drawer .cart-list li {
+                background: var(--color-paper, #fefdfc) !important;
+                border: 1px solid var(--color-stone, #d7d6d4) !important;
+                border-radius: 14px !important;
+                padding: 16px !important;
+                transition: all 0.25s ease !important;
+                box-shadow: 0 4px 10px rgba(37,34,30,0.02) !important;
+            }
+
+            .modern-cart-drawer .cart-list li:hover {
+                transform: translateY(-2px);
+                border-color: rgba(227, 68, 50, 0.25) !important;
+                box-shadow: 0 8px 20px rgba(37,34,30,0.05) !important;
+                background: var(--color-paper, #fefdfc) !important;
+            }
+
+            .modern-cart-drawer .cart-list .remove-item {
+                background: var(--surface-cream-wash, #fff6f0) !important;
+                border: 1px solid var(--color-stone, #d7d6d4) !important;
+                color: var(--color-ember-red, #e34432) !important;
+                transition: all 0.25s ease !important;
+                box-shadow: none !important;
+            }
+
+            .modern-cart-drawer .cart-list .remove-item:hover {
+                background: var(--color-ember-red, #e34432) !important;
+                border-color: var(--color-ember-red, #e34432) !important;
+                color: #fff !important;
+                transform: rotate(90deg) scale(1.05) !important;
+            }
+
+            /* Close Button Override */
+            .modern-cart-drawer .cartcanvas__close {
+                background: var(--surface-cream-wash, #fff6f0) !important;
+                border: 1px solid var(--color-stone, #d7d6d4) !important;
+                color: var(--color-ink, #25221e) !important;
+                transition: all 0.25s ease !important;
+            }
+
+            .modern-cart-drawer .cartcanvas__close:hover {
+                border-color: rgba(227, 68, 50, 0.3) !important;
+                color: var(--color-ember-red, #e34432) !important;
+                transform: rotate(90deg) scale(1.05) !important;
+            }
+
+            /* Credits badges inside drawer */
+            .modern-cart-drawer .db-points-badge--amber {
+                background: var(--surface-cream-wash, #fff6f0) !important;
+                border: 1px solid rgba(227, 68, 50, 0.15) !important;
+                color: var(--color-ember-red, #e34432) !important;
+                display: inline-flex;
+                align-items: center;
+                padding: 3px 8px;
+                border-radius: 6px;
+                font-size: 11px;
+                font-weight: 700;
+            }
+
+            /* Drawer Footer adjustments */
+            .modern-cart-drawer .cart-footer {
+                border-top: 1.5px dashed var(--color-stone, #d7d6d4) !important;
+            }
+
+            .modern-cart-drawer .cart-footer h5 {
+                font-family: var(--font-inter), sans-serif !important;
+                font-weight: 700 !important;
+                color: var(--color-pencil, #6f6c69) !important;
+            }
+
+            .modern-cart-drawer .cart-footer .modern-btn-outline {
+                border: 1.5px solid var(--color-stone, #d7d6d4) !important;
+                color: var(--color-pencil, #6f6c69) !important;
+                background: transparent !important;
+                font-weight: 700 !important;
+                border-radius: 10px !important;
+                transition: all 0.25s ease !important;
+            }
+            .modern-cart-drawer .cart-footer .modern-btn-outline:hover {
+                border-color: var(--color-deep-ember, #cf3520) !important;
+                color: var(--color-deep-ember, #cf3520) !important;
+                background-color: var(--surface-cream-wash, #fff6f0) !important;
+            }
+            .modern-cart-drawer .cart-footer .modern-btn-solid {
+                background: var(--color-ember-red, #e34432) !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 10px !important;
+                font-weight: 700 !important;
+                transition: all 0.25s ease !important;
+                box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15) !important;
+            }
+            .modern-cart-drawer .cart-footer .modern-btn-solid:hover {
+                background: var(--color-deep-ember, #cf3520) !important;
+                transform: translateY(-1px) !important;
+                box-shadow: 0 6px 16px rgba(227, 68, 50, 0.22) !important;
+            }
         </style>
 </head>
 
@@ -813,10 +926,10 @@
             <div class="cartcanvas__info">
                 <div class="offcanvas__wrapper">
                     <div class="cartcanvas__content">
-                        <div class="mb-4 d-flex justify-content-between align-items-center border-bottom pb-4" style="border-color: rgba(21, 145, 220, 0.1) !important;">
-                            <h4 class="fw-800 text-dark mb-0" style="font-weight: 800; letter-spacing: -0.5px; color: #0a0e27;">{{ __('common.shopping_cart') }}</h4>
-                            <div class="cartcanvas__close rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; cursor: pointer; background: linear-gradient(135deg, rgba(21, 145, 220, 0.1) 0%, rgba(21, 145, 220, 0.05) 100%); border: 1px solid rgba(21, 145, 220, 0.2); transition: all 0.3s ease;">
-                                <i class="fas fa-times" style="color: #1591DC; font-size: 16px; font-weight: 600;"></i>
+                        <div class="mb-4 d-flex justify-content-between align-items-center border-bottom pb-4" style="border-color: var(--color-stone, #d7d6d4) !important;">
+                            <h4 class="fw-800 text-dark mb-0" style="font-family: var(--font-graphik), sans-serif; font-weight: 700; letter-spacing: -0.5px; color: var(--color-ink, #25221e);">{{ __('common.shopping_cart') }}</h4>
+                            <div class="cartcanvas__close rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; cursor: pointer;">
+                                <i class="fas fa-times" style="font-size: 14px; font-weight: 600;"></i>
                             </div>
                         </div>
 
@@ -855,20 +968,20 @@
 
                                             <!-- Level Badge (for courses only) -->
                                             @if($is_course && $level)
-                                                <span class="badge rounded-2 px-2 py-1 me-2" style="background: rgba(21, 145, 220, 0.1); color: #1591DC; font-size: 11px; font-weight: 600; display: inline-block; margin-bottom: 6px;">
+                                                <span class="badge rounded-2 px-2 py-1 me-2" style="background: var(--color-sky-wash, #dceaff); color: var(--color-teal-dusk, #497d7e); font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 6px; border: 1px solid rgba(73, 125, 126, 0.15);">
                                                     <i class="fas fa-level-up-alt me-1" style="font-size: 10px;"></i>{{ $level->skill_level }}
                                                 </span>
                                             @endif
 
                                             <p class="mb-0 small text-muted">
-                                                <span class="fw-bold text-primary">{{ $cart->quantity }}</span> x 
+                                                <span class="fw-bold" style="color: var(--color-ember-red, #e34432);">{{ $cart->quantity }}</span> x 
                                                 @if($cart->product_id < 1000 && $cart->points > 0)
-                                                    {{ number_format($cart->points) }} CREDS
+                                                    <span class="db-points-badge--amber"><i class="fas fa-coins me-1"></i>{{ number_format($cart->points) }} CREDS</span>
                                                 @elseif($cart->product_id >= 1000)
-                                                    {{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}
-                                                    <span class="text-primary small ms-1">({{ number_format($cart->points) }} CREDS)</span>
+                                                    <span style="font-weight: 700; color: var(--color-ink, #25221e);">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
+                                                    <span class="small ms-1" style="color: var(--color-teal-dusk, #497d7e); font-weight: 600;">({{ number_format($cart->points) }} CREDS)</span>
                                                 @else
-                                                    {{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}
+                                                    <span style="font-weight: 700; color: var(--color-ink, #25221e);">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
                                                 @endif
                                             </p>
                                         </div>
@@ -899,10 +1012,10 @@
                                     }
                                 }
                             @endphp
-                            <div class="cart-footer border-top mt-5 pt-4" style="border-color: rgba(21, 145, 220, 0.1) !important;">
+                            <div class="cart-footer border-top mt-5 pt-4" style="border-color: var(--color-stone, #d7d6d4) !important;">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h5 class="fw-bold text-dark mb-0" style="color: #0a0e27;">{{ __('common.total') }}:</h5>
-                                    <h4 class="fw-800 mb-0" style="font-weight: 800; color: #1591DC;">
+                                    <h5 class="fw-bold text-dark mb-0" style="font-family: var(--font-inter), sans-serif; font-weight: 700; color: var(--color-pencil, #6f6c69);">{{ __('common.total') }}:</h5>
+                                    <h4 class="fw-800 mb-0" style="font-family: var(--font-graphik), sans-serif; font-weight: 800; color: var(--color-ember-red, #e34432);">
                                         @if(Helper::totalCartPoints() > 0)
                                             <i class="fas fa-coins me-1"></i> {{ number_format(Helper::totalCartPoints()) }} CREDS
                                         @else
@@ -910,11 +1023,11 @@
                                         @endif
                                     </h4>
                                 </div>
-                                <div class="cart-btn d-flex gap-2">
+                                <div class="cart-drawer-btns d-flex gap-2 w-100">
                                     @if($has_courses && !$has_topups)
                                         <!-- Courses Only -->
-                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 2px solid #1591DC; color: #1591DC; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease;">{{ __('common.view_cart') }}</a>
-                                        <button type="button" onclick="document.getElementById('redeemPointsForm').submit();" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(21, 145, 220, 0.3); cursor: pointer;">
+                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
+                                        <button type="button" onclick="document.getElementById('redeemPointsForm').submit();" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: var(--color-ember-red, #e34432); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15); cursor: pointer;">
                                             <i class="fas fa-lock me-1"></i>{{ __('common.redeem_points') ?? 'Redeem' }}
                                         </button>
                                         <form id="redeemPointsForm" action="{{ route('points.redeem') }}" method="POST" style="display:none;">
@@ -922,11 +1035,11 @@
                                         </form>
                                     @elseif($has_topups && !$has_courses)
                                         <!-- Top-ups Only -->
-                                        <a href="{{ route('cart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 2px solid #1591DC; color: #1591DC; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease;">{{ __('common.view_cart') }}</a>
-                                        <a href="{{ Auth::check() ? route('checkout') : route('login.form') }}" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(21, 145, 220, 0.3);">{{ __('common.checkout') }}</a>
+                                        <a href="{{ route('cart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
+                                        <a href="{{ Auth::check() ? route('checkout') : route('login.form') }}" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: var(--color-ember-red, #e34432); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15);">{{ __('common.checkout') }}</a>
                                     @else
                                         <!-- Mixed: Courses + Top-ups -->
-                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 2px solid #1591DC; color: #1591DC; border-radius: 10px; font-weight: 600; font-size: 13px; transition: all 0.3s ease;">{{ __('common.view_cart') }}</a>
+                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
                                     @endif
                                 </div>
                             </div>

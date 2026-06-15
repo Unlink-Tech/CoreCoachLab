@@ -12,6 +12,8 @@
 
     <!-- Checkout Section -->
     <section class="kv-checkout-section">
+        <!-- Background Grid & Glowing Blobs -->
+        <div class="kv-pattern" aria-hidden="true"></div>
         <span class="kv-glow kv-glow-mint" aria-hidden="true"></span>
         <span class="kv-glow kv-glow-sky" aria-hidden="true"></span>
 
@@ -244,37 +246,45 @@
                                 {{ __('common.terms_conditions') }}
                             </h3>
                             <div class="kv-terms-group">
-                                <input type="checkbox" id="terms" name="terms" class="kv-checkbox">
-                                <label for="terms">
-                                    {{__('common.agree_terms_conditions')}} <a href="{{ route('pages', 'terms-conditions') }}" target='_blank'>{{ __('common.terms_conditions') }}</a>
-                                </label>
+                                <div class="kv-terms-row">
+                                    <input type="checkbox" id="terms" name="terms" class="kv-checkbox">
+                                    <label for="terms">
+                                        {{__('common.agree_terms_conditions')}} <a href="{{ route('pages', 'terms-conditions') }}" target='_blank'>{{ __('common.terms_conditions') }}</a>
+                                    </label>
+                                </div>
                                 @error('terms')
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="kv-terms-group">
-                                <input type="checkbox" id="privacy" name="privacy" class="kv-checkbox">
-                                <label for="privacy">
-                                    {{__('common.agree_privacy_policy')}} <a href="{{ route('pages', 'privacy-policy') }}" target='_blank'>{{ __('common.privacy_policy') }}</a>
-                                </label>
+                                <div class="kv-terms-row">
+                                    <input type="checkbox" id="privacy" name="privacy" class="kv-checkbox">
+                                    <label for="privacy">
+                                        {{__('common.agree_privacy_policy')}} <a href="{{ route('pages', 'privacy-policy') }}" target='_blank'>{{ __('common.privacy_policy') }}</a>
+                                    </label>
+                                </div>
                                 @error('privacy')
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="kv-terms-group">
-                                <input type="checkbox" id="delivery" name="delivery" class="kv-checkbox">
-                                <label for="delivery">
-                                    {{__('common.agree_delivery_policy')}} <a href="{{ route('pages', 'delivery-policy') }}" target='_blank'>{{ __('common.delivery_policy') }}</a>
-                                </label>
+                                <div class="kv-terms-row">
+                                    <input type="checkbox" id="delivery" name="delivery" class="kv-checkbox">
+                                    <label for="delivery">
+                                        {{__('common.agree_delivery_policy')}} <a href="{{ route('pages', 'delivery-policy') }}" target='_blank'>{{ __('common.delivery_policy') }}</a>
+                                    </label>
+                                </div>
                                 @error('delivery')
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="kv-terms-group">
-                                <input type="checkbox" id="refund" name="refund" class="kv-checkbox">
-                                <label for="refund">
-                                    {{__('common.agree_refund_policy')}} <a href="{{ route('pages', 'refund-policy') }}" target='_blank'>{{ __('common.refund_policy') }}</a>
-                                </label>
+                                <div class="kv-terms-row">
+                                    <input type="checkbox" id="refund" name="refund" class="kv-checkbox">
+                                    <label for="refund">
+                                        {{__('common.agree_refund_policy')}} <a href="{{ route('pages', 'refund-policy') }}" target='_blank'>{{ __('common.refund_policy') }}</a>
+                                    </label>
+                                </div>
                                 @error('refund')
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
@@ -427,13 +437,19 @@
             errorClass: "kv-error",
             errorPlacement: function(error, element) {
                 error.css({
-                    "font-size": "0.95rem",
+                    "font-size": "0.85rem",
                     "color": "#ff4757",
                     "margin-top": "6px",
                     "display": "block",
                     "font-weight": "500"
                 });
-                error.insertAfter(element);
+                if (element.attr("type") === "checkbox") {
+                    error.appendTo(element.closest(".kv-terms-group"));
+                } else if (element.attr("id") === "expiry_month" || element.attr("id") === "expiry_year") {
+                    error.insertAfter(element.closest(".kv-card-expiry"));
+                } else {
+                    error.insertAfter(element);
+                }
             }
         });
 
@@ -506,334 +522,77 @@
 @push('styles')
 <style>
     /* =========================================
-       CHECKOUT — warm theme (kv-* preserved)
+       CHECKOUT — Warm Editorial Redesign
        ========================================= */
     .kv-checkout-section {
         position: relative;
         overflow: hidden;
-        background: var(--surface-paper-canvas, #fefdfc);
-        padding: 56px 0 88px;
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        padding: var(--spacing-48, 48px) 0 var(--spacing-80, 80px);
+        font-family: var(--font-inter, sans-serif);
+        min-height: 70vh;
+    }
+    
+    /* Background Pattern & Glow Blobs */
+    .kv-pattern {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(37, 34, 30, 0.03) 1.2px, transparent 1.2px);
+        background-size: 24px 24px;
+        pointer-events: none;
+        z-index: 0;
     }
     .kv-glow {
         position: absolute;
         border-radius: 50%;
-        filter: blur(100px);
+        filter: blur(120px);
         pointer-events: none;
         z-index: 0;
-        opacity: 0.5;
+        opacity: 0.65;
+        mix-blend-mode: multiply;
     }
-    .kv-glow-mint { width: 340px; height: 340px; background: var(--color-mint-wash, #f0f6df); top: -120px; left: -90px; }
-    .kv-glow-sky  { width: 300px; height: 300px; background: var(--color-sky-wash, #dceaff); bottom: 6%; right: -90px; }
-    .kv-checkout-section .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .kv-glow-mint { 
+        width: 450px; 
+        height: 450px; 
+        background: radial-gradient(circle, var(--color-mint-wash, #f0f6df) 0%, rgba(240, 246, 223, 0.2) 70%, transparent 100%); 
+        top: -150px; 
+        left: -100px; 
+        animation: kvGlowFloat 22s ease-in-out infinite; 
+    }
+    .kv-glow-sky  { 
+        width: 400px; 
+        height: 400px; 
+        background: radial-gradient(circle, var(--color-sky-wash, #dceaff) 0%, rgba(220, 234, 255, 0.2) 70%, transparent 100%); 
+        bottom: 8%; 
+        right: -100px; 
+        animation: kvGlowFloat 28s ease-in-out infinite reverse; 
+    }
+    
+    .kv-checkout-section .container { 
+        position: relative; 
+        z-index: 1; 
+    }
 
     .kv-checkout-grid {
         display: grid;
         grid-template-columns: 1.4fr 380px;
-        gap: 32px;
+        gap: var(--spacing-32, 32px);
         align-items: start;
     }
 
-    /* ---- Cards ---- */
-    .kv-checkout-card {
-        background: var(--color-paper, #fefdfc);
-        border: 1px solid var(--color-stone, #d7d6d4);
-        border-radius: 18px;
-        padding: 28px;
-        margin-bottom: 24px;
-        box-shadow: var(--shadow-subtle);
-        transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .kv-checkout-card:hover {
-        border-color: rgba(227, 68, 50, 0.25);
-        box-shadow: 0 16px 40px rgba(37, 34, 30, 0.06);
-    }
-
-    .kv-checkout-card-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-family: var(--font-graphik), sans-serif;
-        font-size: 19px;
-        font-weight: var(--font-weight-semibold, 600);
-        color: var(--color-ink, #25221e);
-        margin: 0 0 24px 0;
-    }
-    .kv-checkout-card-title > i { color: var(--color-ember-red, #e34432); font-size: 18px; }
-    .kv-step {
-        flex-shrink: 0;
-        width: 30px;
-        height: 30px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: var(--color-ember-red, #e34432);
-        color: var(--color-paper, #fefdfc);
-        font-family: var(--font-inter), sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-    }
-
-    /* ---- Form ---- */
-    .kv-checkout-form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px;
-    }
-    .kv-checkout-form-group { display: flex; flex-direction: column; }
-    .kv-checkout-form-group-full { grid-column: 1 / -1; }
-
-    .kv-label {
-        font-family: var(--font-inter), sans-serif;
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--color-ink, #25221e);
-        margin-bottom: 8px;
-        display: block;
-    }
-
-    .kv-input,
-    .kv-select,
-    .kv-textarea {
-        width: 100%;
-        padding: 12px 15px;
-        background: var(--surface-paper-canvas, #fefdfc);
-        border: 1.5px solid var(--color-stone, #d7d6d4);
-        border-radius: 10px;
-        color: var(--color-ink, #25221e);
-        font-family: var(--font-inter), sans-serif;
-        font-size: 14px;
-        transition: all 0.25s ease;
-    }
-    .kv-input:focus,
-    .kv-select:focus,
-    .kv-textarea:focus {
-        outline: none;
-        background: #fff;
-        border-color: var(--color-ember-red, #e34432);
-        box-shadow: 0 0 0 4px rgba(227, 68, 50, 0.12);
-    }
-    .kv-input::placeholder { color: var(--color-graphite, #94928f); }
-    .kv-select option { color: var(--color-ink, #25221e); }
-    .kv-textarea { resize: vertical; min-height: 110px; }
-
-    .kv-error {
-        color: #e34432;
-        font-size: 0.82rem;
-        margin-top: 6px;
-        display: block;
-        font-weight: 500;
-    }
-
-    .kv-card-expiry { display: flex; gap: 10px; align-items: center; }
-    .kv-card-expiry .kv-input { flex: 1; }
-    .kv-card-separator { color: var(--color-graphite, #94928f); font-weight: 600; }
-
-    .kv-secure-note {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        margin-top: 22px;
-        padding: 14px 16px;
-        background: var(--color-mint-wash, #f0f6df);
-        border-radius: 12px;
-        font-family: var(--font-inter), sans-serif;
-        font-size: 13px;
-        line-height: 1.5;
-        color: var(--color-forest, #446c3d);
-    }
-    .kv-secure-note i { margin-top: 3px; }
-    .kv-payment-methods { margin-top: 18px; text-align: center; }
-    .kv-payment-methods img { height: 30px; width: auto; opacity: 0.85; }
-
-    /* ---- Terms ---- */
-    .kv-checkbox {
-        width: 18px;
-        height: 18px;
-        margin-top: 2px;
-        cursor: pointer;
-        accent-color: var(--color-ember-red, #e34432);
-        flex-shrink: 0;
-    }
-    .kv-terms-group {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        margin-bottom: 14px;
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--color-stone, #d7d6d4);
-    }
-    .kv-terms-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .kv-terms-group label {
-        font-family: var(--font-inter), sans-serif;
-        color: var(--color-pencil, #6f6c69);
-        font-size: 14px;
-        line-height: 1.5;
-        cursor: pointer;
-        margin: 0;
-    }
-    .kv-terms-group a {
-        color: var(--color-cobalt-link, #0f66ae);
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s ease;
-    }
-    .kv-terms-group a:hover { color: var(--color-deep-ember, #cf3520); text-decoration: underline; }
-
-    /* ---- Summary ---- */
-    .kv-checkout-summary { position: sticky; top: 100px; height: fit-content; }
-    .kv-checkout-order {
-        background: linear-gradient(180deg, #fffefd 0%, #fff7f1 100%);
-    }
-    .kv-checkout-order-table {
-        margin-bottom: 22px;
-        padding-bottom: 18px;
-        border-bottom: 1px solid var(--color-stone, #d7d6d4);
-    }
-    .kv-checkout-order-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--color-stone, #d7d6d4);
-        font-family: var(--font-inter), sans-serif;
-        font-weight: 600;
-        color: var(--color-graphite, #94928f);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-    }
-    .kv-checkout-order-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--color-stone, #d7d6d4);
-    }
-    .kv-checkout-order-points {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-family: var(--font-inter), sans-serif;
-        color: var(--color-ink, #25221e);
-        font-size: 14px;
-        font-weight: 500;
-    }
-    .kv-checkout-order-points i { color: var(--color-ember-red, #e34432); }
-    .kv-checkout-order-price {
-        font-family: var(--font-graphik), sans-serif;
-        color: var(--color-ink, #25221e);
-        font-weight: 700;
-        font-size: 14px;
-    }
-    .kv-checkout-order-total {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 16px;
-        padding-top: 16px;
-        border-top: 1px solid var(--color-stone, #d7d6d4);
-    }
-    .kv-checkout-order-total span:first-child {
-        font-family: var(--font-inter), sans-serif;
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--color-pencil, #6f6c69);
-    }
-    .kv-checkout-order-total-value {
-        font-family: var(--font-graphik), sans-serif;
-        font-size: 22px;
-        font-weight: var(--font-weight-bold, 700);
-        color: var(--color-ember-red, #e34432);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .kv-captcha-group { margin-bottom: 20px; }
-    .kv-captcha-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        align-items: center;
-    }
-    .kv-captcha-display {
-        background: var(--surface-paper-canvas, #fefdfc);
-        border: 1.5px solid var(--color-stone, #d7d6d4);
-        border-radius: 10px;
-        padding: 6px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .kv-captcha-display img { max-width: 100%; height: 40px; border-radius: 6px; }
-
-    /* ---- Buttons ---- */
-    .kv-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 9px;
-        width: 100%;
-        padding: 14px 20px;
-        border: none;
-        border-radius: 10px;
-        font-family: var(--font-inter), sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.25s ease;
-        margin-bottom: 12px;
-    }
-    .kv-btn-accent {
-        background: var(--color-ember-red, #e34432);
-        color: var(--color-paper, #fefdfc);
-        box-shadow: 0 8px 20px rgba(227, 68, 50, 0.3);
-    }
-    .kv-btn-accent:hover {
-        background: var(--color-deep-ember, #cf3520);
-        color: var(--color-paper, #fefdfc);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(227, 68, 50, 0.4);
-    }
-    .kv-btn-outline {
-        background: transparent;
-        color: var(--color-ink, #25221e);
-        border: 1.5px solid var(--color-stone, #d7d6d4);
-    }
-    .kv-btn-outline:hover {
-        border-color: var(--color-ember-red, #e34432);
-        color: var(--color-deep-ember, #cf3520);
-        background: rgba(227, 68, 50, 0.05);
-    }
-    .kv-btn-lg { padding: 15px 24px; font-size: 15px; }
-    .w-100 { width: 100%; }
-
-    .kv-summary-assure {
-        margin-top: 6px;
-        text-align: center;
-        font-family: var(--font-inter), sans-serif;
-        font-size: 12px;
-        color: var(--color-graphite, #94928f);
-    }
-    .kv-summary-assure i { color: var(--color-forest, #446c3d); margin-right: 4px; }
-
-    /* =========================================
-       PROGRESS STEPPER
-       ========================================= */
+    /* ---- PROGRESS STEPPER ---- */
     .kv-stepper {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0;
-        max-width: 760px;
-        margin: 0 auto 40px;
-        padding: 18px 24px;
+        max-width: 800px;
+        margin: 0 auto var(--spacing-48, 48px);
+        padding: var(--spacing-16, 16px) var(--spacing-32, 32px);
         background: var(--color-paper, #fefdfc);
         border: 1px solid var(--color-stone, #d7d6d4);
-        border-radius: 999px;
-        box-shadow: var(--shadow-subtle);
+        border-radius: var(--radius-xl, 15px);
+        box-shadow: 0 4px 20px rgba(37, 34, 30, 0.02);
         animation: kvFadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
     .kv-stepper__step {
@@ -843,24 +602,26 @@
         flex-shrink: 0;
     }
     .kv-stepper__dot {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
         flex-shrink: 0;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         background: var(--color-cream, #fff6f0);
-        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border: 1px solid var(--color-stone, #d7d6d4);
         color: var(--color-ember-red, #e34432);
         font-size: 14px;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
     .kv-stepper__step:hover .kv-stepper__dot {
         background: var(--color-ember-red, #e34432);
         border-color: var(--color-ember-red, #e34432);
         color: var(--color-paper, #fefdfc);
         transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(227, 68, 50, 0.25);
     }
     .kv-stepper__label {
         font-family: var(--font-inter), sans-serif;
@@ -872,117 +633,441 @@
     .kv-stepper__bar {
         flex: 1;
         height: 2px;
-        min-width: 24px;
-        margin: 0 14px;
+        min-width: 20px;
+        margin: 0 var(--spacing-16, 16px);
         background: linear-gradient(90deg, var(--color-ember-red, #e34432), var(--color-stone, #d7d6d4));
         border-radius: 2px;
-    }
-    @media (max-width: 768px) {
-        .kv-stepper { border-radius: 18px; flex-wrap: wrap; gap: 10px 0; }
-        .kv-stepper__label { display: none; }
-        .kv-stepper__bar { min-width: 16px; margin: 0 6px; }
+        opacity: 0.6;
     }
 
-    /* =========================================
-       ENTRANCE ANIMATIONS + EFFECTS
-       ========================================= */
-    @keyframes kvFadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes kvRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes kvGlowFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(28px,-30px) scale(1.06); } }
+    /* ---- CARDS ---- */
+    .kv-checkout-card {
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-xl, 15px);
+        padding: var(--spacing-28, 28px);
+        margin-bottom: var(--spacing-24, 24px);
+        box-shadow: 0 4px 20px rgba(37, 34, 30, 0.02);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .kv-checkout-card:hover {
+        border-color: rgba(227, 68, 50, 0.25);
+        box-shadow: 0 12px 36px rgba(37, 34, 30, 0.06);
+    }
 
-    .kv-glow-mint { animation: kvGlowFloat 20s ease-in-out infinite; }
-    .kv-glow-sky  { animation: kvGlowFloat 26s ease-in-out infinite reverse; }
-
-    /* staggered card entrance */
-    .kv-checkout-form .kv-checkout-card { animation: kvRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
-    .kv-checkout-form .kv-checkout-card:nth-child(1) { animation-delay: 0.05s; }
-    .kv-checkout-form .kv-checkout-card:nth-child(2) { animation-delay: 0.13s; }
-    .kv-checkout-form .kv-checkout-card:nth-child(3) { animation-delay: 0.21s; }
-    .kv-checkout-form .kv-checkout-card:nth-child(4) { animation-delay: 0.29s; }
-    .kv-checkout-summary { animation: kvRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
-
-    /* step badge subtle pop */
+    .kv-checkout-card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-graphik, sans-serif);
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+        margin: 0 0 var(--spacing-24, 24px) 0;
+        padding-bottom: var(--spacing-12, 12px);
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-checkout-card-title > i { 
+        color: var(--color-ember-red, #e34432); 
+        font-size: 18px; 
+    }
+    
+    /* Stepper digit inside title */
     .kv-step {
-        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.3);
+        flex-shrink: 0;
+        width: 26px;
+        height: 26px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        box-shadow: 0 3px 8px rgba(227, 68, 50, 0.25);
         transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .kv-checkout-card:hover .kv-step { transform: scale(1.08) rotate(-4deg); }
+    .kv-checkout-card:hover .kv-step { 
+        transform: scale(1.1) rotate(-6deg); 
+    }
 
-    /* input: label lifts to ember on focus */
-    .kv-checkout-form-group { position: relative; }
-    .kv-checkout-form-group:focus-within > .kv-label { color: var(--color-deep-ember, #cf3520); }
-    .kv-input, .kv-select, .kv-textarea { will-change: transform; }
-    .kv-checkout-form-group:focus-within .kv-input,
-    .kv-checkout-form-group:focus-within .kv-select,
-    .kv-checkout-form-group:focus-within .kv-textarea { transform: translateY(-1px); }
+    /* ---- FORM INPUTS ---- */
+    .kv-checkout-form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-16, 16px);
+    }
+    .kv-checkout-form-group { 
+        display: flex; 
+        flex-direction: column; 
+        position: relative;
+    }
+    .kv-checkout-form-group-full { 
+        grid-column: 1 / -1; 
+    }
 
-    /* place-order button sheen sweep */
-    .kv-btn-accent { position: relative; overflow: hidden; }
+    .kv-label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+        margin-bottom: 6px;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.2s ease;
+    }
+    .kv-checkout-form-group:focus-within > .kv-label { 
+        color: var(--color-deep-ember, #cf3520); 
+    }
+
+    .kv-input,
+    .kv-select,
+    .kv-textarea {
+        width: 100%;
+        padding: 12px 15px;
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-lg, 8px);
+        color: var(--color-ink, #25221e);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
+    }
+    .kv-input:focus,
+    .kv-select:focus,
+    .kv-textarea:focus {
+        outline: none;
+        background: #fff;
+        border-color: var(--color-ember-red, #e34432);
+        box-shadow: 0 0 0 4px rgba(227, 68, 50, 0.12);
+        transform: translateY(-1px);
+    }
+    .kv-input::placeholder { color: var(--color-graphite, #94928f); }
+    .kv-select option { color: var(--color-ink, #25221e); }
+    .kv-textarea { resize: vertical; min-height: 120px; }
+
+    /* Expiry divider and layout */
+    .kv-card-expiry { 
+        display: flex; 
+        gap: 10px; 
+        align-items: center; 
+    }
+    .kv-card-expiry .kv-input { 
+        flex: 1; 
+    }
+    .kv-card-separator { 
+        color: var(--color-graphite, #94928f); 
+        font-weight: 700; 
+    }
+
+    /* Secure Banner in Form */
+    .kv-secure-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: var(--spacing-20, 20px);
+        padding: 14px var(--spacing-16, 16px);
+        background: var(--color-mint-wash, #f0f6df);
+        border: 1px solid rgba(68, 108, 61, 0.12);
+        border-radius: var(--radius-lg, 8px);
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--color-forest, #446c3d);
+    }
+    .kv-secure-note i { 
+        margin-top: 3px; 
+        font-size: 14px;
+    }
+    
+    .kv-payment-methods { 
+        margin-top: var(--spacing-20, 20px); 
+        text-align: center;
+        padding-top: var(--spacing-16, 16px);
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-payment-methods img { 
+        height: 26px; 
+        width: auto; 
+        opacity: 0.85; 
+    }
+
+    /* ---- TERMS AND CONDITIONS CHECKBOXES ---- */
+    .kv-checkbox {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        cursor: pointer;
+        accent-color: var(--color-ember-red, #e34432);
+        flex-shrink: 0;
+    }
+    .kv-terms-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: var(--spacing-12, 12px);
+        padding: var(--spacing-8, 8px) var(--spacing-12, 12px) var(--spacing-12, 12px);
+        border-bottom: 1px solid rgba(37, 34, 30, 0.05);
+        transition: all 0.2s ease;
+        border-radius: 6px;
+    }
+    .kv-terms-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+    }
+    .kv-terms-group:last-child { 
+        border-bottom: none; 
+        margin-bottom: 0; 
+        padding-bottom: 0; 
+    }
+    .kv-terms-group:hover { 
+        padding-left: var(--spacing-16, 16px);
+        background-color: rgba(37, 34, 30, 0.02);
+    }
+    .kv-terms-row label {
+        color: var(--color-pencil, #6f6c69);
+        font-size: 13px;
+        line-height: 1.5;
+        cursor: pointer;
+        margin: 0;
+    }
+    .kv-terms-row a {
+        color: var(--color-cobalt-link, #0f66ae);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+    .kv-terms-row a:hover { 
+        color: var(--color-deep-ember, #cf3520); 
+        text-decoration: underline; 
+    }
+
+    /* ---- ORDER SUMMARY SIDEBAR ---- */
+    .kv-checkout-summary { 
+        position: -webkit-sticky;
+        position: sticky; 
+        top: 110px; 
+        height: fit-content; 
+    }
+    .kv-checkout-order {
+        background: linear-gradient(180deg, var(--color-paper, #fefdfc) 0%, var(--surface-cream-wash, #fff6f0) 100%);
+    }
+    .kv-checkout-order-table {
+        margin-bottom: var(--spacing-20, 20px);
+        padding-bottom: var(--spacing-16, 16px);
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-checkout-order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
+        font-weight: 700;
+        color: var(--color-graphite, #94928f);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+    .kv-checkout-order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-12, 12px) 0;
+        border-bottom: 1px dashed var(--color-stone, #d7d6d4);
+    }
+    .kv-checkout-order-points {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--color-ink, #25221e);
+        font-size: 13.5px;
+        font-weight: 600;
+    }
+    .kv-checkout-order-points i { 
+        color: var(--color-ember-red, #e34432); 
+    }
+    .kv-checkout-order-price {
+        font-family: var(--font-graphik, sans-serif);
+        color: var(--color-ink, #25221e);
+        font-weight: 700;
+        font-size: 14px;
+    }
+    .kv-checkout-order-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--spacing-16, 16px);
+        padding-top: var(--spacing-16, 16px);
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-checkout-order-total span:first-child {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-pencil, #6f6c69);
+    }
+    .kv-checkout-order-total-value {
+        font-family: var(--font-graphik, sans-serif);
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--color-ember-red, #e34432);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* Captcha inputs formatting */
+    .kv-captcha-group { 
+        margin-bottom: var(--spacing-20, 20px); 
+    }
+    .kv-captcha-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: center;
+    }
+    .kv-captcha-display {
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-lg, 8px);
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .kv-captcha-display img { 
+        max-width: 100%; 
+        height: 38px; 
+        border-radius: var(--radius-sm, 2.5px); 
+    }
+
+    /* ---- ACTION BUTTONS ---- */
+    .kv-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 13px 20px;
+        border: none;
+        border-radius: var(--radius-buttons, 8px);
+        font-size: 14.5px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-bottom: var(--spacing-12, 12px);
+        position: relative;
+        overflow: hidden;
+    }
+    .kv-btn-accent {
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        box-shadow: 0 4px 14px rgba(227, 68, 50, 0.25);
+    }
+    .kv-btn-accent:hover {
+        background: var(--color-deep-ember, #cf3520);
+        color: var(--color-paper, #fefdfc);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(227, 68, 50, 0.35);
+        text-decoration: none;
+    }
+    /* Sheen Sweep */
     .kv-btn-accent::after {
         content: '';
         position: absolute;
         top: 0; left: -120%;
         width: 60%; height: 100%;
-        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
         transform: skewX(-20deg);
         transition: left 0.6s ease;
     }
-    .kv-btn-accent:hover::after { left: 140%; }
-
-    /* checkbox row hover */
-    .kv-terms-group { transition: padding-left 0.2s ease; border-radius: 8px; }
-    .kv-terms-group:hover { padding-left: 6px; }
-
-    @media (prefers-reduced-motion: reduce) {
-        .kv-stepper, .kv-glow-mint, .kv-glow-sky,
-        .kv-checkout-form .kv-checkout-card, .kv-checkout-summary { animation: none !important; }
+    .kv-btn-accent:hover::after { 
+        left: 140%; 
+    }
+    
+    .kv-btn-outline {
+        background: transparent;
+        color: var(--color-pencil, #6f6c69);
+        border: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-btn-outline:hover {
+        border-color: rgba(227, 68, 50, 0.25);
+        color: var(--color-deep-ember, #cf3520);
+        background: var(--color-cream, #fff6f0);
+        text-decoration: none;
+    }
+    .kv-btn-lg { 
+        padding: 14px 24px; 
     }
 
-    /* ---- Responsive ---- */
-    @media (max-width: 1024px) {
-        .kv-checkout-grid { grid-template-columns: 1fr; }
-        .kv-checkout-summary { position: relative; top: auto; }
+    .kv-summary-assure {
+        margin-top: 6px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--color-graphite, #94928f);
     }
-    @media (max-width: 768px) {
-        .kv-checkout-section { padding: 40px 0 64px; }
-        .kv-checkout-form-grid { grid-template-columns: 1fr; }
-        .kv-checkout-card { padding: 20px; }
-    }
-    @media (max-width: 480px) {
-        .kv-checkout-card { padding: 16px; margin-bottom: 18px; }
+    .kv-summary-assure i { 
+        color: var(--color-forest, #446c3d); 
+        margin-right: 4px; 
     }
 
-    /* Validation error states (errorClass: kv-error) */
+    .kv-summary-assure {
+        margin-top: 6px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--color-graphite, #94928f);
+    }
+    .kv-summary-assure i { color: var(--color-forest, #446c3d); margin-right: 4px; }
+
+    /* ---- ENTRANCE ANIMATIONS ---- */
+    @keyframes kvFadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes kvRise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes kvGlowFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-30px) scale(1.08); } }
+
+    .kv-glow-mint { animation: kvGlowFloat 20s ease-in-out infinite; }
+    .kv-glow-sky  { animation: kvGlowFloat 26s ease-in-out infinite reverse; }
+
+    /* Staggered Form Section Entrance */
+    .kv-checkout-form .kv-checkout-card { animation: kvRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .kv-checkout-form .kv-checkout-card:nth-child(1) { animation-delay: 0.05s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(2) { animation-delay: 0.12s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(3) { animation-delay: 0.19s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(4) { animation-delay: 0.26s; }
+    .kv-checkout-summary { animation: kvRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+
+    /* ---- Validation Errors (JQuery validation) ---- */
     label.error,
     .kv-error {
         color: #e34432;
-        font-size: 0.82rem;
-        font-weight: 500;
+        font-size: 12px;
+        font-weight: 600;
         margin-top: 6px;
         display: block;
     }
     input.error,
     textarea.error,
     select.error {
-        border-color: #e34432;
-        background-color: rgba(227, 68, 50, 0.05);
+        border-color: #e34432 !important;
+        background-color: rgba(227, 68, 50, 0.04) !important;
     }
     input.error:focus,
     textarea.error:focus,
-    select.error:focus { border-color: #e34432; }
-
-    /* expiry MM / YYYY errors flow on their own line below the row */
-    .kv-card-expiry { flex-wrap: wrap; }
-    #expiry_month-error,
-    #expiry_year-error {
-        position: static !important;
-        padding: 0 !important;
-        flex: 1 0 100%;
-        order: 9;
-        margin-top: 6px;
+    select.error:focus { 
+        border-color: #e34432 !important; 
+        box-shadow: 0 0 0 4px rgba(227, 68, 50, 0.12) !important;
     }
 
-    /* captcha error sits full-width below the input/image, not over the button */
+    /* Expiry Month/Year and Checkbox styling alignment */
+    #expiry_month-error,
+    #expiry_year-error {
+        margin-top: 6px;
+    }
     .kv-captcha-display { order: 1; }
     #captcha-error,
     label#captcha-error {
@@ -992,24 +1077,31 @@
         grid-column: 1 / -1;
         margin-top: 8px;
     }
+    .kv-terms-group .kv-error,
+    .kv-terms-group label.error {
+        margin-top: 4px;
+        padding-left: 30px;
+    }
 
-    .kv-terms-group {
-    position: relative;
-    padding-bottom: 30px; /* room for error */
-}
-
-.kv-terms-group .kv-error,
-.kv-terms-group label.error,
-#terms-error,
-#privacy-error,
-#delivery-error,
-#refund-error {
-    position: absolute !important;
-    left: 30px;
-    top: 100%;
-    margin-top: 5px;
-    width: calc(100% - 30px);
-    display: block;
-}
+    /* ---- Responsive Adaptations ---- */
+    @media (max-width: 1024px) {
+        .kv-checkout-grid { grid-template-columns: 1fr; }
+        .kv-checkout-summary { position: static; top: auto; }
+    }
+    @media (max-width: 768px) {
+        .kv-checkout-section { padding: var(--spacing-32, 32px) 0 var(--spacing-64, 64px); }
+        .kv-checkout-form-grid { grid-template-columns: 1fr; }
+        .kv-checkout-card { padding: var(--spacing-20, 20px); }
+        .kv-stepper { border-radius: 18px; flex-wrap: wrap; gap: 10px 0; padding: var(--spacing-16, 16px); }
+        .kv-stepper__label { display: none; }
+        .kv-stepper__bar { min-width: 16px; margin: 0 6px; }
+    }
+    @media (max-width: 480px) {
+        .kv-checkout-card { padding: var(--spacing-16, 16px); margin-bottom: var(--spacing-16, 16px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .kv-stepper, .kv-glow-mint, .kv-glow-sky,
+        .kv-checkout-form .kv-checkout-card, .kv-checkout-summary { animation: none !important; }
+    }
 </style>
 @endpush

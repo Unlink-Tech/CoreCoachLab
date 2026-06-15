@@ -2,498 +2,898 @@
 @section('title', __('common.dashboard'))
 @section('main-content')
 
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ __('common.my_account') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.my_account') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb 
+    :title="__('common.my_account')" 
+    :routes="[
+        ['label' => __('common.my_account')]
+    ]" 
+/>
 
-<section class="account-section pt-60 pb-80 bg-light" style="position: relative; overflow: hidden;">
-    <!-- Decorative Blobs -->
-    <div class="modern-blob modern-blob-1" style="top: -100px; left: -100px; width: 400px; height: 400px; background: var(--primary-10);"></div>
-    <div class="modern-blob modern-blob-2" style="bottom: -100px; right: -100px; width: 400px; height: 400px; background: var(--primary-10);"></div>
+<section class="account-section pt-60 pb-80">
+    <!-- Ambient blurred background shapes for warm creative atmosphere -->
+    <div class="account-bg-blob blob-mint"></div>
+    <div class="account-bg-blob blob-sky"></div>
+    <div class="account-bg-blob blob-peach"></div>
 
-    <div class="container">
-        <!-- Stats Cards -->
-        <div class="row mb-5 g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="modern-card stat-card p-4 bg-white border-0 shadow-lg overflow-hidden" style="border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 100%); border: 1px solid rgba(21, 145, 220, 0.1);">
-                    <div class="position-absolute top-0 end-0 w-50 h-100" style="background: linear-gradient(135deg, rgba(21, 145, 220, 0.03) 0%, transparent 100%); border-radius: 16px;"></div>
-                    <div class="position-relative">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <i class="fas fa-coins fa-2x" style="color: #1591DC; opacity: 0.8;"></i>
-                            <span class="badge" style="background: rgba(21, 145, 220, 0.1); color: #1591DC; font-size: 10px; padding: 4px 8px;">{{ __('common.balance') }}</span>
+    <div class="container account-container">
+        <div class="row g-5 align-items-stretch">
+            
+            <!-- LEFT COLUMN: Profile Sidebar -->
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="db-profile-sidebar">
+                    <!-- Artify Membership Card (Glassmorphic Dark Theme) -->
+                    <div class="artify-member-card">
+                        <div class="member-card-glow"></div>
+                        <div class="member-card-inner">
+                            <div class="member-card-header">
+                                <span class="member-logo">ARTIFY STUDIO</span>
+                                <i class="fas fa-coins coin-icon"></i>
+                            </div>
+                            <div class="member-card-body">
+                                <span class="balance-label">{{ __('common.available_points') }}</span>
+                                <h2 class="balance-value">
+                                    {{ Auth::user()->points_balance ?? 0 }} <small>CREDS</small>
+                                </h2>
+                            </div>
+                            <div class="member-card-footer">
+                                <div class="member-name">{{ Auth::user()->name ?? 'Creative Artist' }}</div>
+                                <a href="{{ route('points.topup') }}" class="member-topup-btn">
+                                    <i class="fas fa-plus"></i> Recharge
+                                </a>
+                            </div>
                         </div>
-                        <p class="text-muted mb-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{{ __('common.available_points') }}</p>
-                        <h3 class="mb-0 fw-800" style="color: #0a0e27; font-size: 28px;">{{ Auth::user()->points_balance ?? 0 }} <span style="font-size: 18px; color: #1591DC; font-weight: 600;">PTS</span></h3>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="modern-card stat-card p-4 bg-white border-0 shadow-lg overflow-hidden" style="border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 100%); border: 1px solid rgba(255, 193, 7, 0.1);">
-                    <div class="position-absolute top-0 end-0 w-50 h-100" style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.03) 0%, transparent 100%); border-radius: 16px;"></div>
-                    <div class="position-relative">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <i class="fas fa-book-open fa-2x" style="color: #FFC107; opacity: 0.8;"></i>
-                            <span class="badge" style="background: rgba(255, 193, 7, 0.1); color: #FFC107; font-size: 10px; padding: 4px 8px;">{{ __('common.courses') }}</span>
+                    <!-- Personal Greeting & Overview -->
+                    <div class="db-profile-overview mb-4">
+                        <h4 class="greeting-title">Welcome back, {{ explode(' ', Auth::user()->name)[0] ?? 'Artist' }}! 👋</h4>
+                        <p class="greeting-text">Your creative journey continues. Keep unlocking courses to master your skills.</p>
+                        
+                        <!-- Mini Stats Grid -->
+                        <div class="db-mini-stats">
+                            <div class="mini-stat-item">
+                                <span class="mini-stat-value">{{ isset($redeemedOrders) ? count($redeemedOrders) : 0 }}</span>
+                                <span class="mini-stat-label">Enrolled</span>
+                            </div>
+                            <div class="mini-stat-divider"></div>
+                            <div class="mini-stat-item">
+                                <span class="mini-stat-value">{{ isset($redeemedOrders) ? count($redeemedOrders->where('status', 'Completed')) : 0 }}</span>
+                                <span class="mini-stat-label">Completed</span>
+                            </div>
+                            <div class="mini-stat-divider"></div>
+                            <div class="mini-stat-item">
+                                <span class="mini-stat-value">{{ Auth::user()->created_at->format('Y') }}</span>
+                                <span class="mini-stat-label">Joined</span>
+                            </div>
                         </div>
-                        <p class="text-muted mb-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{{ __('common.courses_enrolled') }}</p>
-                        <h3 class="mb-0 fw-800" style="color: #0a0e27; font-size: 28px;">{{ isset($redeemedOrders) ? count($redeemedOrders) : 0 }}</h3>
                     </div>
+
+                    <!-- Sidebar Navigation Tabs -->
+                    <ul class="nav flex-column db-side-tabs" id="dashboardTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="points-purchased-tab" data-bs-toggle="tab" data-bs-target="#points-purchased" type="button" role="tab" aria-controls="points-purchased" aria-selected="true">
+                                <i class="fas fa-wallet"></i> Purchase History
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="points-redeemed-tab" data-bs-toggle="tab" data-bs-target="#points-redeemed" type="button" role="tab" aria-controls="points-redeemed" aria-selected="false">
+                                <i class="fas fa-graduation-cap"></i> Redeemed Courses
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="change-password-tab" data-bs-toggle="tab" data-bs-target="#change-password" type="button" role="tab" aria-controls="change-password" aria-selected="false">
+                                <i class="fas fa-lock"></i> Security & Password
+                            </button>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a href="{{ route('user.logout') }}" class="db-side-logout">
+                                <i class="fas fa-sign-out-alt"></i> Logout Profile
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="modern-card stat-card p-4 bg-white border-0 shadow-lg overflow-hidden" style="border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 100%); border: 1px solid rgba(40, 167, 69, 0.1);">
-                    <div class="position-absolute top-0 end-0 w-50 h-100" style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.03) 0%, transparent 100%); border-radius: 16px;"></div>
-                    <div class="position-relative">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <i class="fas fa-check-circle fa-2x" style="color: #28a745; opacity: 0.8;"></i>
-                            <span class="badge" style="background: rgba(40, 167, 69, 0.1); color: #28a745; font-size: 10px; padding: 4px 8px;">{{ __('common.stats') }}</span>
+            <!-- RIGHT COLUMN: Dynamic Content area -->
+            <div class="col-xl-8 col-lg-8 col-md-12">
+                <div class="db-main-content h-100">
+                    <div class="tab-content" id="dashboardContent">
+                        
+                        <!-- Points Purchased Tab -->
+                        <div class="tab-pane fade show active" id="points-purchased" role="tabpanel" aria-labelledby="points-purchased-tab">
+                            <div class="db-content-card">
+                                <h3 class="db-content-card__title">
+                                    <i class="fas fa-wallet me-2"></i>{{ __('common.points_purchased_wallet') }}
+                                </h3>
+
+                                @if(isset($purchasedOrders) && count($purchasedOrders) > 0)
+                                    <div class="table-responsive">
+                                        <table class="table db-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('common.order_number') }}</th>
+                                                    <th>{{ __('common.points_bought') }}</th>
+                                                    <th>{{ __('common.price_paid') }}</th>
+                                                    <th>{{ __('common.payment_status') }}</th>
+                                                    <th>{{ __('common.date') }}</th>
+                                                    <th>{{ __('common.action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($purchasedOrders as $order)
+                                                <tr>
+                                                    <td class="db-table__highlight">{{ $order->order_number }}</td>
+                                                    <td>
+                                                        <span class="db-points-badge db-points-badge--amber">
+                                                            <i class="fas fa-coins me-1"></i>{{ number_format($order->cart_info->sum('points')) }} CREDS
+                                                        </span>
+                                                    </td>
+                                                    <td class="db-table__price">{{ Helper::getCurrencySymbol($order->currency) }}{{ number_format($order->total_amount, $order->currency=='JPY' ? 0 : 2) }}</td>
+                                                    <td>
+                                                        @if($order->payment_status === 'Completed')
+                                                            <span class="db-status-pill db-status-pill--success">{{ __('common.paid') }}</span>
+                                                        @elseif($order->payment_status === 'Failed')
+                                                            <span class="db-status-pill db-status-pill--danger">{{ __('common.failed') }}</span>
+                                                        @else
+                                                            <span class="db-status-pill db-status-pill--warning">{{ __('common.pending') }}</span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="db-table__date">{{ $order->created_at->format('d M Y') }}</td>
+                                                    <td>
+                                                        <a href="{{route('user.order.show', $order->id)}}" class="db-action-btn">
+                                                            <i class="fas fa-eye me-1"></i>{{ __('common.view') }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <div class="text-center py-5">
+                                        <i class="fas fa-inbox fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
+                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <p class="text-muted mb-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{{ __('common.completed') }}</p>
-                        <h3 class="mb-0 fw-800" style="color: #0a0e27; font-size: 28px;">{{ isset($redeemedOrders) ? count($redeemedOrders->where('status', 'Completed')) : 0 }}</h3>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="modern-card stat-card p-4 bg-white border-0 shadow-lg overflow-hidden" style="border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 100%); border: 1px solid rgba(108, 117, 125, 0.1);">
-                    <div class="position-absolute top-0 end-0 w-50 h-100" style="background: linear-gradient(135deg, rgba(108, 117, 125, 0.03) 0%, transparent 100%); border-radius: 16px;"></div>
-                    <div class="position-relative">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <i class="fas fa-calendar-alt fa-2x" style="color: #6c757d; opacity: 0.8;"></i>
-                            <span class="badge" style="background: rgba(108, 117, 125, 0.1); color: #6c757d; font-size: 10px; padding: 4px 8px;">{{ __('common.member') }}</span>
+                        <!-- Points Redeemed Tab -->
+                        <div class="tab-pane fade" id="points-redeemed" role="tabpanel" aria-labelledby="points-redeemed-tab">
+                            <div class="db-content-card">
+                                <h3 class="db-content-card__title">
+                                    <i class="fas fa-graduation-cap me-2"></i>{{ __('common.points_redeemed_courses') }}
+                                </h3>
+
+                                @if(isset($redeemedOrders) && count($redeemedOrders) > 0)
+                                    <div class="table-responsive">
+                                        <table class="table db-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('common.order_number') }}</th>
+                                                    <th>{{ __('common.course_name') }}</th>
+                                                    <th>{{ __('common.level') }}</th>
+                                                    <th>{{ __('common.points_used') }}</th>
+                                                    <th>{{ __('common.status') }}</th>
+                                                    <th>{{ __('common.date') }}</th>
+                                                    <th>{{ __('common.action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($redeemedOrders as $order)
+                                                @php
+                                                    $cartItem = $order->cart_info->first();
+                                                    $level = null;
+                                                    if($cartItem) {
+                                                        $level = \App\Models\ProductLevel::where('course_id', $cartItem->product_id)
+                                                                                         ->where('price_in_points', $cartItem->points)
+                                                                                         ->first();
+                                                    }
+                                                @endphp
+                                                <tr>
+                                                    <td class="db-table__highlight">{{ $order->order_number }}</td>
+                                                    <td class="db-table__course-title">{{ $cartItem ? $cartItem->product->title : 'N/A' }}</td>
+                                                    <td>
+                                                        @if($level)
+                                                            <span class="db-status-pill db-status-pill--teal">{{ $level->skill_level }}</span>
+                                                        @else
+                                                            <span class="db-status-pill db-status-pill--neutral">N/A</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <span class="db-points-badge db-points-badge--teal">
+                                                            <i class="fas fa-coins me-1"></i>{{ number_format($order->cart_info->sum('points')) }} CREDS
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        @if(strtolower($order->status) === 'completed')
+                                                            <span class="db-status-pill db-status-pill--success">{{ __('common.redeemed') }}</span>
+                                                        @else
+                                                            <span class="db-status-pill db-status-pill--warning">{{ $order->status }}</span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="db-table__date">{{ $order->created_at->format('d M Y') }}</td>
+                                                    <td>
+                                                        <a href="{{route('user.order.show', $order->id)}}" class="db-action-btn">
+                                                            <i class="fas fa-eye me-1"></i>{{ __('common.view') }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <div class="text-center py-5">
+                                        <i class="fas fa-book fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
+                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <p class="text-muted mb-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{{ __('common.member_since') }}</p>
-                        <h3 class="mb-0 fw-800" style="color: #0a0e27; font-size: 28px;">{{ Auth::user()->created_at->format('M') }}<span style="font-size: 16px; color: #6c757d; font-weight: 600;"> {{ Auth::user()->created_at->format('Y') }}</span></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Tabs Navigation -->
-        <ul class="nav nav-tabs mb-4 border-0 bg-white rounded-3 shadow-md p-3 p-md-4" id="dashboardTabs" role="tablist" style="border-radius: 16px;">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active fw-bold" id="points-purchased-tab" data-bs-toggle="tab" data-bs-target="#points-purchased" type="button" role="tab" aria-controls="points-purchased" aria-selected="true" style="color: #666; font-size: 15px;">
-                    <i class="fas fa-wallet me-2"></i>{{ __('common.points_purchased') }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link fw-bold" id="points-redeemed-tab" data-bs-toggle="tab" data-bs-target="#points-redeemed" type="button" role="tab" aria-controls="points-redeemed" aria-selected="false" style="color: #666; font-size: 15px;">
-                    <i class="fas fa-graduation-cap me-2"></i>{{ __('common.points_redeemed') }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link fw-bold" id="change-password-tab" data-bs-toggle="tab" data-bs-target="#change-password" type="button" role="tab" aria-controls="change-password" aria-selected="false" style="color: #666; font-size: 15px;">
-                    <i class="fas fa-lock me-2"></i>{{ __('common.change_password') }}
-                </button>
-            </li>
-            <li class="ms-auto">
-                <a href="{{ route('user.logout') }}" class="nav-link fw-bold text-danger" style="font-size: 15px;">
-                    <i class="fas fa-sign-out-alt me-2"></i>{{ __('common.logout') }}
-                </a>
-            </li>
-        </ul>
+                        <!-- Change Password Tab -->
+                        <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
+                            <div class="db-content-card">
+                                <h3 class="db-content-card__title">
+                                    <i class="fas fa-lock me-2"></i>{{ __('common.change_password') }}
+                                </h3>
 
-        <!-- Tab Content -->
-        <div class="tab-content" id="dashboardContent">
-            <!-- Points Purchased Tab -->
-            <div class="tab-pane fade show active" id="points-purchased" role="tabpanel" aria-labelledby="points-purchased-tab">
-                <div class="modern-card bg-white border-0 shadow-lg p-4 p-md-5" style="border-radius: 16px; border: 1px solid rgba(21, 145, 220, 0.1);">
-                    <h3 class="mb-4 fw-bold" style="color: #0a0e27;">
-                        <i class="fas fa-wallet me-2" style="color: #FFC107;"></i>{{ __('common.points_purchased_wallet') }}
-                    </h3>
+                                <div class="row">
+                                    <div class="col-lg-10 mx-auto">
+                                        <form action="{{ route('change.password') }}" method="POST" class="db-form" id="password-form" onsubmit="return handlePasswordSubmit(event)">
+                                            @csrf
 
-                    @if(isset($purchasedOrders) && count($purchasedOrders) > 0)
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead style="background: rgba(21, 145, 220, 0.05); border-bottom: 2px solid rgba(21, 145, 220, 0.2);">
-                                    <tr>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.order_number') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.points_bought') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.price_paid') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.payment_status') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.date') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($purchasedOrders as $order)
-                                    <tr>
-                                        <td class="fw-bold" style="color: #0a0e27;">{{ $order->order_number }}</td>
-                                        <td>
-                                            <span class="badge bg-primary">
-                                                <i class="fas fa-coins me-1"></i>{{ number_format($order->cart_info->sum('points')) }} PTS
-                                            </span>
-                                        </td>
-                                        <td>{{ Helper::getCurrencySymbol($order->currency) }}{{ number_format($order->total_amount, $order->currency=='JPY' ? 0 : 2) }}</td>
-                                        <td>
-                                            @if($order->payment_status === 'Completed')
-                                                <span class="badge bg-success">{{ __('common.paid') }}</span>
-                                            @elseif($order->payment_status === 'Failed')
-                                                <span class="badge bg-danger">{{ __('common.failed') }}</span>
-                                            @else
-                                                <span class="badge bg-warning">{{ __('common.pending') }}</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->created_at->format('d M Y') }}</td>
-                                        <td>
-                                            <a href="{{route('user.order.show', $order->id)}}" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-eye me-1"></i>{{ __('common.view') }}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div class="text-center py-5">
-                            <i class="fas fa-inbox fa-4x mb-3" style="color: rgba(21, 145, 220, 0.2);"></i>
-                            <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
-                            
-                        </div>
-                    @endif
-                </div>
-            </div>
+                                            <!-- Current Password -->
+                                            <div class="db-form-group">
+                                                <label for="current_password" class="db-label">
+                                                    <i class="fas fa-key me-2"></i>{{ __('common.current_password') }}
+                                                </label>
+                                                <input type="password" id="current_password" name="current_password" class="db-input"
+                                                       placeholder="{{ __('common.current_password_placeholder') }}">
+                                            </div>
 
-            <!-- Points Redeemed Tab -->
-            <div class="tab-pane fade" id="points-redeemed" role="tabpanel" aria-labelledby="points-redeemed-tab">
-                <div class="modern-card bg-white border-0 shadow-lg p-4 p-md-5" style="border-radius: 16px; border: 1px solid rgba(21, 145, 220, 0.1);">
-                    <h3 class="mb-4 fw-bold" style="color: #0a0e27;">
-                        <i class="fas fa-graduation-cap me-2" style="color: #1591DC;"></i>{{ __('common.points_redeemed_courses') }}
-                    </h3>
+                                            <!-- New Password -->
+                                            <div class="db-form-group">
+                                                <label for="new_password" class="db-label">
+                                                    <i class="fas fa-lock me-2"></i>{{ __('common.new_password') }}
+                                                </label>
+                                                <input type="password" id="new_password" name="new_password" class="db-input"
+                                                       placeholder="{{ __('common.new_password_placeholder') }}">
+                                            </div>
 
-                    @if(isset($redeemedOrders) && count($redeemedOrders) > 0)
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle">
-                                <thead style="background: rgba(21, 145, 220, 0.05); border-bottom: 2px solid rgba(21, 145, 220, 0.2);">
-                                    <tr>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.order_number') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.course_name') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.level') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.points_used') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.status') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.date') }}</th>
-                                        <th style="color: #1591DC; font-weight: 600;">{{ __('common.action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($redeemedOrders as $order)
-                                    @php
-                                        $cartItem = $order->cart_info->first();
-                                        $level = null;
-                                        if($cartItem) {
-                                            $level = \App\Models\ProductLevel::where('course_id', $cartItem->product_id)
-                                                                             ->where('price_in_points', $cartItem->points)
-                                                                             ->first();
-                                        }
-                                    @endphp
-                                    <tr>
-                                        <td class="fw-bold" style="color: #0a0e27;">{{ $order->order_number }}</td>
-                                        <td style="color: #0a0e27;">{{ $cartItem ? $cartItem->product->title : 'N/A' }}</td>
-                                        <td>
-                                            @if($level)
-                                                <span class="badge bg-info">{{ $level->skill_level }}</span>
-                                            @else
-                                                <span class="badge bg-secondary">N/A</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-primary">
-                                                <i class="fas fa-coins me-1"></i>{{ number_format($order->cart_info->sum('points')) }} PTS
-                                            </span>
-                                        </td>
-                                        <td>
-                                            @if(strtolower($order->status) === 'completed')
-                                                <span class="badge bg-success">{{ __('common.redeemed') }}</span>
-                                            @else
-                                                <span class="badge bg-warning">{{ $order->status }}</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->created_at->format('d M Y') }}</td>
-                                        <td>
-                                            <a href="{{route('user.order.show', $order->id)}}" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-eye me-1"></i>{{ __('common.view') }}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <div class="text-center py-5">
-                            <i class="fas fa-book fa-4x mb-3" style="color: rgba(21, 145, 220, 0.2);"></i>
-                            <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
-                        </div>
-                    @endif
-                </div>
-            </div>
+                                            <!-- Confirm Password -->
+                                            <div class="db-form-group">
+                                                <label for="new_confirm_password" class="db-label">
+                                                    <i class="fas fa-check-circle me-2"></i>{{ __('common.confirm_password') }}
+                                                </label>
+                                                <input type="password" id="new_confirm_password" name="new_confirm_password" class="db-input"
+                                                       placeholder="{{ __('common.confirm_password_placeholder') }}">
+                                            </div>
 
-            <!-- Change Password Tab -->
-            <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
-                <div class="modern-card bg-white border-0 shadow-lg p-4 p-md-5" style="border-radius: 16px; border: 1px solid rgba(21, 145, 220, 0.1);">
-                    <h3 class="mb-5 fw-bold" style="color: #0a0e27;">
-                        <i class="fas fa-lock me-2" style="color: #1591DC;"></i>{{ __('common.change_password') }}
-                    </h3>
-
-                    <div class="row">
-                        <div class="col-lg-6 mx-auto">
-                            <form action="{{ route('change.password') }}" method="POST" style="display: grid; gap: 20px;">
-                                @csrf
-
-                                <!-- Current Password -->
-                                <div class="form-group">
-                                    <label for="current_password" class="form-label fw-bold mb-2" style="color: #0a0e27; font-size: 14px;">
-                                        <i class="fas fa-key me-2" style="color: #1591DC;"></i>{{ __('common.current_password') }}
-                                    </label>
-                                    <input type="password" id="current_password" name="current_password" class="form-control"
-                                           placeholder="{{ __('common.current_password_placeholder') }}" style="border-radius: 10px; border: 1.5px solid rgba(21, 145, 220, 0.2); padding: 10px 14px; font-size: 14px; transition: all 0.3s ease;"
-                                           required>
+                                            <!-- Submit Button -->
+                                            <button type="submit" class="db-submit-btn">
+                                                <i class="fas fa-save me-2"></i>{{ __('common.update_password') }}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-
-                                <!-- New Password -->
-                                <div class="form-group">
-                                    <label for="new_password" class="form-label fw-bold mb-2" style="color: #0a0e27; font-size: 14px;">
-                                        <i class="fas fa-lock me-2" style="color: #1591DC;"></i>{{ __('common.new_password') }}
-                                    </label>
-                                    <input type="password" id="new_password" name="new_password" class="form-control"
-                                           placeholder="{{ __('common.new_password_placeholder') }}" style="border-radius: 10px; border: 1.5px solid rgba(21, 145, 220, 0.2); padding: 10px 14px; font-size: 14px; transition: all 0.3s ease;"
-                                           required>
-                                </div>
-
-                                <!-- Confirm Password -->
-                                <div class="form-group">
-                                    <label for="new_confirm_password" class="form-label fw-bold mb-2" style="color: #0a0e27; font-size: 14px;">
-                                        <i class="fas fa-check-circle me-2" style="color: #1591DC;"></i>{{ __('common.confirm_password') }}
-                                    </label>
-                                    <input type="password" id="new_confirm_password" name="new_confirm_password" class="form-control"
-                                           placeholder="{{ __('common.confirm_password_placeholder') }}" style="border-radius: 10px; border: 1.5px solid rgba(21, 145, 220, 0.2); padding: 10px 14px; font-size: 14px; transition: all 0.3s ease;"
-                                           required>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn fw-bold py-3" style="background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%); color: white; border: none; border-radius: 10px; font-size: 15px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(21, 145, 220, 0.3);">
-                                    <i class="fas fa-save me-2"></i>{{ __('common.update_password') }}
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </section>
 
+@endsection
+
+@push('styles')
 <style>
+    /* ============================================================
+       USER DASHBOARD - REDESIGNED CREATIVE STUDIO CANVAS GRID
+       ============================================================ */
+
     .account-section {
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        position: relative;
+        overflow: hidden;
+        min-height: 75vh;
+    }
+
+    /* Ambient background glows */
+    .account-bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        -webkit-filter: blur(120px);
+        pointer-events: none;
+        opacity: 0.65;
+        z-index: 0;
+        mix-blend-mode: multiply;
+    }
+    .blob-mint {
+        width: 420px;
+        height: 420px;
+        background-color: var(--color-mint-wash, #f0f6df);
+        top: -100px;
+        left: -100px;
+        animation: dbFloat 20s ease-in-out infinite;
+    }
+    .blob-sky {
+        width: 360px;
+        height: 360px;
+        background-color: var(--color-sky-wash, #dceaff);
+        bottom: -80px;
+        right: -80px;
+        animation: dbFloat 24s ease-in-out infinite reverse;
+    }
+    .blob-peach {
+        width: 300px;
+        height: 300px;
+        background-color: var(--surface-cream-wash, #fff6f0);
+        top: 40%;
+        left: 45%;
+        animation: dbFloat 28s ease-in-out infinite;
+    }
+
+    @keyframes dbFloat {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50%      { transform: translate(24px, -28px) scale(1.06); }
+    }
+
+    .account-container {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ---- LEFT PANEL: SIDEBAR ---- */
+    .db-profile-sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        animation: dbFadeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Artify Member Card (Credit Card / Glassmorphic look) */
+    .artify-member-card {
+        background: linear-gradient(135deg, #1e1b18 0%, #2f2b27 100%);
+        border: 1px solid rgba(254, 253, 252, 0.08);
+        border-radius: 20px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 14px 32px rgba(30, 27, 24, 0.18);
+        margin-bottom: 24px;
+        color: #fff;
+    }
+    .member-card-glow {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(227, 68, 50, 0.4) 0%, transparent 70%);
+        filter: blur(10px);
+        pointer-events: none;
+    }
+    .member-card-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 150px;
+    }
+    .member-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .member-logo {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        opacity: 0.8;
+    }
+    .coin-icon {
+        font-size: 20px;
+        color: #ffb830;
+        text-shadow: 0 0 10px rgba(255, 184, 48, 0.5);
+    }
+    .member-card-body {
+        margin: 16px 0;
+    }
+    .balance-label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .balance-value {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+    }
+    .balance-value small {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-ember-red, #e34432);
+    }
+    .member-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .member-name {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0.9;
+        letter-spacing: 0.02em;
+    }
+    .member-topup-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .member-topup-btn:hover {
+        background: #fff;
+        color: #1e1b18;
+    }
+
+    /* Greeting Overview */
+    .db-profile-overview {
+        background: var(--color-cream, #fff6f0);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: var(--shadow-subtle);
+    }
+    .greeting-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+        margin: 0 0 6px 0;
+    }
+    .greeting-text {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--color-pencil, #6f6c69);
+        margin: 0 0 18px 0;
+    }
+    .db-mini-stats {
+        display: flex;
+        align-items: center;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 12px;
+        padding: 12px 6px;
+    }
+    .mini-stat-item {
+        flex: 1;
+        text-align: center;
+    }
+    .mini-stat-value {
+        display: block;
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--color-ink, #25221e);
+        line-height: 1.1;
+    }
+    .mini-stat-label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 9.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--color-graphite, #94928f);
+        letter-spacing: 0.05em;
+        margin-top: 4px;
+        display: block;
+    }
+    .mini-stat-divider {
+        width: 1px;
+        height: 24px;
+        background-color: var(--color-stone, #d7d6d4);
+    }
+
+    /* Vertical Navigation tabs */
+    .db-side-tabs {
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 18px;
+        padding: 10px;
+        gap: 4px;
+        box-shadow: var(--shadow-subtle);
+    }
+    .db-side-tabs .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 10px;
+        padding: 12px 16px;
+        background: transparent;
+        border: none;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-pencil, #6f6c69);
+        text-align: left;
+        width: 100%;
+        transition: all 0.25s ease;
+    }
+    .db-side-tabs .nav-link i {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+    .db-side-tabs .nav-link:hover {
+        color: var(--color-deep-ember, #cf3520);
+        background: var(--surface-cream-wash, #fff6f0);
+    }
+    .db-side-tabs .nav-link.active {
+        color: var(--color-ember-red, #e34432);
+        background: var(--color-cream, #fff6f0);
         position: relative;
     }
-
-    .modern-blob {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        animation: blobAnimation 8s infinite;
-        opacity: 0.6;
+    .db-side-tabs .nav-link.active::after {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--color-ember-red, #e34432);
+    }
+    .db-side-logout {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-ember-red, #e34432);
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .db-side-logout:hover {
+        background: rgba(227, 68, 50, 0.06);
+        color: var(--color-deep-ember, #cf3520);
     }
 
-    .modern-blob-1 {
-        animation-delay: 0s;
+    /* ---- RIGHT PANEL: MAIN CONTENT ---- */
+    .db-main-content {
+        animation: dbFadeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .db-content-card {
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 18px;
+        padding: 36px clamp(18px, 4vw, 44px);
+        box-shadow: var(--shadow-subtle);
+        height: 100%;
+    }
+    .db-content-card__title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+    }
+    .db-content-card__title i {
+        color: var(--color-ember-red, #e34432);
     }
 
-    .modern-blob-2 {
-        animation-delay: 4s;
-    }
-
-    @keyframes blobAnimation {
-        0%, 100% {
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            transform: translate(0, 0);
-        }
-        33% {
-            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
-            transform: translate(20px, -20px);
-        }
-        66% {
-            border-radius: 70% 30% 70% 30% / 30% 70% 70% 30%;
-            transform: translate(-20px, 20px);
-        }
-    }
-
-    .stat-card {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        animation: slideInUp 0.6s ease-out;
-    }
-
-    .stat-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 50px rgba(21, 145, 220, 0.15) !important;
-    }
-
-    .modern-card {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    .modern-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 16px 40px rgba(21, 145, 220, 0.12) !important;
-    }
-
-    .nav-tabs {
-        gap: 8px;
-    }
-
-    .nav-tabs .nav-link {
-        color: #666;
-        border: none;
-        border-bottom: 3px solid transparent;
-        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        font-size: 15px;
-        font-weight: 600;
-        padding: 12px 20px;
-        border-radius: 12px 12px 0 0;
-    }
-
-    .nav-tabs .nav-link:hover {
-        color: #1591DC;
-        background-color: rgba(21, 145, 220, 0.05);
-        border-bottom-color: rgba(21, 145, 220, 0.3);
-    }
-
-    .nav-tabs .nav-link.active {
-        color: #1591DC;
-        border-bottom-color: #1591DC;
-        background: rgba(21, 145, 220, 0.05);
-    }
-
-    .tab-content {
-        animation: fadeIn 0.3s ease-in;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    table {
+    /* ---- TABLE DESIGN ---- */
+    .db-table {
+        margin: 0;
         border-collapse: separate;
         border-spacing: 0;
     }
-
-    table thead th {
-        background: rgba(21, 145, 220, 0.05);
-        color: #1591DC;
+    .db-table thead th {
+        background: var(--surface-cream-wash, #fff6f0) !important;
+        border-bottom: 1.5px solid var(--color-stone, #d7d6d4) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        font-family: var(--font-inter), sans-serif;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 12px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border: none;
-        padding: 16px 12px;
+        letter-spacing: 0.06em;
+        padding: 14px 16px;
     }
-
-    table tbody tr {
-        border-bottom: 1px solid rgba(21, 145, 220, 0.1);
-        transition: all 0.2s ease;
+    .db-table tbody tr {
+        border-bottom: 1px solid rgba(37,34,30,0.06) !important;
+        transition: background-color 0.2s ease;
     }
-
-    table tbody tr:hover {
-        background-color: rgba(21, 145, 220, 0.04);
+    .db-table tbody tr:hover {
+        background-color: var(--color-cream, #fff6f0) !important;
     }
-
-    table tbody td {
-        padding: 14px 12px;
+    .db-table tbody td {
+        padding: 16px;
         vertical-align: middle;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        color: var(--color-pencil, #6f6c69);
+    }
+    .db-table__highlight {
+        font-weight: 700;
+        color: var(--color-ink, #25221e) !important;
+    }
+    .db-table__course-title {
+        color: var(--color-ink, #25221e) !important;
+        font-weight: 600;
+    }
+    .db-table__price {
+        font-family: var(--font-graphik), sans-serif;
+        font-weight: 700;
+        color: var(--color-ink, #25221e);
+    }
+    .db-table__date {
+        color: var(--color-graphite, #94928f);
     }
 
-    .badge {
+    /* ---- BADGES & PILLS ---- */
+    .db-points-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 12px;
         font-weight: 700;
+        border: 1px solid transparent;
+    }
+    .db-points-badge--amber {
+        background: var(--color-cream, #fff6f0);
+        border-color: rgba(227, 68, 50, 0.15);
+        color: var(--color-ember-red, #e34432);
+    }
+    .db-points-badge--teal {
+        background: var(--color-sky-wash, #dceaff);
+        border-color: rgba(73, 125, 126, 0.15);
+        color: var(--color-teal-dusk, #497d7e);
+    }
+
+    .db-status-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .db-status-pill--success { background: var(--color-mint-wash, #f0f6df); color: var(--color-forest, #446c3d); }
+    .db-status-pill--warning { background: var(--surface-cream-wash, #fff6f0); color: #cf7820; }
+    .db-status-pill--danger  { background: #ffebeb; color: #cf3220; }
+    .db-status-pill--teal    { background: var(--color-sky-wash, #dceaff); color: var(--color-teal-dusk, #497d7e); }
+    .db-status-pill--neutral { background: #f1f0ef; color: var(--color-pencil, #6f6c69); }
+
+    /* ---- ACTION BUTTONS ---- */
+    .db-action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: 1px solid var(--color-stone, #d7d6d4);
+        color: var(--color-pencil, #6f6c69);
         padding: 6px 12px;
         font-size: 12px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        border-radius: 8px;
-    }
-
-    .btn-sm {
-        border-radius: 10px;
         font-weight: 600;
-        font-size: 13px;
-        padding: 8px 14px;
-        transition: all 0.3s ease;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+    .db-action-btn:hover {
+        border-color: rgba(227, 68, 50, 0.3);
+        background: var(--color-cream, #fff6f0);
+        color: var(--color-deep-ember, #cf3520);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37,34,30,0.03);
     }
 
-    .btn-outline-primary {
-        color: #1591DC;
-        border-color: #1591DC;
-        border-width: 1.5px;
+    /* ---- FORMS ---- */
+    .db-form {
+        display: grid;
+        gap: 20px;
     }
-
-    .btn-outline-primary:hover {
-        background-color: #1591DC;
-        border-color: #1591DC;
-        color: white;
-        box-shadow: 0 4px 12px rgba(21, 145, 220, 0.3);
-        transform: translateY(-2px);
+    .db-form-group {
+        display: flex;
+        flex-direction: column;
     }
-
-    .text-center h5 {
+    .db-label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
         font-weight: 700;
-        color: #0a0e27;
+        color: var(--color-ink, #25221e);
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+    }
+    .db-label i {
+        color: var(--color-ember-red, #e34432);
+    }
+    .db-input {
+        width: 100%;
+        padding: 12px 15px;
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-lg, 8px);
+        color: var(--color-ink, #25221e);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .db-input:focus {
+        outline: none;
+        background: #fff;
+        border-color: var(--color-ember-red, #e34432);
+        box-shadow: 0 0 0 4px rgba(227, 68, 50, 0.12);
+        transform: translateY(-1px);
+    }
+    .db-submit-btn {
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        border: none;
+        border-radius: var(--radius-buttons, 8px);
+        padding: 14px 20px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 14px rgba(227, 68, 50, 0.2);
+    }
+    .db-submit-btn:hover {
+        background: var(--color-deep-ember, #cf3520);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(227, 68, 50, 0.35);
     }
 
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* ---- ENTRANCE ANIMATIONS ---- */
+    @keyframes dbFadeInLeft {
+        from { opacity: 0; transform: translateX(-32px); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes dbFadeInRight {
+        from { opacity: 0; transform: translateX(32px); }
+        to   { opacity: 1; transform: translateX(0); }
     }
 
-    @media (max-width: 768px) {
-        .stat-card h3 {
-            font-size: 24px !important;
-        }
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 991px) {
+        .db-profile-sidebar { margin-bottom: 32px; }
+        .db-content-card { padding: 24px 20px; }
+    }
+    @media (max-width: 575px) {
+        .db-mini-stats { padding: 12px 4px; }
+        .db-side-tabs { padding: 6px; }
+        .db-side-tabs .nav-link { padding: 10px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .db-profile-sidebar,
+        .db-main-content,
+        .account-bg-blob { animation: none !important; }
+    }
 
-        .nav-tabs {
-            flex-wrap: nowrap;
-            overflow-x: auto;
-        }
-
-        .nav-tabs .nav-link {
-            padding: 10px 16px;
-            font-size: 14px;
-            white-space: nowrap;
-        }
+    .db-input.is-invalid {
+        border-color: var(--color-ember-red, #e34432) !important;
+        background-color: #fffaf9 !important;
     }
 </style>
+@endpush
 
-@endsection
+@push('scripts')
+<script>
+    function handlePasswordSubmit(event) {
+        event.preventDefault();
 
+        // Get form values
+        const currentPassword = document.getElementById('current_password').value.trim();
+        const newPassword = document.getElementById('new_password').value.trim();
+        const newConfirmPassword = document.getElementById('new_confirm_password').value.trim();
+
+        // Clear previous error messages
+        document.querySelectorAll('.custom-error-message').forEach(el => el.remove());
+        document.querySelectorAll('.db-input').forEach(el => el.classList.remove('is-invalid'));
+
+        let hasErrors = false;
+        const errors = [];
+
+        // Validation checks
+        if (!currentPassword) {
+            errors.push({ field: 'current_password', message: 'Current password is required.' });
+            hasErrors = true;
+        }
+
+        if (!newPassword) {
+            errors.push({ field: 'new_password', message: 'New password is required.' });
+            hasErrors = true;
+        } else if (newPassword.length < 8) {
+            errors.push({ field: 'new_password', message: 'New password must be at least 8 characters long.' });
+            hasErrors = true;
+        }
+
+        if (!newConfirmPassword) {
+            errors.push({ field: 'new_confirm_password', message: 'Confirm password is required.' });
+            hasErrors = true;
+        } else if (newPassword !== newConfirmPassword) {
+            errors.push({ field: 'new_confirm_password', message: 'Passwords do not match.' });
+            hasErrors = true;
+        }
+
+        // Show error messages
+        if (hasErrors) {
+            errors.forEach(error => {
+                const field = document.getElementById(error.field);
+                if (field) {
+                    field.classList.add('is-invalid');
+                    const errorDiv = document.createElement('span');
+                    errorDiv.className = 'text-danger small mt-2 d-block custom-error-message';
+                    errorDiv.innerHTML = `<i class="fas fa-info-circle me-1"></i>${error.message}`;
+                    field.parentElement.appendChild(errorDiv);
+                }
+            });
+            return false;
+        }
+
+        // If no errors, submit the form
+        document.getElementById('password-form').submit();
+    }
+
+    // Add real-time validation
+    document.getElementById('current_password')?.addEventListener('input', function() {
+        this.classList.toggle('is-invalid', !this.value.trim());
+        const errorMsg = this.parentElement.querySelector('.custom-error-message');
+        if (errorMsg && this.value.trim()) errorMsg.remove();
+    });
+
+    document.getElementById('new_password')?.addEventListener('input', function() {
+        const isValid = this.value.trim() && this.value.trim().length >= 8;
+        this.classList.toggle('is-invalid', !isValid);
+        const errorMsg = this.parentElement.querySelector('.custom-error-message');
+        if (errorMsg && isValid) errorMsg.remove();
+    });
+
+    document.getElementById('new_confirm_password')?.addEventListener('input', function() {
+        const newPassword = document.getElementById('new_password').value.trim();
+        const isValid = this.value.trim() && this.value.trim() === newPassword;
+        this.classList.toggle('is-invalid', !isValid);
+        const errorMsg = this.parentElement.querySelector('.custom-error-message');
+        if (errorMsg && isValid) errorMsg.remove();
+    });
+</script>
+@endpush

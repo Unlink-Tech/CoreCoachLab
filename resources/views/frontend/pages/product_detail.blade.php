@@ -287,6 +287,16 @@
         border-radius: 14px;
         padding: 18px;
         transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        position: relative;
+    }
+    .level-info::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 4px;
+        border-radius: 14px 0 0 14px;
+        background-color: var(--color-ember-red, #e34432);
+        opacity: 0.35;
     }
     .level-info:hover {
         transform: translateY(-3px);
@@ -424,6 +434,8 @@
         border: 1px solid var(--color-stone, #d7d6d4);
         box-shadow: var(--shadow-lg);
         margin-bottom: 20px;
+        background: var(--color-paper, #fefdfc);
+        padding: 8px; /* frame effect */
     }
     .course-aside__media img {
         width: 100%;
@@ -431,11 +443,12 @@
         object-fit: cover;
         display: block;
         transition: transform 0.6s ease;
+        border-radius: 12px;
     }
     .course-aside__media:hover img { transform: scale(1.05); }
     .course-aside__badge {
         position: absolute;
-        top: 14px; left: 14px;
+        top: 22px; left: 22px;
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -520,17 +533,17 @@
         to   { opacity: 1; transform: translateX(0); }
     }
 
-    /* the two columns slide in from their sides after the swap */
+    /* columns slide in from sides */
     .cd-reveal { animation: cdRevealRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .cd-reveal--delay { animation: cdRevealLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
 
-    /* staggered reveal of each section inside the active level card */
+    /* level card content transitions */
     .tab-pane.fade.show .level-card__tag { animation: cdReveal 0.5s ease both; }
     .tab-pane.fade.show .level-grid      { animation: cdReveal 0.5s ease 0.08s both; }
     .tab-pane.fade.show .level-learn     { animation: cdReveal 0.5s ease 0.16s both; }
     .tab-pane.fade.show .level-enroll    { animation: cdReveal 0.5s ease 0.24s both; }
 
-    /* stagger the "what you'll learn" items */
+    /* learn items staggering */
     .tab-pane.fade.show .level-learn__list li { animation: cdReveal 0.45s ease both; }
     .tab-pane.fade.show .level-learn__list li:nth-child(1) { animation-delay: 0.20s; }
     .tab-pane.fade.show .level-learn__list li:nth-child(2) { animation-delay: 0.26s; }
@@ -553,7 +566,6 @@
     @media (max-width: 991px) {
         .course-detail { padding: 44px 0 64px; }
         .course-aside { position: static; top: auto; margin-top: 8px; }
-        /* on stacked mobile, fall back to a simple upward reveal */
         .cd-reveal, .cd-reveal--delay { animation-name: cdReveal; }
     }
     @media (max-width: 575px) {
