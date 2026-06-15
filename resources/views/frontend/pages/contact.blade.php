@@ -2,166 +2,152 @@
 @section('title','Contact Us')
 @section('main-content')
 
-<div class="tl-breadcrumb contact-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ __('common.contact') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.contact') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb 
+    :title="__('common.contact')" 
+    :routes="[
+        ['label' => __('common.contact')]
+    ]" 
+/>
 
-<section class="contact-section pt-60 pb-80 bg-light" style="position: relative; overflow: hidden;">
-    <!-- Decorative Blobs -->
-    <div class="modern-blob modern-blob-1" style="top: -100px; left: -100px; width: 400px; height: 400px; background: rgba(var(--modern-primary-rgb), 0.05);"></div>
-    <div class="modern-blob modern-blob-2" style="bottom: -100px; right: -100px; width: 400px; height: 400px; background: rgba(var(--modern-primary-rgb), 0.05);"></div>
+<section class="contact-page-section">
+    <!-- Ambient blurred background shapes for warm atmosphere -->
+    <div class="contact-bg-blob blob-1"></div>
+    <div class="contact-bg-blob blob-2"></div>
 
-    <div class="container">
-        <div class="row g-5">
-            <!-- Left: Contact Details -->
-            <div class="col-xl-4 col-lg-5 d-none d-lg-block">
-                <span class="modern-badge mb-3">{{ __('common.get_in_touch') }}</span>
-                <h3 class="modern-h2 mb-5" style="font-size: 24px; color: var(--text-dark);">{{ __('common.contact_header') }}</h3>
-
-                <div class="contact-info-cards">
-                    <div class="modern-card p-4 mb-4 border-0 shadow-sm d-flex align-items-start gap-3">
-                        <div class="bg-primary text-white border-0 flex-shrink-0 d-flex align-items-center justify-content-center rounded-3" style="width: 50px; height: 50px; min-width: 50px;">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+    <div class="container contact-content-container">
+        <!-- Single Unified Premium Card with Asymmetric Layout -->
+        <div class="unified-contact-card">
+            <div class="row g-0 h-100">
+                <!-- Left half: Brand Canvas & Company Details (No Phone) -->
+                <div class="col-lg-5 brand-details-panel">
+                    <div class="panel-content">
                         <div>
-                            <h6 class="fw-bold mb-2" style="color: var(--text-dark);">{{ __('common.email') }}</h6>
-                            <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}" class="text-muted text-decoration-none small">{{ $misc['Company Email'] ?? __('common.company_email') }}</a>
+                            <span class="modern-badge mb-3">{{ __('common.get_in_touch') }}</span>
+                            <h2 class="panel-title mb-4">{{ __('common.contact_header') }}</h2>
+                            <p class="panel-text mb-5">
+                                Have questions about our masterclasses, schedules, or curriculum? Write to us, and our team will get back to you within 24 hours.
+                            </p>
                         </div>
-                    </div>
 
-                    <div class="modern-card p-4 mb-4 border-0 shadow-sm d-flex align-items-start gap-3">
-                        <div class="bg-primary text-white border-0 flex-shrink-0 d-flex align-items-center justify-content-center rounded-3" style="width: 50px; height: 50px; min-width: 50px;">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-2" style="color: var(--text-dark);">{{ __('common.our_location') }}</h6>
-                            <span class="text-muted small">{{ $misc['Company Address'] ?? __('common.company_Address') }}</span>
-                        </div>
-                    </div>
+                        <!-- Company Metadata List -->
+                        <div class="company-info-list">
+                            <!-- Company Name -->
+                            <div class="info-item mb-4">
+                                <div class="info-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="info-body">
+                                    <span class="info-label">{{ __('common.company') }}</span>
+                                    <span class="info-value">{{ $misc['Company Name'] ?? __('common.company_name') }}</span>
+                                </div>
+                            </div>
 
-                    <div class="modern-card p-4 mb-4 border-0 shadow-sm d-flex align-items-start gap-3">
-                        <div class="bg-primary text-white border-0 flex-shrink-0 d-flex align-items-center justify-content-center rounded-3" style="width: 50px; height: 50px; min-width: 50px;">
-                            <i class="fas fa-building"></i>
+                            <!-- Email -->
+                            <div class="info-item mb-4">
+                                <div class="info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-body">
+                                    <span class="info-label">{{ __('common.email') }}</span>
+                                    <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}" class="info-value link-value">
+                                        {{ $misc['Company Email'] ?? __('common.company_email') }}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-body">
+                                    <span class="info-label">{{ __('common.our_location') }}</span>
+                                    <span class="info-value">{{ $misc['Company Address'] ?? __('common.company_Address') }}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h6 class="fw-bold mb-2" style="color: var(--text-dark);">{{ __('common.company') }}</h6>
-                            <span class="text-muted small">{{ $misc['Company Name'] ?? __('common.company_name') }}</span>
+
+                        <!-- Bottom Brand Mark -->
+                        <div class="panel-brand-mark mt-5">
+                            <span class="brand-mark-title">Artify Academy</span>
+                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Right: Contact Form -->
-            <div class="col-xl-8 col-lg-7 col-md-12">
-                <div class="modern-card contact-card border-0 shadow-xl overflow-hidden" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 20px;">
-                    <!-- Header Section with Gradient -->
-                    <div class="contact-card-header p-5 text-center" style="background: linear-gradient(135deg, var(--primary-10) 0%, var(--secondary-10) 100%);">
-                        <div class="mb-3">
-                            <i class="fas fa-envelope text-primary" style="font-size: 48px; opacity: 0.8;"></i>
+                <!-- Right half: Clean Form Panel -->
+                <div class="col-lg-7 form-panel">
+                    <div class="panel-content">
+                        <div class="form-panel-intro mb-4">
+                            <h3 class="form-title">{{ __('common.contact') }}</h3>
+                            <p class="form-subtitle">
+                                <i class="fas fa-info-circle text-muted me-1"></i>
+                                {{ __('common.contact_message') }}
+                            </p>
                         </div>
-                       
-                        <h2 class="modern-h2 mb-0" style="font-size: 28px; color: var(--text-dark);">{{ __('common.contact') }}</h2>
-                    </div>
-
-                    <!-- Content Section -->
-                    <div class="p-5">
-                        <p class="text-muted text-center mb-5" style="font-size: 14px;">
-                            <i class="fas fa-info-circle text-primary me-2"></i>
-                            {{ __('common.contact_message') }}
-                        </p>
 
                         <form method="POST" action="{{ route('contact.send') }}" id="contactform" onsubmit="return handleSubmit(event)">
                             @csrf
                             <div class="row g-4">
+                                <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-user text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.name') }}
+                                    <label class="premium-input-label" for="name">
+                                        <i class="fas fa-user me-2"></i>{{ __('common.name') }}
                                     </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.enter_name') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('name') is-invalid @enderror" style="border-color: var(--border-light);">
+                                    <input type="text" name="name" id="name" placeholder="{{ __('common.enter_name') }}" class="premium-form-input @error('name') is-invalid @enderror">
                                     @error('name')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
+                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
                                 </div>
 
+                                <!-- Email -->
                                 <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-envelope text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.email') }}
+                                    <label class="premium-input-label" for="email">
+                                        <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.enter_email') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('email') is-invalid @enderror" style="border-color: var(--border-light);">
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.enter_email') }}" class="premium-form-input @error('email') is-invalid @enderror">
                                     @error('email')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
+                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-phone text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.phone') }}
-                                    </label>
-                                    <input type="text" name="phone" id="phone" placeholder="{{ __('common.phone') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('phone') is-invalid @enderror" style="border-color: var(--border-light);" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                    @error('phone')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-tag text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.your_subject') }}
-                                    </label>
-                                    <input type="text" name="subject" id="subject" placeholder="{{ __('common.enter_subject') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3" style="border-color: var(--border-light);">
-                                </div>
-
+                                <!-- Subject -->
                                 <div class="col-12">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-message text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.your_message') }}
+                                    <label class="premium-input-label" for="subject">
+                                        <i class="fas fa-tag me-2"></i>{{ __('common.your_subject') }}
                                     </label>
-                                    <textarea name="message" id="message" rows="4" placeholder="{{ __('common.enter_message') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3" style="border-color: var(--border-light);"></textarea>
+                                    <input type="text" name="subject" id="subject" placeholder="{{ __('common.enter_subject') }}" class="premium-form-input">
                                 </div>
 
+                                <!-- Message -->
+                                <div class="col-12">
+                                    <label class="premium-input-label" for="message">
+                                        <i class="fas fa-comment-dots me-2"></i>{{ __('common.your_message') }}
+                                    </label>
+                                    <textarea name="message" id="message" rows="5" placeholder="{{ __('common.enter_message') }}" class="premium-form-input"></textarea>
+                                </div>
+
+                                <!-- Captcha (optional) -->
                                 @if(env('CAPTCHA_ENABLED', true))
-                                    <div class="col-12 pt-3">
-                                        <label class="small fw-bold text-uppercase opacity-75 mb-2 d-block">{{ __('common.security_verification') }}</label>
+                                    <div class="col-12 pt-2">
+                                        <label class="premium-input-label">{{ __('common.security_verification') }}</label>
                                         <div class="row align-items-center g-3">
                                             <div class="col-md-8">
-                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3" placeholder="{{ __('common.fill_captcha') }}"  style="border-color: var(--border-light);">
+                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.fill_captcha') }}">
                                             </div>
-                                            <div class="col-md-4 cpatcha-imgs text-center">
+                                            <div class="col-md-4 captcha-image-container text-center">
                                                 @captcha
                                             </div>
                                         </div>
                                         @error('captcha')
-                                            <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
+                                            <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
                                         @enderror
                                     </div>
                                 @endif
 
+                                <!-- Submit Button -->
                                 <div class="col-12 mt-4">
-                                    <button type="submit" class="modern-btn modern-btn-solid w-100 py-3 fw-bold shadow-lg rounded-3" style="font-size: 15px; letter-spacing: 0.5px;">
+                                    <button type="submit" class="premium-submit-btn">
                                         <i class="fas fa-paper-plane me-2"></i> {{ __('common.send_message') }}
                                     </button>
                                 </div>
@@ -178,62 +164,317 @@
 
 @push('styles')
 <style>
-    .contact-card {
+    /* ============================================================
+       CONTACT PAGE - REVAMPED PREMIUM EDITORIAL STYLE
+       ============================================================ */
+
+    .contact-page-section {
+        background-color: #fffdfb; /* Crisp warm backdrop */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Ambient blur backdrop shapes */
+    .contact-bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        -webkit-filter: blur(90px);
+        pointer-events: none;
+        opacity: 0.55;
+        z-index: 1;
+    }
+
+    .contact-bg-blob.blob-1 {
+        width: 380px;
+        height: 380px;
+        background-color: var(--color-mint-wash, #f0f6df);
+        top: -100px;
+        left: -120px;
+    }
+
+    .contact-bg-blob.blob-2 {
+        width: 320px;
+        height: 320px;
+        background-color: var(--color-sky-wash, #dceaff);
+        bottom: -80px;
+        right: -80px;
+    }
+
+    .contact-content-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Single Unified Premium Card Layout */
+    .unified-contact-card {
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-cards, 12px);
+        overflow: hidden;
+        box-shadow: var(--shadow-subtle, 0px 1px 0px 0px rgba(37, 34, 30, 0.04));
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         animation: slideInUp 0.6s ease-out;
     }
 
-    .contact-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 60px rgba(var(--primary-rgb), 0.25) !important;
+    .unified-contact-card:hover {
+        border-color: var(--color-stone, #d7d6d4);
+        box-shadow: var(--shadow-lg, 0px 14px 19px -9px rgba(37, 34, 30, 0.07), 0px 10px 48px 0px rgba(37, 34, 30, 0.18));
     }
 
-    .contact-card-header {
-        border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+    /* Left Panel details style */
+    .brand-details-panel {
+        background-color: var(--surface-cream-wash, #fff6f0);
+        border-right: 1px solid var(--color-stone, #d7d6d4);
     }
 
-    .form-control {
-        font-size: 15px;
-        font-weight: 500;
+    .panel-content {
+        padding: var(--spacing-48, 48px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .panel-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-heading, 38px);
+        font-weight: var(--font-weight-bold, 700);
+        line-height: var(--leading-heading, 1.28);
+        letter-spacing: var(--tracking-heading, -0.19px);
+        color: var(--color-ink, #25221e);
+    }
+
+    .panel-text {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body, 16px);
+        line-height: var(--leading-body, 1.5);
+        color: var(--color-pencil, #6f6c69);
+    }
+
+    /* Company Metadata List inside the panel */
+    .company-info-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .info-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        border-radius: 6px;
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        color: var(--color-deep-ember, #cf3520);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
         transition: all 0.3s ease;
-        border: 1px solid var(--border-light) !important;
     }
 
-    .form-control:focus {
-        background-color: var(--white) !important;
-        border-color: var(--primary) !important;
-        box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.15) !important;
+    .info-item:hover .info-icon {
+        background-color: var(--color-ember-red, #e34432);
+        border-color: var(--color-ember-red, #e34432);
+        color: #ffffff;
     }
 
-    .form-control::placeholder {
-        color: #a0aec0;
-        font-weight: 400;
+    .info-body {
+        display: flex;
+        flex-direction: column;
     }
 
-    .form-control-lg {
-        border-radius: 12px;
+    .info-label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-graphite, #94928f);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+        margin-bottom: 4px;
     }
 
-    .error {
-        color: #dc3545 !important;
-        font-size: 13px;
-        margin-top: 5px;
-        font-weight: 500;
+    .info-value {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        color: var(--color-ink, #25221e);
+        font-weight: var(--font-weight-medium, 500);
+        text-decoration: none;
+        transition: color 0.2s ease;
     }
 
-    .cpatcha-imgs img {
-        border-radius: 12px;
-        border: 1px solid var(--border-light);
+    a.info-value:hover {
+        color: var(--color-ember-red, #e34432);
+    }
+
+    /* Bottom Brand Mark */
+    .panel-brand-mark {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+        padding-top: 24px;
+    }
+
+    .brand-mark-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-body-lg, 18px);
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ink, #25221e);
+    }
+
+    .brand-mark-desc {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        color: var(--color-pencil, #6f6c69);
+    }
+
+    /* Right Panel: Clean Form Panel */
+    .form-panel {
+        background-color: var(--surface-paper-canvas, #fefdfc);
+    }
+
+    .form-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-subheading, 21px);
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ink, #25221e);
+        margin: 0 0 8px 0;
+    }
+
+    .form-subtitle {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        color: var(--color-pencil, #6f6c69);
+        margin: 0;
+    }
+
+    /* Premium Input Elements */
+    .premium-input-label {
+        display: block;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        margin-bottom: 8px;
+    }
+
+    .premium-form-input {
+        width: 100%;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        font-weight: var(--font-weight-medium, 500);
+        color: var(--color-ink, #25221e);
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-inputs, 8px);
+        padding: 12px 16px;
+        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+        outline: none;
+    }
+
+    .premium-form-input::placeholder {
+        color: var(--color-graphite, #94928f);
+        font-weight: var(--font-weight-regular, 400);
+    }
+
+    .premium-form-input:focus {
+        border-color: var(--color-ember-red, #e34432);
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        box-shadow: 0 0 0 3px rgba(227, 68, 50, 0.08);
+    }
+
+    /* Validation and Error elements */
+    .premium-form-input.is-invalid {
+        border-color: var(--color-ember-red, #e34432) !important;
+        background-color: #fffaf9 !important;
+    }
+
+    .premium-error-msg {
+        color: var(--color-deep-ember, #cf3520);
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-medium, 500);
+    }
+
+    .captcha-image-container img {
+        border-radius: var(--radius-inputs, 8px);
+        border: 1px solid var(--color-stone, #d7d6d4);
+    }
+
+    /* Submit Button */
+    .premium-submit-btn {
+        width: 100%;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: #ffffff;
+        background-color: var(--color-ember-red, #e34432);
+        border: 1px solid var(--color-ember-red, #e34432);
+        border-radius: var(--radius-buttons, 8px);
+        padding: 14px 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 4px 14px rgba(227, 68, 50, 0.2);
+    }
+
+    .premium-submit-btn:hover {
+        background-color: var(--color-deep-ember, #cf3520);
+        border-color: var(--color-deep-ember, #cf3520);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(227, 68, 50, 0.35);
+    }
+
+    .premium-submit-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Badges Style */
+    .modern-badge {
+        display: inline-block;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-semibold, 600);
+        line-height: 1;
+        color: var(--color-deep-ember, #cf3520);
+        background-color: var(--surface-cream-wash, #fff6f0);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-badges, 8px);
+        padding: 6px 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
     }
 
     @keyframes slideInUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 991px) {
+        .brand-details-panel {
+            border-right: none;
+            border-bottom: 1px solid var(--color-stone, #d7d6d4);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .panel-content {
+            padding: var(--spacing-24, 24px);
         }
     }
 </style>
@@ -247,13 +488,12 @@
         // Get form values
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
         const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
 
         // Clear previous error messages
         document.querySelectorAll('.custom-error-message').forEach(el => el.remove());
-        document.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
+        document.querySelectorAll('.premium-form-input').forEach(el => el.classList.remove('is-invalid'));
 
         let hasErrors = false;
         const errors = [];
@@ -269,11 +509,6 @@
             hasErrors = true;
         } else if (!isValidEmail(email)) {
             errors.push({ field: 'email', message: '{{ __('common.validate_email_invalid') }}' });
-            hasErrors = true;
-        }
-
-        if (!phone) {
-            errors.push({ field: 'phone', message: '{{ __('common.validate_phone') }}' });
             hasErrors = true;
         }
 
@@ -323,12 +558,6 @@
         this.classList.toggle('is-invalid', !isValid);
         const errorMsg = this.parentElement.querySelector('.custom-error-message');
         if (errorMsg && isValid) errorMsg.remove();
-    });
-
-    document.getElementById('phone')?.addEventListener('change', function() {
-        this.classList.toggle('is-invalid', !this.value.trim());
-        const errorMsg = this.parentElement.querySelector('.custom-error-message');
-        if (errorMsg && this.value.trim()) errorMsg.remove();
     });
 
     document.getElementById('subject')?.addEventListener('change', function() {

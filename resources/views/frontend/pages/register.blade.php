@@ -2,124 +2,153 @@
 @section('title','Register')
 @section('main-content')
 
-<div class="tl-breadcrumb about-banner pt-60 pb-60">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-    </video>
-    <div class="breadcrumb-float-element float-element-1"></div>
-    <div class="breadcrumb-float-element float-element-2"></div>
-    <div class="breadcrumb-float-element float-element-3"></div>
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-md-6">
-                <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ __('common.register') }}</h1></div>
-            </div>
-            <div class="col-md-6">
-                <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                    <li><a href="/">{{ __('common.home') }}</a></li>
-                    <li class="current-page">
-                        <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                        <span>{{ __('common.register') }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<x-breadcrumb 
+    :title="__('common.register')" 
+    :routes="[
+        ['label' => __('common.register')]
+    ]" 
+/>
 
-<section class="auth-section pt-60 pb-80 bg-light" style="position: relative; overflow: hidden;">
-    <!-- Decorative Blobs -->
-    <div class="modern-blob modern-blob-1" style="top: -100px; left: -100px; width: 400px; height: 400px; background: var(--primary-10);"></div>
-    <div class="modern-blob modern-blob-2" style="bottom: -100px; right: -100px; width: 400px; height: 400px; background: var(--primary-10);"></div>
+<section class="auth-page-section">
+    <!-- Ambient blurred background shapes for warm atmosphere -->
+    <div class="auth-bg-blob blob-1"></div>
+    <div class="auth-bg-blob blob-2"></div>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-9">
-                <div class="modern-card auth-card border-0 shadow-xl overflow-hidden" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 20px;">
-                    <!-- Header Section with Gradient -->
-                    <div class="auth-card-header p-5 text-center" style="background: linear-gradient(135deg, var(--primary-10) 0%, var(--secondary-10) 100%);">
-                        <div class="mb-3">
-                            <i class="fas fa-user-plus text-primary" style="font-size: 48px; opacity: 0.8;"></i>
+    <div class="container auth-content-container">
+        <!-- Single Unified Premium Card with Asymmetric Layout -->
+        <div class="unified-auth-card">
+            <div class="row g-0 h-100">
+                <!-- Left half: Brand Canvas & Community Benefits -->
+                <div class="col-lg-5 brand-details-panel">
+                    <div class="panel-content">
+                        <div>
+                            <span class="modern-badge mb-3">{{ __('common.join_community') }}</span>
+                            <h2 class="panel-title mb-4">Start Your Creative Journey</h2>
+                            <p class="panel-text mb-5">
+                                Unlock exclusive access to expert-led art masterclasses, structured certified curricula, and interactive community feedback.
+                            </p>
                         </div>
-                        <span class="modern-badge mb-3">{{ __('common.join_community') }}</span>
-                        <h2 class="modern-h2 mb-0" style="font-size: 28px; color: var(--text-dark);">{{ __('common.register') }}</h2>
-                    </div>
 
-                    <!-- Content Section -->
-                    <div class="p-5">
-                    
+                        <!-- Benefit List -->
+                        <div class="benefits-info-list">
+                            <!-- Benefit 1 -->
+                            <div class="benefit-item mb-4">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="benefit-body">
+                                    <span class="benefit-title">Master Artists</span>
+                                    <span class="benefit-desc">Access courses designed and taught by professional gallery illustrators.</span>
+                                </div>
+                            </div>
+
+                            <!-- Benefit 2 -->
+                            <div class="benefit-item mb-4">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="benefit-body">
+                                    <span class="benefit-title">Certified Growth</span>
+                                    <span class="benefit-desc">Earn accredited certificates of completion to showcase your achievements.</span>
+                                </div>
+                            </div>
+
+                            <!-- Benefit 3 -->
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="benefit-body">
+                                    <span class="benefit-title">Direct Feedback</span>
+                                    <span class="benefit-desc">Submit your masterworks and receive personal critiques from expert artists.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Brand Mark -->
+                        <div class="panel-brand-mark mt-5">
+                            <span class="brand-mark-title">Artify Academy</span>
+                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right half: Clean Sign Up Panel -->
+                <div class="col-lg-7 form-panel">
+                    <div class="panel-content">
+                        <div class="form-panel-intro mb-4">
+                            <h3 class="form-title">{{ __('common.register') }}</h3>
+                            <p class="form-subtitle">
+                                <i class="fas fa-info-circle text-muted me-1"></i>
+                                Fill out your details below to set up your creative account.
+                            </p>
+                        </div>
 
                         <form name="frmRegister" id="frmRegister" action="{{route('register.submit')}}" method="post">
                             @csrf
                             <div class="row g-4">
-                                <!-- Name Field -->
+                                <!-- Name -->
                                 <div class="col-12">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-user text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.name') }}
+                                    <label class="premium-input-label" for="name">
+                                        <i class="fas fa-user me-2"></i>{{ __('common.name') }}
                                     </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.name') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('name') is-invalid @enderror" value="{{old('name')}}" style="border-color: var(--border-light);">
+                                    <input type="text" name="name" id="name" placeholder="{{ __('common.name') }}" value="{{old('name')}}" class="premium-form-input @error('name') is-invalid @enderror">
                                     @error('name')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
+                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
                                 </div>
 
-                                <!-- Email Field -->
+                                <!-- Email -->
                                 <div class="col-12">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-envelope text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.email') }}
+                                    <label class="premium-input-label" for="email">
+                                        <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.email') }}" value="{{old('email')}}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('email') is-invalid @enderror" required style="border-color: var(--border-light);">
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.email') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
                                     @error('email')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
+                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
                                 </div>
 
-                                <!-- Password Field -->
+                                <!-- Password -->
                                 <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-lock text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.password') }}
+                                    <label class="premium-input-label" for="password">
+                                        <i class="fas fa-lock me-2"></i>{{ __('common.password') }}
                                     </label>
-                                    <input type="password" name="password" id="password" placeholder="{{ __('common.password') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3 @error('password') is-invalid @enderror" required style="border-color: var(--border-light);">
+                                    <input type="password" name="password" id="password" placeholder="{{ __('common.password') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
                                     @error('password')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
+                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
                                 </div>
 
-                                <!-- Confirm Password Field -->
+                                <!-- Confirm Password -->
                                 <div class="col-md-6">
-                                    <label class="small fw-bold text-uppercase opacity-75 mb-2 d-flex align-items-center">
-                                        <i class="fas fa-lock-open text-primary me-2" style="font-size: 12px;"></i>
-                                        {{ __('common.confirm_password') }}
+                                    <label class="premium-input-label" for="password_confirmation">
+                                        <i class="fas fa-lock-open me-2"></i>{{ __('common.confirm_password') }}
                                     </label>
-                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="{{ __('common.confirm_password') }}" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3" style="border-color: var(--border-light);">
-                                    @error('password_confirmation')
-                                        <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
+                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="{{ __('common.confirm_password') }}" class="premium-form-input">
                                 </div>
 
+                                <!-- Captcha -->
                                 @if(env('CAPTCHA_ENABLED', true))
-                                    <div class="mb-4">
-                                        <label class="small fw-bold text-uppercase opacity-75 mb-2 d-block">{{ __('common.security_verification') }}</label>
+                                    <div class="col-12 pt-2">
+                                        <label class="premium-input-label">{{ __('common.security_verification') }}</label>
                                         <div class="row align-items-center g-3">
                                             <div class="col-md-8">
-                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="form-control form-control-lg bg-light border-1 py-3 px-4 rounded-3" placeholder="{{ __('common.fill_captcha') }}" style="border-color: var(--border-light);">
+                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.fill_captcha') }}">
                                             </div>
-                                            <div class="col-md-4 cpatcha-imgs text-center">
+                                            <div class="col-md-4 captcha-image-container text-center">
                                                 @captcha
                                             </div>
                                         </div>
                                         @error('captcha')
-                                            <span class="text-danger small mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
+                                            <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
                                         @enderror
                                     </div>
                                 @endif
 
-                                <!-- Register Button -->
+                                <!-- Submit Register Button -->
                                 <div class="col-12 mt-4">
-                                    <button class="modern-btn modern-btn-solid w-100 py-3 fw-bold shadow-lg rounded-3" type="submit" name="submit-form" style="font-size: 15px; letter-spacing: 0.5px;">
+                                    <button class="premium-submit-btn" type="submit" name="submit-form">
                                         <i class="fas fa-user-plus me-2"></i> {{ __('common.register') }}
                                     </button>
                                 </div>
@@ -128,16 +157,16 @@
 
                         <!-- Divider -->
                         <div class="my-4 d-flex align-items-center">
-                            <div style="flex: 1; height: 1px; background: var(--border-light);"></div>
+                            <div style="flex: 1; height: 1px; background: var(--color-stone, #d7d6d4);"></div>
                             <span class="mx-3 small text-muted">{{ __('common.or') }}</span>
-                            <div style="flex: 1; height: 1px; background: var(--border-light);"></div>
+                            <div style="flex: 1; height: 1px; background: var(--color-stone, #d7d6d4);"></div>
                         </div>
 
                         <!-- Login Link -->
                         <div class="text-center">
                             <p class="text-muted mb-0">
                                 {{ __('common.already_account') }}
-                                <a href="{{route('login.form')}}" class="text-primary fw-bold text-decoration-none hover-underline">{{ __('common.login') }}</a>
+                                <a href="{{route('login.form')}}" class="login-redirect-link fw-bold text-decoration-none">{{ __('common.login') }}</a>
                             </p>
                         </div>
                     </div>
@@ -151,61 +180,327 @@
 
 @push('styles')
 <style>
-    .auth-card {
+    /* ============================================================
+       REGISTER PAGE - REVAMPED PREMIUM EDITORIAL STYLE
+       ============================================================ */
+
+    .auth-page-section {
+        background-color: #fffdfb; /* Crisp warm backdrop */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Ambient blur backdrop shapes */
+    .auth-bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        -webkit-filter: blur(90px);
+        pointer-events: none;
+        opacity: 0.55;
+        z-index: 1;
+    }
+
+    .auth-bg-blob.blob-1 {
+        width: 380px;
+        height: 380px;
+        background-color: var(--color-mint-wash, #f0f6df);
+        top: -100px;
+        left: -120px;
+    }
+
+    .auth-bg-blob.blob-2 {
+        width: 320px;
+        height: 320px;
+        background-color: var(--color-sky-wash, #dceaff);
+        bottom: -80px;
+        right: -80px;
+    }
+
+    .auth-content-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Single Unified Premium Card Layout */
+    .unified-auth-card {
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-cards, 12px);
+        overflow: hidden;
+        box-shadow: var(--shadow-subtle, 0px 1px 0px 0px rgba(37, 34, 30, 0.04));
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         animation: slideInUp 0.6s ease-out;
     }
 
-    .auth-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 60px rgba(var(--primary-rgb), 0.25) !important;
+    .unified-auth-card:hover {
+        border-color: var(--color-stone, #d7d6d4);
+        box-shadow: var(--shadow-lg, 0px 14px 19px -9px rgba(37, 34, 30, 0.07), 0px 10px 48px 0px rgba(37, 34, 30, 0.18));
     }
 
-    .auth-card-header {
-        border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+    /* Left Panel details style */
+    .brand-details-panel {
+        background-color: var(--surface-cream-wash, #fff6f0);
+        border-right: 1px solid var(--color-stone, #d7d6d4);
     }
 
-    .form-control {
-        font-size: 15px;
-        font-weight: 500;
+    .panel-content {
+        padding: var(--spacing-48, 48px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .panel-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-heading, 38px);
+        font-weight: var(--font-weight-bold, 700);
+        line-height: var(--leading-heading, 1.28);
+        letter-spacing: var(--tracking-heading, -0.19px);
+        color: var(--color-ink, #25221e);
+    }
+
+    .panel-text {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body, 16px);
+        line-height: var(--leading-body, 1.5);
+        color: var(--color-pencil, #6f6c69);
+    }
+
+    /* Benefits Metadata List inside the panel */
+    .benefits-info-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .benefit-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        border-radius: 6px;
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        color: var(--color-deep-ember, #cf3520);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
         transition: all 0.3s ease;
-        border: 1px solid var(--border-light) !important;
     }
 
-    .form-control:focus {
-        background-color: var(--white) !important;
-        border-color: var(--primary) !important;
-        box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.15) !important;
+    .benefit-item:hover .benefit-icon {
+        background-color: var(--color-ember-red, #e34432);
+        border-color: var(--color-ember-red, #e34432);
+        color: #ffffff;
     }
 
-    .form-control::placeholder {
-        color: #a0aec0;
-        font-weight: 400;
+    .benefit-body {
+        display: flex;
+        flex-direction: column;
     }
 
-    .form-control-lg {
-        border-radius: 12px;
+    .benefit-title {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        margin-bottom: 2px;
     }
 
-    .error {
-        color: #dc3545 !important;
-        font-size: 13px;
-        margin-top: 5px;
-        font-weight: 500;
+    .benefit-desc {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        color: var(--color-pencil, #6f6c69);
+        line-height: 1.4;
     }
 
-    .hover-underline:hover {
+    /* Bottom Brand Mark */
+    .panel-brand-mark {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--color-stone, #d7d6d4);
+        padding-top: 24px;
+    }
+
+    .brand-mark-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-body-lg, 18px);
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ink, #25221e);
+    }
+
+    .brand-mark-desc {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        color: var(--color-pencil, #6f6c69);
+    }
+
+    /* Right Panel: Clean Form Panel */
+    .form-panel {
+        background-color: var(--surface-paper-canvas, #fefdfc);
+    }
+
+    .form-title {
+        font-family: var(--font-graphik), sans-serif;
+        font-size: var(--text-subheading, 21px);
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ink, #25221e);
+        margin: 0 0 8px 0;
+    }
+
+    .form-subtitle {
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        color: var(--color-pencil, #6f6c69);
+        margin: 0;
+    }
+
+    /* Premium Input Elements */
+    .premium-input-label {
+        display: block;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        margin-bottom: 8px;
+    }
+
+    .premium-form-input {
+        width: 100%;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        font-weight: var(--font-weight-medium, 500);
+        color: var(--color-ink, #25221e);
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-inputs, 8px);
+        padding: 12px 16px;
+        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+        outline: none;
+    }
+
+    .premium-form-input::placeholder {
+        color: var(--color-graphite, #94928f);
+        font-weight: var(--font-weight-regular, 400);
+    }
+
+    .premium-form-input:focus {
+        border-color: var(--color-ember-red, #e34432);
+        background-color: var(--surface-paper-canvas, #fefdfc);
+        box-shadow: 0 0 0 3px rgba(227, 68, 50, 0.08);
+    }
+
+    /* Validation and Error elements */
+    .premium-form-input.is-invalid, .premium-form-input.error {
+        border-color: var(--color-ember-red, #e34432) !important;
+        background-color: #fffaf9 !important;
+    }
+
+    .premium-error-msg {
+        color: var(--color-deep-ember, #cf3520);
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-medium, 500);
+    }
+
+    label.error {
+        color: var(--color-deep-ember, #cf3520) !important;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px) !important;
+        font-weight: var(--font-weight-medium, 500) !important;
+        margin-top: 6px !important;
+        display: block !important;
+    }
+
+    .captcha-image-container img {
+        border-radius: var(--radius-inputs, 8px);
+        border: 1px solid var(--color-stone, #d7d6d4);
+    }
+
+    /* Submit Button */
+    .premium-submit-btn {
+        width: 100%;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-body-sm, 14px);
+        font-weight: var(--font-weight-semibold, 600);
+        color: #ffffff;
+        background-color: var(--color-ember-red, #e34432);
+        border: 1px solid var(--color-ember-red, #e34432);
+        border-radius: var(--radius-buttons, 8px);
+        padding: 14px 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 4px 14px rgba(227, 68, 50, 0.2);
+    }
+
+    .premium-submit-btn:hover {
+        background-color: var(--color-deep-ember, #cf3520);
+        border-color: var(--color-deep-ember, #cf3520);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(227, 68, 50, 0.35);
+    }
+
+    .premium-submit-btn:active {
+        transform: translateY(0);
+    }
+
+    /* Badges & Links Style */
+    .modern-badge {
+        display: inline-block;
+        font-family: var(--font-inter), sans-serif;
+        font-size: var(--text-caption, 12px);
+        font-weight: var(--font-weight-semibold, 600);
+        line-height: 1;
+        color: var(--color-deep-ember, #cf3520);
+        background-color: var(--surface-cream-wash, #fff6f0);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: var(--radius-badges, 8px);
+        padding: 6px 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .login-redirect-link {
+        color: var(--color-ember-red, #e34432);
+        transition: color 0.2s ease;
+    }
+
+    .login-redirect-link:hover {
+        color: var(--color-deep-ember, #cf3520);
         text-decoration: underline !important;
     }
 
     @keyframes slideInUp {
         from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
         }
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 991px) {
+        .brand-details-panel {
+            border-right: none;
+            border-bottom: 1px solid var(--color-stone, #d7d6d4);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .panel-content {
+            padding: var(--spacing-24, 24px);
         }
     }
 </style>
@@ -253,9 +548,18 @@
                 @if(env('CAPTCHA_ENABLED', true))
                 captcha: "{{ __('common.fill_it') }}" 
                 @endif
+            },
+            errorPlacement: function(error, element) {
+                // custom error placement to avoid breaking the layout
+                error.appendTo(element.parent());
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('error').removeClass(validClass);
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('error').addClass(validClass);
             }
         });
     });
 </script>
 @endpush
-
