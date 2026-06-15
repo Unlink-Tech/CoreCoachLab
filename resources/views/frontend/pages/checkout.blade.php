@@ -2,45 +2,56 @@
 @section('title', 'Checkout')
 @section('main-content')
 
-    <!-- Page Breadcrumb -->
-    <div class="tl-breadcrumb about-banner pt-60 pb-60">
-        <video autoplay muted loop playsinline>
-            <source src="{{ asset('assets/images/breadcrumb.mp4') }}" type="video/mp4">
-        </video>
-        <div class="breadcrumb-float-element float-element-1"></div>
-        <div class="breadcrumb-float-element float-element-2"></div>
-        <div class="breadcrumb-float-element float-element-3"></div>
-        <div class="container">
-            <div class="row align-items-end">
-                <div class="col-md-6">
-                    <div class="banner-txt"><h1 class="tl-breadcrumb-title">{{ __('common.checkout') }}</h1></div>
-                </div>
-                <div class="col-md-6">
-                    <ul class="tl-breadcrumb-nav d-flex justify-content-md-end">
-                        <li><a href="/">{{ __('common.home') }}</a></li>
-                        <li class="current-page">
-                            <span class="dvdr"><i class="fas fa-chevron-right mx-2"></i></span>
-                            <span>{{ __('common.checkout') }}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-breadcrumb
+        :title="__('common.checkout')"
+        :routes="[
+            ['label' => __('common.cart'), 'url' => route('cart')],
+            ['label' => __('common.checkout')]
+        ]"
+    />
 
     <!-- Checkout Section -->
     <section class="kv-checkout-section">
+        <span class="kv-glow kv-glow-mint" aria-hidden="true"></span>
+        <span class="kv-glow kv-glow-sky" aria-hidden="true"></span>
+
         <div class="container">
 
             <form name="frmCheckout" id="frmCheckout" method="POST" action="{{route('cart.order')}}">
                 @csrf
+
+                <!-- Progress stepper (visual guide) -->
+                <div class="kv-stepper" aria-hidden="true">
+                    <div class="kv-stepper__step">
+                        <span class="kv-stepper__dot"><i class="fas fa-user"></i></span>
+                        <span class="kv-stepper__label">{{ __('common.billing_details') }}</span>
+                    </div>
+                    <span class="kv-stepper__bar"></span>
+                    <div class="kv-stepper__step">
+                        <span class="kv-stepper__dot"><i class="fas fa-clipboard-list"></i></span>
+                        <span class="kv-stepper__label">{{ __('common.additional_information') }}</span>
+                    </div>
+                    <span class="kv-stepper__bar"></span>
+                    <div class="kv-stepper__step">
+                        <span class="kv-stepper__dot"><i class="fas fa-credit-card"></i></span>
+                        <span class="kv-stepper__label">{{ __('common.card_details') }}</span>
+                    </div>
+                    <span class="kv-stepper__bar"></span>
+                    <div class="kv-stepper__step">
+                        <span class="kv-stepper__dot"><i class="fas fa-shield-alt"></i></span>
+                        <span class="kv-stepper__label">{{ __('common.place_order') }}</span>
+                    </div>
+                </div>
+
                 <div class="kv-checkout-grid">
 
                     <!-- Billing Details Column -->
                     <div class="kv-checkout-form">
+
                         <!-- Billing Information Card -->
                         <div class="kv-checkout-card">
                             <h3 class="kv-checkout-card-title">
+                                <span class="kv-step">1</span>
                                 <i class="fas fa-user-circle"></i>
                                 {{ __('common.billing_details')}}
                             </h3>
@@ -172,6 +183,7 @@
                         <!-- Additional Information Card -->
                         <div class="kv-checkout-card">
                             <h3 class="kv-checkout-card-title">
+                                <span class="kv-step">2</span>
                                 <i class="fas fa-clipboard-list"></i>
                                 {{ __('common.additional_information') }}
                             </h3>
@@ -184,6 +196,7 @@
                         <!-- Payment Card -->
                         <div class="kv-checkout-card">
                             <h3 class="kv-checkout-card-title">
+                                <span class="kv-step">3</span>
                                 <i class="fas fa-credit-card"></i>
                                 {{ __('common.card_details') }}
                             </h3>
@@ -214,10 +227,22 @@
                                     @error('cvv')<span class='kv-error'>{{$message}}</span>@enderror
                                 </div>
                             </div>
+                            <div class="kv-secure-note">
+                                <i class="fas fa-lock"></i>
+                                <span>{{__('common.card_bill_description')}}</span>
+                            </div>
+                            <div class="kv-payment-methods">
+                                <img src="{{ asset('assets/images/payment.png') }}" alt="Payment Methods">
+                            </div>
                         </div>
 
                         <!-- Terms & Conditions -->
                         <div class="kv-checkout-card kv-checkout-terms">
+                            <h3 class="kv-checkout-card-title">
+                                <span class="kv-step">4</span>
+                                <i class="fas fa-file-signature"></i>
+                                {{ __('common.terms_conditions') }}
+                            </h3>
                             <div class="kv-terms-group">
                                 <input type="checkbox" id="terms" name="terms" class="kv-checkbox">
                                 <label for="terms">
@@ -253,17 +278,6 @@
                                 @error('refund')
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
-                            </div>
-
-                            <div class="kv-payment-description" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(21, 145, 220, 0.3);">
-                                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; margin-bottom: 15px;">
-                                    {{__('common.card_bill_description')}}
-                                </p>
-                            </div>
-
-                            <!-- Payment Methods -->
-                            <div class="kv-payment-methods" style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(21, 145, 220, 0.3); text-align: center;">
-                                <img src="{{ asset('assets/images/payment.png') }}" alt="Payment Methods" class="img-fluid" style="max-height: 40px; opacity: 0.8;">
                             </div>
                         </div>
                     </div>
@@ -306,7 +320,6 @@
                                 <div class="kv-checkout-order-total">
                                     <span>{{ __('common.total') }}:</span>
                                     <span class="kv-checkout-order-total-value">
-                                        
                                         {{ Helper::getCurrencySymbol(session('currency')) }} {{ number_format($total_amount, session('currency')=='JPY' ? 0 : 2) }}
                                     </span>
                                 </div>
@@ -338,6 +351,10 @@
                                 <i class="fas fa-arrow-left"></i>
                                 {{ __('common.continue_shopping') }}
                             </a>
+
+                            <div class="kv-summary-assure">
+                                <i class="fas fa-lock"></i> {{ __('common.secure_checkout') ?? 'Secure & encrypted checkout' }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -488,74 +505,89 @@
 
 @push('styles')
 <style>
-    /* Checkout Section */
+    /* =========================================
+       CHECKOUT — warm theme (kv-* preserved)
+       ========================================= */
     .kv-checkout-section {
-        background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-        padding: 60px 20px;
-        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background: var(--surface-paper-canvas, #fefdfc);
+        padding: 56px 0 88px;
     }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
+    .kv-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
     }
+    .kv-glow-mint { width: 340px; height: 340px; background: var(--color-mint-wash, #f0f6df); top: -120px; left: -90px; }
+    .kv-glow-sky  { width: 300px; height: 300px; background: var(--color-sky-wash, #dceaff); bottom: 6%; right: -90px; }
+    .kv-checkout-section .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
 
     .kv-checkout-grid {
         display: grid;
-        grid-template-columns: 1.2fr 350px;
-        gap: 40px;
-        margin-top: 40px;
+        grid-template-columns: 1.4fr 380px;
+        gap: 32px;
+        align-items: start;
     }
 
+    /* ---- Cards ---- */
     .kv-checkout-card {
-        background: white;
-        border: 2px solid rgba(21, 145, 220, 0.15);
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 30px;
-        transition: all 0.3s ease;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 18px;
+        padding: 28px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-subtle);
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
     }
-
     .kv-checkout-card:hover {
-        border-color: rgba(21, 145, 220, 0.4);
-        box-shadow: 0 0 30px rgba(21, 145, 220, 0.1);
+        border-color: rgba(227, 68, 50, 0.25);
+        box-shadow: 0 16px 40px rgba(37, 34, 30, 0.06);
     }
 
     .kv-checkout-card-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #0a0e27;
-        margin: 0 0 20px 0;
         display: flex;
         align-items: center;
         gap: 12px;
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 19px;
+        font-weight: var(--font-weight-semibold, 600);
+        color: var(--color-ink, #25221e);
+        margin: 0 0 24px 0;
+    }
+    .kv-checkout-card-title > i { color: var(--color-ember-red, #e34432); font-size: 18px; }
+    .kv-step {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        font-weight: 700;
     }
 
-    .kv-checkout-card-title i {
-        color: #1591DC;
-        font-size: 1.4rem;
-    }
-
+    /* ---- Form ---- */
     .kv-checkout-form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 18px;
     }
-
-    .kv-checkout-form-group {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .kv-checkout-form-group-full {
-        grid-column: 1 / -1;
-    }
+    .kv-checkout-form-group { display: flex; flex-direction: column; }
+    .kv-checkout-form-group-full { grid-column: 1 / -1; }
 
     .kv-label {
-        font-size: 0.95rem;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
         font-weight: 600;
-        color: #0a0e27;
+        color: var(--color-ink, #25221e);
         margin-bottom: 8px;
         display: block;
     }
@@ -565,395 +597,419 @@
     .kv-textarea {
         width: 100%;
         padding: 12px 15px;
-        background: #f8fafc;
-        border: 1.5px solid rgba(21, 145, 220, 0.2);
-        border-radius: 8px;
-        color: #0a0e27;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        font-family: inherit;
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border-radius: 10px;
+        color: var(--color-ink, #25221e);
+        font-family: var(--font-inter), sans-serif;
+        font-size: 14px;
+        transition: all 0.25s ease;
     }
-
     .kv-input:focus,
     .kv-select:focus,
     .kv-textarea:focus {
         outline: none;
-        background: white;
-        border-color: #1591DC;
-        box-shadow: 0 0 15px rgba(21, 145, 220, 0.2);
+        background: #fff;
+        border-color: var(--color-ember-red, #e34432);
+        box-shadow: 0 0 0 4px rgba(227, 68, 50, 0.12);
     }
-
-    .kv-input::placeholder,
-    .kv-select option {
-        color: rgba(10, 14, 39, 0.5);
-    }
-
-    .kv-textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
+    .kv-input::placeholder { color: var(--color-graphite, #94928f); }
+    .kv-select option { color: var(--color-ink, #25221e); }
+    .kv-textarea { resize: vertical; min-height: 110px; }
 
     .kv-error {
-        color: #ff4757;
-        font-size: 0.85rem;
+        color: #e34432;
+        font-size: 0.82rem;
         margin-top: 6px;
         display: block;
         font-weight: 500;
     }
 
-    .kv-captcha-input .kv-error {
-        grid-column: 1 / -1;
-        margin-top: 10px;
-    }
+    .kv-card-expiry { display: flex; gap: 10px; align-items: center; }
+    .kv-card-expiry .kv-input { flex: 1; }
+    .kv-card-separator { color: var(--color-graphite, #94928f); font-weight: 600; }
 
-    .kv-card-expiry {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .kv-card-expiry .kv-input {
-        flex: 1;
-    }
-
-    .kv-card-separator {
-        color: rgba(10, 14, 39, 0.6);
-        font-weight: 600;
-    }
-
-    .kv-checkbox {
-        width: 18px;
-        height: 18px;
-        margin-right: 10px;
-        cursor: pointer;
-        accent-color: #1591DC;
-    }
-
-    .kv-terms-group {
+    .kv-secure-note {
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid rgba(21, 145, 220, 0.15);
+        margin-top: 22px;
+        padding: 14px 16px;
+        background: var(--color-mint-wash, #f0f6df);
+        border-radius: 12px;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--color-forest, #446c3d);
     }
+    .kv-secure-note i { margin-top: 3px; }
+    .kv-payment-methods { margin-top: 18px; text-align: center; }
+    .kv-payment-methods img { height: 30px; width: auto; opacity: 0.85; }
 
-    .kv-terms-group:last-child {
-        border-bottom: none;
+    /* ---- Terms ---- */
+    .kv-checkbox {
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        cursor: pointer;
+        accent-color: var(--color-ember-red, #e34432);
+        flex-shrink: 0;
     }
-
+    .kv-terms-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
+    }
+    .kv-terms-group:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .kv-terms-group label {
-        color: #0a0e27;
-        font-size: 0.95rem;
+        font-family: var(--font-inter), sans-serif;
+        color: var(--color-pencil, #6f6c69);
+        font-size: 14px;
+        line-height: 1.5;
         cursor: pointer;
         margin: 0;
     }
-
     .kv-terms-group a {
-        color: #1591DC;
+        color: var(--color-cobalt-link, #0f66ae);
         text-decoration: none;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: color 0.2s ease;
     }
+    .kv-terms-group a:hover { color: var(--color-deep-ember, #cf3520); text-decoration: underline; }
 
-    .kv-terms-group a:hover {
-        color: #2C5EAD;
-        text-decoration: underline;
-    }
-
-    .kv-checkout-summary {
-        position: sticky;
-        top: 100px;
-        height: fit-content;
-    }
-
+    /* ---- Summary ---- */
+    .kv-checkout-summary { position: sticky; top: 100px; height: fit-content; }
     .kv-checkout-order {
-        background: white;
-        border: 2px solid rgba(21, 145, 220, 0.15);
+        background: linear-gradient(180deg, #fffefd 0%, #fff7f1 100%);
     }
-
-    .kv-checkout-order:hover {
-        border-color: rgba(21, 145, 220, 0.4);
-        box-shadow: 0 0 30px rgba(21, 145, 220, 0.1);
-    }
-
     .kv-checkout-order-table {
-        margin-bottom: 25px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(21, 145, 220, 0.15);
+        margin-bottom: 22px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
     }
-
     .kv-checkout-order-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         padding-bottom: 12px;
-        border-bottom: 1px solid rgba(21, 145, 220, 0.1);
-        font-weight: 700;
-        color: #0a0e27;
-        font-size: 0.9rem;
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
+        font-family: var(--font-inter), sans-serif;
+        font-weight: 600;
+        color: var(--color-graphite, #94928f);
+        font-size: 11px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.06em;
     }
-
     .kv-checkout-order-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(21, 145, 220, 0.1);
+        border-bottom: 1px solid var(--color-stone, #d7d6d4);
     }
-
     .kv-checkout-order-points {
         display: flex;
         align-items: center;
         gap: 8px;
-        color: #0a0e27;
-        font-size: 0.9rem;
+        font-family: var(--font-inter), sans-serif;
+        color: var(--color-ink, #25221e);
+        font-size: 14px;
+        font-weight: 500;
     }
-
-    .kv-checkout-order-points i {
-        color: #1591DC;
-    }
-
+    .kv-checkout-order-points i { color: var(--color-ember-red, #e34432); }
     .kv-checkout-order-price {
-        color: #0a0e27;
+        font-family: var(--font-graphik), sans-serif;
+        color: var(--color-ink, #25221e);
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 14px;
     }
-
     .kv-checkout-order-total {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 2px solid rgba(21, 145, 220, 0.15);
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--color-stone, #d7d6d4);
     }
-
     .kv-checkout-order-total span:first-child {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #0a0e27;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--color-pencil, #6f6c69);
     }
-
     .kv-checkout-order-total-value {
-        font-size: 1.3rem;
-        font-weight: 900;
-        color: #1591DC;
+        font-family: var(--font-graphik), sans-serif;
+        font-size: 22px;
+        font-weight: var(--font-weight-bold, 700);
+        color: var(--color-ember-red, #e34432);
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    .kv-captcha-group {
-        margin-bottom: 20px;
-    }
-
+    .kv-captcha-group { margin-bottom: 20px; }
     .kv-captcha-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 14px;
         align-items: center;
     }
-
     .kv-captcha-display {
-        background: #f8fafc;
-        border: 2px solid rgba(21, 145, 220, 0.2);
-        border-radius: 8px;
-        padding: 8px 0;
+        background: var(--surface-paper-canvas, #fefdfc);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        border-radius: 10px;
+        padding: 6px 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: auto;
     }
+    .kv-captcha-display img { max-width: 100%; height: 40px; border-radius: 6px; }
 
-    .kv-captcha-display img {
-        max-width: 100%;
-        height: 40px;
-        border-radius: 4px;
-    }
-
+    /* ---- Buttons ---- */
     .kv-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 9px;
         width: 100%;
         padding: 14px 20px;
         border: none;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 0.95rem;
+        border-radius: 10px;
+        font-family: var(--font-inter), sans-serif;
+        font-weight: 600;
+        font-size: 15px;
         cursor: pointer;
-        transition: all 0.3s ease;
         text-decoration: none;
+        transition: all 0.25s ease;
         margin-bottom: 12px;
     }
-
     .kv-btn-accent {
-        background: linear-gradient(135deg, #1591DC 0%, #2C5EAD 100%);
-        color: white;
+        background: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        box-shadow: 0 8px 20px rgba(227, 68, 50, 0.3);
     }
-
     .kv-btn-accent:hover {
-        opacity: 0.9;
+        background: var(--color-deep-ember, #cf3520);
+        color: var(--color-paper, #fefdfc);
         transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(21, 145, 220, 0.3);
+        box-shadow: 0 12px 26px rgba(227, 68, 50, 0.4);
     }
-
     .kv-btn-outline {
         background: transparent;
-        color: #0a0e27;
-        border: 2px solid rgba(21, 145, 220, 0.3);
+        color: var(--color-ink, #25221e);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
     }
-
     .kv-btn-outline:hover {
-        border-color: #1591DC;
-        color: #1591DC;
-        background: rgba(21, 145, 220, 0.05);
+        border-color: var(--color-ember-red, #e34432);
+        color: var(--color-deep-ember, #cf3520);
+        background: rgba(227, 68, 50, 0.05);
     }
+    .kv-btn-lg { padding: 15px 24px; font-size: 15px; }
+    .w-100 { width: 100%; }
 
-    .kv-btn i {
-        font-size: 1rem;
+    .kv-summary-assure {
+        margin-top: 6px;
+        text-align: center;
+        font-family: var(--font-inter), sans-serif;
+        font-size: 12px;
+        color: var(--color-graphite, #94928f);
     }
+    .kv-summary-assure i { color: var(--color-forest, #446c3d); margin-right: 4px; }
 
-    .kv-btn-lg {
-        padding: 16px 24px;
-        font-size: 1rem;
+    /* =========================================
+       PROGRESS STEPPER
+       ========================================= */
+    .kv-stepper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        max-width: 760px;
+        margin: 0 auto 40px;
+        padding: 18px 24px;
+        background: var(--color-paper, #fefdfc);
+        border: 1px solid var(--color-stone, #d7d6d4);
+        border-radius: 999px;
+        box-shadow: var(--shadow-subtle);
+        animation: kvFadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-
-    .w-100 {
-        width: 100%;
+    .kv-stepper__step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
     }
-
-    @media (max-width: 1300px) {
-        .kv-checkout-grid {
-            grid-template-columns: 1fr 320px;
-            gap: 30px;
-        }
-
-        .kv-page-title {
-            font-size: 2.5rem;
-        }
+    .kv-stepper__dot {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--color-cream, #fff6f0);
+        border: 1.5px solid var(--color-stone, #d7d6d4);
+        color: var(--color-ember-red, #e34432);
+        font-size: 14px;
+        transition: all 0.3s ease;
     }
-
-    @media (max-width: 1024px) {
-        .kv-checkout-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .kv-checkout-summary {
-            position: relative;
-            top: auto;
-        }
-
-        .kv-page-title {
-            font-size: 2rem;
-        }
+    .kv-stepper__step:hover .kv-stepper__dot {
+        background: var(--color-ember-red, #e34432);
+        border-color: var(--color-ember-red, #e34432);
+        color: var(--color-paper, #fefdfc);
+        transform: translateY(-2px);
     }
-
+    .kv-stepper__label {
+        font-family: var(--font-inter), sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-ink, #25221e);
+        white-space: nowrap;
+    }
+    .kv-stepper__bar {
+        flex: 1;
+        height: 2px;
+        min-width: 24px;
+        margin: 0 14px;
+        background: linear-gradient(90deg, var(--color-ember-red, #e34432), var(--color-stone, #d7d6d4));
+        border-radius: 2px;
+    }
     @media (max-width: 768px) {
-        .kv-checkout-section {
-            padding: 40px 16px;
-        }
-
-        .kv-page-hero {
-            min-height: 250px;
-        }
-
-        .kv-page-title {
-            font-size: 1.8rem;
-        }
-
-        .kv-checkout-form-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .kv-checkout-card {
-            padding: 20px;
-        }
-
-        .kv-checkout-card-title {
-            font-size: 1.1rem;
-        }
-
-        .kv-btn {
-            padding: 12px 16px;
-            font-size: 0.9rem;
-        }
-
-        .kv-captcha-wrapper {
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .kv-captcha-display {
-            min-height: 45px;
-        }
+        .kv-stepper { border-radius: 18px; flex-wrap: wrap; gap: 10px 0; }
+        .kv-stepper__label { display: none; }
+        .kv-stepper__bar { min-width: 16px; margin: 0 6px; }
     }
 
+    /* =========================================
+       ENTRANCE ANIMATIONS + EFFECTS
+       ========================================= */
+    @keyframes kvFadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes kvRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes kvGlowFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(28px,-30px) scale(1.06); } }
+
+    .kv-glow-mint { animation: kvGlowFloat 20s ease-in-out infinite; }
+    .kv-glow-sky  { animation: kvGlowFloat 26s ease-in-out infinite reverse; }
+
+    /* staggered card entrance */
+    .kv-checkout-form .kv-checkout-card { animation: kvRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .kv-checkout-form .kv-checkout-card:nth-child(1) { animation-delay: 0.05s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(2) { animation-delay: 0.13s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(3) { animation-delay: 0.21s; }
+    .kv-checkout-form .kv-checkout-card:nth-child(4) { animation-delay: 0.29s; }
+    .kv-checkout-summary { animation: kvRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
+
+    /* step badge subtle pop */
+    .kv-step {
+        box-shadow: 0 4px 12px rgba(227, 68, 50, 0.3);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .kv-checkout-card:hover .kv-step { transform: scale(1.08) rotate(-4deg); }
+
+    /* input: label lifts to ember on focus */
+    .kv-checkout-form-group { position: relative; }
+    .kv-checkout-form-group:focus-within > .kv-label { color: var(--color-deep-ember, #cf3520); }
+    .kv-input, .kv-select, .kv-textarea { will-change: transform; }
+    .kv-checkout-form-group:focus-within .kv-input,
+    .kv-checkout-form-group:focus-within .kv-select,
+    .kv-checkout-form-group:focus-within .kv-textarea { transform: translateY(-1px); }
+
+    /* place-order button sheen sweep */
+    .kv-btn-accent { position: relative; overflow: hidden; }
+    .kv-btn-accent::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -120%;
+        width: 60%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+        transform: skewX(-20deg);
+        transition: left 0.6s ease;
+    }
+    .kv-btn-accent:hover::after { left: 140%; }
+
+    /* checkbox row hover */
+    .kv-terms-group { transition: padding-left 0.2s ease; border-radius: 8px; }
+    .kv-terms-group:hover { padding-left: 6px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .kv-stepper, .kv-glow-mint, .kv-glow-sky,
+        .kv-checkout-form .kv-checkout-card, .kv-checkout-summary { animation: none !important; }
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1024px) {
+        .kv-checkout-grid { grid-template-columns: 1fr; }
+        .kv-checkout-summary { position: relative; top: auto; }
+    }
+    @media (max-width: 768px) {
+        .kv-checkout-section { padding: 40px 0 64px; }
+        .kv-checkout-form-grid { grid-template-columns: 1fr; }
+        .kv-checkout-card { padding: 20px; }
+    }
     @media (max-width: 480px) {
-        .kv-checkout-section {
-            padding: 30px 12px;
-        }
-
-        .kv-page-hero {
-            min-height: 200px;
-        }
-
-        .kv-page-title {
-            font-size: 1.5rem;
-        }
-
-        .kv-page-breadcrumb {
-            font-size: 0.85rem;
-        }
-
-        .kv-checkout-card {
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .kv-checkout-form-grid {
-            gap: 12px;
-        }
+        .kv-checkout-card { padding: 16px; margin-bottom: 18px; }
     }
 
-    /* Custom validation error styling */
+    /* Validation error states (errorClass: kv-error) */
     label.error,
     .kv-error {
-        color: #ff4757;
-        font-size: 0.85rem;
+        color: #e34432;
+        font-size: 0.82rem;
         font-weight: 500;
         margin-top: 6px;
         display: block;
     }
-
     input.error,
     textarea.error,
     select.error {
-        border-color: #ff4757;
-        background-color: rgba(255, 71, 87, 0.05);
+        border-color: #e34432;
+        background-color: rgba(227, 68, 50, 0.05);
     }
-
     input.error:focus,
     textarea.error:focus,
-    select.error:focus {
-        border-color: #ff4757;
+    select.error:focus { border-color: #e34432; }
+
+    /* expiry MM / YYYY errors flow on their own line below the row */
+    .kv-card-expiry { flex-wrap: wrap; }
+    #expiry_month-error,
+    #expiry_year-error {
+        position: static !important;
+        padding: 0 !important;
+        flex: 1 0 100%;
+        order: 9;
+        margin-top: 6px;
     }
-    #expiry_month-error {
-    position: absolute;
-    padding-top: 100px;
+
+    /* captcha error sits full-width below the input/image, not over the button */
+    .kv-captcha-display { order: 1; }
+    #captcha-error,
+    label#captcha-error {
+        position: static !important;
+        padding: 0 !important;
+        order: 2;
+        grid-column: 1 / -1;
+        margin-top: 8px;
+    }
+
+    .kv-terms-group {
+    position: relative;
+    padding-bottom: 30px; /* room for error */
 }
-#expiry_year-error {
-    position: absolute;
-    padding-top: 100px;
-    padding-left: 200px;
-}
-label#captcha-error {
-    position: absolute;
-    padding-top: 89px;
+
+.kv-terms-group .kv-error,
+.kv-terms-group label.error,
+#terms-error,
+#privacy-error,
+#delivery-error,
+#refund-error {
+    position: absolute !important;
+    left: 30px;
+    top: 100%;
+    margin-top: 5px;
+    width: calc(100% - 30px);
+    display: block;
 }
 </style>
 @endpush

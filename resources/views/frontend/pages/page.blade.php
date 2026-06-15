@@ -200,29 +200,38 @@
     /* elegant drop-cap on the opening paragraph */
     .policy-rich-text > p:first-of-type::first-letter {
         font-family: var(--font-graphik), Georgia, serif;
-        font-size: 3.4em;
-        font-weight: var(--font-weight-bold, 700);
-        float: left;
-        line-height: 0.78;
-        margin: 6px 14px 0 0;
-        color: var(--color-ember-red, #e34432);
-    }
-
-    /* Links inside editorial rich text */
+    /* Modern Sliding Underline Link Effects */
     .policy-rich-text a {
         color: var(--color-cobalt-link, #0f66ae);
         text-decoration: none;
-        border-bottom: 1px dashed var(--color-cobalt-link, #0f66ae);
-        transition: all 0.2s ease;
+        font-weight: var(--font-weight-medium, 500);
+        position: relative;
+        transition: color 0.25s ease;
+    }
+
+    .policy-rich-text a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1.5px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--color-ember-red, #e34432);
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
     }
 
     .policy-rich-text a:hover {
         color: var(--color-ember-red, #e34432);
-        border-bottom-color: var(--color-ember-red, #e34432);
-        border-bottom-style: solid;
     }
 
-    /* Ordered List Styling */
+    .policy-rich-text a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    /* Ordered List Styling with hover highlights */
     .policy-rich-text ol {
         margin-bottom: 24px !important;
         padding-left: 32px !important;
@@ -237,13 +246,24 @@
         margin-bottom: 24px !important;
         color: var(--color-pencil, #6f6c69) !important;
         font-size: var(--text-body, 16px);
+        transition: all 0.25s ease;
+    }
+
+    .policy-rich-text ol li:hover {
+        transform: translateX(4px);
+        color: var(--color-ink, #25221e) !important;
     }
 
     .policy-rich-text ol li::marker {
         font-family: var(--font-graphik), sans-serif;
         font-size: 1.6em;
         font-weight: var(--font-weight-bold, 700);
-        color: var(--color-ink, #25221e);
+        color: var(--color-ember-red, #e34432);
+        transition: color 0.25s ease;
+    }
+
+    .policy-rich-text ol li:hover::marker {
+        color: var(--color-deep-ember, #cf3520);
     }
 
     .policy-rich-text ol li h3 {
@@ -262,27 +282,19 @@
         margin-top: 24px !important;
         margin-bottom: 12px !important;
         font-size: 1.3em;
+        transition: color 0.25s ease;
     }
 
-    /* Unordered List Styling (Bullet points) */
+    .policy-rich-text ol li h4:hover {
+        color: var(--color-ember-red, #e34432);
+    }
+
+    /* Unordered List Styling (Bullet points) with micro-interactivity */
     .policy-rich-text ul {
-        margin: 6px 0 24px 20px !important;
+        margin: 16px 0 24px 20px !important;
         padding-left: 20px !important;
         list-style-type: disc !important;
         list-style-position: outside !important;
-    }
-
-    /* tighten the gap between a lead-in paragraph and its list */
-    .policy-rich-text p:has(+ ul),
-    .policy-rich-text p:has(+ ol) {
-        margin-bottom: 8px !important;
-    }
-
-    /* more breathing room between a section heading and its first paragraph */
-    .policy-rich-text ol li h3 + p,
-    .policy-rich-text h2 + p,
-    .policy-rich-text h3 + p {
-        margin-top: 16px !important;
     }
 
     .policy-rich-text ul li {
@@ -292,10 +304,21 @@
         margin-bottom: 8px !important;
         color: var(--color-pencil, #6f6c69) !important;
         font-size: var(--text-body-sm, 14px);
+        transition: all 0.2s ease;
+    }
+
+    .policy-rich-text ul li:hover {
+        transform: translateX(4px);
+        color: var(--color-ink, #25221e) !important;
     }
 
     .policy-rich-text ul li::marker {
         color: var(--color-ember-red, #e34432) !important;
+        transition: color 0.2s ease;
+    }
+
+    .policy-rich-text ul li:hover::marker {
+        color: var(--color-deep-ember, #cf3520) !important;
     }
 
     .policy-rich-text li {
@@ -303,7 +326,50 @@
         color: var(--color-pencil, #6f6c69) !important;
     }
 
-    /* Table Styling */
+    /* Metadata / Company Details Container in Raw HTML */
+    .policy-rich-text .contact-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin: 32px 0 !important;
+        padding: 24px !important;
+        background-color: var(--surface-cream-wash, #fff6f0) !important;
+        border: 1px solid var(--color-stone, #d7d6d4) !important;
+        border-radius: var(--radius-cards, 8px) !important;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    }
+
+    .policy-rich-text .contact-content:hover {
+        border-color: var(--color-ember-red, #e34432) !important;
+        box-shadow: var(--shadow-subtle, 0px 1px 0px 0px rgba(37, 34, 30, 0.04)) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    .policy-rich-text .contact-content .content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .policy-rich-text .contact-content .title {
+        font-family: var(--font-graphik), sans-serif !important;
+        font-size: var(--text-body-sm, 14px) !important;
+        font-weight: var(--font-weight-bold, 700) !important;
+        color: var(--color-deep-ember, #cf3520) !important;
+        margin-top: 0 !important;
+        margin-bottom: 8px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .policy-rich-text .contact-content p,
+    .policy-rich-text .contact-content span {
+        font-family: var(--font-inter), sans-serif !important;
+        font-size: var(--text-body-sm, 14px) !important;
+        color: var(--color-pencil, #6f6c69) !important;
+        margin: 0 !important;
+    }
+
+    /* Table Styling with scale transitions and elevated shadows */
     .policy-rich-text table {
         width: 100% !important;
         margin: 32px 0 !important;
@@ -312,6 +378,12 @@
         box-shadow: 0 4px 12px rgba(37, 34, 30, 0.03) !important;
         border-radius: var(--radius-cards, 8px) !important;
         overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .policy-rich-text table:hover {
+        box-shadow: 0 8px 24px rgba(37, 34, 30, 0.08) !important;
+        transform: translateY(-2px) !important;
     }
 
     .policy-rich-text table tr {
@@ -319,16 +391,16 @@
     }
 
     .policy-rich-text table tr:nth-child(odd) {
-        background-color: #faf9f8 !important;
+        background-color: var(--surface-paper-canvas, #fefdfc) !important;
     }
 
     .policy-rich-text table tr:nth-child(even) {
-        background-color: #ffffff !important;
+        background-color: #fcfbfa !important;
     }
 
     .policy-rich-text table tr:hover {
         background-color: var(--surface-cream-wash, #fff6f0) !important;
-        transition: background-color 0.3s ease !important;
+        transition: background-color 0.25s ease !important;
     }
 
     .policy-rich-text table td {
@@ -351,16 +423,23 @@
         font-weight: var(--font-weight-bold, 700) !important;
     }
 
-    .policy-rich-text table img {
+    .policy-rich-text table img,
+    .policy-rich-text img {
         max-width: 100% !important;
         height: auto !important;
         border-radius: var(--radius-images, 15px) !important;
         box-shadow: var(--shadow-subtle, 0px 1px 0px 0px rgba(37, 34, 30, 0.04)) !important;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    }
+
+    .policy-rich-text img:hover {
+        transform: scale(1.02) !important;
+        box-shadow: var(--shadow-lg, 0px 14px 19px -9px rgba(37, 34, 30, 0.07), 0px 10px 48px 0px rgba(37, 34, 30, 0.18)) !important;
     }
 
     .policy-rich-text table th {
         background: linear-gradient(135deg, var(--color-ember-red, #e34432) 0%, var(--color-deep-ember, #cf3520) 100%) !important;
-        color: white !important;
+        color: #ffffff !important;
         padding: 18px 20px !important;
         font-weight: var(--font-weight-bold, 700) !important;
         text-align: left !important;
@@ -383,7 +462,7 @@
     @media (max-width: 768px) {
         .policy-content-section { padding: 48px 0 64px; }
         .premium-rich-text-card {
-            padding: 32px 22px;
+            padding: var(--spacing-24, 24px);
             border-radius: 14px;
         }
         .premium-rich-text-card::after { font-size: 48px; top: 18px; right: 20px; }
