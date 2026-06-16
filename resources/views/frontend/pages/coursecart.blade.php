@@ -200,14 +200,14 @@
 
                         @if($enough)
                             <button type="button" onclick="document.getElementById('redeemPointsForm').submit();" class="ccart-action-btn ccart-action-btn--checkout ccart-action-btn--block">
-                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') }}
+                                <i class="fas fa-lock"></i> {{ __('common.cart.redeem_points') }}
                             </button>
                         @else
                             <a href="{{ route('points.topup') }}" class="ccart-action-btn ccart-action-btn--topup ccart-action-btn--block">
                                 <i class="fas fa-plus-circle"></i> {{ __('common.points_top_up') }}
                             </a>
                             <button type="button" class="ccart-action-btn ccart-action-btn--checkout ccart-action-btn--block ccart-action-btn--disabled" disabled>
-                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') }} ({{ __('common.coursecart.low_credits') }})
+                                <i class="fas fa-lock"></i> {{ __('common.cart.redeem_points') }} ({{ __('common.coursecart.low_credits') }})
                             </button>
                         @endif
 
