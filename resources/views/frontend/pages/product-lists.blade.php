@@ -370,7 +370,6 @@
     }
     .search-icon {
         position: absolute;
-        left: 16px;
         color: var(--color-graphite, #94928f);
         font-size: 14px;
         pointer-events: none;
