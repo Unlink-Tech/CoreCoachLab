@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+﻿@extends('frontend.layouts.main')
 @section('title', __('common.instructors'))
 @section('main-content')
 
@@ -54,14 +54,14 @@
                     @else
                         <h3 class="fw-800 text-dark mb-4">Meet Our Instructors</h3>
                         <p class="fw-bold text-primary mb-3">Industry Leaders. Passionate Educators. Real-World Experience.</p>
-                        <p class="text-muted lh-lg mb-3">At <strong>Learnmtx.com</strong>, our instructors are more than just teachers — they are seasoned professionals, innovators, and mentors who bring global expertise and practical insight into every course. With diverse backgrounds spanning software development, data analytics, cybersecurity, cloud, design, and productivity tools, they are committed to delivering knowledge that translates into real-world success.</p>
+                        <p class="text-muted lh-lg mb-3">At <strong>Learnmtx.com</strong>, our instructors are more than just teachers - they are seasoned professionals, innovators, and mentors who bring global expertise and practical insight into every course. With diverse backgrounds spanning software development, data analytics, cybersecurity, cloud, design, and productivity tools, they are committed to delivering knowledge that translates into real-world success.</p>
 
-                        <p class="text-muted lh-lg mb-4">Each instructor is carefully selected for their mastery in the subject area and their ability to engage, inspire, and guide learners at every level — from complete beginners to advanced professionals. Their teaching style combines clear explanations with hands-on learning, project-based exercises, and real-life scenarios that help students build job-ready skills.</p>
+                        <p class="text-muted lh-lg mb-4">Each instructor is carefully selected for their mastery in the subject area and their ability to engage, inspire, and guide learners at every level - from complete beginners to advanced professionals. Their teaching style combines clear explanations with hands-on learning, project-based exercises, and real-life scenarios that help students build job-ready skills.</p>
 
                         <h5 class="fw-bold text-dark mb-3">Our Instructor Team Includes:</h5>
                         <ul class="text-muted lh-lg mb-4">
                             <li class="mb-2"><strong>Software Engineers & Developers</strong> from top tech firms, bringing expertise in Python, Java, C++, mobile development, full-stack engineering, and emerging languages like Rust and Go.</li>
-                            <li class="mb-2"><strong>Data Scientists & Analysts</strong> skilled in Python, R, Power BI, SQL, Tableau, and machine learning — helping learners build insight-driven decision-making abilities.</li>
+                            <li class="mb-2"><strong>Data Scientists & Analysts</strong> skilled in Python, R, Power BI, SQL, Tableau, and machine learning - helping learners build insight-driven decision-making abilities.</li>
                             <li class="mb-2"><strong>Cybersecurity Experts & Ethical Hackers</strong> with practical training in network defense, penetration testing, malware analysis, and ethical hacking using real tools like Kali Linux and Metasploit.</li>
                             <li class="mb-2"><strong>Cloud Architects & DevOps Engineers</strong> certified in AWS, Azure, and GCP, sharing real deployment experience and automation workflows with Docker, Kubernetes, Terraform, and Jenkins.</li>
                             <li class="mb-2"><strong>AI & ML Researchers</strong> with backgrounds in TensorFlow, NLP, deep learning, computer vision, and chatbot development, emphasizing cutting-edge technology and responsible AI practices.</li>
@@ -69,7 +69,7 @@
                             <li class="mb-2"><strong>IT Support & Networking Professionals</strong> with real-world knowledge in Cisco systems, CompTIA standards, Linux/Windows server administration, and cloud-based networking.</li>
                             <li><strong>Productivity & Office Tool Experts</strong> helping learners master essential software like Excel, PowerPoint, Word, Google Workspace, Trello, and project management tools.</li>
                         </ul>
-                        <p class="fw-bold text-dark pt-3 border-top">Whether you're preparing for a new career, enhancing your current skill set, or exploring something entirely new — our instructors are here to guide your journey with authenticity, clarity, and passion.</p>
+                        <p class="fw-bold text-dark pt-3 border-top">Whether you're preparing for a new career, enhancing your current skill set, or exploring something entirely new - our instructors are here to guide your journey with authenticity, clarity, and passion.</p>
                     @endif
                 </div>
             </div>
@@ -79,3 +79,4 @@
 
 
 @endsection
+

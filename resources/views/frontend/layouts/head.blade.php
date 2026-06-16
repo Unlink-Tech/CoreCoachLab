@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- Meta: Character Set & Basic -->
@@ -7,15 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 	<!-- Meta: Title & Description -->
-	<title>@yield('title', 'Artify Academy – Online Art Classes & Digital Illustration Courses')</title>
-	<meta name="title" content="Artify Academy – Professional Online Art Courses">
+	<title>@yield('title', 'Artify Academy - Online Art Classes & Digital Illustration Courses')</title>
+	<meta name="title" content="Artify Academy - Professional Online Art Courses">
 	<meta name="description" content="Learn professional art skills at Artify Academy. Explore online courses in digital illustration, traditional fine arts, character design, graphic design, and advanced drawing techniques.">
 	<meta name="keywords" content="online art classes, digital illustration, character design, graphic design, drawing courses, painting tutorials, concept art, animation design, artistic education, professional art training">
 	<meta name="author" content="Artify Academy">
 
 	<!-- Meta: Open Graph / Facebook -->
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="@yield('title', 'Artify Academy – Professional Online Art Courses')">
+	<meta property="og:title" content="@yield('title', 'Artify Academy - Professional Online Art Courses')">
 	<meta property="og:description" content="Master digital illustration, character design, traditional fine arts, graphic design, and advanced drawing at Artify Academy. Learn from industry professionals.">
 	@if(isset($og_image))
 		<meta property="og:image" content="{{ $og_image }}">
@@ -28,7 +28,7 @@
 
 	<!-- Meta: Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="@yield('title', 'Artify Academy – Professional Online Art Courses')">
+	<meta name="twitter:title" content="@yield('title', 'Artify Academy - Professional Online Art Courses')">
 	<meta name="twitter:description" content="Master digital illustration, character design, traditional fine arts, graphic design, and advanced drawing at Artify Academy. Learn from industry professionals.">
 	@if(isset($og_image))
 		<meta name="twitter:image" content="{{ $og_image }}">
@@ -64,3 +64,4 @@
 	<!-- Cookie Consent Scripts -->
 	@cookieconsentscripts
 </head>
+
