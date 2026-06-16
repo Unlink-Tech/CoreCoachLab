@@ -4,8 +4,8 @@
 @section('main-content')
 
 <x-breadcrumb
-    :title="__('common.cart')"
-    :routes="[['label' => __('common.cart')]]"
+    :title="__('common.cart.title')"
+    :routes="[['label' => __('common.cart.title')]]"
 />
 
 <section class="cart-redesign">

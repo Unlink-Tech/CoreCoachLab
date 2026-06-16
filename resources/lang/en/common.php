@@ -248,6 +248,20 @@ return [
     ),
 
     // ============================================
+    // COURSE CART PAGE
+    // ============================================
+    'coursecart' => array(
+        'page_title' => 'Course Cart',
+        'course_enrollment' => 'Course Enrollment',
+        'wallet_topup' => 'Wallet Top Up',
+        'sufficient_credits' => 'Sufficient Credits',
+        'have_enough_credits' => 'You have enough credits to complete this enrollment.',
+        'insufficient_credits' => 'Insufficient Credits',
+        'need_more_credits' => 'You need :amount more CREDS for this purchase.',
+        'low_credits' => 'Low Credits',
+    ),
+
+    // ============================================
     // ORDER FAILED PAGE
     // ============================================
     'order_failed' => array(
@@ -464,6 +478,32 @@ return [
     'faq_a9' => 'Yes, course materials are available for download for offline viewing.',
     'faq_q10' => 'How long do I have access to courses?',
     'faq_a10' => 'You have lifetime access to all purchased courses with no expiration.',
+
+    // ============================================
+    // INDEX/HOMEPAGE
+    // ============================================
+    'index' => array(
+        'watch_showreel' => 'Watch Showreel',
+        'unlock_courses' => 'Unlock Premium Courses',
+        'access_paths' => 'Access Learning Paths',
+        'earn_rewards' => 'Earn Bonus Rewards',
+        'accelerate_growth' => 'Accelerate Your Growth',
+        'pathways_title' => 'Creative Pathways',
+        'pathways_subtitle' => 'Bonus multipliers grow as you commit to your artistic journey',
+        'tier_standard_title' => 'Standard',
+        'tier_standard_desc' => 'Ideal for beginners starting their learning journey',
+        'tier_premium_title' => 'Premium',
+        'tier_premium_desc' => 'Most popular for active learners building consistency',
+        'tier_elite_title' => 'Elite',
+        'tier_elite_desc' => 'For serious students looking to master their craft',
+        'tier_vip_title' => 'VIP',
+        'tier_vip_desc' => 'Maximum rewards, comprehensive pathway access',
+        'calc_label' => 'Set Your Learning Commitment',
+        'base_credits' => 'Base Learning Credits',
+        'multiplier_bonus' => 'Multiplier Bonus',
+        'unlocking_potential' => 'Unlocking Potential',
+        'credits_unlocked' => 'Credits Unlocked',
+    ),
 
     // ============================================
     // MISC/UTILITY

@@ -1,11 +1,11 @@
 @extends('frontend.layouts.main')
 @section('page-body-class', 'page-coursecart')
-@section('title', 'Course Cart')
+@section('title', __('common.coursecart.page_title'))
 @section('main-content')
 
 <x-breadcrumb
-    :title="__('common.cart')"
-    :routes="[['label' => __('common.cart')]]"
+    :title="__('common.cart.title')"
+    :routes="[['label' => __('common.cart.title')]]"
 />
 
 @auth
@@ -30,7 +30,7 @@
                 <div class="ccart-balance-card__text">
                     <span class="ccart-balance-card__label">{{ __('common.available_credits') }}</span>
                     <span class="ccart-balance-card__value">
-                        {{ number_format($points) }} <span class="ccart-balance-card__currency">CREDS</span>
+                        {{ number_format($points) }} <span class="ccart-balance-card__currency">{{ __('common.account.creds') }}</span>
                     </span>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                                         <div class="ccart-item-card__media">
                                             <img src="{{ $item_image }}" alt="{{ $item_title }}">
                                             <span class="ccart-item-card__badge ccart-item-card__badge--course">
-                                                <i class="fas fa-signal"></i> {{ $level ? $level->skill_level : 'Course' }}
+                                                <i class="fas fa-signal"></i> {{ $level ? $level->skill_level : __('common.courses') }}
                                             </span>
                                         </div>
                                     @else
@@ -92,7 +92,7 @@
                                         <div class="ccart-item-card__credits-visual">
                                             <i class="fas fa-coins"></i>
                                             <span class="ccart-item-card__credits-amount">+{{ number_format($cart->points) }}</span>
-                                            <span class="ccart-item-card__credits-unit">CREDS</span>
+                                            <span class="ccart-item-card__credits-unit">{{ __('common.account.creds') }}</span>
                                         </div>
                                     @endif
 
@@ -101,9 +101,9 @@
                                         <a href="{{ $item_link }}" class="ccart-item-card__title">{{ $item_title }}</a>
                                         <div class="ccart-item-card__meta">
                                             @if($is_course)
-                                                <span class="ccart-item-card__type"><i class="fas fa-book-open"></i> Course Enrollment</span>
+                                                <span class="ccart-item-card__type"><i class="fas fa-book-open"></i> {{ __('common.coursecart.course_enrollment') }}</span>
                                             @else
-                                                <span class="ccart-item-card__type"><i class="fas fa-wallet"></i> Wallet Top Up</span>
+                                                <span class="ccart-item-card__type"><i class="fas fa-wallet"></i> {{ __('common.coursecart.wallet_topup') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                                         </span>
                                         <span class="ccart-item-card__cost-value">
                                             @if($is_course)
-                                                <span class="cost-creds"><i class="fas fa-coins"></i> {{ number_format($cart->points) }} <span class="cost-unit">CREDS</span></span>
+                                                <span class="cost-creds"><i class="fas fa-coins"></i> {{ number_format($cart->points) }} <span class="cost-unit">{{ __('common.account.creds') }}</span></span>
                                             @else
                                                 <span class="cost-price">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
                                             @endif
@@ -172,7 +172,7 @@
                             <div class="ccart-sidebar__row ccart-sidebar__row--total">
                                 <span class="ccart-sidebar__row-label">{{ __('common.total') }}</span>
                                 <span class="ccart-sidebar__row-value">
-                                    <i class="fas fa-coins"></i> {{ number_format($total_points) }} <span class="total-unit">CREDS</span>
+                                    <i class="fas fa-coins"></i> {{ number_format($total_points) }} <span class="total-unit">{{ __('common.account.creds') }}</span>
                                 </span>
                             </div>
                         </div>
@@ -184,11 +184,11 @@
                             </div>
                             <div class="ccart-status-alert__content">
                                 @if($enough)
-                                    <span class="ccart-status-alert__title">Sufficient Credits</span>
-                                    <span class="ccart-status-alert__desc">You have enough credits to complete this enrollment.</span>
+                                    <span class="ccart-status-alert__title">{{ __('common.coursecart.sufficient_credits') }}</span>
+                                    <span class="ccart-status-alert__desc">{{ __('common.coursecart.have_enough_credits') }}</span>
                                 @else
-                                    <span class="ccart-status-alert__title">Insufficient Credits</span>
-                                    <span class="ccart-status-alert__desc">You need {{ number_format($total_points - $points) }} more CREDS for this purchase.</span>
+                                    <span class="ccart-status-alert__title">{{ __('common.coursecart.insufficient_credits') }}</span>
+                                    <span class="ccart-status-alert__desc">{{ __('common.coursecart.need_more_credits', ['amount' => number_format($total_points - $points)]) }}</span>
                                 @endif
                             </div>
                         </div>
@@ -200,14 +200,14 @@
 
                         @if($enough)
                             <button type="button" onclick="document.getElementById('redeemPointsForm').submit();" class="ccart-action-btn ccart-action-btn--checkout ccart-action-btn--block">
-                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') ?? 'Purchase' }}
+                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') }}
                             </button>
                         @else
                             <a href="{{ route('points.topup') }}" class="ccart-action-btn ccart-action-btn--topup ccart-action-btn--block">
                                 <i class="fas fa-plus-circle"></i> {{ __('common.points_top_up') }}
                             </a>
                             <button type="button" class="ccart-action-btn ccart-action-btn--checkout ccart-action-btn--block ccart-action-btn--disabled" disabled>
-                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') ?? 'Purchase' }} (Low Credits)
+                                <i class="fas fa-lock"></i> {{ __('common.redeem_points') }} ({{ __('common.coursecart.low_credits') }})
                             </button>
                         @endif
 
@@ -217,7 +217,7 @@
                     @else
                         <div class="ccart-sidebar__empty">
                             <i class="fas fa-info-circle"></i>
-                            <p>{{ __('common.summary_empty') ?? 'Your summary will appear once you add items to the cart.' }}</p>
+                            <p>{{ __('common.cart.summary_empty') }}</p>
                         </div>
                     @endif
                 </aside>

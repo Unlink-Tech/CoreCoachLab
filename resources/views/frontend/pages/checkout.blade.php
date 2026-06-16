@@ -6,7 +6,7 @@
     <x-breadcrumb
         :title="__('common.checkout')"
         :routes="[
-            ['label' => __('common.cart'), 'url' => route('cart')],
+            ['label' => __('common.cart.title'), 'url' => route('cart')],
             ['label' => __('common.checkout')]
         ]"
     />
@@ -235,7 +235,7 @@
                                 <span>{{__('common.card_bill_description')}}</span>
                             </div>
                             <div class="kv-payment-methods">
-                                <img src="{{ asset('assets/images/payment.webp') }}" alt="Payment Methods" loading="lazy">
+                                <img src="{{ asset('assets/images/payment.webp') }}" alt="{{ __('common.cart.accepted_payment_methods') }}" loading="lazy">
                             </div>
                         </div>
 
@@ -364,7 +364,7 @@
                             </a>
 
                             <div class="kv-summary-assure">
-                                <i class="fas fa-lock"></i> {{ __('common.secure_checkout') ?? 'Secure & encrypted checkout' }}
+                                <i class="fas fa-lock"></i> {{ __('common.secure_checkout') }}
                             </div>
                         </div>
                     </div>
