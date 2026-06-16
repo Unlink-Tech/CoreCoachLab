@@ -537,6 +537,52 @@ return [
     ),
 
     // ============================================
+    // MESSAGES & NOTIFICATIONS
+    // ============================================
+    'messages' => array(
+        'success' => 'Success',
+        'error' => 'Error',
+        'warning' => 'Warning',
+        'info' => 'Information',
+        'please_try_again' => 'Please try again',
+        'something_went_wrong' => 'Something went wrong. Please try again later',
+        'email_configuration_error' => 'Email configuration error. Please contact support',
+        'message_sent_successfully' => 'Your message has been sent successfully. We\'ll be in touch soon!',
+        'password_successfully_changed' => 'Your password has been successfully changed',
+        'language_changed' => 'Language changed successfully to',
+        'currency_changed' => 'Currency changed successfully to',
+        'product_added_to_cart' => 'Course added to cart successfully',
+        'product_removed_from_cart' => 'Course removed from cart',
+        'cart_updated_successfully' => 'Cart updated successfully',
+        'points_added_to_cart' => 'Credits added to cart successfully',
+        'congratulations_enrollment' => 'Congratulations! You have successfully enrolled using your credits. Check your dashboard to access your courses.',
+        'invalid_products' => 'Invalid course selection',
+        'out_of_stock' => 'This course is currently unavailable',
+        'stock_not_sufficient' => 'Insufficient stock available',
+        'tables_updated' => 'Tables updated successfully',
+        'profile_updated' => 'Profile updated successfully',
+        'setting_updated' => 'Settings updated successfully',
+        'storage_linked' => 'Storage successfully linked',
+        'banner_added' => 'Banner added successfully',
+        'banner_updated' => 'Banner updated successfully',
+        'banner_deleted' => 'Banner deleted successfully',
+        'brand_created' => 'Brand created successfully',
+        'brand_updated' => 'Brand updated successfully',
+        'brand_deleted' => 'Brand deleted successfully',
+        'brand_not_found' => 'Brand not found',
+        'not_found' => 'Resource not found',
+        'unauthorized' => 'You are not authorized to perform this action',
+        'payment_successful' => 'Payment successful! Thank you for your purchase.',
+        'payment_failed' => 'Payment failed. Please try again or use a different payment method.',
+        'order_placed' => 'Order placed successfully',
+        'order_cancelled' => 'Order has been cancelled',
+        'cart_empty' => 'Your cart is empty',
+        'login_required' => 'Please log in to continue',
+        'enrollment_successful' => 'You have been successfully enrolled in this course',
+        'already_enrolled' => 'You are already enrolled in this course',
+    ),
+
+    // ============================================
     // MISC/UTILITY
     // ============================================
     'no_records_found' => 'No records found',

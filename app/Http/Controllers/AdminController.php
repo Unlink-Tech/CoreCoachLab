@@ -40,10 +40,10 @@ class AdminController extends Controller
         $data=$request->all();
         $status=$user->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Successfully updated your profile');
+            request()->session()->flash('success', __('common.messages.profile_updated'));
         }
         else{
-            request()->session()->flash('error','Please try again!');
+            request()->session()->flash('error', __('common.messages.please_try_again'));
         }
         return redirect()->back();
     }
@@ -70,10 +70,10 @@ class AdminController extends Controller
         // return $settings;
         $status=$settings->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Setting successfully updated');
+            request()->session()->flash('success', __('common.messages.setting_updated'));
         }
         else{
-            request()->session()->flash('error','Please try again');
+            request()->session()->flash('error', __('common.messages.please_try_again'));
         }
         return redirect()->route('admin');
     }
@@ -91,7 +91,7 @@ class AdminController extends Controller
 
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
-        return redirect()->route('admin')->with('success','Password successfully changed');
+        return redirect()->route('admin')->with('success', __('common.messages.password_successfully_changed'));
     }
 
     // Pie chart
@@ -126,7 +126,7 @@ class AdminController extends Controller
             //Regenerate the storage link folder
             try{
                 Artisan::call('storage:link');
-                request()->session()->flash('success', 'Successfully storage linked.');
+                request()->session()->flash('success', __('common.messages.storage_linked'));
                 return redirect()->back();
             }
             catch(\Exception $exception){
@@ -137,7 +137,7 @@ class AdminController extends Controller
         else{
             try{
                 Artisan::call('storage:link');
-                request()->session()->flash('success', 'Successfully storage linked.');
+                request()->session()->flash('success', __('common.messages.storage_linked'));
                 return redirect()->back();
             }
             catch(\Exception $exception){

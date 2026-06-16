@@ -120,7 +120,7 @@ class PointsController extends Controller
             $cart->save();
         }
 
-        return redirect()->route('cart')->with('success', 'Points added to cart successfully.');
+        return redirect()->route('cart')->with('success', __('common.messages.points_added_to_cart'));
     }
 
     /**
@@ -130,14 +130,14 @@ class PointsController extends Controller
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login.form')->with('error', 'Please login to redeem your points.');
+            return redirect()->route('login.form')->with('error', __('common.messages.login_required'));
         }
 
         // Calculate total points required for the current cart
         $totalPointsNeeded = Helper::totalCartPoints();
-        
+
         if ($totalPointsNeeded <= 0) {
-            return back()->with('error', 'Your cart does not contain any course enrollments.');
+            return back()->with('error', __('common.messages.cart_empty'));
         }
 
         // Security Check: Ensure user has enough accumulated points
@@ -188,11 +188,11 @@ class PointsController extends Controller
 
             DB::commit();
 
-            return redirect()->route('coursecart')->with('success', 'Congratulations! You have successfully enrolled using your points. Check your dashboard to access your courses.');
+            return redirect()->route('coursecart')->with('success', __('common.messages.congratulations_enrollment'));
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', 'An error occurred during enrollment: ' . $e->getMessage());
+            return back()->with('error', __('common.messages.something_went_wrong'));
         }
     }
 }

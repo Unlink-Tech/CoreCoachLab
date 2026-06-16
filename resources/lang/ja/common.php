@@ -537,6 +537,52 @@ return [
     ),
 
     // ============================================
+    // メッセージと通知
+    // ============================================
+    'messages' => array(
+        'success' => '成功',
+        'error' => 'エラー',
+        'warning' => '警告',
+        'info' => '情報',
+        'please_try_again' => 'もう一度試してください',
+        'something_went_wrong' => '何か問題が発生しました。後でもう一度お試しください',
+        'email_configuration_error' => 'メール設定エラー。サポートにお問い合わせください',
+        'message_sent_successfully' => 'メッセージが正常に送信されました。間もなくお返事いたします！',
+        'password_successfully_changed' => 'パスワードが正常に変更されました',
+        'language_changed' => '言語が正常に次に変更されました',
+        'currency_changed' => '通貨が正常に次に変更されました',
+        'product_added_to_cart' => 'コースがカートに正常に追加されました',
+        'product_removed_from_cart' => 'コースがカートから削除されました',
+        'cart_updated_successfully' => 'カートが正常に更新されました',
+        'points_added_to_cart' => 'クレジットがカートに正常に追加されました',
+        'congratulations_enrollment' => 'おめでとうございます。クレジットを使用して正常に登録されました。ダッシュボードにアクセスしてコースを確認してください。',
+        'invalid_products' => '無効なコース選択',
+        'out_of_stock' => 'このコースは現在利用できません',
+        'stock_not_sufficient' => '十分な在庫がありません',
+        'tables_updated' => 'テーブルが正常に更新されました',
+        'profile_updated' => 'プロフィールが正常に更新されました',
+        'setting_updated' => '設定が正常に更新されました',
+        'storage_linked' => 'ストレージが正常にリンクされました',
+        'banner_added' => 'バナーが正常に追加されました',
+        'banner_updated' => 'バナーが正常に更新されました',
+        'banner_deleted' => 'バナーが正常に削除されました',
+        'brand_created' => 'ブランドが正常に作成されました',
+        'brand_updated' => 'ブランドが正常に更新されました',
+        'brand_deleted' => 'ブランドが正常に削除されました',
+        'brand_not_found' => 'ブランドが見つかりません',
+        'not_found' => 'リソースが見つかりません',
+        'unauthorized' => 'このアクションを実行する権限がありません',
+        'payment_successful' => '支払いが成功しました。ご購入ありがとうございます。',
+        'payment_failed' => '支払いが失敗しました。もう一度お試いただくか、別の支払い方法を使用してください。',
+        'order_placed' => '注文が正常に行われました',
+        'order_cancelled' => '注文がキャンセルされました',
+        'cart_empty' => 'カートが空です',
+        'login_required' => '続行するにはログインしてください',
+        'enrollment_successful' => 'このコースに正常に登録されました',
+        'already_enrolled' => 'このコースに既に登録されています',
+    ),
+
+    // ============================================
     // その他/ユーティリティ
     // ============================================
     'no_records_found' => 'レコードが見つかりません',
