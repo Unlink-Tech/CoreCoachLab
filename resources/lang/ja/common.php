@@ -24,6 +24,9 @@ return [
     'this_link_does_not' => 'このリンクは存在しないようです。',
     'please_go' => 'ホームページに戻ってください。',
     'go_to_homepage' => 'ホームページへ',
+    'name' => '名前',
+    'dont_have_account' => 'Artifyは初めてですか？',
+    'sign_up_now' => '今すぐサインアップ',
 
     // ============================================
     // ヘッダー & ナビゲーション
@@ -737,6 +740,7 @@ return [
     'gal_hero_title' => 'あなたのクリエイティブな可能性を解放する',
     'gal_hero_subtitle' => '業界プロフェッショナルからデジタルアート、デザイン、クリエイティブスキルを学びます。',
     'gal_hero_cta' => 'コースを確認',
+    'gal_why_badge' => 'Artifyの特徴',
     'gal_why_title' => 'Artifyを選ぶ理由',
     'gal_why_expert_title' => '専門講師の指導',
     'gal_why_expert_desc' => '実務経験を持つ経験豊富なプロフェッショナルから学びます。',

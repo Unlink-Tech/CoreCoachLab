@@ -24,6 +24,9 @@ return [
     'this_link_does_not' => 'This link does not seem to exist.',
     'please_go' => 'Please go to the homepage again.',
     'go_to_homepage' => 'Go To Homepage',
+    'name' => 'Name',
+    'dont_have_account' => 'New to Artify?',
+    'sign_up_now' => 'Sign up now',
 
     // ============================================
     // HEADER & NAVIGATION
@@ -737,6 +740,7 @@ return [
     'gal_hero_title' => 'Unlock Your Creative Potential',
     'gal_hero_subtitle' => 'Learn digital art, design, and creative skills from industry professionals.',
     'gal_hero_cta' => 'Explore Courses',
+    'gal_why_badge' => 'Why Artify',
     'gal_why_title' => 'Why Choose Artify?',
     'gal_why_expert_title' => 'Expert Instruction',
     'gal_why_expert_desc' => 'Learn from experienced professionals with real-world expertise.',
