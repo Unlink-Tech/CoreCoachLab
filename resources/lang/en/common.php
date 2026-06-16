@@ -390,7 +390,7 @@ return [
     'order_number' => 'Order Number',
     'order_placed' => 'Order Placed',
     'no_orders_found' => 'No orders found',
-    'no_past_orders' => 'No orders yet. Ready to unlock your creative potential?',
+    'no_past_orders' => 'No past orders found',
     'orders' => 'Orders',
     'transaction_id' => 'Transaction ID',
     'transaction_details' => 'Transaction Details',
@@ -526,6 +526,14 @@ return [
         'redeemed_courses_title' => 'Your Enrolled Courses',
         'no_redeemed_courses' => 'You haven\'t enrolled in any courses yet. Explore our catalog to begin!',
         'empty_icon_label' => 'No data available',
+    ),
+
+    // ============================================
+    // ORDER SHOW PAGE
+    // ============================================
+    'order_show' => array(
+        'page_title' => 'Order Details',
+        'payment_method_credit_card' => 'Credit Card',
     ),
 
     // ============================================

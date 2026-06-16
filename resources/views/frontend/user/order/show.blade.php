@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('page-body-class', 'page-order-show')
-@section('title', 'Order Details')
+@section('title', __('common.order_show.page_title'))
 
 @section('main-content')
 
@@ -52,7 +52,7 @@
                 <!-- Card Header with Brand & Actions -->
                 <div class="invoice-card__header mb-5">
                     <div class="invoice-brand">
-                        <span class="invoice-brand__logo">ARTIFY STUDIO</span>
+                        <span class="invoice-brand__logo">{{ __('common.dashboard.member_card_title') }}</span>
                         <h2 class="invoice-brand__title mt-1">{{ __('common.order_information') }}</h2>
                         <div class="d-flex flex-wrap gap-2 mt-2 align-items-center">
                             <span class="order-number-badge">#{{ $order->order_number }}</span>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="detail-row">
                                 <span class="detail-label">{{ __('common.payment_method') }}</span>
-                                <span class="detail-value">Credit Card</span>
+                                <span class="detail-value">{{ __('common.order_show.payment_method_credit_card') }}</span>
                             </div>
                         </div>
                     </div>

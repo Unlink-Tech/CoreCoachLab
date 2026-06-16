@@ -390,7 +390,7 @@ return [
     'order_number' => '注文番号',
     'order_placed' => '注文完了',
     'no_orders_found' => '注文が見つかりません',
-    'no_past_orders' => 'まだ注文がありません。クリエイティブなポテンシャルのロックを解除する準備はできていますか？',
+    'no_past_orders' => 'まだ注文がありません',
     'orders' => '注文',
     'transaction_id' => '取引ID',
     'transaction_details' => '取引詳細',
@@ -526,6 +526,14 @@ return [
         'redeemed_courses_title' => '登録済みコース',
         'no_redeemed_courses' => 'まだコースに登録していません。カタログを探索して開始しましょう！',
         'empty_icon_label' => 'データがありません',
+    ),
+
+    // ============================================
+    // 注文表示ページ
+    // ============================================
+    'order_show' => array(
+        'page_title' => '注文詳細',
+        'payment_method_credit_card' => 'クレジットカード',
     ),
 
     // ============================================
