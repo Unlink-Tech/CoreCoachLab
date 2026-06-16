@@ -155,13 +155,13 @@
                         <ul class="cart-sidebar__trust">
                             <li>
                                 <div class="cart-sidebar__trust-icon-wrap cart-sidebar__trust-icon-wrap--security">
-                                    <i class="fas fa-shield-halved"></i>
+                                    <i class="fas fa-lock"></i>
                                 </div>
                                 <span>{{ __('common.cart.secure_checkout') }}</span>
                             </li>
                             <li>
                                 <div class="cart-sidebar__trust-icon-wrap cart-sidebar__trust-icon-wrap--access">
-                                    <i class="fas fa-clock-rotate-left"></i>
+                                    <i class="fas fa-infinity"></i>
                                 </div>
                                 <span>{{ __('common.cart.lifetime_access') }}</span>
                             </li>
