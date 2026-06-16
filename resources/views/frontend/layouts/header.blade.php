@@ -55,14 +55,15 @@
 				<div class="right-actions d-flex align-items-center">
 					<!-- Language Selector -->
 					<div class="dropdown language-selector hover-dropdown d-none d-md-block">
+						@php $isJa = session('app_locale') == 'ja' || app()->getLocale() == 'ja'; @endphp
 						<button class="selector-btn" type="button">
-							<i class="fas fa-globe selector-ico"></i>
-							<span>@if(session('app_locale') == 'ja' || app()->getLocale() == 'ja') JP @else EN @endif</span>
+							<span class="fi {{ $isJa ? 'fi-jp' : 'fi-gb' }} selector-ico"></span>
+							<span>{{ $isJa ? 'JP' : 'EN' }}</span>
 							<svg class="nav-caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item {{ (session('app_locale') != 'ja' && app()->getLocale() != 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'en') }}"><i class="fas fa-globe dd-icon"></i><span>{{ __('common.language.english') }}</span><i class="fas fa-check dd-check"></i></a></li>
-							<li><a class="dropdown-item {{ (session('app_locale') == 'ja' || app()->getLocale() == 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'ja') }}"><i class="fas fa-globe dd-icon"></i><span>{{ __('common.language.japanese') }}</span><i class="fas fa-check dd-check"></i></a></li>
+							<li><a class="dropdown-item {{ !$isJa ? 'active' : '' }}" href="{{ route('change.language', 'en') }}"><span class="fi fi-gb dd-icon"></span><span>{{ __('common.language.english') }}</span><i class="fas fa-check dd-check"></i></a></li>
+							<li><a class="dropdown-item {{ $isJa ? 'active' : '' }}" href="{{ route('change.language', 'ja') }}"><span class="fi fi-jp dd-icon"></span><span>{{ __('common.language.japanese') }}</span><i class="fas fa-check dd-check"></i></a></li>
 						</ul>
 					</div>
 

@@ -757,6 +757,8 @@
             .main-header .dropdown-divider { height: 1px !important; background: var(--color-stone) !important; margin: 6px 4px !important; border: none !important; opacity: .6 !important; }
             .dd-icon { font-size: 13px !important; width: 18px !important; text-align: center !important; color: var(--color-ember-red) !important; flex-shrink: 0 !important; }
             .dropdown-item.active .dd-icon { color: var(--color-forest) !important; }
+            /* Flag icons for language selector */
+            .fi.selector-ico, .fi.dd-icon { display: inline-block !important; width: 20px !important; height: 14px !important; border-radius: 3px !important; background-size: cover !important; background-position: center !important; opacity: 1 !important; box-shadow: 0 0 0 1px rgba(0,0,0,.08) !important; }
             .dd-check { font-size: 11px !important; width: 14px !important; margin-left: auto !important; color: var(--color-forest) !important; opacity: 0 !important; flex-shrink: 0 !important; }
             .dropdown-item.active .dd-check { opacity: 1 !important; }
             .account-head { padding: 6px 12px 10px !important; display: flex !important; flex-direction: column !important; gap: 3px !important; }
