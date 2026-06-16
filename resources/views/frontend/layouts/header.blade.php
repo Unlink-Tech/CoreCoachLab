@@ -7,7 +7,7 @@
         <div class="preloader-spinner">
             <div class="spinner"></div>
         </div>
-        <p class="preloader-text">{{ __('common.preloader.loading') }}</p>
+        
     </div>
 </div>
 <!-- Main Header-->
