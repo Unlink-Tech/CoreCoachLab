@@ -39,7 +39,10 @@
                                     if($cart->product) {
                                         $item_title = $cart->product->title;
                                         $item_link = route('product-detail', $cart->product->slug);
-                                        $item_image = asset($cart->product->photo ?? 'images/placeholder.jpg');
+                                        $photo_arr = array_filter(explode(',', $cart->product->photo ?? ''));
+                                        if(!empty($photo_arr)) {
+                                            $item_image = asset(trim(reset($photo_arr)));
+                                        }
                                         if($cart->product_id < 1000) {
                                             $is_course = true;
                                         }
@@ -50,7 +53,7 @@
                                     @if($is_course)
                                         <!-- Thumbnail -->
                                         <div class="cart-item-card__media">
-                                            <img src="{{ $item_image }}" alt="{{ $item_title }}">
+                                            <img src="{{ $item_image }}" alt="{{ $item_title }}" onerror="this.src='{{ asset('assets/images/placeholder.jpg') }}'">
                                             <span class="cart-item-card__badge cart-item-card__badge--course">
                                                 <i class="fas fa-palette"></i> {{ __('common.learning_path') }}
                                             </span>

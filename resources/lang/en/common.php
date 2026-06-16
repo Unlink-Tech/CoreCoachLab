@@ -109,7 +109,7 @@ return [
         'refund_policy' => 'Refund Policy',
         'delivery_policy' => 'Delivery Policy',
         'accepted_payment_methods' => 'Accepted payment methods',
-        'copyright_text' => '© 2026 Artify Academy. All rights reserved.',
+        'copyright_text' => 'All rights reserved.',
     ),
 
     // ============================================

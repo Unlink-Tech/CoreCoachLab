@@ -109,7 +109,7 @@ return [
         'refund_policy' => '返金ポリシー',
         'delivery_policy' => '配送ポリシー',
         'accepted_payment_methods' => '利用可能な支払い方法',
-        'copyright_text' => '© 2026 Artify Academy。 すべての権利を保有します。',
+        'copyright_text' => 'すべての権利を保有します。',
     ),
 
     // ============================================

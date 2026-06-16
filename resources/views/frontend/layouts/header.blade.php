@@ -206,8 +206,10 @@
                                             $is_course = false;
                                             $level = null;
                                             if($cart->product) {
-                                                $photo_arr = explode(',', $cart->product->photo);
-                                                $item_photo = $photo_arr[0];
+                                                $photo_arr = array_filter(explode(',', $cart->product->photo ?? ''));
+                                                if(!empty($photo_arr)) {
+                                                    $item_photo = asset(trim(reset($photo_arr)));
+                                                }
                                                 $item_title = $cart->product->title;
                                                 $item_link = route('product-detail', $cart->product->slug);
 
@@ -222,7 +224,17 @@
                                             }
                                         @endphp
 
-                                        <div class="cart-info pe-4">
+                                        @if($is_course)
+                                            <div class="cart-thumb flex-shrink-0 me-3">
+                                                <img src="{{ $item_photo }}" alt="{{ $item_title }}" onerror="this.src='{{ asset('assets/images/placeholder.jpg') }}'">
+                                            </div>
+                                        @else
+                                            <div class="cart-thumb cart-thumb--credits flex-shrink-0 me-3">
+                                                <i class="fas fa-coins"></i>
+                                            </div>
+                                        @endif
+
+                                        <div class="cart-info flex-grow-1 pe-4">
                                             <a href="{{ $item_link }}" class="fw-bold text-dark text-decoration-none small d-block mb-1">{{ $item_title }}</a>
 
                                             <!-- Level Badge (for courses only) -->
