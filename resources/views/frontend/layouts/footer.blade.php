@@ -9,9 +9,9 @@
             <!-- Featured newsletter CTA -->
             <section class="af-cta" aria-label="Newsletter">
                 <div class="af-cta__copy">
-                    <span class="af-cta__eyebrow">Stay Inspired</span>
-                    <h3 class="af-cta__title">Bring your ideas to life.</h3>
-                    <p class="af-cta__desc">Get updates on new courses and academy news — fresh inspiration, straight to your inbox.</p>
+                    <span class="af-cta__eyebrow">{{ __('common.footer.newsletter_eyebrow') }}</span>
+                    <h3 class="af-cta__title">{{ __('common.footer.newsletter_title') }}</h3>
+                    <p class="af-cta__desc">{{ __('common.footer.newsletter_description') }}</p>
                 </div>
                 <div class="af-cta__form">
                     <div class="subscribe-form">

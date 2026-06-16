@@ -1100,5 +1100,12 @@ Why Our UI/UX Design Stands Out:',
     'preloader' => [
         'loading' => 'Loading your creative journey...',
     ],
+
+    // Footer (Nested Structure)
+    'footer' => [
+        'newsletter_eyebrow' => 'Stay Inspired',
+        'newsletter_title' => 'Bring your ideas to life.',
+        'newsletter_description' => 'Get updates on new courses and academy news — fresh inspiration, straight to your inbox.',
+    ],
 ];
 

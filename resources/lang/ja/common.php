@@ -1118,4 +1118,11 @@ return [
     'preloader' => [
         'loading' => 'あなたの創造的な旅を読み込み中...',
     ],
+
+    // Footer (Nested Structure)
+    'footer' => [
+        'newsletter_eyebrow' => 'インスピレーションを受け取ろう',
+        'newsletter_title' => 'あなたのアイデアを形に。',
+        'newsletter_description' => '新しいコースやアカデミーのニュースをメールで受け取りましょう。新しいインスピレーション、あなたのメールボックスへ。',
+    ],
 ];
