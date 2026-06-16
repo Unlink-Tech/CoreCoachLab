@@ -28,25 +28,25 @@
             <div class="col-6 col-md-3">
                 <div class="learning-benefit-card">
                     <span class="benefit-emoji"><i class="fas fa-palette"></i></span>
-                    <h5 class="benefit-title">Unlock Premium Courses</h5>
+                    <h5 class="benefit-title">{{ __('common.index.unlock_courses') }}</h5>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="learning-benefit-card">
                     <span class="benefit-emoji"><i class="fas fa-book-open"></i></span>
-                    <h5 class="benefit-title">Access Learning Paths</h5>
+                    <h5 class="benefit-title">{{ __('common.index.access_paths') }}</h5>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="learning-benefit-card">
                     <span class="benefit-emoji"><i class="fas fa-trophy"></i></span>
-                    <h5 class="benefit-title">Earn Bonus Rewards</h5>
+                    <h5 class="benefit-title">{{ __('common.index.earn_rewards') }}</h5>
                 </div>
             </div>
             <div class="col-6 col-md-3">
                 <div class="learning-benefit-card">
                     <span class="benefit-emoji"><i class="fas fa-chart-line"></i></span>
-                    <h5 class="benefit-title">Accelerate Your Growth</h5>
+                    <h5 class="benefit-title">{{ __('common.index.accelerate_growth') }}</h5>
                 </div>
             </div>
         </div>
@@ -60,8 +60,8 @@
                             <i class="fas fa-compass"></i>
                         </div>
                         <div>
-                            <h3 class="pathway-title">Creative Pathways</h3>
-                            <p class="pathway-subtitle">Bonus multipliers grow as you commit to your artistic journey</p>
+                            <h3 class="pathway-title">{{ __('common.index.pathways_title') }}</h3>
+                            <p class="pathway-subtitle">{{ __('common.index.pathways_subtitle') }}</p>
                         </div>
                     </div>
 
@@ -72,10 +72,10 @@
                             <div class="step-badge">1</div>
                             <div class="step-content">
                                 <div class="step-header">
-                                    <h4 class="step-title">Standard</h4>
+                                    <h4 class="step-title">{{ __('common.index.tier_standard_title') }}</h4>
                                     <span class="step-bonus">×1.0</span>
                                 </div>
-                                <p class="step-desc">Ideal for beginners starting their learning journey</p>
+                                <p class="step-desc">{{ __('common.index.tier_standard_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '1 - 79,999 ¥' : '$1 - $499' }}</strong></div>
                             </div>
                         </div>
@@ -85,10 +85,10 @@
                             <div class="step-badge">2</div>
                             <div class="step-content">
                                 <div class="step-header">
-                                    <h4 class="step-title">Premium</h4>
+                                    <h4 class="step-title">{{ __('common.index.tier_premium_title') }}</h4>
                                     <span class="step-bonus">×2.0 Bonus</span>
                                 </div>
-                                <p class="step-desc">Most popular for active learners building consistency</p>
+                                <p class="step-desc">{{ __('common.index.tier_premium_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '80,000 - 159,999 ¥' : '$500 - $999' }}</strong></div>
                             </div>
                         </div>
@@ -98,10 +98,10 @@
                             <div class="step-badge">3</div>
                             <div class="step-content">
                                 <div class="step-header">
-                                    <h4 class="step-title">Elite</h4>
+                                    <h4 class="step-title">{{ __('common.index.tier_elite_title') }}</h4>
                                     <span class="step-bonus">×2.5 Bonus</span>
                                 </div>
-                                <p class="step-desc">For serious students looking to master their craft</p>
+                                <p class="step-desc">{{ __('common.index.tier_elite_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '160,000 - 239,999 ¥' : '$1,000 - $1,499' }}</strong></div>
                             </div>
                         </div>
@@ -111,10 +111,10 @@
                             <div class="step-badge">4</div>
                             <div class="step-content">
                                 <div class="step-header">
-                                    <h4 class="step-title">VIP</h4>
+                                    <h4 class="step-title">{{ __('common.index.tier_vip_title') }}</h4>
                                     <span class="step-bonus">×3.0 Bonus</span>
                                 </div>
-                                <p class="step-desc">Maximum rewards, comprehensive pathway access</p>
+                                <p class="step-desc">{{ __('common.index.tier_vip_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '240,000+ ¥' : '$1,500+' }}</strong></div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
 
                                 <!-- Amount Input -->
                                 <div class="premium-input-section mb-4">
-                                    <label class="input-label-premium">Set Your Learning Commitment</label>
+                                    <label class="input-label-premium">{{ __('common.index.calc_label') }}</label>
                                     <div class="premium-amount-input-wrapper">
                                         <input
                                             type="number"
@@ -160,16 +160,16 @@
                                 <!-- Points Breakdown -->
                                 <div class="points-breakdown-card mb-4">
                                     <div class="breakdown-row">
-                                        <span class="breakdown-label">Base Learning Credits</span>
+                                        <span class="breakdown-label">{{ __('common.index.base_credits') }}</span>
                                         <span class="breakdown-value" id="base_points">0</span>
                                     </div>
                                     <div class="breakdown-row">
-                                        <span class="breakdown-label">Multiplier Bonus</span>
+                                        <span class="breakdown-label">{{ __('common.index.multiplier_bonus') }}</span>
                                         <span class="breakdown-value bonus-badge" id="multiplier_display">×1</span>
                                     </div>
                                     <div class="breakdown-divider"></div>
                                     <div class="breakdown-row breakdown-total">
-                                        <span class="breakdown-label">Unlocking Potential</span>
+                                        <span class="breakdown-label">{{ __('common.index.unlocking_potential') }}</span>
                                         <span class="breakdown-value-total" id="total_points">0</span>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                 <!-- Large Credits Display -->
                                 <div class="points-display-premium mb-4">
                                     <span class="points-number" id="total_points_large">0</span>
-                                    <span class="points-unit">Credits Unlocked</span>
+                                    <span class="points-unit">{{ __('common.index.credits_unlocked') }}</span>
                                 </div>
 
                                 <!-- Premium Button inside form -->
