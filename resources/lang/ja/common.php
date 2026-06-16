@@ -1071,4 +1071,51 @@ return [
     'validate_phone' => '電話番号を入力してください',
     'validate_subject' => '件名を入力してください',
     'validate_message' => 'メッセージを入力してください',
+
+    // Header Navigation (Nested Structure)
+    'header' => [
+        'catalog' => 'コース一覧',
+        'about' => 'について',
+        'contact' => 'お問い合わせ',
+        'home' => 'ホーム',
+    ],
+
+    // Language & Currency (Nested Structure)
+    'language' => [
+        'english' => 'English',
+        'japanese' => '日本語',
+        'current_label' => 'JP',
+    ],
+
+    // Account Menu (Nested Structure)
+    'account' => [
+        'my_account' => 'ダッシュボード',
+        'points_top_up' => 'クレジット追加',
+        'login' => 'サインイン',
+        'register' => 'アカウント作成',
+        'logout' => 'サインアウト',
+        'creds' => 'クレジット',
+    ],
+
+    // Cart (Nested Structure)
+    'cart' => [
+        'title' => 'カート',
+        'shopping_cart' => 'ショッピングバッグ',
+        'view_cart' => 'カートを見る',
+        'no_cart_available' => 'カートは空です',
+        'total' => '合計',
+        'checkout' => 'チェックアウトへ進む',
+        'redeem_points' => 'クレジットを使用',
+    ],
+
+    // Categories (Nested Structure)
+    'categories' => [
+        'view_all' => 'すべてのコースを見る',
+        'no_categories' => 'カテゴリがありません',
+    ],
+
+    // Preloader (Nested Structure)
+    'preloader' => [
+        'loading' => 'あなたの創造的な旅を読み込み中...',
+    ],
 ];
