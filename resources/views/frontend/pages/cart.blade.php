@@ -137,7 +137,7 @@
 
                         <div class="cart-sidebar__rows">
                             <div class="cart-sidebar__row cart-sidebar__row--total">
-                                <span class="cart-sidebar__row-label">{{ __('common.total') }}</span>
+                                <span class="cart-sidebar__row-label">{{ __('common.total') }}:</span>
                                 <span class="cart-sidebar__row-value">
                                     @if(Helper::totalCartPoints() > 0)
                                         <i class="fas fa-coins"></i> {{ number_format(Helper::totalCartPoints()) }} <span class="total-unit">{{ __('common.account.creds') }}</span>

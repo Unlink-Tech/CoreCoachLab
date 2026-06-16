@@ -364,7 +364,7 @@
                             </a>
 
                             <div class="kv-summary-assure">
-                                <i class="fas fa-lock"></i> {{ __('common.secure_checkout') }}
+                                <i class="fas fa-lock"></i> {{ __('common.cart.secure_checkout') }}
                             </div>
                         </div>
                     </div>
