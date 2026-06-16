@@ -337,6 +337,8 @@ return [
     'cvv' => 'CVV',
     'cvv_required' => 'セキュリティのためにCVVを入力してください',
     'card_bill_description' => 'お支払い情報は安全かつ暗号化されています。',
+    'dba_reference' => '商号 (DBA Reference)',
+    'dba_description' => 'DBAとは「Do Business As（他名義での営業）」を意味します。クレジットカードのご利用明細には当社の商号（DBA）名義が記載されます。',
     'terms_conditions' => '利用規約',
     'agree_terms_conditions' => '同意します',
     'privacy_policy' => 'プライバシーポリシー',

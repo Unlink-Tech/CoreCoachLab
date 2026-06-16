@@ -337,6 +337,8 @@ return [
     'cvv' => 'CVV',
     'cvv_required' => 'Enter your CVV for security',
     'card_bill_description' => 'Your payment information is secure and encrypted.',
+    'dba_reference' => 'DBA Reference',
+    'dba_description' => 'DBA means "Do Business As". The merchant name displayed on your billing statement will be our DBA brand name.',
     'terms_conditions' => 'Terms & Conditions',
     'agree_terms_conditions' => 'I agree to the',
     'privacy_policy' => 'Privacy Policy',

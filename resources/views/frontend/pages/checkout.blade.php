@@ -290,6 +290,23 @@
                                 <span class='kv-error'>{{$message}}</span>
                                 @enderror
                             </div>
+
+                            <!-- DBA Reference -->
+                            <div class="kv-checkout-dba-reference" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(37, 34, 30, 0.08); display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                                    <div class="kv-dba-image-wrapper" style="flex-shrink: 0; background: #fff; padding: 6px; border: 1.5px solid var(--color-stone, #d7d6d4); border-radius: var(--radius-lg, 8px); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); transition: border-color 0.2s ease, transform 0.2s ease;">
+                                        <img src="{{ asset('assets/images/dba.png') }}" alt="{{ __('common.dba_reference') }}" style="max-width: 140px; height: auto; display: block; border-radius: 4px;" />
+                                    </div>
+                                    <div class="kv-dba-text-wrapper" style="flex: 1; min-width: 200px;">
+                                        <h4 style="margin: 0 0 6px 0; font-family: var(--font-inter), sans-serif; font-size: 13px; font-weight: 700; color: var(--color-ink, #25221e); text-transform: uppercase; letter-spacing: 0.03em;">
+                                            {{ __('common.dba_reference') }}
+                                        </h4>
+                                        <p style="margin: 0; font-family: var(--font-inter), sans-serif; font-size: 12px; line-height: 1.5; color: var(--color-pencil, #6f6c69);">
+                                            {{ __('common.dba_description') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
