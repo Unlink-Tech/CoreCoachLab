@@ -17,13 +17,13 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="asymmetric-gallery-wrapper">
                     <div class="gallery-frame frame-main">
-                        <img src="{{ asset('assets/art-classes/11.jpg') }}" alt="Academy Painting Masterclass" class="main-artwork-img">
+                        <img src="{{ asset('assets/art-classes/11.webp') }}" alt="Academy Painting Masterclass" class="main-artwork-img" loading="lazy">
                     </div>
                     <div class="gallery-frame frame-secondary">
-                        <img src="{{ asset('assets/art-classes/6.jpg') }}" alt="Digital Illustration Class" class="offset-artwork-img">
+                        <img src="{{ asset('assets/art-classes/6.webp') }}" alt="Digital Illustration Class" class="offset-artwork-img" loading="lazy">
                     </div>
                     <div class="gallery-frame frame-tertiary">
-                        <img src="{{ asset('assets/art-classes/12.jpg') }}" alt="Watercolor Study" class="tertiary-artwork-img">
+                        <img src="{{ asset('assets/art-classes/12.webp') }}" alt="Watercolor Study" class="tertiary-artwork-img" loading="lazy">
                     </div>
                     <!-- Decorative soft backdrop shapes -->
                     <div class="gallery-bg-accent-1"></div>

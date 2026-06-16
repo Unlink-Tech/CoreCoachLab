@@ -5,9 +5,192 @@
    ============================================================ */
 
 /* ===== Header / global chrome ===== */
-            /* ============================================================
-               COOKIE CONSENT
-               ============================================================ */
+
+/* ============================================================
+   MODERN PRELOADER — glassmorphism design
+   ============================================================ */
+#preloader.artify-preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(135deg, rgba(254, 253, 252, 0.95) 0%, rgba(255, 250, 248, 0.93) 100%);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 999999;
+	animation: artifyPreloaderFadeOut 0.6s ease-out forwards 2.5s;
+	pointer-events: auto;
+}
+
+#preloader.artify-preloader.hidden {
+	display: none;
+	pointer-events: none;
+}
+
+.preloader-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	text-align: center;
+}
+
+/* Logo with rotation */
+.preloader-logo {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 12px 32px rgba(37, 34, 30, 0.15);
+	background: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(215, 214, 212, 0.5);
+	animation: artifyLogoSpin 3s linear infinite;
+}
+
+.preloader-logo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	animation: artifyLogoFloat 2s ease-in-out infinite;
+}
+
+/* Spinner ring */
+.preloader-spinner {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	margin-top: 12px;
+}
+
+.spinner {
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	border: 3px solid rgba(227, 68, 50, 0.1);
+	border-top: 3px solid var(--color-ember-red, #e34432);
+	border-radius: 50%;
+	animation: artifySpinnerRotate 1s linear infinite;
+	box-shadow: 0 0 20px rgba(227, 68, 50, 0.2);
+}
+
+.spinner::before {
+	content: '';
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid rgba(68, 108, 61, 0.1);
+	border-right: 2px solid var(--color-forest, #446c3d);
+	border-radius: 50%;
+	animation: artifySpinnerRotate 2s linear infinite reverse;
+}
+
+/* Loading text */
+.preloader-text {
+	font-family: var(--font-inter, sans-serif);
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color-pencil, #6f6c69);
+	letter-spacing: 0.5px;
+	margin-top: 8px;
+	animation: artifyTextPulse 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes artifyPreloaderFadeOut {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes artifyLogoSpin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes artifyLogoFloat {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+}
+
+@keyframes artifySpinnerRotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes artifyTextPulse {
+	0%, 100% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	#preloader.artify-preloader,
+	.preloader-logo,
+	.spinner,
+	.preloader-text {
+		animation: none !important;
+	}
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+	.preloader-container {
+		gap: 16px;
+	}
+
+	.preloader-logo {
+		width: 64px;
+		height: 64px;
+	}
+
+	.preloader-spinner {
+		width: 48px;
+		height: 48px;
+	}
+
+	.spinner,
+	.spinner::before {
+		width: 48px;
+		height: 48px;
+	}
+
+	.preloader-text {
+		font-size: 12px;
+	}
+}
+
+/* ============================================================
+   COOKIE CONSENT
+   ============================================================ */
             .cookiesBtn__link {
                 background: var(--color-ink) !important;
                 border: none !important;
@@ -1254,6 +1437,195 @@
     .artify-cookies__customize{ padding-left:16px; padding-right:16px; }
     .artify-cookies__actions{ flex-direction:column-reverse; }
     .artify-cookies__btn{ font-size:13px; padding:12px 16px; }
+}
+
+/* ============================================================
+   FLASH NOTIFICATIONS / TOAST MESSAGES — modern glassmorphism
+   ============================================================ */
+.artify-toasts {
+	position: fixed;
+	top: 100px;
+	right: 24px;
+	z-index: 2000;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	width: 384px;
+	max-width: calc(100vw - 48px);
+	pointer-events: none;
+	font-family: var(--font-inter, sans-serif);
+}
+
+.artify-toast {
+	position: relative;
+	pointer-events: auto;
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 16px 18px;
+	background: linear-gradient(135deg, rgba(254, 253, 252, 0.95) 0%, rgba(255, 250, 248, 0.92) 100%);
+	border: 1px solid rgba(215, 214, 212, 0.6);
+	border-radius: 12px;
+	color: var(--color-ink, #25221e);
+	box-shadow: 0 16px 48px rgba(37, 34, 30, 0.12), 0 2px 8px rgba(37, 34, 30, 0.04);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	overflow: hidden;
+	animation: artifyToastSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.artify-toast.artify-toast--dismiss {
+	opacity: 0;
+	transform: translateX(400px);
+}
+
+/* Left accent stripe */
+.artify-toast::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+.artify-toast--success::before {
+	background: linear-gradient(180deg, var(--color-forest, #446c3d) 0%, var(--color-forest, #446c3d) 100%);
+	box-shadow: inset 0 2px 4px rgba(68, 108, 61, 0.3);
+}
+
+.artify-toast--error::before {
+	background: linear-gradient(180deg, var(--color-ember-red, #e34432) 0%, var(--color-deep-ember, #cf3520) 100%);
+	box-shadow: inset 0 2px 4px rgba(227, 68, 50, 0.3);
+}
+
+/* Content wrapper */
+.artify-toast__content {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	flex: 1;
+}
+
+/* Icon medallion */
+.artify-toast__icon {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	font-size: 18px;
+	margin-top: 1px;
+}
+
+.artify-toast--success .artify-toast__icon {
+	background: linear-gradient(135deg, rgba(68, 108, 61, 0.1) 0%, rgba(68, 108, 61, 0.05) 100%);
+	color: var(--color-forest, #446c3d);
+}
+
+.artify-toast--error .artify-toast__icon {
+	background: linear-gradient(135deg, rgba(227, 68, 50, 0.12) 0%, rgba(227, 68, 50, 0.06) 100%);
+	color: var(--color-ember-red, #e34432);
+}
+
+/* Message text */
+.artify-toast__message {
+	flex: 1;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: var(--color-ink, #25221e);
+	word-break: break-word;
+	padding-top: 2px;
+}
+
+/* Close button */
+.artify-toast__close {
+	flex-shrink: 0;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	margin: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	border-radius: 8px;
+	background: transparent;
+	color: var(--color-graphite, #94928f);
+	font-size: 13px;
+	cursor: pointer;
+	opacity: 0.8;
+	transition: all 0.2s ease;
+	margin-top: 1px;
+}
+
+.artify-toast__close:hover {
+	opacity: 1;
+	background: rgba(37, 34, 30, 0.08);
+	color: var(--color-ink, #25221e);
+}
+
+.artify-toast__close:active {
+	transform: scale(0.92);
+}
+
+/* Animations */
+@keyframes artifyToastSlideIn {
+	from {
+		opacity: 0;
+		transform: translateX(420px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.artify-toasts {
+		top: 92px;
+		right: 16px;
+		left: 16px;
+		width: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.artify-toasts {
+		top: 80px;
+		right: 12px;
+		left: 12px;
+		gap: 10px;
+	}
+
+	.artify-toast {
+		padding: 14px 15px;
+		gap: 12px;
+		border-radius: 10px;
+		font-size: 13px;
+	}
+
+	.artify-toast__icon {
+		width: 36px;
+		height: 36px;
+		font-size: 16px;
+	}
+
+	.artify-toast__message {
+		font-size: 13px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.artify-toast {
+		animation: none;
+	}
 }
 
 /* ===================== page-about-us ===================== */

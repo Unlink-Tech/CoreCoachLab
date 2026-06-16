@@ -165,7 +165,7 @@
                         </ul>
 
                         <div class="cart-sidebar__pay">
-                            <img src="{{ asset('assets/images/payment.png') }}" alt="Accepted payment methods">
+                            <img src="{{ asset('assets/images/payment.webp') }}" alt="Accepted payment methods" loading="lazy">
                         </div>
                     @else
                         <div class="cart-sidebar__empty">

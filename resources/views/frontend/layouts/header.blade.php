@@ -1,8 +1,13 @@
-<!-- Preloader -->
-<div id="preloader" >
-    <div class="preloader">
-        <span></span>
-        <span></span>
+<!-- Modern Preloader -->
+<div id="preloader" class="artify-preloader">
+    <div class="preloader-container">
+        <div class="preloader-logo">
+            <img src="{{ asset('assets/images/preloader.webp') }}" alt="Loading" class="logo-spinner">
+        </div>
+        <div class="preloader-spinner">
+            <div class="spinner"></div>
+        </div>
+        <p class="preloader-text">Loading your creative journey...</p>
     </div>
 </div>
 <!-- Main Header-->
@@ -12,7 +17,7 @@
 				<!-- Logo -->
 				<div class="logo-section">
 					<a href="{{route('home')}}" class="logo-link">
-						<img src="{{url('assets/images/logo.webp')}}" alt="Artify Academy" class="logo-img">
+						<img src="{{url('assets/images/logo.jpg')}}" alt="Artify Academy" class="logo-img">
 					</a>
 				</div>
 
@@ -123,7 +128,7 @@
 			<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
 			<nav class="menu-box">
 				<div class="upper-box">
-					<div class="nav-logo"><a href="{{route('home')}}"><img src="{{url('assets/images/logo.webp')}}" alt="" title=""></a></div>
+					<div class="nav-logo"><a href="{{route('home')}}"><img src="{{url('assets/images/logo.jpg')}}" alt="" title=""></a></div>
 					<div class="close-btn"><i class="icon fa fa-times"></i></div>
 				</div>
 
@@ -142,7 +147,7 @@
 				<div class="inner-container">
 					<!--Logo-->
 					<div class="logo">
-						<a href="{{route('home')}}" title=""><img src="{{url('assets/images/logo.webp')}}" alt="" title=""></a>
+						<a href="{{route('home')}}" title=""><img src="{{url('assets/images/logo.jpg')}}" alt="" title=""></a>
 					</div>
 
 					<!--Right Col-->
@@ -304,7 +309,29 @@
              <!-- Offcanvas Area Start -->
 			 <div class="offcanvas__overlay"></div>
 	</header>
-@cookieconsentview		
+@cookieconsentview
         {{-- Flash notification toasts (themed component) --}}
         <x-flash-notification />
 	<!--End Main Header -->
+
+<!-- Preloader Hide Script -->
+<script>
+(function() {
+	const preloader = document.getElementById('preloader');
+	if (!preloader) return;
+
+	// Hide preloader when page is fully loaded
+	window.addEventListener('load', function() {
+		setTimeout(function() {
+			preloader.classList.add('hidden');
+		}, 2300); // Slightly before animation completes (2.5s)
+	});
+
+	// Fallback: hide after timeout even if load event doesn't fire
+	setTimeout(function() {
+		if (preloader && !preloader.classList.contains('hidden')) {
+			preloader.classList.add('hidden');
+		}
+	}, 5000);
+})();
+</script>

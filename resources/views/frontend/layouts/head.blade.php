@@ -20,7 +20,7 @@
 	@if(isset($og_image))
 		<meta property="og:image" content="{{ $og_image }}">
 	@else
-		<meta property="og:image" content="{{ asset('assets/images/logo.webp') }}">
+		<meta property="og:image" content="{{ asset('assets/images/logo.jpg') }}">
 	@endif
 	<meta property="og:url" content="{{ url()->current() }}">
 	<meta property="og:site_name" content="Artify Academy">
@@ -33,7 +33,7 @@
 	@if(isset($og_image))
 		<meta name="twitter:image" content="{{ $og_image }}">
 	@else
-		<meta name="twitter:image" content="{{ asset('assets/images/logo.webp') }}">
+		<meta name="twitter:image" content="{{ asset('assets/images/logo.jpg') }}">
 	@endif
 	<meta name="twitter:site" content="@ArtifyAcademy">
 	<meta name="twitter:creator" content="@ArtifyAcademy">

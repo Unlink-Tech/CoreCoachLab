@@ -235,7 +235,7 @@
                                 <span>{{__('common.card_bill_description')}}</span>
                             </div>
                             <div class="kv-payment-methods">
-                                <img src="{{ asset('assets/images/payment.png') }}" alt="Payment Methods">
+                                <img src="{{ asset('assets/images/payment.webp') }}" alt="Payment Methods" loading="lazy">
                             </div>
                         </div>
 

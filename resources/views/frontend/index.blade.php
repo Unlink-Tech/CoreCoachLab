@@ -34,7 +34,7 @@
                     <video autoplay muted loop playsinline preload="metadata">
                         <source src="{{ asset('assets/art-classes/hero.mp4') }}" type="video/mp4">
                     </video>
-                    <div class="artify-hero__play"><i class="fas fa-play"></i></div>
+                    
                 </div>
                 <div class="artify-hero__card" style="aspect-ratio: 1920/2404;">
                     <img src="{{ asset('assets/art-classes/1.webp') }}" alt="Art gallery" loading="lazy">

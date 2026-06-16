@@ -31,7 +31,7 @@
                 <!-- Column 1: Brand -->
                 <div class="af-footer__brand">
                     <a href="{{route('home')}}" class="af-footer__logo">
-                        <img src="{{url('assets/images/logo.webp')}}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
+                        <img src="{{url('assets/images/logo.jpg')}}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
                     </a>
                     <ul class="af-footer__contact">
                         <li>
@@ -79,7 +79,7 @@
                     &copy; {{ date('Y') }} <a href="{{route('home')}}">{{ $misc['Company Name'] ?? __('common.company_name') }}</a>. {{ __('common.all_rights_reserved') }}
                 </div>
                 <div class="af-footer__payment">
-                    <img src="{{ asset('assets/images/payment.png') }}" alt="Accepted payment methods">
+                    <img src="{{ asset('assets/images/payment.webp') }}" alt="Accepted payment methods">
                 </div>
             </div>
         </div>
