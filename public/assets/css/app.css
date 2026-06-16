@@ -49,7 +49,6 @@
 	box-shadow: 0 12px 32px rgba(37, 34, 30, 0.15);
 	background: rgba(255, 255, 255, 0.8);
 	border: 1px solid rgba(215, 214, 212, 0.5);
-	animation: artifyLogoSpin 3s linear infinite;
 }
 
 .preloader-logo img {
