@@ -7,7 +7,7 @@
         <div class="preloader-spinner">
             <div class="spinner"></div>
         </div>
-        <p class="preloader-text">Loading your creative journey...</p>
+        <p class="preloader-text">{{ __('common.preloader.loading') }}</p>
     </div>
 </div>
 <!-- Main Header-->
@@ -26,7 +26,7 @@
 					<ul class="nav-list">
 						<li class="nav-item dropdown nav-dropdown hover-dropdown">
 							<a href="{{route('product-lists')}}" class="nav-link nav-toggle {{ Route::is('product-lists') ? 'active' : '' }}">
-								{{ __('common.catalog') }}
+								{{ __('common.header.catalog') }}
 								<svg class="nav-caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 							</a>
 							<ul class="dropdown-menu catalog-menu">
@@ -40,14 +40,14 @@
 										</a>
 									</li>
 								@empty
-									<li><span class="dropdown-item dropdown-item--muted">No categories</span></li>
+									<li><span class="dropdown-item dropdown-item--muted">{{ __('common.categories.no_categories') }}</span></li>
 								@endforelse
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item dropdown-item--all" href="{{route('product-lists')}}"><i class="fas fa-th dd-icon"></i><span>View all courses</span></a></li>
+								<li><a class="dropdown-item dropdown-item--all" href="{{route('product-lists')}}"><i class="fas fa-th dd-icon"></i><span>{{ __('common.categories.view_all') }}</span></a></li>
 							</ul>
 						</li>
-						<li class="nav-item"><a href="{{route('about-us')}}" class="nav-link {{ Route::is('about-us') ? 'active' : '' }}">{{ __('common.about')}}</a></li>
-						<li class="nav-item"><a href="{{route('contact')}}" class="nav-link {{ Route::is('contact') ? 'active' : '' }}">{{ __('common.contact') }}</a></li>
+						<li class="nav-item"><a href="{{route('about-us')}}" class="nav-link {{ Route::is('about-us') ? 'active' : '' }}">{{ __('common.header.about')}}</a></li>
+						<li class="nav-item"><a href="{{route('contact')}}" class="nav-link {{ Route::is('contact') ? 'active' : '' }}">{{ __('common.header.contact') }}</a></li>
 					</ul>
 				</nav>
 
@@ -61,8 +61,8 @@
 							<svg class="nav-caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item {{ (session('app_locale') != 'ja' && app()->getLocale() != 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'en') }}"><i class="fas fa-globe dd-icon"></i><span>English</span><i class="fas fa-check dd-check"></i></a></li>
-							<li><a class="dropdown-item {{ (session('app_locale') == 'ja' || app()->getLocale() == 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'ja') }}"><i class="fas fa-globe dd-icon"></i><span>日本語</span><i class="fas fa-check dd-check"></i></a></li>
+							<li><a class="dropdown-item {{ (session('app_locale') != 'ja' && app()->getLocale() != 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'en') }}"><i class="fas fa-globe dd-icon"></i><span>{{ __('common.language.english') }}</span><i class="fas fa-check dd-check"></i></a></li>
+							<li><a class="dropdown-item {{ (session('app_locale') == 'ja' || app()->getLocale() == 'ja') ? 'active' : '' }}" href="{{ route('change.language', 'ja') }}"><i class="fas fa-globe dd-icon"></i><span>{{ __('common.language.japanese') }}</span><i class="fas fa-check dd-check"></i></a></li>
 						</ul>
 					</div>
 
@@ -96,17 +96,17 @@
 							@if(Auth::check())
 								<li class="account-head">
 									<span class="account-head__name">{{ Auth::user()->name }}</span>
-									<span class="account-head__credits"><i class="fas fa-coins"></i> {{ Auth::user()->points_balance ?? 0 }} CREDS</span>
+									<span class="account-head__credits"><i class="fas fa-coins"></i> {{ Auth::user()->points_balance ?? 0 }} {{ __('common.account.creds') }}</span>
 								</li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="{{ route('user') }}"><i class="fas fa-tachometer-alt dd-icon"></i><span>{{ __('common.my_account') }}</span></a></li>
-								<li><a class="dropdown-item" href="{{ route('points.topup') }}"><i class="fas fa-coins dd-icon"></i><span>{{ __('common.points_top_up') }}</span></a></li>
+								<li><a class="dropdown-item" href="{{ route('user') }}"><i class="fas fa-tachometer-alt dd-icon"></i><span>{{ __('common.account.my_account') }}</span></a></li>
+								<li><a class="dropdown-item" href="{{ route('points.topup') }}"><i class="fas fa-coins dd-icon"></i><span>{{ __('common.account.points_top_up') }}</span></a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item dropdown-item--danger" href="{{ route('user.logout') }}"><i class="fas fa-sign-out-alt dd-icon"></i><span>{{ __('common.logout') }}</span></a></li>
+								<li><a class="dropdown-item dropdown-item--danger" href="{{ route('user.logout') }}"><i class="fas fa-sign-out-alt dd-icon"></i><span>{{ __('common.account.logout') }}</span></a></li>
 							@else
-								<li><a class="dropdown-item" href="{{ route('login.form') }}"><i class="fas fa-sign-in-alt dd-icon"></i><span>{{ __('common.login') }}</span></a></li>
+								<li><a class="dropdown-item" href="{{ route('login.form') }}"><i class="fas fa-sign-in-alt dd-icon"></i><span>{{ __('common.account.login') }}</span></a></li>
 								<li><hr class="dropdown-divider"></li>
-								<li class="account-cta"><a href="{{ route('register.form') }}" class="primary-btn primary-btn--block">{{ __('common.register') }}</a></li>
+								<li class="account-cta"><a href="{{ route('register.form') }}" class="primary-btn primary-btn--block">{{ __('common.account.register') }}</a></li>
 							@endif
 						</ul>
 					</div>
@@ -185,7 +185,7 @@
                 <div class="offcanvas__wrapper">
                     <div class="cartcanvas__content">
                         <div class="mb-4 d-flex justify-content-between align-items-center border-bottom pb-4" style="border-color: var(--color-stone, #d7d6d4) !important;">
-                            <h4 class="fw-800 text-dark mb-0" style="font-family: var(--font-graphik), sans-serif; font-weight: 700; letter-spacing: -0.5px; color: var(--color-ink, #25221e);">{{ __('common.shopping_cart') }}</h4>
+                            <h4 class="fw-800 text-dark mb-0" style="font-family: var(--font-graphik), sans-serif; font-weight: 700; letter-spacing: -0.5px; color: var(--color-ink, #25221e);">{{ __('common.cart.shopping_cart') }}</h4>
                             <div class="cartcanvas__close rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; cursor: pointer;">
                                 <i class="fas fa-times" style="font-size: 14px; font-weight: 600;"></i>
                             </div>
@@ -234,10 +234,10 @@
                                             <p class="mb-0 small text-muted">
                                                 <span class="fw-bold" style="color: var(--color-ember-red, #e34432);">{{ $cart->quantity }}</span> x 
                                                 @if($cart->product_id < 1000 && $cart->points > 0)
-                                                    <span class="db-points-badge--amber"><i class="fas fa-coins me-1"></i>{{ number_format($cart->points) }} CREDS</span>
+                                                    <span class="db-points-badge--amber"><i class="fas fa-coins me-1"></i>{{ number_format($cart->points) }} {{ __('common.account.creds') }}</span>
                                                 @elseif($cart->product_id >= 1000)
                                                     <span style="font-weight: 700; color: var(--color-ink, #25221e);">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
-                                                    <span class="small ms-1" style="color: var(--color-teal-dusk, #497d7e); font-weight: 600;">({{ number_format($cart->points) }} CREDS)</span>
+                                                    <span class="small ms-1" style="color: var(--color-teal-dusk, #497d7e); font-weight: 600;">({{ number_format($cart->points) }} {{ __('common.account.creds') }})</span>
                                                 @else
                                                     <span style="font-weight: 700; color: var(--color-ink, #25221e);">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
                                                 @endif
@@ -248,8 +248,8 @@
                             @else
                                 <li class="text-center py-5">
                                     <div class="opacity-20 mb-3"><i class="fas fa-shopping-basket fa-4x"></i></div>
-                                    <p class="text-muted fw-bold">{{ __('common.no_cart_available') }}</p>
-                                    <a href="{{route('product-lists')}}" class="modern-btn modern-btn-outline small py-2">{{ __('common.catalog') }}</a>
+                                    <p class="text-muted fw-bold">{{ __('common.cart.no_cart_available') }}</p>
+                                    <a href="{{route('product-lists')}}" class="modern-btn modern-btn-outline small py-2">{{ __('common.header.catalog') }}</a>
                                 </li>
                             @endif
                         </ul>
@@ -272,10 +272,10 @@
                             @endphp
                             <div class="cart-footer border-top mt-5 pt-4" style="border-color: var(--color-stone, #d7d6d4) !important;">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h5 class="fw-bold text-dark mb-0" style="font-family: var(--font-inter), sans-serif; font-weight: 700; color: var(--color-pencil, #6f6c69);">{{ __('common.total') }}:</h5>
+                                    <h5 class="fw-bold text-dark mb-0" style="font-family: var(--font-inter), sans-serif; font-weight: 700; color: var(--color-pencil, #6f6c69);">{{ __('common.cart.total') }}:</h5>
                                     <h4 class="fw-800 mb-0" style="font-family: var(--font-graphik), sans-serif; font-weight: 800; color: var(--color-ember-red, #e34432);">
                                         @if(Helper::totalCartPoints() > 0)
-                                            <i class="fas fa-coins me-1"></i> {{ number_format(Helper::totalCartPoints()) }} CREDS
+                                            <i class="fas fa-coins me-1"></i> {{ number_format(Helper::totalCartPoints()) }} {{ __('common.account.creds') }}
                                         @else
                                             {{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($total_amount, session('currency')=='JPY' ? 0 : 2) }}
                                         @endif
@@ -284,20 +284,20 @@
                                 <div class="cart-drawer-btns d-flex gap-2 w-100">
                                     @if($has_courses && !$has_topups)
                                         <!-- Courses Only -->
-                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
+                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.cart.view_cart') }}</a>
                                         <button type="button" onclick="document.getElementById('redeemPointsForm').submit();" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: var(--color-ember-red, #e34432); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15); cursor: pointer;">
-                                            <i class="fas fa-lock me-1"></i>{{ __('common.redeem_points') ?? 'Redeem' }}
+                                            <i class="fas fa-lock me-1"></i>{{ __('common.cart.redeem_points') }}
                                         </button>
                                         <form id="redeemPointsForm" action="{{ route('points.redeem') }}" method="POST" style="display:none;">
                                             @csrf
                                         </form>
                                     @elseif($has_topups && !$has_courses)
                                         <!-- Top-ups Only -->
-                                        <a href="{{ route('cart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
-                                        <a href="{{ Auth::check() ? route('checkout') : route('login.form') }}" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: var(--color-ember-red, #e34432); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15);">{{ __('common.checkout') }}</a>
+                                        <a href="{{ route('cart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.cart.view_cart') }}</a>
+                                        <a href="{{ Auth::check() ? route('checkout') : route('login.form') }}" class="modern-btn modern-btn-solid text-center py-2 px-3 flex-grow-1" style="background: var(--color-ember-red, #e34432); color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(227, 68, 50, 0.15);">{{ __('common.cart.checkout') }}</a>
                                     @else
                                         <!-- Mixed: Courses + Top-ups -->
-                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.view_cart') }}</a>
+                                        <a href="{{ route('coursecart') }}" class="modern-btn modern-btn-outline text-center py-2 px-3 flex-grow-1" style="background: transparent; border: 1.5px solid var(--color-stone, #d7d6d4); color: var(--color-pencil, #6f6c69); border-radius: 10px; font-weight: 700; font-size: 13px; transition: all 0.25s ease;">{{ __('common.cart.view_cart') }}</a>
                                     @endif
                                 </div>
                             </div>
