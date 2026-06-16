@@ -23,14 +23,14 @@ return [
     'course_overview' => 'Course Overview',
     'great_results' => 'Fast Delivery & High Impact',
     'discover_more' => 'Discover more',
-    'your_growth' => 'Elevate your brand with a personalized digital card - let's get started.',
+    'your_growth' => 'Elevate your brand with a personalized digital card - let\'s get started.',
     'Explore_courses' => 'Explore Courses',
     'view_more'=>'VIEW MORE',
     'our_advantages' => 'Our Advantages',
-    'you_have_come' => 'You've come to the right place to learn',
+    'you_have_come' => 'You\'ve come to the right place to learn',
     '80_courses' => '80 courses',
     'industry_instructors' => 'Industry instructors',
-    'explore_a_diverse_library' => 'Explore a diverse library of 80+ expertly crafted courses across tech, design, business, and more - all designed to help you stay ahead in today's digital world.',
+    'explore_a_diverse_library' => 'Explore a diverse library of 80+ expertly crafted courses across tech, design, business, and more - all designed to help you stay ahead in today\'s digital world.',
     'learn_directly_from_seasoned' => 'Learn directly from seasoned professionals and subject matter experts who bring real-world experience and practical insights into every lesson.',
     'flexible_learning' => 'Flexible Learning',
     'our_platform_adaform' => 'Our platform adapts to your lifestyle - pause, resume, and revisit lessons whenever it suits you.',
@@ -40,7 +40,7 @@ return [
 'please_go' => 'Please go to the homepage again.',
 'go_to_homepage' => 'Go To Homepage',
 'currency_changed'=>'Currency changed to ',
-'high_traffic' => 'We're currently experiencing high traffic, which may delay the delivery of your invoice by email. You can download your invoice here in the meantime.',
+'high_traffic' => 'We\'re currently experiencing high traffic, which may delay the delivery of your invoice by email. You can download your invoice here in the meantime.',
 
 
     // Navbar Section 
@@ -102,7 +102,7 @@ return [
     'skills_online' => 'Skills Online',
     'with_top' => 'With Top',
     'instructors_text' => 'instructors',
-    'hero_description' => "Whether you're upskilling, reskilling, or exploring something new - our hands-on programs help you stay ahead in today's digital world.",
+    'hero_description' => "Whether you're upskilling, reskilling, or exploring something new - our hands-on programs help you stay ahead in today\'s digital world.",
     'find_course' => 'find course',
 
     'total_students_text' => 'Students',
@@ -186,11 +186,11 @@ return [
 
 // Expert Section
 'expert_led_courses_heading' => 'Expert-Led, Industry-Relevant Courses',
-'expert_led_courses_description' => 'Learn from professionals who've been there-and get job-ready fast.',
+'expert_led_courses_description' => 'Learn from professionals who\'ve been there-and get job-ready fast.',
 
 // Flexible Learning Section
 'flexible_learning_heading' => 'Flexible Learning, On Your Terms',
-'flexible_learning_description' => 'Study anytime, anywhere-your goals don't wait, and neither should you.',
+'flexible_learning_description' => 'Study anytime, anywhere-your goals don\'t wait, and neither should you.',
 
 // Teachers Section
 'our_teacher' => 'Our Teacher',
@@ -217,7 +217,7 @@ Why Our UI/UX Design Stands Out:',
     'compatibility' => ' Multi-Device Compatibility - Flawless experiences across desktop, mobile, and tablet screens.',
 ],
 
-    'final_message' => 'With a deep understanding of industry trends and user expectations, we craft digital experiences that leave a lasting impact. Let's build a design that speaks to your audience and drives real results!',
+    'final_message' => 'With a deep understanding of industry trends and user expectations, we craft digital experiences that leave a lasting impact. Let\'s build a design that speaks to your audience and drives real results!',
 'strength2' => 'Visual graphic design',
 'strength2_text' =>'At EC Shop Limited, we bring ideas to life with eye-catching visuals that captivate and communicate. Our expert graphic designers craft high-quality visuals that enhance your brand identity, engage your audience, and leave a lasting impression.',
 'graphic_design' => [
@@ -256,7 +256,7 @@ Why Our UI/UX Design Stands Out:',
 'satisfied_clients' => 'Satisfied Clients',
 'expert_teams' => 'Expert Teams',
 'passion_and_skill' => 'The passion, trying & skill can make a top-performing company',
-'lets_get_started' => "Let's get started",
+'lets_get_started' => "let\'s get started",
 
 //Product_Lists Page content starts here 
 'shop' => 'Our Courses',
@@ -514,7 +514,7 @@ Why Our UI/UX Design Stands Out:',
     'invoice_number' => 'Invoice No:',
     'thank_you_order' => 'Thank You for Your Order!',
     'enrollment_confirmed' => 'Your enrollment has been confirmed and is now active in your dashboard.',
-    'order_confirmation' => 'We're thrilled to confirm that your order has been placed successfully with invoice number',
+    'order_confirmation' => 'We\'re thrilled to confirm that your order has been placed successfully with invoice number',
     'team_contact' => 'Our team will get in touch with you to kickstart our process.',
     'reach_out_for_help' => 'If you have any questions or need further details, feel free to reach out to us at',
     'no_orders_found' => 'You have no order yet!! Please order some products',
@@ -645,7 +645,7 @@ Why Our UI/UX Design Stands Out:',
     'faq_q1' => 'What is game boosting and how does it work?',
     'faq_a1' => 'Game boosting is a service where experienced players help you improve your in-game progress such as leveling up, ranking higher, or earning rewards faster. You purchase a service, and our pros either play on your account or coach you to achieve the desired result safely and efficiently.',
     'faq_q2' => 'Is my account safe during boosting?',
-    'faq_a2' => 'Yes! We prioritize your account's security with strict confidentiality and advanced security protocols. Our boosters follow fair play policies, and your login information is never shared or misused.',
+    'faq_a2' => 'Yes! We prioritize your account\'s security with strict confidentiality and advanced security protocols. Our boosters follow fair play policies, and your login information is never shared or misused.',
     'faq_q3' => 'How long does the boosting process take?',
     'faq_a3' => 'The duration depends on the specific service and your current progress. Leveling might take a few hours to days, while rank boosting or placement match boosts vary based on the skill required. We always aim to complete services as quickly as possible without compromising quality.',
     'faq_q4' => 'Can I play on my account while boosting is in progress?',
@@ -653,7 +653,7 @@ Why Our UI/UX Design Stands Out:',
     'faq_q5' => 'What games do you offer boosting for?',
     'faq_a5' => 'We provide boosting services for a variety of popular competitive games such as Dominion Rift, DriftHack Underground, CyberKnights Legacy, and many more. Check our product list for the full range.',
     'faq_q6' => 'Are your boosting services legal and allowed by the games?',
-    'faq_a6' => 'Our services comply with most game policies by focusing on skill improvement and account progression without cheating or using unauthorized software. However, it's always best to check the specific game's terms of service.',
+    'faq_a6' => 'Our services comply with most game policies by focusing on skill improvement and account progression without cheating or using unauthorized software. However, it\'s always best to check the specific game's terms of service.',
     'faq_q7' => 'How do I get started with a boosting service?',
     'faq_a7' => 'Simply select the desired boosting package from our website, provide your account details securely, and complete the payment. Our team will then begin the process and update you regularly.',
     'faq_q8' => 'What payment methods do you accept?',
@@ -667,13 +667,13 @@ Why Our UI/UX Design Stands Out:',
 
     //new keys for cards
      'our_advantages' => 'Our Advantages',
-     'our_advantages2' => 'You've come to the right place for digital card design',
+     'our_advantages2' => 'You\'ve come to the right place for digital card design',
      'unique_templates' => '100+ Unique Templates',
      'minimal_bold' => 'From minimal to bold, choose from a wide range of professionally designed digital card styles tailored for every brand and personality.',
     'expert_designers'=>'Expert Designers',
      'creative_professionals' => 'Work with creative professionals who understand branding, layout, and visual communication-ensuring your card leaves a lasting impression.',
      'unlimited_revisions' => 'Unlimited Revisions',
-     'happy_until' => 'We're not happy until you are. Get lifetime access to your digital card and request tweaks or updates whenever you need.',
+     'happy_until' => 'We\'re not happy until you are. Get lifetime access to your digital card and request tweaks or updates whenever you need.',
     'basic_plan_title' => 'Basic',
     'basic_plan_desc' => 'Two-Sided Business Card with 300/450 DPI CMYK (Print Ready Files). (Not include logo design)',
     'delivery_days' => ':count-day delivery', 
@@ -785,7 +785,7 @@ Why Our UI/UX Design Stands Out:',
     'expert' => 'Expert',
     'currency_changed'=> 'Currency changed to ',
     'join_community' => 'Join Our Community',
-    'platform_overview' => 'We build accessible, high-impact technical courses that help learners develop real, job-ready skills for today's digital roles. Our platform is designed for individuals and teams who want practical knowledge they can apply immediately-not just theory.',
+    'platform_overview' => 'We build accessible, high-impact technical courses that help learners develop real, job-ready skills for today\'s digital roles. Our platform is designed for individuals and teams who want practical knowledge they can apply immediately-not just theory.',
 
     'course_structure_focus' => 'Each course is carefully structured to make complex topics clear and approachable, guiding learners from core foundations to advanced, professional-level practices. We emphasize hands-on learning, real-world tools, and industry-relevant workflows that reflect how technology is actually used on the job.',
 
@@ -1257,5 +1257,6 @@ Why Our UI/UX Design Stands Out:',
         'copyright_text' => 'All Rights Reserved.',
     ],
 ];
+
 
 
