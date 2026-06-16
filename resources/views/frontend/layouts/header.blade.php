@@ -1,62 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>@yield('title','Grand Axis Learning – Online Courses for Skills & Career Growth')</title>
-<meta name="title" content="Grand Axis Learning – Professional Online Courses">
-<meta name="description" content="Grand Axis Learning offers expert-led online courses to build in-demand skills, advance careers, and support professional growth.">
-<meta name="keywords" content="online courses, e-learning platform, skill development, career growth, professional training, upskilling">
-<meta name="author" content="Grand Axis Learning">
-<!-- Stylesheets -->
-<link href="{{url('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-<link href="{{url('assets/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css">
-<link href="{{url('assets/plugins/revolution/css/layers.css')}}" rel="stylesheet" type="text/css">
-<link href="{{url('assets/plugins/revolution/css/navigation.css')}}" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;475;500;600;625;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Caecilia:wght@400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap" rel="stylesheet">
-<link href="{{url('assets/css/global.css')}}" rel="stylesheet">
-<link href="{{url('assets/css/style.css')}}" rel="stylesheet">
-<link href="{{url('assets/css/responsive.css')}}" rel="stylesheet">
-<link href="{{url('assets/css/color-utilities.css')}}" rel="stylesheet">
-<link href="{{url('assets/css/theme.css')}}" rel="stylesheet">
-<link rel="shortcut icon" href="{{url('assets/images/favicon.png')}}" type="image/x-icon">
-<link rel="icon" href="{{url('assets/images/favicon.png')}}" type="image/x-icon">
-<!-- Open Graph / Facebook Meta Tags -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="@yield('title', 'Grand Axis Learning – Professional Online Courses')">
-<meta property="og:description" content="Expert-led online courses designed for professional skill development and career growth.">
-@if(isset($og_image))
-<meta property="og:image" content="{{ $og_image }}">
-@endif
-<meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:site_name" content="Grand Axis Learning">
-<meta property="og:locale" content="en_US">
- <!-- Responsive -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	     @cookieconsentscripts
-<link rel="stylesheet" href="{{url('assets/css/app.css')}}">
-</head>
-
-<body class="@yield('page-body-class')">
-
-<div class="page-wrapper">
-	<!-- Preloader -->
-   <div id="preloader" >
-        <div class="preloader">
-            <span></span>
-            <span></span>
-        </div>
+<!-- Preloader -->
+<div id="preloader" >
+    <div class="preloader">
+        <span></span>
+        <span></span>
     </div>
-	<!-- Main Header-->
+</div>
+<!-- Main Header-->
 	<header class="main-header sticky-top">
 		<div class="container px-3 px-md-5">
 			<div class="header-wrapper d-flex align-items-center justify-content-between py-3">
 				<!-- Logo -->
 				<div class="logo-section">
 					<a href="{{route('home')}}" class="logo-link">
-						<img src="{{url('assets/images/logo.png')}}" alt="Artify Academy" class="logo-img">
+						<img src="{{url('assets/images/logo.webp')}}" alt="Artify Academy" class="logo-img">
 					</a>
 				</div>
 
@@ -167,7 +123,7 @@
 			<!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
 			<nav class="menu-box">
 				<div class="upper-box">
-					<div class="nav-logo"><a href="{{route('home')}}"><img src="{{url('assets/images/logo.png')}}" alt="" title=""></a></div>
+					<div class="nav-logo"><a href="{{route('home')}}"><img src="{{url('assets/images/logo.webp')}}" alt="" title=""></a></div>
 					<div class="close-btn"><i class="icon fa fa-times"></i></div>
 				</div>
 
@@ -186,7 +142,7 @@
 				<div class="inner-container">
 					<!--Logo-->
 					<div class="logo">
-						<a href="{{route('home')}}" title=""><img src="{{url('assets/images/logo.png')}}" alt="" title=""></a>
+						<a href="{{route('home')}}" title=""><img src="{{url('assets/images/logo.webp')}}" alt="" title=""></a>
 					</div>
 
 					<!--Right Col-->

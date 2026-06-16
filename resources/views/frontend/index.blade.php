@@ -24,17 +24,7 @@
                 </a>
             </div>
 
-            <div class="artify-hero__meta">
-                <div class="artify-hero__avatars">
-                    <img src="{{ asset('assets/art-classes/2.jpg') }}" alt="">
-                    <img src="{{ asset('assets/art-classes/5.jpg') }}" alt="">
-                    <img src="{{ asset('assets/art-classes/9.jpg') }}" alt="">
-                    <img src="{{ asset('assets/art-classes/4.jpg') }}" alt="">
-                </div>
-                <div class="artify-hero__text">
-                    <strong>12K+</strong> creative learners
-                </div>
-            </div>
+           
         </div>
 
         <div class="artify-hero__gallery">

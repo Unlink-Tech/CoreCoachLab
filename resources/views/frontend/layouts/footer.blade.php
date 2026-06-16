@@ -31,7 +31,7 @@
                 <!-- Column 1: Brand -->
                 <div class="af-footer__brand">
                     <a href="{{route('home')}}" class="af-footer__logo">
-                        <img src="{{url('assets/images/logo.png')}}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
+                        <img src="{{url('assets/images/logo.webp')}}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
                     </a>
                     <ul class="af-footer__contact">
                         <li>
