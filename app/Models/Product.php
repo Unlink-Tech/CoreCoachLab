@@ -9,6 +9,24 @@ class Product extends Model
 {
     protected $fillable=['title', 'title_jp', 'summary_jp', 'description_jp', 'extra_description', 'extra_description_jp','slug','summary','description','cat_id','child_cat_id','price', 'price_jp', 'price_hk','brand_id','discount','status','photo','size','stock','is_featured','condition'];
 
+    /**
+     * Return the Japanese value for translatable fields when the app locale is
+     * Japanese and a non-empty *_jp value is loaded. Falls back to the base value.
+     * Works for both plain SELECT * queries and explicit "title_jp as title" selects.
+     */
+    private function localized($value, $jpKey)
+    {
+        if (App::getLocale() === 'ja' && !empty($this->attributes[$jpKey] ?? null)) {
+            return $this->attributes[$jpKey];
+        }
+        return $value;
+    }
+
+    public function getTitleAttribute($value){ return $this->localized($value, 'title_jp'); }
+    public function getSummaryAttribute($value){ return $this->localized($value, 'summary_jp'); }
+    public function getDescriptionAttribute($value){ return $this->localized($value, 'description_jp'); }
+    public function getExtraDescriptionAttribute($value){ return $this->localized($value, 'extra_description_jp'); }
+
     public function cat_info(){
         return $this->hasOne('App\Models\Category','id','cat_id');
     }

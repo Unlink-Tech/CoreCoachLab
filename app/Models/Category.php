@@ -9,6 +9,21 @@ class Category extends Model
 {
     protected $fillable=['title','slug','summary','photo','status','is_parent','parent_id','added_by'];
 
+    /**
+     * Return the Japanese value for translatable fields when the app locale is
+     * Japanese and a non-empty *_jp value is loaded. Falls back to the base value.
+     */
+    private function localized($value, $jpKey)
+    {
+        if (App::getLocale() === 'ja' && !empty($this->attributes[$jpKey] ?? null)) {
+            return $this->attributes[$jpKey];
+        }
+        return $value;
+    }
+
+    public function getTitleAttribute($value){ return $this->localized($value, 'title_jp'); }
+    public function getSummaryAttribute($value){ return $this->localized($value, 'summary_jp'); }
+
     public function parent_info(){
         return $this->hasOne('App\Models\Category','id','parent_id');
     }
