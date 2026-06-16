@@ -390,7 +390,7 @@ return [
     'order_number' => '注文番号',
     'order_placed' => '注文完了',
     'no_orders_found' => '注文が見つかりません',
-    'no_past_orders' => 'まだ注文がありません',
+    'no_past_orders' => 'まだ注文がありません。クリエイティブなポテンシャルのロックを解除する準備はできていますか？',
     'orders' => '注文',
     'transaction_id' => '取引ID',
     'transaction_details' => '取引詳細',

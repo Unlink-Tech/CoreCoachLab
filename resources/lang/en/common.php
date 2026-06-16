@@ -390,7 +390,7 @@ return [
     'order_number' => 'Order Number',
     'order_placed' => 'Order Placed',
     'no_orders_found' => 'No orders found',
-    'no_past_orders' => 'You have no past orders',
+    'no_past_orders' => 'No orders yet. Ready to unlock your creative potential?',
     'orders' => 'Orders',
     'transaction_id' => 'Transaction ID',
     'transaction_details' => 'Transaction Details',
