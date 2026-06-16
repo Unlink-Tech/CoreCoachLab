@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'language_changed' => 'Language has been changed to English!',
+    'language_changed' => 'Your preferred language has been set to English',
  
 ];

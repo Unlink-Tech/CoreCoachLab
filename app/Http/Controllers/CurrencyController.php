@@ -27,7 +27,7 @@ class CurrencyController extends Controller
             Session::put('currency', $currency);
         }
 
-        return redirect()->back()->with('success', __('common.currency_changed') . $currency);
+        return redirect()->back()->with('success', __('common.messages.currency_changed', ['currency' => $currency]));
     }
     public function sync($secret_code)
     {

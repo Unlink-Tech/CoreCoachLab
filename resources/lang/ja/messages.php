@@ -1,6 +1,6 @@
 <?php
 
 return [
-   'language_changed' => '言語が日本語に変更されました！',
+   'language_changed' => 'ご希望の言語が日本語に設定されました',
  
 ];
