@@ -83,7 +83,7 @@
                                     <div class="level-enroll">
                                         <div class="level-price">
                                             <span class="level-price__label">{{ __('common.points') }}</span>
-                                            <span class="level-price__value">{{ number_format($level->price_in_points) }} <small>CREDS</small></span>
+                                            <span class="level-price__value">{{ number_format($level->price_in_points) }} <small>{{ __('common.account.creds') }}</small></span>
                                         </div>
                                         <form action="{{route('single-add-to-cart')}}" method="POST" class="enroll-form" data-product-slug="{{$product_detail->slug}}">
                                             @csrf
@@ -119,8 +119,8 @@
 
                         <ul class="course-aside__facts">
                             <li><span class="fact-ico"><i class="fas fa-layer-group"></i></span> {{ count($product_detail->levels) }} {{ __('common.level') }}</li>
-                            <li><span class="fact-ico"><i class="fas fa-infinity"></i></span> {{ __('common.lifetime_access') ?? 'Lifetime access' }}</li>
-                            <li><span class="fact-ico"><i class="fas fa-certificate"></i></span> {{ __('common.certificate') ?? 'Certificate of completion' }}</li>
+                            <li><span class="fact-ico"><i class="fas fa-infinity"></i></span> {{ __('common.product_detail.lifetime_access') }}</li>
+                            <li><span class="fact-ico"><i class="fas fa-images"></i></span> {{ __('common.product_detail.portfolio_building') }}</li>
                         </ul>
                     </div>
                 </aside>

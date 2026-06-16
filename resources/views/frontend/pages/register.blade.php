@@ -3,11 +3,11 @@
 @section('title','Register')
 @section('main-content')
 
-<x-breadcrumb 
-    :title="__('common.register')" 
+<x-breadcrumb
+    :title="__('common.account.register')"
     :routes="[
-        ['label' => __('common.register')]
-    ]" 
+        ['label' => __('common.account.register')]
+    ]"
 />
 
 <section class="auth-page-section">
@@ -24,9 +24,9 @@
                     <div class="panel-content">
                         <div>
                             <span class="modern-badge mb-3">{{ __('common.join_community') }}</span>
-                            <h2 class="panel-title mb-4">Start Your Creative Journey</h2>
+                            <h2 class="panel-title mb-4">{{ __('common.register.panel_title') }}</h2>
                             <p class="panel-text mb-5">
-                                Unlock exclusive access to expert-led art masterclasses, structured certified curricula, and interactive community feedback.
+                                {{ __('common.register.panel_description') }}
                             </p>
                         </div>
 
@@ -35,22 +35,22 @@
                             <!-- Benefit 1 -->
                             <div class="benefit-item mb-4">
                                 <div class="benefit-icon">
-                                    <i class="fas fa-palette"></i>
+                                    <i class="fas fa-user-tie"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Master Artists</span>
-                                    <span class="benefit-desc">Access courses designed and taught by professional gallery illustrators.</span>
+                                    <span class="benefit-title">{{ __('common.register.benefit_1_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.register.benefit_1_description') }}</span>
                                 </div>
                             </div>
 
                             <!-- Benefit 2 -->
                             <div class="benefit-item mb-4">
                                 <div class="benefit-icon">
-                                    <i class="fas fa-certificate"></i>
+                                    <i class="fas fa-book-open"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Certified Growth</span>
-                                    <span class="benefit-desc">Earn accredited certificates of completion to showcase your achievements.</span>
+                                    <span class="benefit-title">{{ __('common.register.benefit_2_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.register.benefit_2_description') }}</span>
                                 </div>
                             </div>
 
@@ -60,16 +60,16 @@
                                     <i class="fas fa-comments"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Direct Feedback</span>
-                                    <span class="benefit-desc">Submit your masterworks and receive personal critiques from expert artists.</span>
+                                    <span class="benefit-title">{{ __('common.register.benefit_3_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.register.benefit_3_description') }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bottom Brand Mark -->
                         <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">Artify Academy</span>
-                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
+                            <span class="brand-mark-title">{{ __('common.register.brand_name') }}</span>
+                            <span class="brand-mark-desc">{{ __('common.register.brand_tagline') }}</span>
                         </div>
                     </div>
                 </div>
@@ -78,10 +78,10 @@
                 <div class="col-lg-7 form-panel">
                     <div class="panel-content">
                         <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.register') }}</h3>
+                            <h3 class="form-title">{{ __('common.register.form_title') }}</h3>
                             <p class="form-subtitle">
                                 <i class="fas fa-info-circle text-muted me-1"></i>
-                                Fill out your details below to set up your creative account.
+                                {{ __('common.register.form_subtitle') }}
                             </p>
                         </div>
 
@@ -93,7 +93,7 @@
                                     <label class="premium-input-label" for="name">
                                         <i class="fas fa-user me-2"></i>{{ __('common.name') }}
                                     </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.name') }}" value="{{old('name')}}" class="premium-form-input @error('name') is-invalid @enderror">
+                                    <input type="text" name="name" id="name" placeholder="{{ __('common.register.field_name_placeholder') }}" value="{{old('name')}}" class="premium-form-input @error('name') is-invalid @enderror">
                                     @error('name')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -104,7 +104,7 @@
                                     <label class="premium-input-label" for="email">
                                         <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.email') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.register.field_email_placeholder') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
                                     @error('email')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -115,7 +115,7 @@
                                     <label class="premium-input-label" for="password">
                                         <i class="fas fa-lock me-2"></i>{{ __('common.password') }}
                                     </label>
-                                    <input type="password" name="password" id="password" placeholder="{{ __('common.password') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
+                                    <input type="password" name="password" id="password" placeholder="{{ __('common.register.field_password_placeholder') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
                                     @error('password')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -126,7 +126,7 @@
                                     <label class="premium-input-label" for="password_confirmation">
                                         <i class="fas fa-lock-open me-2"></i>{{ __('common.confirm_password') }}
                                     </label>
-                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="{{ __('common.confirm_password') }}" class="premium-form-input">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="{{ __('common.register.field_confirm_password_placeholder') }}" class="premium-form-input">
                                 </div>
 
                                 <!-- Captcha -->
@@ -150,7 +150,7 @@
                                 <!-- Submit Register Button -->
                                 <div class="col-12 mt-4">
                                     <button class="premium-submit-btn" type="submit" name="submit-form">
-                                        <i class="fas fa-user-plus me-2"></i> {{ __('common.register') }}
+                                        <i class="fas fa-user-plus me-2"></i> {{ __('common.register.submit_button') }}
                                     </button>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                         <div class="text-center">
                             <p class="text-muted mb-0">
                                 {{ __('common.already_account') }}
-                                <a href="{{route('login.form')}}" class="login-redirect-link fw-bold text-decoration-none">{{ __('common.login') }}</a>
+                                <a href="{{route('login.form')}}" class="login-redirect-link fw-bold text-decoration-none">{{ __('common.account.login') }}</a>
                             </p>
                         </div>
                     </div>
@@ -208,19 +208,19 @@
                 @endif
             },
             messages: {
-                name: "{{ __('common.name_required') }}",
+                name: "{{ __('common.register.validation_name_required') }}",
                 password: {
-                    required: "{{ __('common.password_required') }}",
-                    minlength: "{{ __('common.password_min') }}"
+                    required: "{{ __('common.register.validation_password_required') }}",
+                    minlength: "{{ __('common.register.validation_password_minlength') }}"
                 },
                 password_confirmation: {
-                    required: "{{ __('common.password_confirmation_required') }}",
-                    minlength: "{{ __('common.password_confirmation_min') }}",
-                    equalTo: "{{ __('common.password_confirmation_equal') }}"
+                    required: "{{ __('common.register.validation_confirm_password_required') }}",
+                    minlength: "{{ __('common.register.validation_confirm_password_minlength') }}",
+                    equalTo: "{{ __('common.register.validation_password_mismatch') }}"
                 },
-                email: "{{ __('common.email_required') }}",
+                email: "{{ __('common.register.validation_email_required') }}",
                 @if(env('CAPTCHA_ENABLED', true))
-                captcha: "{{ __('common.fill_it') }}" 
+                captcha: "{{ __('common.register.validation_captcha_required') }}"
                 @endif
             },
             errorPlacement: function(error, element) {

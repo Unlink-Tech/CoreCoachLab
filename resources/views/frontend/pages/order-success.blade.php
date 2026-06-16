@@ -8,8 +8,8 @@ $order = Order::where('trans_id', $transaction_id)->first();
 @section('main-content')
 
 <x-breadcrumb
-    :title="__('common.order_successful')"
-    :routes="[['label' => __('common.order_success')]]"
+    :title="__('common.order_success.page_title')"
+    :routes="[['label' => __('common.order_success.breadcrumb_label')]]"
 />
 
 <section class="order-status order-status--success">
@@ -26,18 +26,18 @@ $order = Order::where('trans_id', $transaction_id)->first();
                         <div class="status-icon status-icon--success">
                             <i class="fas fa-check"></i>
                         </div>
-                        <h2 class="status-title">{{ __('common.order_successful') }}</h2>
-                        <p class="status-text">{{ __('common.thank_you_order') }} {{ __('common.enrollment_confirmed') }}</p>
+                        <h2 class="status-title">{{ __('common.order_success.title') }}</h2>
+                        <p class="status-text">{{ __('common.order_success.description') }}</p>
                     </div>
 
                     @if($order)
                     <div class="status-grid">
                         <div class="status-fact">
-                            <span class="status-fact__label">{{ __('common.order_number') }}</span>
+                            <span class="status-fact__label">{{ __('common.order_success.order_number') }}</span>
                             <span class="status-fact__value">{{ $order->order_number }}</span>
                         </div>
                         <div class="status-fact">
-                            <span class="status-fact__label">{{ __('common.total_amount') }}</span>
+                            <span class="status-fact__label">{{ __('common.order_success.total_amount') }}</span>
                             <span class="status-fact__value">
                                 @php
                                     $currency = match($order->currency) {
@@ -51,11 +51,11 @@ $order = Order::where('trans_id', $transaction_id)->first();
                             </span>
                         </div>
                         <div class="status-fact">
-                            <span class="status-fact__label">{{ __('common.transaction_id') }}</span>
+                            <span class="status-fact__label">{{ __('common.order_success.transaction_id') }}</span>
                             <span class="status-fact__value">{{ $transaction_id }}</span>
                         </div>
                         <div class="status-fact status-fact--accent">
-                            <span class="status-fact__label">{{ __('common.payment_status') }}</span>
+                            <span class="status-fact__label">{{ __('common.order_success.payment_status') }}</span>
                             <span class="status-pill status-pill--success">{{ ucwords($order->payment_status) }}</span>
                         </div>
                     </div>
@@ -63,21 +63,21 @@ $order = Order::where('trans_id', $transaction_id)->first();
 
                     <div class="status-actions">
                         <a href="{{route('user.order.show',$order->id)}}" class="status-btn status-btn--primary">
-                            <i class="fas fa-eye"></i> {{ __('common.view_details') }}
+                            <i class="fas fa-eye"></i> {{ __('common.order_success.view_details') }}
                         </a>
                         <a href="{{route('home')}}" class="status-btn status-btn--ghost">
                             <i class="fas fa-home"></i> {{ __('common.home') }}
                         </a>
                         @if($order)
                             <a href="{{route('order.pdf',$order->id)}}" class="status-btn status-btn--outline">
-                                <i class="fas fa-download"></i> {{ __('common.download_pdf_invoice') }}
+                                <i class="fas fa-download"></i> {{ __('common.order_success.download_pdf_invoice') }}
                             </a>
                         @endif
                     </div>
 
                     @if($email_status=='inactive')
                         <div class="status-note">
-                            <p>{{ __('common.high_traffic') }} <a href="{{route('order.pdf',$order->id)}}">{{ __('common.download_pdf_invoice') }}</a></p>
+                            <p>{{ __('common.order_success.high_traffic') }} <a href="{{route('order.pdf',$order->id)}}">{{ __('common.order_success.download_pdf_invoice') }}</a></p>
                         </div>
                     @endif
                 </div>

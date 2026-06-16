@@ -4,8 +4,8 @@
 @section('main-content')
 
 <x-breadcrumb
-    :title="__('common.payment_unsuccessful')"
-    :routes="[['label' => __('common.failed')]]"
+    :title="__('common.order_failed.page_title')"
+    :routes="[['label' => __('common.order_failed.breadcrumb_label')]]"
 />
 
 <section class="order-status order-status--failed">
@@ -22,16 +22,16 @@
                         <div class="status-icon status-icon--error">
                             <i class="fas fa-times"></i>
                         </div>
-                        <h2 class="status-title">{{ __('common.payment_error') }}</h2>
-                        <p class="status-text">{{ __('common.payment_failure_message') }}</p>
+                        <h2 class="status-title">{{ __('common.order_failed.title') }}</h2>
+                        <p class="status-text">{{ __('common.order_failed.description') }}</p>
                     </div>
 
                     <div class="status-help">
-                        <h6 class="status-help__title"><i class="fas fa-lightbulb"></i> {{ __('common.what_you_can_do') }}</h6>
+                        <h6 class="status-help__title"><i class="fas fa-lightbulb"></i> {{ __('common.order_failed.what_you_can_do') }}</h6>
                         <ul class="status-help__list">
-                            <li><i class="fas fa-check"></i><span>{{ __('common.check_payment_details') }}</span></li>
-                            <li><i class="fas fa-check"></i><span>{{ __('common.contact_bank') }}</span></li>
-                            <li><i class="fas fa-check"></i><span>{{ __('common.try_different_payment') }}</span></li>
+                            <li><i class="fas fa-check"></i><span>{{ __('common.order_failed.check_payment_details') }}</span></li>
+                            <li><i class="fas fa-check"></i><span>{{ __('common.order_failed.contact_bank') }}</span></li>
+                            <li><i class="fas fa-check"></i><span>{{ __('common.order_failed.try_different_payment') }}</span></li>
                         </ul>
                     </div>
 
@@ -42,11 +42,11 @@
                     </div>
 
                     <div class="status-note status-note--left">
-                        <h6 class="status-note__title">{{ __('common.need_assistance') }}</h6>
+                        <h6 class="status-note__title">{{ __('common.order_failed.need_assistance') }}</h6>
                         <p>
-                            {{ __('common.reach_out') }}
+                            {{ __('common.order_failed.reach_out') }}
                             <a href="mailto:{{ __('common.company_email') }}">{{ __('common.company_email') }}</a>.
-                            {{ __('common.we_are_here') }}
+                            {{ __('common.order_failed.we_are_here') }}
                         </p>
                     </div>
                 </div>

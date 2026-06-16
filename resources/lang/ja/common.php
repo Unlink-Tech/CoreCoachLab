@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 return [
 'old_password' => '現在のパスワード',
@@ -14,7 +14,7 @@ return [
 
     // About Us Page Content
     'get_to_know_us' => '私たちについて',
-    'empower_your_future' => 'ブランドを強化 — いつでも、どこでもつながる',
+    'empower_your_future' => 'ブランドを強化 - いつでも、どこでもつながる',
     'at_website' => ' では、あなたの個性を際立たせ、簡単に共有できる美しいデジタル名刺を提供しています。フリーランス、起業家、法人プロフェッショナルを問わず、印刷不要でスマートかつスピーディーなネットワーキングを実現します。',
     'expert_trainers' => 'クリエイティブエキスパート',
     'online_learning' => 'モバイル最適化デザイン',
@@ -24,7 +24,6 @@ return [
     'course_overview' => 'コース概要',
     'great_results' => '迅速な納品と高いインパクト',
     'discover_more' => 'さらに詳しく',
-    'order_success' => '注文の成功',
      'view_more'=>'詳細を見る',
     'your_growth' => 'パーソナライズされたデジタルカードでブランドを次のレベルへ。',
     'Explore_courses' => 'コースを見る',
@@ -90,7 +89,7 @@ return [
     'logout' => 'ログアウト',
     'register' => '登録',
     'call_anytime' => 'メールで問い合わせ',
-    'welcome_code' => '知識で未来を切り拓こう — 今すぐコースを選んで登録！',
+    'welcome_code' => '知識で未来を切り拓こう - 今すぐコースを選んで登録！',
     'at_checkout' => 'チェックアウト時に',
     'discount_value' => '10％割引',
     'on_any_course' => 'すべてのコースで！',
@@ -210,28 +209,28 @@ return [
     'strength1' => 'UI / UX クリエイティブデザイン',
     'strength1_text' => 'EC Shop-Marketingでは、単なるデザインではなく、直感的で魅力的なユーザー体験を創出します。すべての操作がスムーズで意味のあるものになるよう設計します。',
     'design_principles' => [
-        'user_centric' => 'ユーザー中心設計 – 行動、アクセシビリティ、操作性を最優先。',
-        'stunning_designs' => '洗練されたビジュアルデザイン – 美しさと機能性の両立。',
-        'performance' => '高パフォーマンスUI – 高速・高レスポンス設計。',
-        'compatibility' => 'マルチデバイス対応 – PC、スマホ、タブレットに最適化。',
+        'user_centric' => 'ユーザー中心設計 - 行動、アクセシビリティ、操作性を最優先。',
+        'stunning_designs' => '洗練されたビジュアルデザイン - 美しさと機能性の両立。',
+        'performance' => '高パフォーマンスUI - 高速・高レスポンス設計。',
+        'compatibility' => 'マルチデバイス対応 - PC、スマホ、タブレットに最適化。',
     ],
     'final_message' => '業界動向とユーザー期待を深く理解し、印象に残るデジタル体験を創り上げます。',
     'strength2' => 'ビジュアルグラフィックデザイン',
  'strength2_text' => 'EC Shop Limitedでは、目を引くビジュアルでアイデアを形にします。経験豊富なグラフィックデザイナーが、高品質なデザインを制作し、ブランド価値を高め、オーディエンスを惹きつけ、強い印象を残します。',
     'graphic_design' => [
-        'custom_designs' => 'クリエイティブ＆カスタムデザイン – ブランドビジョンに沿った、独自性のあるオーダーメイドデザイン。',
-        'visual_storytelling' => '高インパクトなビジュアルストーリーテリング – 見た目だけでなく、ブランドの物語を効果的に伝えるデザイン。',
-        'versatile_platforms' => 'マルチプラットフォーム対応 – Web、SNS、広告、印刷物に最適化。',
-        'trend_aesthetics' => 'トレンド重視の美的表現 – モダンで洗練され、共感を生むデザイン。',
+        'custom_designs' => 'クリエイティブ＆カスタムデザイン - ブランドビジョンに沿った、独自性のあるオーダーメイドデザイン。',
+        'visual_storytelling' => '高インパクトなビジュアルストーリーテリング - 見た目だけでなく、ブランドの物語を効果的に伝えるデザイン。',
+        'versatile_platforms' => 'マルチプラットフォーム対応 - Web、SNS、広告、印刷物に最適化。',
+        'trend_aesthetics' => 'トレンド重視の美的表現 - モダンで洗練され、共感を生むデザイン。',
     ],
 
     'strength3' => 'データドリブン戦略',
     'strength3_text' => 'EC Shop Limitedでは、勘や推測に頼らず、強力なデータ分析に基づいて意思決定を行います。データドリブン戦略により、パフォーマンス最適化、精度の高いターゲティング、測定可能な成長を実現します。',
     'data_driven_strategy' => [
-        'insightful_analytics' => '洞察力のある分析 – ユーザー行動、市場動向、パフォーマンス指標を分析し戦略を最適化。',
-        'precision_targeting' => '精密なターゲティング – 適切なタイミングで、適切なオーディエンスにリーチ。',
-        'continuous_optimization' => '継続的な最適化 – リアルタイム追跡と調整でROIを最大化。',
-        'fact_based_decision' => '事実に基づく意思決定 – データに裏付けられた賢い戦略。',
+        'insightful_analytics' => '洞察力のある分析 - ユーザー行動、市場動向、パフォーマンス指標を分析し戦略を最適化。',
+        'precision_targeting' => '精密なターゲティング - 適切なタイミングで、適切なオーディエンスにリーチ。',
+        'continuous_optimization' => '継続的な最適化 - リアルタイム追跡と調整でROIを最大化。',
+        'fact_based_decision' => '事実に基づく意思決定 - データに裏付けられた賢い戦略。',
     ],
 
     'company_benefits' => '企業メリット',
@@ -472,48 +471,59 @@ return [
     'accept_refund_policy' => '返金ポリシーに同意してください',
     'dba_text' => '当サイトでサービスを購入すると、クレジットカード明細には次の名称が表示されます：',
 
-    // Order Failed
-    'payment_unsuccessful' => 'お支払いに失敗しました',
-    'payment_error' => 'エラーが発生しました',
-    'payment_failure_message' => '現在お支払いを処理できませんでした。これはさまざまな理由で発生する可能性があります。',
-    'what_you_can_do' => '次の点をご確認ください：',
-    'check_payment_details' => '支払い情報を確認する',
-    'contact_bank' => '銀行またはカード会社にお問い合わせください',
-    'try_different_payment' => '別の支払い方法をお試しください',
-    'need_assistance' => 'サポートが必要ですか？',
-    'reach_out' => '問題が解決しない場合は、以下までご連絡ください。',
-    'we_are_here' => '私たちがサポートします！',
-    'failed' => '失敗',
+    // Order Failed Page
+    'order_failed' => array(
+        'page_title' => 'お支払いに失敗しました',
+        'breadcrumb_label' => '失敗',
+        'title' => 'エラーが発生しました',
+        'description' => '現在お支払いを処理できませんでした。これはさまざまな理由で発生する可能性があります。',
+        'what_you_can_do' => '次の点をご確認ください：',
+        'check_payment_details' => '支払い情報を確認する',
+        'contact_bank' => '銀行またはカード会社にお問い合わせください',
+        'try_different_payment' => '別の支払い方法をお試しください',
+        'need_assistance' => 'サポートが必要ですか？',
+        'reach_out' => '問題が解決しない場合は、以下までご連絡ください。',
+        'we_are_here' => '私たちがサポートします！',
+    ),
+
+    // Order Success Page
+    'order_success' => array(
+        'page_title' => '注文が完了しました',
+        'breadcrumb_label' => '注文完了',
+        'title' => '注文が完了しました',
+        'description' => 'ご注文ありがとうございます！ご登録が確認されました。ダッシュボードで有効になっています。',
+        'order_number' => '注文番号',
+        'total_amount' => '合計金額',
+        'transaction_id' => '取引ID',
+        'payment_status' => '支払い状況',
+        'view_details' => '詳細を見る',
+        'download_pdf_invoice' => 'PDFインボイスをダウンロード',
+        'high_traffic' => '現在高いトラフィックを経験しており、メールでの請求書配信が遅延する可能性があります。その間、ここから請求書をダウンロードできます。',
+    ),
+
+    // Other order-related keys (kept for backward compatibility)
     'change_password' => 'パスワード変更',
     'order_history' => '注文履歴',
-
-    // Order Success
-    'order_successful' => '注文が完了しました',
     'invoice_number' => '請求書番号：',
     'thank_you_order' => 'ご注文ありがとうございます！',
     'enrollment_confirmed' => 'ご登録が確認されました。ダッシュボードで有効になっています。',
-    'download_pdf_invoice' => 'PDFインボイスをダウンロード',
     'order_confirmation' => '以下の請求書番号でご注文が正常に完了しました：',
     'team_contact' => '担当チームよりご連絡いたします。',
     'reach_out_for_help' => 'ご不明点がございましたら、以下までご連絡ください。',
     'no_orders_found' => 'まだ注文がありません。商品をご注文ください。',
     'order_lists' => '注文一覧',
     'order_no' => '注文番号',
-    'total_amount' => '合計金額',
     'status' => 'ステータス',
     'action' => '操作',
     'order_information' => '注文情報',
-    'order_number' => '注文番号',
     'order_update' => '注文更新',
     'order_date' => '注文日',
     'order_status' => '注文状況',
     'payment_method' => '支払い方法',
-    'payment_status' => '支払い状況',
     'my_orders' => 'マイオーダー',
     'orders' => '注文',
     'back' => '戻る',
     'generate_pdf' => 'PDFを生成',
-    'transaction_id' => '取引ID',
 
     // Dashboard keys
     'dashboard' => 'ダッシュボード',
@@ -1098,7 +1108,7 @@ return [
     ],
 
     // Cart (Nested Structure)
-    'cart' => [
+    'cart' => array(
         'title' => 'カート',
         'shopping_cart' => 'ショッピングバッグ',
         'view_cart' => 'カートを見る',
@@ -1106,7 +1116,14 @@ return [
         'total' => '合計',
         'checkout' => 'チェックアウトへ進む',
         'redeem_points' => 'クレジットを使用',
-    ],
+        'type_course' => 'コース',
+        'type_wallet' => 'ウォレットパッケージ',
+        'price' => '価格',
+        'secure_checkout' => '安全なチェックアウト',
+        'lifetime_access' => '無期限アクセス',
+        'accepted_payment_methods' => '利用可能な支払い方法',
+        'summary_empty' => 'カートに商品を追加すると、サマリーが表示されます。',
+    ),
 
     // Categories (Nested Structure)
     'categories' => [
@@ -1119,10 +1136,143 @@ return [
         'loading' => 'あなたの創造的な旅を読み込み中...',
     ],
 
+    // About Page (Nested Structure)
+    'about' => [
+        'pillar_1_title' => '専門家による指導',
+        'pillar_1_description' => '業界経験と個展出品経験を持つプロの画家やイラストレーターから直接学びます。',
+        'pillar_2_title' => '体系的な学習',
+        'pillar_2_description' => '初心者から上級テクニックまで段階的に学べるよう設計されたコースで、確実に成長できます。',
+        'pillar_3_title' => '最新技法',
+        'pillar_3_description' => 'プロのアーティストが使う現代的なイラスト、デジタルアート、伝統的な絵画、キャラクターデザインを習得します。',
+        'pillar_4_title' => 'クリエイティブポートフォリオ',
+        'pillar_4_description' => '実践的なプロジェクトと演習を通じて、クライアントや雇用者に示すことができるポートフォリオを構築します。',
+    ],
+
+    // Product Detail Page (Nested Structure)
+    'product_detail' => [
+        'lifetime_access' => '生涯アクセス',
+        'portfolio_building' => 'ポートフォリオを構築',
+    ],
+
+    // Product Lists Page (Nested Structure)
+    'product_lists' => [
+        'subtitle' => 'クリエイティブコースと学習の集まりを探索します',
+        'search_placeholder' => 'コースを検索...',
+        'all_courses' => 'すべてのコース',
+        'price_from' => '¥',
+        'learn_button' => 'もっと学ぶ',
+    ],
+
+    // Forgot Password Page (Nested Structure)
+    'forgot_password' => [
+        'panel_title' => 'パスワードをリセット',
+        'panel_description' => 'ご心配なく！アカウントにアクセスできるようにするための安全な手順をお送りします。',
+        'step_1_title' => 'リセットリンクをリクエスト',
+        'step_1_description' => 'アカウントに登録されているメールアドレスを入力して、パスワードリセットリンクをリクエストします。',
+        'step_2_title' => 'メールを確認',
+        'step_2_description' => 'お送りするメール内のセキュアなリンクをクリックして、新しいパスワードを作成します。',
+        'step_3_title' => '新しいパスワードを設定',
+        'step_3_description' => '強力な新しいパスワードを作成し、すぐにサインインしてください。',
+        'brand_name' => 'Artify Academy',
+        'brand_tagline' => 'マスターアーティストによるクリエイティブ教育',
+        'form_title' => 'パスワード復旧',
+        'form_subtitle' => 'アカウントに関連付けられているメールアドレスを入力してください。',
+        'field_email_placeholder' => 'your.email@example.com',
+        'field_captcha_placeholder' => '認証コードを入力してください',
+        'submit_button' => 'リセットリンクを送信',
+        'validation_email_required' => 'メールアドレスを入力してください',
+        'validation_captcha_required' => 'セキュリティ認証を完了してください',
+    ],
+
+    // Register Page (Nested Structure)
+    'register' => [
+        'panel_title' => 'あなたの芸術的な旅を始めましょう',
+        'panel_description' => 'クリエイティブな学習者のコミュニティに参加します。専門家主導のマスタークラス、構造化された学習パス、専門的なアーティストからの直接フィードバックにアクセスします。',
+        'benefit_1_title' => '専門家による指導',
+        'benefit_1_description' => 'ギャラリーと展示会の経験が豊富なプロのアーティストから学びます。',
+        'benefit_2_title' => '体系的な学習',
+        'benefit_2_description' => 'あらゆるレベルでのスキル構築に設計された慎重に組織されたコースを進めます。',
+        'benefit_3_title' => 'アーティストフィードバック',
+        'benefit_3_description' => '作品を提出して、経験豊富なインストラクターから個別のクリティークを受け取ります。',
+        'brand_name' => 'Artify Academy',
+        'brand_tagline' => 'マスターアーティストによるクリエイティブ教育',
+        'form_title' => 'アカウントを作成',
+        'form_subtitle' => '情報を入力して、専門のインストラクターとアートを学び始めましょう。',
+        'field_name_placeholder' => 'お名前',
+        'field_email_placeholder' => 'your.email@example.com',
+        'field_password_placeholder' => '強いパスワードを作成してください',
+        'field_confirm_password_placeholder' => 'パスワードを確認してください',
+        'submit_button' => 'アカウントを作成',
+        'validation_name_required' => 'お名前を入力してください',
+        'validation_password_required' => 'パスワードは必須です',
+        'validation_password_minlength' => 'パスワードは5文字以上である必要があります',
+        'validation_confirm_password_required' => 'パスワード確認を入力してください',
+        'validation_confirm_password_minlength' => '確認パスワードは5文字以上である必要があります',
+        'validation_password_mismatch' => 'パスワードが一致しません',
+        'validation_email_required' => 'メールアドレスは必須です',
+        'validation_captcha_required' => 'セキュリティ認証を完了してください',
+    ],
+
+    // Login Page (Nested Structure)
+    'login' => [
+        'panel_title' => 'Artifyへようこそ',
+        'panel_description' => 'ダッシュボードにアクセスし、あなたの創造的な進歩を追跡し、マスターインストラクターとつながってアートワークのフィードバックを受け取ります。',
+        'benefit_1_title' => '学習を続ける',
+        'benefit_1_description' => '中断したコースに戻り、アートスキルの習得を続けます。',
+        'benefit_2_title' => 'インストラクターフィードバック',
+        'benefit_2_description' => 'アートメンターからの詳細なクリティークとガイダンスを確認してテクニックを向上させます。',
+        'benefit_3_title' => '作品を追跡',
+        'benefit_3_description' => 'ポートフォリオを整理し、進捗を監視し、最高の作品を集めます。',
+        'brand_name' => 'Artify Academy',
+        'brand_tagline' => 'マスターアーティストによるクリエイティブ教育',
+        'form_title' => 'サインイン',
+        'form_subtitle' => '認証情報を入力して学習ダッシュボードにアクセスします。',
+        'field_email_placeholder' => 'your.email@example.com',
+        'field_password_placeholder' => 'パスワードを入力してください',
+        'submit_button' => 'サインイン',
+        'validation_password_required' => 'パスワードは必須です',
+        'validation_password_minlength' => 'パスワードは5文字以上である必要があります',
+        'validation_email_required' => 'メールアドレスは必須です',
+    ],
+
+    // Contact Page (Nested Structure)
+    'contact' => [
+        'panel_description' => 'アートコース、クラススケジュール、始め方についてのご質問ですか？チームに連絡してください。24時間以内にお返事いたします。',
+        'form_title' => 'メッセージを送信',
+        'form_subtitle' => '下のフォームに記入していただければ、できるだけ早くご質問にお返事いたします。',
+        'brand_name' => 'Artify Academy',
+        'brand_tagline' => 'マスターアーティストによるクリエイティブ教育',
+        'field_name_placeholder' => 'お名前',
+        'field_email_placeholder' => 'your.email@example.com',
+        'field_subject_placeholder' => 'ご質問内容は？',
+        'field_message_placeholder' => 'コースへのご質問や関心について詳しくお聞きします...',
+        'validation_name_required' => 'お名前を入力してください',
+        'validation_email_required' => 'メールアドレスを入力してください',
+        'validation_email_invalid' => '有効なメールアドレスを入力してください',
+        'validation_subject_required' => '件名を入力してください',
+        'validation_message_required' => 'メッセージを入力してください',
+    ],
+
     // Footer (Nested Structure)
     'footer' => [
         'newsletter_eyebrow' => 'インスピレーションを受け取ろう',
         'newsletter_title' => 'あなたのアイデアを形に。',
         'newsletter_description' => '新しいコースやアカデミーのニュースをメールで受け取りましょう。新しいインスピレーション、あなたのメールボックスへ。',
+        'platform' => 'プラットフォーム',
+        'home' => 'ホーム',
+        'catalog' => 'コース一覧',
+        'about' => 'について',
+        'contact' => 'お問い合わせ',
+        'support' => 'サポート',
+        'privacy_policy' => 'プライバシーポリシー',
+        'terms_policy' => '利用規約',
+        'refund_policy' => '返金ポリシー',
+        'delivery_policy' => '配送ポリシー',
+        'accepted_payment_methods' => 'ご利用いただけるお支払い方法',
+        'newsletter_success' => 'ニュースレターへのご登録ありがとうございます！',
+        'newsletter_error' => '問題が発生しました。もう一度お試しください。',
+        'newsletter_invalid_email' => '有効なメールアドレスを入力してください。',
+        'newsletter_email_placeholder' => 'メールアドレスを入力してください',
+        'copyright_text' => '著作権所有。',
     ],
 ];

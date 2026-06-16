@@ -24,9 +24,9 @@
                     <div class="panel-content">
                         <div>
                             <span class="modern-badge mb-3">{{ __('common.security_first') }}</span>
-                            <h2 class="panel-title mb-4">Reset Your Password</h2>
+                            <h2 class="panel-title mb-4">{{ __('common.forgot_password.panel_title') }}</h2>
                             <p class="panel-text mb-5">
-                                No worries, we will send you secure instructions to reset your account password and restore your access.
+                                {{ __('common.forgot_password.panel_description') }}
                             </p>
                         </div>
 
@@ -38,8 +38,8 @@
                                     <i class="fas fa-paper-plane"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Request Link</span>
-                                    <span class="benefit-desc">Enter your registered email address to request a reset link.</span>
+                                    <span class="benefit-title">{{ __('common.forgot_password.step_1_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.forgot_password.step_1_description') }}</span>
                                 </div>
                             </div>
 
@@ -49,8 +49,8 @@
                                     <i class="fas fa-envelope-open-text"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Check Inbox</span>
-                                    <span class="benefit-desc">Click the link inside the verification email we send you.</span>
+                                    <span class="benefit-title">{{ __('common.forgot_password.step_2_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.forgot_password.step_2_description') }}</span>
                                 </div>
                             </div>
 
@@ -60,16 +60,16 @@
                                     <i class="fas fa-shield-alt"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Secure Update</span>
-                                    <span class="benefit-desc">Create a new secure password to sign back in immediately.</span>
+                                    <span class="benefit-title">{{ __('common.forgot_password.step_3_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.forgot_password.step_3_description') }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bottom Brand Mark -->
                         <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">Artify Academy</span>
-                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
+                            <span class="brand-mark-title">{{ __('common.forgot_password.brand_name') }}</span>
+                            <span class="brand-mark-desc">{{ __('common.forgot_password.brand_tagline') }}</span>
                         </div>
                     </div>
                 </div>
@@ -78,10 +78,10 @@
                 <div class="col-lg-7 form-panel">
                     <div class="panel-content">
                         <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.reset_password') }}</h3>
+                            <h3 class="form-title">{{ __('common.forgot_password.form_title') }}</h3>
                             <p class="form-subtitle">
                                 <i class="fas fa-info-circle text-muted me-1"></i>
-                                Enter your email address to recover your account.
+                                {{ __('common.forgot_password.form_subtitle') }}
                             </p>
                         </div>
 
@@ -93,7 +93,7 @@
                                     <label class="premium-input-label" for="email">
                                         <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.email') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.forgot_password.field_email_placeholder') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
                                     @error('email')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -104,7 +104,7 @@
                                     <label class="premium-input-label">{{ __('common.security_verification') }}</label>
                                     <div class="row align-items-center g-3">
                                         <div class="col-md-8">
-                                            <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.fill_captcha') }}" required>
+                                            <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.forgot_password.field_captcha_placeholder') }}" required>
                                         </div>
                                         <div class="col-md-4 captcha-image-container text-center">
                                             @captcha
@@ -118,7 +118,7 @@
                                 <!-- Submit Button -->
                                 <div class="col-12 mt-4">
                                     <button class="premium-submit-btn" type="submit" name="submit-form">
-                                        <i class="fas fa-paper-plane me-2"></i> {{ __('common.send_reset_link') }}
+                                        <i class="fas fa-paper-plane me-2"></i> {{ __('common.forgot_password.submit_button') }}
                                     </button>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                         <div class="text-center">
                             <p class="text-muted mb-0">
                                 {{ __('common.remember_password') }}
-                                <a href="{{route('login.form')}}" class="register-redirect-link fw-bold text-decoration-none">{{ __('common.login') }}</a>
+                                <a href="{{route('login.form')}}" class="register-redirect-link fw-bold text-decoration-none">{{ __('common.account.login') }}</a>
                             </p>
                         </div>
                     </div>
@@ -161,8 +161,8 @@
                 captcha: "required"
             },
             messages: {
-                email: "{{ __('common.email_required') }}",
-                captcha: "{{ __('common.fill_it') }}"
+                email: "{{ __('common.forgot_password.validation_email_required') }}",
+                captcha: "{{ __('common.forgot_password.validation_captcha_required') }}"
             },
             errorPlacement: function(error, element) {
                 error.appendTo(element.parent());

@@ -3,11 +3,11 @@
 @section('title','Login')
 @section('main-content')
 
-<x-breadcrumb 
-    :title="__('common.login')" 
+<x-breadcrumb
+    :title="__('common.account.login')"
     :routes="[
-        ['label' => __('common.login')]
-    ]" 
+        ['label' => __('common.account.login')]
+    ]"
 />
 
 <section class="auth-page-section">
@@ -24,9 +24,9 @@
                     <div class="panel-content">
                         <div>
                             <span class="modern-badge mb-3">{{ __('common.welcome_back') }}</span>
-                            <h2 class="panel-title mb-4">Unlock Your Artistry</h2>
+                            <h2 class="panel-title mb-4">{{ __('common.login.panel_title') }}</h2>
                             <p class="panel-text mb-5">
-                                Log in to access your dashboard, resume your active masterclasses, and connect with your art mentors.
+                                {{ __('common.login.panel_description') }}
                             </p>
                         </div>
 
@@ -38,8 +38,8 @@
                                     <i class="fas fa-play-circle"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Resume Learning</span>
-                                    <span class="benefit-desc">Jump straight back into your lessons right where you left off.</span>
+                                    <span class="benefit-title">{{ __('common.login.benefit_1_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.login.benefit_1_description') }}</span>
                                 </div>
                             </div>
 
@@ -49,27 +49,27 @@
                                     <i class="fas fa-comments"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Mentor Reviews</span>
-                                    <span class="benefit-desc">Check constructive criticism and critique updates from master teachers.</span>
+                                    <span class="benefit-title">{{ __('common.login.benefit_2_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.login.benefit_2_description') }}</span>
                                 </div>
                             </div>
 
                             <!-- Benefit 3 -->
                             <div class="benefit-item">
                                 <div class="benefit-icon">
-                                    <i class="fas fa-trophy"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
                                 <div class="benefit-body">
-                                    <span class="benefit-title">Track Certificates</span>
-                                    <span class="benefit-desc">View and share your certified credentials with galleries and peers.</span>
+                                    <span class="benefit-title">{{ __('common.login.benefit_3_title') }}</span>
+                                    <span class="benefit-desc">{{ __('common.login.benefit_3_description') }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bottom Brand Mark -->
                         <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">Artify Academy</span>
-                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
+                            <span class="brand-mark-title">{{ __('common.login.brand_name') }}</span>
+                            <span class="brand-mark-desc">{{ __('common.login.brand_tagline') }}</span>
                         </div>
                     </div>
                 </div>
@@ -78,10 +78,10 @@
                 <div class="col-lg-7 form-panel">
                     <div class="panel-content">
                         <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.login') }}</h3>
+                            <h3 class="form-title">{{ __('common.login.form_title') }}</h3>
                             <p class="form-subtitle">
                                 <i class="fas fa-info-circle text-muted me-1"></i>
-                                Fill out your credentials to enter the learning platform.
+                                {{ __('common.login.form_subtitle') }}
                             </p>
                         </div>
 
@@ -93,7 +93,7 @@
                                     <label class="premium-input-label" for="email">
                                         <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.email') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.login.field_email_placeholder') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
                                     @error('email')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -104,7 +104,7 @@
                                     <label class="premium-input-label" for="password">
                                         <i class="fas fa-lock me-2"></i>{{ __('common.password') }}
                                     </label>
-                                    <input type="password" name="password" id="password" placeholder="{{ __('common.password') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
+                                    <input type="password" name="password" id="password" placeholder="{{ __('common.login.field_password_placeholder') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
                                     @error('password')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -118,7 +118,7 @@
                                 <!-- Submit Button -->
                                 <div class="col-12 mt-4">
                                     <button class="premium-submit-btn" type="submit" name="submit-form">
-                                        <i class="fas fa-sign-in-alt me-2"></i> {{ __('common.login') }}
+                                        <i class="fas fa-sign-in-alt me-2"></i> {{ __('common.login.submit_button') }}
                                     </button>
                                 </div>
                             </div>
@@ -165,10 +165,10 @@
             },
             messages: {
                 password: {
-                    required: "{{ __('common.password_required') }}",
-                    minlength: "{{ __('common.password_confirmation_min') }}"
+                    required: "{{ __('common.login.validation_password_required') }}",
+                    minlength: "{{ __('common.login.validation_password_minlength') }}"
                 },
-                email: "{{ __('common.email_required') }}"
+                email: "{{ __('common.login.validation_email_required') }}"
             },
             errorPlacement: function(error, element) {
                 error.appendTo(element.parent());

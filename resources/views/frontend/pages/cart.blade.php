@@ -60,7 +60,7 @@
                                         <div class="cart-item-card__credits-visual">
                                             <i class="fas fa-coins"></i>
                                             <span class="cart-item-card__credits-amount">+{{ number_format($cart->points) }}</span>
-                                            <span class="cart-item-card__credits-unit">CREDS</span>
+                                            <span class="cart-item-card__credits-unit">{{ __('common.account.creds') }}</span>
                                         </div>
                                     @endif
 
@@ -69,19 +69,19 @@
                                         <a href="{{ $item_link }}" class="cart-item-card__title">{{ $item_title }}</a>
                                         <div class="cart-item-card__meta">
                                             @if($is_course)
-                                                <span class="cart-item-card__type"><i class="fas fa-book-open"></i> Course</span>
+                                                <span class="cart-item-card__type"><i class="fas fa-book-open"></i> {{ __('common.cart.type_course') }}</span>
                                             @else
-                                                <span class="cart-item-card__type"><i class="fas fa-wallet"></i> Wallet Package</span>
+                                                <span class="cart-item-card__type"><i class="fas fa-wallet"></i> {{ __('common.cart.type_wallet') }}</span>
                                             @endif
                                         </div>
                                     </div>
 
                                     <!-- Price details -->
                                     <div class="cart-item-card__price">
-                                        <span class="cart-item-card__price-label">Price</span>
+                                        <span class="cart-item-card__price-label">{{ __('common.cart.price') }}</span>
                                         <span class="cart-item-card__price-value">
                                             @if($cart->product_id < 1000 && $cart->points > 0)
-                                                <span class="price-creds"><i class="fas fa-coins"></i> {{ number_format($cart->points) }} <span class="price-unit">CRDS</span></span>
+                                                <span class="price-creds"><i class="fas fa-coins"></i> {{ number_format($cart->points) }} <span class="price-unit">{{ __('common.account.creds') }}</span></span>
                                             @else
                                                 <span class="price-main">{{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($cart['price'], session('currency')=='JPY' ? 0 : 2) }}</span>
                                             @endif
@@ -137,7 +137,7 @@
                                 <span class="cart-sidebar__row-label">{{ __('common.total') }}</span>
                                 <span class="cart-sidebar__row-value">
                                     @if(Helper::totalCartPoints() > 0)
-                                        <i class="fas fa-coins"></i> {{ number_format(Helper::totalCartPoints()) }} <span class="total-unit">CRDS</span>
+                                        <i class="fas fa-coins"></i> {{ number_format(Helper::totalCartPoints()) }} <span class="total-unit">{{ __('common.account.creds') }}</span>
                                     @else
                                         {{ Helper::getCurrencySymbol(session('currency')) }}{{ number_format($total_amount, session('currency')=='JPY' ? 0 : 2) }}
                                     @endif
@@ -154,23 +154,23 @@
                                 <div class="cart-sidebar__trust-icon-wrap cart-sidebar__trust-icon-wrap--security">
                                     <i class="fas fa-shield-halved"></i>
                                 </div>
-                                <span>{{ __('common.secure_checkout') ?? 'Secure checkout' }}</span>
+                                <span>{{ __('common.cart.secure_checkout') }}</span>
                             </li>
                             <li>
                                 <div class="cart-sidebar__trust-icon-wrap cart-sidebar__trust-icon-wrap--access">
                                     <i class="fas fa-clock-rotate-left"></i>
                                 </div>
-                                <span>{{ __('common.lifetime_access') ?? 'Lifetime access' }}</span>
+                                <span>{{ __('common.cart.lifetime_access') }}</span>
                             </li>
                         </ul>
 
                         <div class="cart-sidebar__pay">
-                            <img src="{{ asset('assets/images/payment.webp') }}" alt="Accepted payment methods" loading="lazy">
+                            <img src="{{ asset('assets/images/payment.webp') }}" alt="{{ __('common.cart.accepted_payment_methods') }}" loading="lazy">
                         </div>
                     @else
                         <div class="cart-sidebar__empty">
                             <i class="fas fa-info-circle"></i>
-                            <p>{{ __('common.summary_empty') ?? 'Your summary will appear once you add items to the cart.' }}</p>
+                            <p>{{ __('common.cart.summary_empty') }}</p>
                         </div>
                     @endif
                 </aside>

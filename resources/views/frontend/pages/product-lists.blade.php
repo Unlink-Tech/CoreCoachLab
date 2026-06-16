@@ -68,7 +68,7 @@
             <span class="catalog-head__badge">{{ __('common.gal_category_explore') }}</span>
             <h2 class="catalog-head__title">{{ __('common.courses') }} {{ __('common.available') }}</h2>
             <p class="catalog-head__sub">
-                Explore our creative courses syllabus
+                {{ __('common.product_lists.subtitle') }}
             </p>
         </div>
 
@@ -78,11 +78,11 @@
                 <div class="col-md-5 col-lg-6">
                     <div class="search-input-wrapper">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="catalog-search" class="catalog-search-control" placeholder="Search for courses...">
+                        <input type="text" id="catalog-search" class="catalog-search-control" placeholder="{{ __('common.product_lists.search_placeholder') }}">
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-6 d-flex justify-content-md-end gap-2 flex-wrap">
-                    <button class="filter-btn active" data-filter="all">All Courses</button>
+                    <button class="filter-btn active" data-filter="all">{{ __('common.product_lists.all_courses') }}</button>
                     @php
                         $unique_cats = [];
                         foreach($products as $course) {
@@ -138,12 +138,12 @@
                                         @php
                                             $min_points = $course->levels->min('price_in_points');
                                         @endphp
-                                        <span class="price-prefix">From</span>
-                                        <span class="price-value">{{ number_format($min_points) }} <small>CREDS</small></span>
+                                        <span class="price-prefix">{{ __('common.product_lists.price_from') }}</span>
+                                        <span class="price-value">{{ number_format($min_points) }} <small>{{ __('common.account.creds') }}</small></span>
                                     @endif
                                 </div>
                                 <a href="{{ route('product-detail', $course->slug) }}" class="course-tile-btn">
-                                    <span>Learn</span>
+                                    <span>{{ __('common.product_lists.learn_button') }}</span>
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </div>

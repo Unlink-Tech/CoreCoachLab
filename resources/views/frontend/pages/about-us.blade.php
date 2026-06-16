@@ -3,11 +3,11 @@
 @section('title','About Us')
 @section('main-content')
 
-<x-breadcrumb 
-    :title="__('common.about')" 
+<x-breadcrumb
+    :title="__('common.header.about')"
     :routes="[
-        ['label' => __('common.about')]
-    ]" 
+        ['label' => __('common.header.about')]
+    ]"
 />
 
 <section class="about-page-section">
@@ -45,21 +45,21 @@
                     <div class="col-sm-6">
                         <div class="about-pillar-card">
                             <div class="pillar-icon-wrapper">
-                                <i class="fas fa-palette"></i>
+                                <i class="fas fa-user-tie"></i>
                             </div>
-                            <h4 class="pillar-title">Master Artists</h4>
-                            <p class="pillar-desc">{{ __('common.gal_about_expert_instruction') }}</p>
+                            <h4 class="pillar-title">{{ __('common.about.pillar_1_title') }}</h4>
+                            <p class="pillar-desc">{{ __('common.about.pillar_1_description') }}</p>
                         </div>
                     </div>
 
-                    <!-- Pillar 2: Certificates of Completion -->
+                    <!-- Pillar 2: Structured Learning -->
                     <div class="col-sm-6">
                         <div class="about-pillar-card">
                             <div class="pillar-icon-wrapper">
-                                <i class="fas fa-certificate"></i>
+                                <i class="fas fa-book-open"></i>
                             </div>
-                            <h4 class="pillar-title">Certifications</h4>
-                            <p class="pillar-desc">{{ __('common.gal_about_certifications_desc') }}</p>
+                            <h4 class="pillar-title">{{ __('common.about.pillar_2_title') }}</h4>
+                            <p class="pillar-desc">{{ __('common.about.pillar_2_description') }}</p>
                         </div>
                     </div>
 
@@ -67,10 +67,10 @@
                     <div class="col-sm-6">
                         <div class="about-pillar-card">
                             <div class="pillar-icon-wrapper">
-                                <i class="fas fa-feather-alt"></i>
+                                <i class="fas fa-paint-brush"></i>
                             </div>
-                            <h4 class="pillar-title">Modern Skills</h4>
-                            <p class="pillar-desc">Explore illustration techniques aligned with gallery standards and digital design.</p>
+                            <h4 class="pillar-title">{{ __('common.about.pillar_3_title') }}</h4>
+                            <p class="pillar-desc">{{ __('common.about.pillar_3_description') }}</p>
                         </div>
                     </div>
 
@@ -78,10 +78,10 @@
                     <div class="col-sm-6">
                         <div class="about-pillar-card">
                             <div class="pillar-icon-wrapper">
-                                <i class="fas fa-images"></i>
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
-                            <h4 class="pillar-title">Live Portfolios</h4>
-                            <p class="pillar-desc">Develop structured creative art portfolios guided step-by-step by master instructors.</p>
+                            <h4 class="pillar-title">{{ __('common.about.pillar_4_title') }}</h4>
+                            <p class="pillar-desc">{{ __('common.about.pillar_4_description') }}</p>
                         </div>
                     </div>
                 </div>

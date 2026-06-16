@@ -3,11 +3,11 @@
 @section('title','Contact Us')
 @section('main-content')
 
-<x-breadcrumb 
-    :title="__('common.contact')" 
+<x-breadcrumb
+    :title="__('common.header.contact')"
     :routes="[
-        ['label' => __('common.contact')]
-    ]" 
+        ['label' => __('common.header.contact')]
+    ]"
 />
 
 <section class="contact-page-section">
@@ -26,7 +26,7 @@
                             <span class="modern-badge mb-3">{{ __('common.get_in_touch') }}</span>
                             <h2 class="panel-title mb-4">{{ __('common.contact_header') }}</h2>
                             <p class="panel-text mb-5">
-                                Have questions about our masterclasses, schedules, or curriculum? Write to us, and our team will get back to you within 24 hours.
+                                {{ __('common.contact.panel_description') }}
                             </p>
                         </div>
 
@@ -70,8 +70,8 @@
 
                         <!-- Bottom Brand Mark -->
                         <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">Artify Academy</span>
-                            <span class="brand-mark-desc">Cultivating Artistry & Technique</span>
+                            <span class="brand-mark-title">{{ __('common.contact.brand_name') }}</span>
+                            <span class="brand-mark-desc">{{ __('common.contact.brand_tagline') }}</span>
                         </div>
                     </div>
                 </div>
@@ -80,10 +80,10 @@
                 <div class="col-lg-7 form-panel">
                     <div class="panel-content">
                         <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.contact') }}</h3>
+                            <h3 class="form-title">{{ __('common.contact.form_title') }}</h3>
                             <p class="form-subtitle">
                                 <i class="fas fa-info-circle text-muted me-1"></i>
-                                {{ __('common.contact_message') }}
+                                {{ __('common.contact.form_subtitle') }}
                             </p>
                         </div>
 
@@ -95,7 +95,7 @@
                                     <label class="premium-input-label" for="name">
                                         <i class="fas fa-user me-2"></i>{{ __('common.name') }}
                                     </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.enter_name') }}" class="premium-form-input @error('name') is-invalid @enderror">
+                                    <input type="text" name="name" id="name" placeholder="{{ __('common.contact.field_name_placeholder') }}" class="premium-form-input @error('name') is-invalid @enderror">
                                     @error('name')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -106,7 +106,7 @@
                                     <label class="premium-input-label" for="email">
                                         <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
                                     </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.enter_email') }}" class="premium-form-input @error('email') is-invalid @enderror">
+                                    <input type="email" name="email" id="email" placeholder="{{ __('common.contact.field_email_placeholder') }}" class="premium-form-input @error('email') is-invalid @enderror">
                                     @error('email')
                                         <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
                                     @enderror
@@ -117,7 +117,7 @@
                                     <label class="premium-input-label" for="subject">
                                         <i class="fas fa-tag me-2"></i>{{ __('common.your_subject') }}
                                     </label>
-                                    <input type="text" name="subject" id="subject" placeholder="{{ __('common.enter_subject') }}" class="premium-form-input">
+                                    <input type="text" name="subject" id="subject" placeholder="{{ __('common.contact.field_subject_placeholder') }}" class="premium-form-input">
                                 </div>
 
                                 <!-- Message -->
@@ -125,7 +125,7 @@
                                     <label class="premium-input-label" for="message">
                                         <i class="fas fa-comment-dots me-2"></i>{{ __('common.your_message') }}
                                     </label>
-                                    <textarea name="message" id="message" rows="5" placeholder="{{ __('common.enter_message') }}" class="premium-form-input"></textarea>
+                                    <textarea name="message" id="message" rows="5" placeholder="{{ __('common.contact.field_message_placeholder') }}" class="premium-form-input"></textarea>
                                 </div>
 
                                 <!-- Captcha (optional) -->
@@ -184,25 +184,25 @@
 
         // Validation checks
         if (!name) {
-            errors.push({ field: 'name', message: '{{ __('common.validate_name') }}' });
+            errors.push({ field: 'name', message: '{{ __('common.contact.validation_name_required') }}' });
             hasErrors = true;
         }
 
         if (!email) {
-            errors.push({ field: 'email', message: '{{ __('common.validate_email') }}' });
+            errors.push({ field: 'email', message: '{{ __('common.contact.validation_email_required') }}' });
             hasErrors = true;
         } else if (!isValidEmail(email)) {
-            errors.push({ field: 'email', message: '{{ __('common.validate_email_invalid') }}' });
+            errors.push({ field: 'email', message: '{{ __('common.contact.validation_email_invalid') }}' });
             hasErrors = true;
         }
 
         if (!subject) {
-            errors.push({ field: 'subject', message: '{{ __('common.validate_subject') }}' });
+            errors.push({ field: 'subject', message: '{{ __('common.contact.validation_subject_required') }}' });
             hasErrors = true;
         }
 
         if (!message) {
-            errors.push({ field: 'message', message: '{{ __('common.validate_message') }}' });
+            errors.push({ field: 'message', message: '{{ __('common.contact.validation_message_required') }}' });
             hasErrors = true;
         }
 

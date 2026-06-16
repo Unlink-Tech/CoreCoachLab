@@ -17,11 +17,11 @@
                     <div class="subscribe-form">
                         <form>
                             <div class="form-group">
-                                <input type="email" name="email" class="email" placeholder="{{ __('common.your_email_address') }}" aria-label="{{ __('common.your_email_address') }}" required>
+                                <input type="email" name="email" class="email" placeholder="{{ __('common.footer.newsletter_email_placeholder') }}" aria-label="{{ __('common.footer.newsletter_email_placeholder') }}" required>
                                 <button type="submit" class="theme-btn" aria-label="{{ __('common.stay_updated') }}"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
                             </div>
                         </form>
-                        <p class="text-success suces_rinfo" role="status" style="display: none;">{{ __('common.thanks_for_subscribing') }}</p>
+                        <p class="text-success suces_rinfo" role="status" style="display: none;">{{ __('common.footer.newsletter_success') }}</p>
                     </div>
                 </div>
             </section>
@@ -46,24 +46,24 @@
                 </div>
 
                 <!-- Column 2: Platform -->
-                <nav class="af-footer__col" aria-label="{{ __('common.platform') }}">
-                    <h4 class="af-footer__heading">{{ __('common.platform') }}</h4>
+                <nav class="af-footer__col" aria-label="{{ __('common.footer.platform') }}">
+                    <h4 class="af-footer__heading">{{ __('common.footer.platform') }}</h4>
                     <ul class="af-footer__links">
-                        <li><a href="{{route('home')}}">{{ __('common.home') }}</a></li>
-                        <li><a href="{{route('product-lists')}}">{{ __('common.catalog') }}</a></li>
-                        <li><a href="{{route('about-us')}}">{{ __('common.about') }}</a></li>
-                        <li><a href="{{route('contact')}}">{{ __('common.contact') }}</a></li>
+                        <li><a href="{{route('home')}}">{{ __('common.footer.home') }}</a></li>
+                        <li><a href="{{route('product-lists')}}">{{ __('common.footer.catalog') }}</a></li>
+                        <li><a href="{{route('about-us')}}">{{ __('common.footer.about') }}</a></li>
+                        <li><a href="{{route('contact')}}">{{ __('common.footer.contact') }}</a></li>
                     </ul>
                 </nav>
 
                 <!-- Column 3: Support -->
-                <nav class="af-footer__col" aria-label="{{ __('common.support') }}">
-                    <h4 class="af-footer__heading">{{ __('common.support') }}</h4>
+                <nav class="af-footer__col" aria-label="{{ __('common.footer.support') }}">
+                    <h4 class="af-footer__heading">{{ __('common.footer.support') }}</h4>
                     <ul class="af-footer__links">
-                        <li><a href="{{route('pages','privacy-policy')}}">{{ __('common.privacy_policy') }}</a></li>
-                        <li><a href="{{route('pages','terms-conditions')}}">{{ __('common.terms_policy') }}</a></li>
-                        <li><a href="{{route('pages','refund-policy')}}">{{ __('common.refund_policy') }}</a></li>
-                        <li><a href="{{route('pages','delivery-policy')}}">{{ __('common.delivery_policy') }}</a></li>
+                        <li><a href="{{route('pages','privacy-policy')}}">{{ __('common.footer.privacy_policy') }}</a></li>
+                        <li><a href="{{route('pages','terms-conditions')}}">{{ __('common.footer.terms_policy') }}</a></li>
+                        <li><a href="{{route('pages','refund-policy')}}">{{ __('common.footer.refund_policy') }}</a></li>
+                        <li><a href="{{route('pages','delivery-policy')}}">{{ __('common.footer.delivery_policy') }}</a></li>
                     </ul>
                 </nav>
 
@@ -76,10 +76,10 @@
         <div class="af-container">
             <div class="af-footer__bottom-inner">
                 <div class="af-footer__copyright">
-                    &copy; {{ date('Y') }} <a href="{{route('home')}}">{{ $misc['Company Name'] ?? __('common.company_name') }}</a>. {{ __('common.all_rights_reserved') }}
+                    &copy; {{ date('Y') }} <a href="{{route('home')}}">{{ $misc['Company Name'] ?? __('common.company_name') }}.</a> {{ __('common.footer.copyright_text') }}
                 </div>
                 <div class="af-footer__payment">
-                    <img src="{{ asset('assets/images/payment.webp') }}" alt="Accepted payment methods">
+                    <img src="{{ asset('assets/images/payment.webp') }}" alt="{{ __('common.footer.accepted_payment_methods') }}">
                 </div>
             </div>
         </div>
