@@ -506,6 +506,29 @@ return [
     ),
 
     // ============================================
+    // ダッシュボード
+    // ============================================
+    'dashboard' => array(
+        'page_title' => 'マイ・クリエイティブ・スタジオ',
+        'member_card_title' => 'ARTIFY STUDIO',
+        'recharge_button' => 'クレジットを追加',
+        'greeting' => ':nameさん、おかえりなさい！🎨',
+        'greeting_message' => 'あなたのアーティストとしての旅を続け、各コースで新しいクリエイティブな可能性のロックを解除します。',
+        'enrolled_label' => '登録済み',
+        'completed_label' => '完了',
+        'joined_label' => 'メンバー登録',
+        'purchase_history_tab' => 'クレジット購入履歴',
+        'redeemed_courses_tab' => 'マイコース',
+        'security_password_tab' => 'セキュリティとパスワード',
+        'logout_button' => 'ログアウト',
+        'purchase_history_title' => 'クレジット購入履歴',
+        'no_purchase_history' => 'まだクレジットを購入していません。クリエイティブな旅を始めましょう！',
+        'redeemed_courses_title' => '登録済みコース',
+        'no_redeemed_courses' => 'まだコースに登録していません。カタログを探索して開始しましょう！',
+        'empty_icon_label' => 'データがありません',
+    ),
+
+    // ============================================
     // その他/ユーティリティ
     // ============================================
     'no_records_found' => 'レコードが見つかりません',

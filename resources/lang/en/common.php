@@ -506,6 +506,29 @@ return [
     ),
 
     // ============================================
+    // DASHBOARD
+    // ============================================
+    'dashboard' => array(
+        'page_title' => 'My Creative Studio',
+        'member_card_title' => 'ARTIFY STUDIO',
+        'recharge_button' => 'Add Credits',
+        'greeting' => 'Welcome back, :name! 🎨',
+        'greeting_message' => 'Continue your artistic journey and unlock new creative possibilities with every course.',
+        'enrolled_label' => 'Enrolled',
+        'completed_label' => 'Completed',
+        'joined_label' => 'Member Since',
+        'purchase_history_tab' => 'Credit Purchases',
+        'redeemed_courses_tab' => 'My Courses',
+        'security_password_tab' => 'Security & Password',
+        'logout_button' => 'Sign Out',
+        'purchase_history_title' => 'Your Credit Purchase History',
+        'no_purchase_history' => 'You haven\'t purchased any credits yet. Start your creative journey!',
+        'redeemed_courses_title' => 'Your Enrolled Courses',
+        'no_redeemed_courses' => 'You haven\'t enrolled in any courses yet. Explore our catalog to begin!',
+        'empty_icon_label' => 'No data available',
+    ),
+
+    // ============================================
     // MISC/UTILITY
     // ============================================
     'no_records_found' => 'No records found',

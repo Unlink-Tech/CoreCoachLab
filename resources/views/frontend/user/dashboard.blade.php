@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 @section('page-body-class', 'page-dashboard')
-@section('title', __('common.dashboard'))
+@section('title', __('common.dashboard.page_title'))
 @section('main-content')
 
 <x-breadcrumb 
@@ -27,19 +27,19 @@
                         <div class="member-card-glow"></div>
                         <div class="member-card-inner">
                             <div class="member-card-header">
-                                <span class="member-logo">ARTIFY STUDIO</span>
+                                <span class="member-logo">{{ __('common.dashboard.member_card_title') }}</span>
                                 <i class="fas fa-coins coin-icon"></i>
                             </div>
                             <div class="member-card-body">
                                 <span class="balance-label">{{ __('common.available_points') }}</span>
                                 <h2 class="balance-value">
-                                    {{ Auth::user()->points_balance ?? 0 }} <small>CREDS</small>
+                                    {{ Auth::user()->points_balance ?? 0 }} <small>{{ __('common.account.creds') }}</small>
                                 </h2>
                             </div>
                             <div class="member-card-footer">
                                 <div class="member-name">{{ Auth::user()->name ?? 'Creative Artist' }}</div>
                                 <a href="{{ route('points.topup') }}" class="member-topup-btn">
-                                    <i class="fas fa-plus"></i> Recharge
+                                    <i class="fas fa-plus"></i> {{ __('common.dashboard.recharge_button') }}
                                 </a>
                             </div>
                         </div>
@@ -47,24 +47,24 @@
 
                     <!-- Personal Greeting & Overview -->
                     <div class="db-profile-overview mb-4">
-                        <h4 class="greeting-title">Welcome back, {{ explode(' ', Auth::user()->name)[0] ?? 'Artist' }}! 👋</h4>
-                        <p class="greeting-text">Your creative journey continues. Keep unlocking courses to master your skills.</p>
+                        <h4 class="greeting-title">{{ __('common.dashboard.greeting', ['name' => explode(' ', Auth::user()->name)[0] ?? 'Artist']) }}</h4>
+                        <p class="greeting-text">{{ __('common.dashboard.greeting_message') }}</p>
                         
                         <!-- Mini Stats Grid -->
                         <div class="db-mini-stats">
                             <div class="mini-stat-item">
                                 <span class="mini-stat-value">{{ isset($redeemedOrders) ? count($redeemedOrders) : 0 }}</span>
-                                <span class="mini-stat-label">Enrolled</span>
+                                <span class="mini-stat-label">{{ __('common.dashboard.enrolled_label') }}</span>
                             </div>
                             <div class="mini-stat-divider"></div>
                             <div class="mini-stat-item">
                                 <span class="mini-stat-value">{{ isset($redeemedOrders) ? count($redeemedOrders->where('status', 'Completed')) : 0 }}</span>
-                                <span class="mini-stat-label">Completed</span>
+                                <span class="mini-stat-label">{{ __('common.dashboard.completed_label') }}</span>
                             </div>
                             <div class="mini-stat-divider"></div>
                             <div class="mini-stat-item">
                                 <span class="mini-stat-value">{{ Auth::user()->created_at->format('Y') }}</span>
-                                <span class="mini-stat-label">Joined</span>
+                                <span class="mini-stat-label">{{ __('common.dashboard.joined_label') }}</span>
                             </div>
                         </div>
                     </div>
@@ -73,22 +73,22 @@
                     <ul class="nav flex-column db-side-tabs" id="dashboardTabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="points-purchased-tab" data-bs-toggle="tab" data-bs-target="#points-purchased" type="button" role="tab" aria-controls="points-purchased" aria-selected="true">
-                                <i class="fas fa-wallet"></i> Purchase History
+                                <i class="fas fa-wallet"></i> {{ __('common.dashboard.purchase_history_tab') }}
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="points-redeemed-tab" data-bs-toggle="tab" data-bs-target="#points-redeemed" type="button" role="tab" aria-controls="points-redeemed" aria-selected="false">
-                                <i class="fas fa-graduation-cap"></i> Redeemed Courses
+                                <i class="fas fa-book-open"></i> {{ __('common.dashboard.redeemed_courses_tab') }}
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="change-password-tab" data-bs-toggle="tab" data-bs-target="#change-password" type="button" role="tab" aria-controls="change-password" aria-selected="false">
-                                <i class="fas fa-lock"></i> Security & Password
+                                <i class="fas fa-lock"></i> {{ __('common.dashboard.security_password_tab') }}
                             </button>
                         </li>
                         <li class="nav-item mt-3">
                             <a href="{{ route('user.logout') }}" class="db-side-logout">
-                                <i class="fas fa-sign-out-alt"></i> Logout Profile
+                                <i class="fas fa-sign-out-alt"></i> {{ __('common.dashboard.logout_button') }}
                             </a>
                         </li>
                     </ul>
@@ -152,8 +152,8 @@
                                     </div>
                                 @else
                                     <div class="text-center py-5">
-                                        <i class="fas fa-inbox fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
-                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
+                                        <i class="fas fa-wallet fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
+                                        <h5 class="text-muted mt-3">{{ __('common.dashboard.no_purchase_history') }}</h5>
                                     </div>
                                 @endif
                             </div>
@@ -226,8 +226,8 @@
                                     </div>
                                 @else
                                     <div class="text-center py-5">
-                                        <i class="fas fa-book fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
-                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
+                                        <i class="fas fa-book-open fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
+                                        <h5 class="text-muted mt-3">{{ __('common.dashboard.no_redeemed_courses') }}</h5>
                                     </div>
                                 @endif
                             </div>
