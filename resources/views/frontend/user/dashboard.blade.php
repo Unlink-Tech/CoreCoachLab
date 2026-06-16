@@ -153,7 +153,7 @@
                                 @else
                                     <div class="text-center py-5">
                                         <i class="fas fa-wallet fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
-                                        <h5 class="text-muted mt-3">{{ __('common.dashboard.no_purchase_history') }}</h5>
+                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
                                     </div>
                                 @endif
                             </div>
@@ -227,7 +227,7 @@
                                 @else
                                     <div class="text-center py-5">
                                         <i class="fas fa-book-open fa-4x mb-3" style="color: var(--color-stone, #d7d6d4);"></i>
-                                        <h5 class="text-muted mt-3">{{ __('common.dashboard.no_redeemed_courses') }}</h5>
+                                        <h5 class="text-muted mt-3">{{ __('common.no_past_orders') }}</h5>
                                     </div>
                                 @endif
                             </div>
