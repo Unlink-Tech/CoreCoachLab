@@ -1078,6 +1078,184 @@
         }
     }
 
+/* ============================================================
+   COOKIE CONSENT — modern modal dialog with glassmorphism
+   ============================================================ */
+.artify-cookies{
+    position:fixed; bottom:0; left:0; right:0; top:0; z-index:9999;
+    display:flex; align-items:flex-end; justify-content:center; padding:20px;
+    font-family:var(--font-inter,'Inter',sans-serif);
+}
+.artify-cookies__overlay{
+    position:absolute; inset:0; background:rgba(37,34,30,.25); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); animation:artifyCookiesFadeIn .3s ease;
+}
+.artify-cookies__card{
+    position:relative; z-index:1; max-width:520px; width:100%; border-radius:16px;
+    background:linear-gradient(135deg, rgba(254,253,252,.98) 0%, rgba(255,246,240,.96) 100%);
+    border:1px solid rgba(215,214,212,.5); box-shadow:0 20px 64px rgba(37,34,30,.16), 0 2px 8px rgba(37,34,30,.04);
+    padding:0; overflow:hidden; animation:artifyCookiesSlidUp .3s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Header */
+.artify-cookies__header{
+    display:flex; align-items:center; gap:14px; padding:20px 24px; border-bottom:1px solid rgba(215,214,212,.3); position:relative;
+}
+.artify-cookies__icon{
+    display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%;
+    background:rgba(227,68,50,.1); color:var(--color-ember-red,#e34432); font-size:16px;
+}
+.artify-cookies__title{
+    flex:1; font-size:18px; font-weight:var(--font-weight-semibold,600); color:var(--color-ink,#25221e); margin:0; line-height:1.2;
+}
+.artify-cookies__close{
+    background:none; border:none; color:var(--color-pencil,#6f6c69); font-size:18px; cursor:pointer; padding:4px; transition:color .2s ease;
+}
+.artify-cookies__close:hover{ color:var(--color-ember-red,#e34432); }
+
+/* Content */
+.artify-cookies__content{ padding:16px 24px; }
+.artify-cookies__intro{
+    font-size:14px; line-height:1.6; color:var(--color-ink,#25221e); margin:0 0 10px;
+}
+.artify-cookies__policy-link{
+    font-size:13px; line-height:1.5; color:var(--color-cobalt-link,#0f66ae); margin:0;
+}
+.artify-cookies__policy-link a{ color:var(--color-cobalt-link,#0f66ae); text-decoration:none; font-weight:var(--font-weight-medium,500); }
+.artify-cookies__policy-link a:hover{ text-decoration:underline; }
+
+/* Actions */
+.artify-cookies__actions{
+    display:flex; gap:10px; padding:0 24px 16px; align-items:center;
+}
+.artify-cookies__btn{
+    flex:1; padding:10px 16px; border:none; border-radius:8px; font-size:14px; font-weight:var(--font-weight-semibold,600);
+    cursor:pointer; transition:all .2s ease; font-family:var(--font-inter); text-decoration:none; display:inline-block; text-align:center;
+}
+.artify-cookies__btn--primary{
+    background:var(--color-ember-red,#e34432); color:#fff; box-shadow:0 4px 12px rgba(227,68,50,.25);
+}
+.artify-cookies__btn--primary:hover{
+    background:var(--color-deep-ember,#cf3520); box-shadow:0 6px 16px rgba(227,68,50,.35); transform:translateY(-1px);
+}
+.artify-cookies__btn--secondary{
+    background:var(--color-paper,#fefdfc); color:var(--color-ink,#25221e); border:1px solid var(--color-stone,#d7d6d4);
+}
+.artify-cookies__btn--secondary:hover{
+    border-color:var(--color-ink,#25221e); background:#fff; box-shadow:0 2px 8px rgba(37,34,30,.08);
+}
+
+/* Customize toggle */
+.artify-cookies__customize-toggle{
+    width:100%; padding:12px 24px; background:transparent; border:none; border-top:1px solid rgba(215,214,212,.3);
+    font-size:13px; font-weight:var(--font-weight-semibold,600); color:var(--color-pencil,#6f6c69); cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; transition:color .2s ease;
+}
+.artify-cookies__customize-toggle:hover{ color:var(--color-ink,#25221e); }
+.artify-cookies__customize-toggle i{ font-size:12px; transition:transform .3s ease; }
+
+/* Expand section */
+.artify-cookies__expand{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+}
+.artify-cookies__expand--open{
+    max-height:600px;
+}
+.artify-cookies__customize{
+    padding:16px 24px;
+}
+
+/* Sections */
+.artify-cookies__sections{
+    display:flex; flex-direction:column; gap:12px; margin-bottom:14px;
+}
+.artify-cookies__section{
+    padding:12px; border:1px solid rgba(215,214,212,.3); border-radius:8px; background:rgba(240,246,223,.2);
+}
+
+/* Category */
+.artify-cookies__category{
+    display:flex; align-items:flex-start; gap:10px; cursor:pointer; margin-bottom:6px;
+}
+.artify-cookies__category input[type="checkbox"]{
+    width:18px; height:18px; margin-top:2px; cursor:pointer; accent-color:var(--color-ember-red,#e34432);
+}
+.artify-cookies__category input[type="checkbox"]:disabled{
+    cursor:not-allowed; opacity:.6;
+}
+.artify-cookies__cat-title{
+    font-size:14px; font-weight:var(--font-weight-semibold,600); color:var(--color-ink,#25221e);
+}
+.artify-cookies__cat-desc{
+    font-size:12px; color:var(--color-pencil,#6f6c69); margin:4px 0 0 28px; line-height:1.4;
+}
+
+/* Details toggle */
+.artify-cookies__more-toggle{
+    background:none; border:none; color:var(--color-cobalt-link,#0f66ae); font-size:12px; font-weight:var(--font-weight-medium,500);
+    cursor:pointer; padding:0; margin-left:28px; display:inline-flex; align-items:center; gap:4px; transition:color .2s ease;
+}
+.artify-cookies__more-toggle:hover{ color:var(--color-ink,#25221e); }
+.artify-cookies__more-toggle i{ font-size:10px; transition:transform .2s ease; }
+
+/* Details */
+.artify-cookies__details{
+    max-height:0; overflow:hidden; transition:max-height .3s ease; margin-left:28px; margin-top:6px;
+}
+.artify-cookies__details--open{
+    max-height:400px;
+}
+.artify-cookies__cookies-list{
+    list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;
+}
+.artify-cookies__cookie-item{
+    padding:8px 10px; background:rgba(255,255,255,.5); border-radius:6px; border-left:2px solid var(--color-ember-red,#e34432);
+}
+.artify-cookies__cookie-name{
+    display:block; font-size:12px; font-weight:var(--font-weight-semibold,600); color:var(--color-ink,#25221e); margin-bottom:2px;
+}
+.artify-cookies__cookie-duration{
+    display:inline-block; font-size:11px; color:var(--color-graphite,#94928f); margin-right:6px;
+}
+.artify-cookies__cookie-desc{
+    font-size:11px; color:var(--color-pencil,#6f6c69); margin:4px 0 0; line-height:1.4;
+}
+
+/* Footer */
+.artify-cookies__footer{
+    padding:12px 24px; border-top:1px solid rgba(215,214,212,.3); display:flex; justify-content:flex-end;
+}
+.artify-cookies__save{
+    padding:10px 20px; background:var(--color-ember-red,#e34432); color:#fff; border:none; border-radius:8px;
+    font-size:14px; font-weight:var(--font-weight-semibold,600); cursor:pointer; transition:all .2s ease;
+}
+.artify-cookies__save:hover{
+    background:var(--color-deep-ember,#cf3520); box-shadow:0 4px 12px rgba(227,68,50,.25); transform:translateY(-1px);
+}
+
+/* Animations */
+@keyframes artifyCookiesFadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+}
+@keyframes artifyCookiesSlidUp{
+    from{ transform:translateY(20px); opacity:0; }
+    to{ transform:translateY(0); opacity:1; }
+}
+
+/* Responsive */
+@media (max-width: 575px){
+    .artify-cookies__card{ max-width:calc(100% - 16px); margin:0 8px 8px; }
+    .artify-cookies__header{ gap:10px; padding:16px; }
+    .artify-cookies__title{ font-size:16px; }
+    .artify-cookies__icon{ width:32px; height:32px; font-size:14px; }
+    .artify-cookies__content,
+    .artify-cookies__actions,
+    .artify-cookies__customize-toggle,
+    .artify-cookies__customize{ padding-left:16px; padding-right:16px; }
+    .artify-cookies__actions{ flex-direction:column-reverse; }
+    .artify-cookies__btn{ font-size:13px; padding:12px 16px; }
+}
+
 /* ===================== page-about-us ===================== */
     /* ============================================================
        ABOUT PAGE - MODERN EDITORIAL GALLERY & PILLARS
@@ -4488,6 +4666,137 @@
     }
 
 /* ===================== page-index ===================== */
+    /* =========================================
+       ARTIFY HERO — Professional Gallery
+       ========================================= */
+    .artify-hero{
+        position:relative; overflow:hidden; padding:80px 0 100px;
+        background:linear-gradient(180deg, #fffdfb 0%, #fff6f0 100%);
+    }
+    .artify-hero__bg{
+        position:absolute; inset:0; z-index:0;
+        background-image:radial-gradient(ellipse 800px 600px at 20% 0%, rgba(220,234,255,.4) 0%, transparent 40%),
+                          radial-gradient(ellipse 600px 700px at 80% 100%, rgba(227,68,50,.25) 0%, transparent 45%);
+        pointer-events:none;
+    }
+
+    .artify-hero__container{
+        position:relative; z-index:1;
+        display:grid; grid-template-columns:1fr 1.2fr; gap:64px; align-items:start;
+    }
+
+    /* Left: Content */
+    .artify-hero__content{ padding-top:20px; }
+
+    .artify-hero__badge{
+        display:inline-flex; align-items:center; gap:8px; padding:8px 16px; margin-bottom:28px;
+        border-radius:999px; background:var(--color-paper,#fff); border:1px solid var(--color-stone,#d7d6d4);
+        font-size:13px; font-weight:var(--font-weight-semibold,600); color:var(--color-ink,#25221e);
+        box-shadow:0 1px 3px rgba(37,34,30,.05);
+    }
+    .artify-hero__badge i{ color:var(--color-ember-red,#e34432); }
+
+    .artify-hero__title{
+        font-family:var(--font-graphik); font-size:clamp(42px,6.5vw,68px);
+        line-height:1.06; font-weight:var(--font-weight-bold,700); letter-spacing:-.03em;
+        color:var(--color-ink,#25221e); margin:0 0 16px;
+    }
+
+    .artify-hero__subtitle{
+        font-family:var(--font-inter); font-size:clamp(16px,1.8vw,21px); line-height:1.6;
+        color:var(--color-pencil,#6f6c69); margin:0 0 36px; max-width:550px; font-weight:var(--font-weight-w475,475);
+    }
+
+    .artify-hero__buttons{
+        display:flex; gap:14px; margin-bottom:48px; flex-wrap:wrap;
+    }
+    .artify-hero__btn{
+        display:inline-flex; align-items:center; gap:10px; padding:14px 28px; border-radius:8px;
+        font-family:var(--font-inter); font-size:16px; font-weight:var(--font-weight-semibold,600);
+        text-decoration:none; cursor:pointer; border:none; transition:all .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .artify-hero__btn--primary{
+        background:var(--color-ember-red,#e34432); color:#fff; box-shadow:0 8px 24px rgba(227,68,50,.3);
+    }
+    .artify-hero__btn--primary:hover{
+        background:var(--color-deep-ember,#cf3520); transform:translateY(-3px); box-shadow:0 12px 32px rgba(227,68,50,.4);
+    }
+    .artify-hero__btn--secondary{
+        background:#fff; color:var(--color-ink,#25221e); border:1.5px solid var(--color-stone,#d7d6d4);
+        box-shadow:0 1px 3px rgba(37,34,30,.05);
+    }
+    .artify-hero__btn--secondary:hover{
+        border-color:var(--color-ink,#25221e); background:var(--color-paper,#fff); transform:translateY(-3px);
+    }
+
+    .artify-hero__meta{
+        display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    }
+    .artify-hero__avatars{
+        display:flex;
+    }
+    .artify-hero__avatars img{
+        width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fff;
+        box-shadow:0 2px 8px rgba(37,34,30,.12); margin-right:-12px;
+    }
+    .artify-hero__avatars img:first-child{ margin-right:-8px; }
+    .artify-hero__text{
+        font-family:var(--font-inter); font-size:14px; color:var(--color-ink,#25221e); line-height:1.4;
+    }
+    .artify-hero__text strong{ font-weight:var(--font-weight-semibold,600); }
+
+    /* Right: Gallery */
+    .artify-hero__gallery{}
+
+    .artify-hero__grid{
+        display:grid; grid-template-columns:2fr 1.4fr 1fr; gap:14px;
+    }
+
+    .artify-hero__card{
+        position:relative; border-radius:12px; overflow:hidden; cursor:pointer; background:#f5f5f5;
+        box-shadow:0 8px 24px rgba(37,34,30,.1); transition:all .35s cubic-bezier(.34,1.56,.64,1);
+        border:1px solid rgba(255,255,255,.6);
+    }
+    .artify-hero__card:hover{
+        transform:translateY(-6px); box-shadow:0 14px 40px rgba(37,34,30,.15);
+    }
+
+    .artify-hero__card img,
+    .artify-hero__card video{
+        width:100%; height:100%; object-fit:cover; object-position:center; display:block;
+    }
+
+    .artify-hero__play{
+        position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+        width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,.95);
+        display:flex; align-items:center; justify-content:center; font-size:24px;
+        color:var(--color-ember-red,#e34432); z-index:2; box-shadow:0 8px 24px rgba(0,0,0,.25);
+        transition:all .35s cubic-bezier(.34,1.56,.64,1);
+    }
+    .artify-hero__card--large:hover .artify-hero__play{
+        transform:translate(-50%,-50%) scale(1.2); background:rgba(227,68,50,.95); color:#fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px){
+        .artify-hero__container{ grid-template-columns:1fr; gap:48px; }
+    }
+    @media (max-width: 768px){
+        .artify-hero{ padding:60px 0 80px; }
+        .artify-hero__title{ font-size:38px; margin-bottom:12px; }
+        .artify-hero__subtitle{ font-size:16px; margin-bottom:28px; }
+        .artify-hero__buttons{ flex-wrap:wrap; margin-bottom:36px; }
+        .artify-hero__btn{ width:100%; justify-content:center; }
+        .artify-hero__grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
+    }
+    @media (max-width: 640px){
+        .artify-hero__title{ font-size:32px; }
+        .artify-hero__subtitle{ font-size:15px; margin-bottom:20px; }
+        .artify-hero__badge{ margin-bottom:20px; }
+        .artify-hero__grid{ grid-template-columns:1fr; gap:10px; }
+        .artify-hero__play{ width:50px; height:50px; font-size:18px; }
+    }
+
     /* =========================================
        REDESIGNED LEARNING CREDITS PROGRESSION
        ========================================= */

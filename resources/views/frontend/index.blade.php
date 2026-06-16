@@ -3,93 +3,70 @@
 
 @section('main-content')
 
-<section class="af-hero">
-    <!-- Decorative animated background -->
-    <div class="af-hero__bg" aria-hidden="true">
-        <span class="af-hero__blob af-hero__blob--ember"></span>
-        <span class="af-hero__blob af-hero__blob--teal"></span>
-        <span class="af-hero__blob af-hero__blob--sky"></span>
-        <span class="af-hero__grid"></span>
-    </div>
+<section class="artify-hero">
+    <div class="artify-hero__bg"></div>
 
-    <div class="auto-container af-hero__inner">
-        <!-- LEFT: copy -->
-        <div class="af-hero__content">
-            <span class="af-hero__eyebrow">
-                <span class="af-hero__eyebrow-dot"></span>
+    <div class="auto-container artify-hero__container">
+        <div class="artify-hero__content">
+            <div class="artify-hero__badge">
                 <i class="fas fa-palette"></i> {{ $misc['Company Name'] ?? __('Artify Academy') }}
-            </span>
+            </div>
 
-            <h1 class="af-hero__title">{{ __('common.gal_hero_title') }}</h1>
+            <h1 class="artify-hero__title">{{ __('common.gal_hero_title') }}</h1>
+            <p class="artify-hero__subtitle">{{ __('common.gal_hero_subtitle') }}</p>
 
-            <p class="af-hero__subtitle">{{ __('common.gal_hero_subtitle') }}</p>
-
-            <div class="af-hero__actions">
-                <a href="{{ route('product-lists') }}" class="af-hero__btn af-hero__btn--primary">
+            <div class="artify-hero__buttons">
+                <a href="{{ route('product-lists') }}" class="artify-hero__btn artify-hero__btn--primary">
                     {{ __('common.gal_hero_cta') }} <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="{{ route('product-lists') }}" class="af-hero__btn af-hero__btn--ghost">
-                    <span class="af-hero__btn-play"><i class="fas fa-play"></i></span> {{ __('Watch showreel') }}
+                <a href="#" class="artify-hero__btn artify-hero__btn--secondary">
+                    <i class="fas fa-play"></i> Watch Showreel
                 </a>
             </div>
 
-            <!-- Browse disciplines -->
-            <div class="af-hero__disciplines">
-                <span class="af-hero__disciplines-label">{{ __('Popular') }}:</span>
-                <a href="{{ route('product-lists') }}" class="af-hero__chip"><i class="fas fa-pencil-alt"></i> {{ __('Sketching') }}</a>
-                <a href="{{ route('product-lists') }}" class="af-hero__chip"><i class="fas fa-paint-brush"></i> {{ __('Watercolor') }}</a>
-                <a href="{{ route('product-lists') }}" class="af-hero__chip"><i class="fas fa-palette"></i> {{ __('Oil Painting') }}</a>
-                <a href="{{ route('product-lists') }}" class="af-hero__chip"><i class="fas fa-desktop"></i> {{ __('Digital Art') }}</a>
-            </div>
-
-            <!-- Social proof: stacked avatars + rating -->
-            <div class="af-hero__trust">
-                <div class="af-hero__avatars">
-                    <img src="{{ asset('assets/art-classes/2.jpg') }}" alt="Student">
-                    <img src="{{ asset('assets/art-classes/5.jpg') }}" alt="Student">
-                    <img src="{{ asset('assets/art-classes/9.jpg') }}" alt="Student">
-                    <img src="{{ asset('assets/art-classes/4.jpg') }}" alt="Student">
+            <div class="artify-hero__meta">
+                <div class="artify-hero__avatars">
+                    <img src="{{ asset('assets/art-classes/2.jpg') }}" alt="">
+                    <img src="{{ asset('assets/art-classes/5.jpg') }}" alt="">
+                    <img src="{{ asset('assets/art-classes/9.jpg') }}" alt="">
+                    <img src="{{ asset('assets/art-classes/4.jpg') }}" alt="">
                 </div>
-                <div class="af-hero__trust-meta">
-                    <span class="af-hero__stars" aria-hidden="true">★★★★★</span>
-                    <span class="af-hero__trust-text">{{ __('Loved by 12,000+ creative learners') }}</span>
+                <div class="artify-hero__text">
+                    <strong>12K+</strong> creative learners
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT: studio video + artwork collage -->
-        <div class="af-hero__media">
-            <div class="af-hero__collage">
-                <!-- Main looping studio video -->
-                <figure class="af-hero__tile af-hero__tile--video">
-                    <video autoplay loop muted playsinline preload="metadata" poster="{{ asset('assets/art-classes/10.jpg') }}">
+        <div class="artify-hero__gallery">
+            <div class="artify-hero__grid">
+                <!-- Row 1: Hero video (16:9) + tall portrait (1.webp: 1920x2404 / 0.8:1) -->
+                <div class="artify-hero__card" style="grid-column: span 2; aspect-ratio: 16/9;">
+                    <video autoplay muted loop playsinline preload="metadata">
                         <source src="{{ asset('assets/art-classes/hero.mp4') }}" type="video/mp4">
                     </video>
-                    <span class="af-hero__livetag"><span class="af-hero__live-dot"></span> {{ __('In the studio') }}</span>
-                    <figcaption class="af-hero__caption">
-                        &ldquo;{{ __('common.gal_hero_testimonial') }}&rdquo;
-                    </figcaption>
-                </figure>
+                    <div class="artify-hero__play"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="artify-hero__card" style="aspect-ratio: 1920/2404;">
+                    <img src="{{ asset('assets/art-classes/1.webp') }}" alt="Art gallery" loading="lazy">
+                </div>
 
-                <!-- Stacked artwork tiles -->
-                <figure class="af-hero__tile af-hero__tile--a">
-                    <img src="{{ asset('assets/art-classes/3.jpg') }}" alt="Watercolor drawing artwork" loading="lazy">
-                    <figcaption class="af-hero__tiletag"><i class="fas fa-pencil-alt"></i> {{ __('Sketching') }}</figcaption>
-                </figure>
-                <figure class="af-hero__tile af-hero__tile--b">
-                    <img src="{{ asset('assets/art-classes/6.jpg') }}" alt="Oil painting artwork" loading="lazy">
-                    <figcaption class="af-hero__tiletag"><i class="fas fa-palette"></i> {{ __('Oil Painting') }}</figcaption>
-                </figure>
-            </div>
+                <!-- Row 2: Wide landscape (2.webp: 1920x1320 / 1.45:1) + nearly square (3.webp: 1200x1112 / 1.08:1) -->
+                <div class="artify-hero__card" style="grid-column: span 2; aspect-ratio: 1920/1320;">
+                    <img src="{{ asset('assets/art-classes/2.webp') }}" alt="Landscape artwork" loading="lazy">
+                </div>
+                <div class="artify-hero__card" style="aspect-ratio: 1200/1112;">
+                    <img src="{{ asset('assets/art-classes/3.webp') }}" alt="Creative work" loading="lazy">
+                </div>
 
-            <!-- Floating glass "live class" card -->
-            <div class="af-hero__floatcard">
-                <span class="af-hero__floatcard-thumb">
-                    <img src="{{ asset('assets/art-classes/1.webp') }}" alt="" loading="lazy">
-                </span>
-                <div class="af-hero__floatcard-body">
-                    <strong>{{ __('Watercolor Masterclass') }}</strong>
-                    <span><span class="af-hero__live-dot"></span> {{ __('Live now · 320 watching') }}</span>
+                <!-- Row 3: Three portraits (5.webp: 690x1011 / 0.68:1) + (4.webp: 918x1299 / 0.71:1) + (9.webp: 960x1280 / 0.75:1) -->
+                <div class="artify-hero__card" style="aspect-ratio: 690/1011;">
+                    <img src="{{ asset('assets/art-classes/5.webp') }}" alt="Artistic piece" loading="lazy">
+                </div>
+                <div class="artify-hero__card" style="aspect-ratio: 918/1299;">
+                    <img src="{{ asset('assets/art-classes/4.webp') }}" alt="Featured artwork" loading="lazy">
+                </div>
+                <div class="artify-hero__card" style="aspect-ratio: 960/1280;">
+                    <img src="{{ asset('assets/art-classes/9.webp') }}" alt="Gallery showcase" loading="lazy">
                 </div>
             </div>
         </div>
