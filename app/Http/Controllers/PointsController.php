@@ -60,7 +60,7 @@ class PointsController extends Controller
         // Business Rule: Prevent mixing points and courses in the same transaction
         $existing_item = Cart::where('user_id', $user_id)->where('order_id', null)->pluck('product_id')->first();
         if (isset($existing_item) && $existing_item < 1000) {
-            return back()->with('error', 'You cannot add points to a cart containing courses. Please checkout or clear your cart first.');
+            return back()->with('error', __('common.messages.cannot_mix_points_courses'));
         }
 
         $input_amount = (float)$request->amount;
@@ -142,7 +142,7 @@ class PointsController extends Controller
 
         // Security Check: Ensure user has enough accumulated points
         if ($user->points_balance < $totalPointsNeeded) {
-            return redirect()->route('points.topup')->with('error', "You don't have enough points. You need " . number_format($totalPointsNeeded - $user->points_balance) . " more points to complete this enrollment.");
+            return redirect()->route('points.topup')->with('error', __('common.messages.insufficient_points', ['amount' => number_format($totalPointsNeeded - $user->points_balance)]));
         }
 
         try {

@@ -593,6 +593,81 @@ return [
         'verification_email_sent' => 'Verification email sent. Please check your inbox',
         'course_published' => 'Course published successfully',
         'course_draft_saved' => 'Course draft saved successfully',
+
+        // Authentication
+        'login_successful' => 'Login successful',
+        'logout_successful' => 'You have been logged out successfully',
+        'registration_successful' => 'Registration successful. Welcome to Artify Academy',
+        'registration_failed' => 'Registration failed. Please try again',
+
+        // Newsletter
+        'subscribed_successfully' => 'Subscribed successfully. Please check your email',
+        'subscription_failed' => 'Subscription failed. Please try again',
+        'already_subscribed' => 'You are already subscribed',
+
+        // Coupons
+        'coupon_added' => 'Coupon added successfully',
+        'coupon_updated' => 'Coupon updated successfully',
+        'coupon_deleted' => 'Coupon deleted successfully',
+        'coupon_not_found' => 'Coupon not found',
+        'coupon_invalid' => 'Invalid coupon code. Please try again',
+        'coupon_applied' => 'Coupon applied successfully',
+
+        // Points
+        'cannot_mix_points_courses' => 'You cannot add credits to a cart containing courses. Please checkout or clear your cart first',
+        'insufficient_points' => 'You don\'t have enough credits. You need :amount more credits to complete this enrollment',
+
+        // Messages / Notifications
+        'message_deleted' => 'Message deleted successfully',
+        'notification_deleted' => 'Notification deleted successfully',
+        'notification_not_found' => 'Notification not found',
+
+        // Payment
+        'paypal_payment_successful' => 'Payment completed successfully. Thank you for your purchase',
+
+        // Blog Posts
+        'post_added' => 'Post added successfully',
+        'post_updated' => 'Post updated successfully',
+        'post_deleted' => 'Post deleted successfully',
+        'post_delete_error' => 'Error while deleting post',
+        'post_category_added' => 'Post category added successfully',
+        'post_category_updated' => 'Post category updated successfully',
+        'post_category_deleted' => 'Post category deleted successfully',
+        'post_category_delete_error' => 'Error while deleting post category',
+        'post_tag_added' => 'Post tag added successfully',
+        'post_tag_updated' => 'Post tag updated successfully',
+        'post_tag_deleted' => 'Post tag deleted successfully',
+        'post_tag_delete_error' => 'Error while deleting post tag',
+
+        // Comments
+        'comment_added' => 'Thank you for your comment',
+        'comment_updated' => 'Comment updated successfully',
+        'comment_deleted' => 'Comment deleted successfully',
+        'comment_not_found' => 'Comment not found',
+        'comment_failed' => 'Something went wrong. Please try again',
+
+        // Reviews
+        'review_added' => 'Thank you for your feedback',
+        'review_updated' => 'Review updated successfully',
+        'review_deleted' => 'Review deleted successfully',
+        'review_not_found' => 'Review not found',
+
+        // Shipping
+        'shipping_created' => 'Shipping created successfully',
+        'shipping_updated' => 'Shipping updated successfully',
+        'shipping_deleted' => 'Shipping deleted successfully',
+        'shipping_not_found' => 'Shipping not found',
+
+        // Users (Admin)
+        'user_added' => 'User added successfully',
+        'user_updated' => 'User updated successfully',
+        'user_deleted' => 'User deleted successfully',
+        'user_add_error' => 'Error occurred while adding user',
+        'user_update_error' => 'Error occurred while updating user',
+        'user_delete_error' => 'Error occurred while deleting user',
+
+        // Wishlist
+        'already_in_wishlist' => 'This item is already in your wishlist',
     ),
 
     // ============================================

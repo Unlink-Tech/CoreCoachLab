@@ -77,10 +77,10 @@ class PostController extends Controller
 
         $status=Post::create($data);
         if($status){
-            request()->session()->flash('success','Post Successfully added');
+            request()->session()->flash('success', __('common.messages.post_added'));
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error', __('common.messages.please_try_again'));
         }
         return redirect()->route('post.index');
     }
@@ -147,10 +147,10 @@ class PostController extends Controller
 
         $status=$post->fill($data)->save();
         if($status){
-            request()->session()->flash('success','Post Successfully updated');
+            request()->session()->flash('success', __('common.messages.post_updated'));
         }
         else{
-            request()->session()->flash('error','Please try again!!');
+            request()->session()->flash('error', __('common.messages.please_try_again'));
         }
         return redirect()->route('post.index');
     }
@@ -168,10 +168,10 @@ class PostController extends Controller
         $status=$post->delete();
         
         if($status){
-            request()->session()->flash('success','Post successfully deleted');
+            request()->session()->flash('success', __('common.messages.post_deleted'));
         }
         else{
-            request()->session()->flash('error','Error while deleting post ');
+            request()->session()->flash('error', __('common.messages.post_delete_error'));
         }
         return redirect()->route('post.index');
     }

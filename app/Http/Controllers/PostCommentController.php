@@ -56,10 +56,10 @@ class PostCommentController extends Controller
         ];
         Notification::send($user, new StatusNotification($details));
         if($status){
-            request()->session()->flash('success','Thank you for your comment');
+            request()->session()->flash('success', __('common.messages.comment_added'));
         }
         else{
-            request()->session()->flash('error','Something went wrong! Please try again!!');
+            request()->session()->flash('error', __('common.messages.comment_failed'));
         }
         return redirect()->back();
     }
@@ -88,7 +88,7 @@ class PostCommentController extends Controller
             return view('backend.comment.edit')->with('comment',$comments);
         }
         else{
-            request()->session()->flash('error','Comment not found');
+            request()->session()->flash('error', __('common.messages.comment_not_found'));
             return redirect()->back();
         }
     }
@@ -108,15 +108,15 @@ class PostCommentController extends Controller
             // return $data;
             $status=$comment->fill($data)->update();
             if($status){
-                request()->session()->flash('success','Comment successfully updated');
+                request()->session()->flash('success', __('common.messages.comment_updated'));
             }
             else{
-                request()->session()->flash('error','Something went wrong! Please try again!!');
+                request()->session()->flash('error', __('common.messages.comment_failed'));
             }
             return redirect()->route('comment.index');
         }
         else{
-            request()->session()->flash('error','Comment not found');
+            request()->session()->flash('error', __('common.messages.comment_not_found'));
             return redirect()->back();
         }
 
@@ -134,15 +134,15 @@ class PostCommentController extends Controller
         if($comment){
             $status=$comment->delete();
             if($status){
-                request()->session()->flash('success','Post Comment successfully deleted');
+                request()->session()->flash('success', __('common.messages.comment_deleted'));
             }
             else{
-                request()->session()->flash('error','Error occurred please try again');
+                request()->session()->flash('error', __('common.messages.please_try_again'));
             }
             return back();
         }
         else{
-            request()->session()->flash('error','Post Comment not found');
+            request()->session()->flash('error', __('common.messages.comment_not_found'));
             return redirect()->back();
         }
     }

@@ -50,8 +50,8 @@ class BrandController extends Controller
         $brand = Brand::create($validatedData);
 
         $message = $brand
-            ? 'Brand successfully created'
-            : 'Error, Please try again';
+            ? __('common.messages.brand_created')
+            : __('common.messages.please_try_again');
 
         return redirect()->route('brand.index')->with(
             $brand ? 'success' : 'error',
@@ -81,7 +81,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if (!$brand) {
-            return redirect()->back()->with('error', 'Brand not found');
+            return redirect()->back()->with('error', __('common.messages.brand_not_found'));
         }
 
         return view('backend.brand.edit', compact('brand'));
@@ -101,7 +101,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if (!$brand) {
-            return redirect()->back()->with('error', 'Brand not found');
+            return redirect()->back()->with('error', __('common.messages.brand_not_found'));
         }
 
         $validatedData = $request->validate([
@@ -112,8 +112,8 @@ class BrandController extends Controller
         $status = $brand->update($validatedData);
 
         $message = $status
-            ? 'Brand successfully updated'
-            : 'Error, Please try again';
+            ? __('common.messages.brand_updated')
+            : __('common.messages.please_try_again');
 
         return redirect()->route('brand.index')->with(
             $status ? 'success' : 'error',
@@ -132,14 +132,14 @@ class BrandController extends Controller
         $brand = Brand::find($id);
 
         if (!$brand) {
-            return redirect()->back()->with('error', 'Brand not found');
+            return redirect()->back()->with('error', __('common.messages.brand_not_found'));
         }
 
         $status = $brand->delete();
 
         $message = $status
-            ? 'Brand successfully deleted'
-            : 'Error, Please try again';
+            ? __('common.messages.brand_deleted')
+            : __('common.messages.please_try_again');
 
         return redirect()->route('brand.index')->with(
             $status ? 'success' : 'error',

@@ -593,6 +593,81 @@ return [
         'verification_email_sent' => '確認メールが送信されました。メールボックスを確認してください',
         'course_published' => 'コースが公開されました',
         'course_draft_saved' => 'コース下書きが保存されました',
+
+        // 認証
+        'login_successful' => 'ログインに成功しました',
+        'logout_successful' => 'ログアウトしました',
+        'registration_successful' => '登録が完了しました。Artify Academyへようこそ',
+        'registration_failed' => '登録に失敗しました。もう一度お試しください',
+
+        // ニュースレター
+        'subscribed_successfully' => '登録が完了しました。メールをご確認ください',
+        'subscription_failed' => '登録に失敗しました。もう一度お試しください',
+        'already_subscribed' => '既に登録されています',
+
+        // クーポン
+        'coupon_added' => 'クーポンが追加されました',
+        'coupon_updated' => 'クーポンが更新されました',
+        'coupon_deleted' => 'クーポンが削除されました',
+        'coupon_not_found' => 'クーポンが見つかりません',
+        'coupon_invalid' => '無効なクーポンコードです。もう一度お試しください',
+        'coupon_applied' => 'クーポンが適用されました',
+
+        // クレジット
+        'cannot_mix_points_courses' => 'コースを含むカートにクレジットを追加できません。先にチェックアウトするかカートをクリアしてください',
+        'insufficient_points' => 'クレジットが不足しています。この登録を完了するには、あと:amountクレジットが必要です',
+
+        // メッセージ / 通知
+        'message_deleted' => 'メッセージが削除されました',
+        'notification_deleted' => '通知が削除されました',
+        'notification_not_found' => '通知が見つかりません',
+
+        // 支払い
+        'paypal_payment_successful' => '支払いが完了しました。ご購入ありがとうございます',
+
+        // ブログ投稿
+        'post_added' => '投稿が追加されました',
+        'post_updated' => '投稿が更新されました',
+        'post_deleted' => '投稿が削除されました',
+        'post_delete_error' => '投稿の削除中にエラーが発生しました',
+        'post_category_added' => '投稿カテゴリが追加されました',
+        'post_category_updated' => '投稿カテゴリが更新されました',
+        'post_category_deleted' => '投稿カテゴリが削除されました',
+        'post_category_delete_error' => '投稿カテゴリの削除中にエラーが発生しました',
+        'post_tag_added' => '投稿タグが追加されました',
+        'post_tag_updated' => '投稿タグが更新されました',
+        'post_tag_deleted' => '投稿タグが削除されました',
+        'post_tag_delete_error' => '投稿タグの削除中にエラーが発生しました',
+
+        // コメント
+        'comment_added' => 'コメントありがとうございます',
+        'comment_updated' => 'コメントが更新されました',
+        'comment_deleted' => 'コメントが削除されました',
+        'comment_not_found' => 'コメントが見つかりません',
+        'comment_failed' => '問題が発生しました。もう一度お試しください',
+
+        // レビュー
+        'review_added' => 'フィードバックありがとうございます',
+        'review_updated' => 'レビューが更新されました',
+        'review_deleted' => 'レビューが削除されました',
+        'review_not_found' => 'レビューが見つかりません',
+
+        // 配送
+        'shipping_created' => '配送が作成されました',
+        'shipping_updated' => '配送が更新されました',
+        'shipping_deleted' => '配送が削除されました',
+        'shipping_not_found' => '配送が見つかりません',
+
+        // ユーザー（管理者）
+        'user_added' => 'ユーザーが追加されました',
+        'user_updated' => 'ユーザーが更新されました',
+        'user_deleted' => 'ユーザーが削除されました',
+        'user_add_error' => 'ユーザーの追加中にエラーが発生しました',
+        'user_update_error' => 'ユーザーの更新中にエラーが発生しました',
+        'user_delete_error' => 'ユーザーの削除中にエラーが発生しました',
+
+        // ウィッシュリスト
+        'already_in_wishlist' => 'このアイテムは既にウィッシュリストにあります',
     ),
 
     // ============================================

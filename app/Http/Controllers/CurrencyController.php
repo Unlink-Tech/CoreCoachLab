@@ -134,7 +134,7 @@ DB::table('miscs')->truncate();
             
   
             
-                        return redirect()->route('home')->with('success', 'Tables Updated');
+                        return redirect()->route('home')->with('success', __('common.messages.tables_updated'));
 
      
         //    dd($categories);

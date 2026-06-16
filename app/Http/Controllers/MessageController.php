@@ -118,10 +118,10 @@ class MessageController extends Controller
         $message=Message::find($id);
         $status=$message->delete();
         if($status){
-            request()->session()->flash('success','Successfully deleted message');
+            request()->session()->flash('success', __('common.messages.message_deleted'));
         }
         else{
-            request()->session()->flash('error','Error occurred please try again');
+            request()->session()->flash('error', __('common.messages.please_try_again'));
         }
         return back();
     }
