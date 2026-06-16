@@ -503,6 +503,9 @@ return [
         'multiplier_bonus' => 'クリエイティブボーナス',
         'unlocking_potential' => '獲得したクレジット合計',
         'credits_unlocked' => '使用準備完了のクレジット',
+        'bonus' => 'ボーナス',
+        'credit_note_jpy' => '*160円 = 1クレジット',
+        'credit_note_usd' => '*1ドル = 1クレジット',
     ),
 
     // ============================================

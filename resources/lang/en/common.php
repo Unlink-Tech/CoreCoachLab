@@ -503,6 +503,9 @@ return [
         'multiplier_bonus' => 'Creative Bonus',
         'unlocking_potential' => 'Total Credits Earned',
         'credits_unlocked' => 'Credits Ready to Use',
+        'bonus' => 'Bonus',
+        'credit_note_jpy' => '*160 JPY = 1 Credit',
+        'credit_note_usd' => '*1 USD = 1 Credit',
     ),
 
     // ============================================

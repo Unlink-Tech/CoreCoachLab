@@ -86,7 +86,7 @@
                             <div class="step-content">
                                 <div class="step-header">
                                     <h4 class="step-title">{{ __('common.index.tier_premium_title') }}</h4>
-                                    <span class="step-bonus">×2.0 Bonus</span>
+                                    <span class="step-bonus">×2.0 {{ __('common.index.bonus') }}</span>
                                 </div>
                                 <p class="step-desc">{{ __('common.index.tier_premium_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '80,000 - 159,999 ¥' : '$500 - $999' }}</strong></div>
@@ -99,7 +99,7 @@
                             <div class="step-content">
                                 <div class="step-header">
                                     <h4 class="step-title">{{ __('common.index.tier_elite_title') }}</h4>
-                                    <span class="step-bonus">×2.5 Bonus</span>
+                                    <span class="step-bonus">×2.5 {{ __('common.index.bonus') }}</span>
                                 </div>
                                 <p class="step-desc">{{ __('common.index.tier_elite_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '160,000 - 239,999 ¥' : '$1,000 - $1,499' }}</strong></div>
@@ -112,7 +112,7 @@
                             <div class="step-content">
                                 <div class="step-header">
                                     <h4 class="step-title">{{ __('common.index.tier_vip_title') }}</h4>
-                                    <span class="step-bonus">×3.0 Bonus</span>
+                                    <span class="step-bonus">×3.0 {{ __('common.index.bonus') }}</span>
                                 </div>
                                 <p class="step-desc">{{ __('common.index.tier_vip_desc') }}</p>
                                 <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '240,000+ ¥' : '$1,500+' }}</strong></div>
@@ -189,7 +189,7 @@
                             </form>
                             <!-- Dynamic Currency Conversion Note -->
                             <div class="currency-note-calc mt-3 text-center" style="font-size: 12px; color: var(--color-graphite, #94928f); font-weight: 600;">
-                                <strong>{{ session('currency') == 'JPY' ? '*160 JPY = 1 Credit' : '*1 USD = 1 Credit' }}</strong>
+                                <strong>{{ session('currency') == 'JPY' ? __('common.index.credit_note_jpy') : __('common.index.credit_note_usd') }}</strong>
                             </div>
                         </div>
 
