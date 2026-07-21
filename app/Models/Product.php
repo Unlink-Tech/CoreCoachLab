@@ -307,7 +307,8 @@ class Product extends Model
             'purpose',
             'learn_info',
             'outcome',
-            'price_hk as price'
+            'price_hk as price',
+            'price_in_points'
         );
     },
     'cat_info',
@@ -447,7 +448,8 @@ class Product extends Model
             'purpose',
             'learn_info',
             'outcome',
-            'price_hk as price'
+            'price_hk as price',
+            'price_in_points'
         );
     },
     'cat_info',

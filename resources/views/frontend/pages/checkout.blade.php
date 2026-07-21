@@ -11,51 +11,59 @@
         ]"
     />
 
-    <!-- Checkout Section -->
-    <section class="kv-checkout-section">
-        <!-- Background Grid & Glowing Blobs -->
-        <div class="kv-pattern" aria-hidden="true"></div>
-        <span class="kv-glow kv-glow-mint" aria-hidden="true"></span>
-        <span class="kv-glow kv-glow-sky" aria-hidden="true"></span>
+    <!-- Checkout Section — redesigned -->
+    <section class="co-checkout">
+        <span class="co-checkout__blob co-checkout__blob--a" aria-hidden="true"></span>
+        <span class="co-checkout__blob co-checkout__blob--b" aria-hidden="true"></span>
 
-        <div class="container">
+        <div class="container co-checkout__inner">
 
             <form name="frmCheckout" id="frmCheckout" method="POST" action="{{route('cart.order')}}">
                 @csrf
 
-                <!-- Progress stepper (visual guide) -->
-                <div class="kv-stepper" aria-hidden="true">
-                    <div class="kv-stepper__step">
-                        <span class="kv-stepper__dot"><i class="fas fa-user"></i></span>
-                        <span class="kv-stepper__label">{{ __('common.billing_details') }}</span>
-                    </div>
-                    <span class="kv-stepper__bar"></span>
-                    <div class="kv-stepper__step">
-                        <span class="kv-stepper__dot"><i class="fas fa-clipboard-list"></i></span>
-                        <span class="kv-stepper__label">{{ __('common.additional_information') }}</span>
-                    </div>
-                    <span class="kv-stepper__bar"></span>
-                    <div class="kv-stepper__step">
-                        <span class="kv-stepper__dot"><i class="fas fa-credit-card"></i></span>
-                        <span class="kv-stepper__label">{{ __('common.card_details') }}</span>
-                    </div>
-                    <span class="kv-stepper__bar"></span>
-                    <div class="kv-stepper__step">
-                        <span class="kv-stepper__dot"><i class="fas fa-shield-alt"></i></span>
-                        <span class="kv-stepper__label">{{ __('common.place_order') }}</span>
-                    </div>
-                </div>
+                {{-- Editorial progress stepper --}}
+                <ol class="co-steps" aria-hidden="true">
+                    <li class="co-steps__item co-steps__item--current">
+                        <span class="co-steps__marker">01</span>
+                        <span class="co-steps__label">
+                            <i class="fas fa-user"></i>
+                            <span>{{ __('common.billing_details') }}</span>
+                        </span>
+                    </li>
+                    <li class="co-steps__item">
+                        <span class="co-steps__marker">02</span>
+                        <span class="co-steps__label">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>{{ __('common.additional_information') }}</span>
+                        </span>
+                    </li>
+                    <li class="co-steps__item">
+                        <span class="co-steps__marker">03</span>
+                        <span class="co-steps__label">
+                            <i class="fas fa-credit-card"></i>
+                            <span>{{ __('common.card_details') }}</span>
+                        </span>
+                    </li>
+                    <li class="co-steps__item">
+                        <span class="co-steps__marker">04</span>
+                        <span class="co-steps__label">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>{{ __('common.place_order') }}</span>
+                        </span>
+                    </li>
+                </ol>
 
-                <div class="kv-checkout-grid">
+                <div class="kv-checkout-grid co-grid">
 
                     <!-- Billing Details Column -->
-                    <div class="kv-checkout-form">
+                    <div class="kv-checkout-form co-form">
 
                         <!-- Billing Information Card -->
-                        <div class="kv-checkout-card">
-                            <h3 class="kv-checkout-card-title">
-                                <span class="kv-step">1</span>
-                                <i class="fas fa-user-circle"></i>
+                        <div class="kv-checkout-card co-card">
+                            <span class="co-card__accent" aria-hidden="true"></span>
+                            <span class="co-card__num" aria-hidden="true">01</span>
+                            <h3 class="kv-checkout-card-title co-card__title">
+                                <span class="co-card__title-ico"><i class="fas fa-user-circle"></i></span>
                                 {{ __('common.billing_details')}}
                             </h3>
                             <div class="kv-checkout-form-grid">
@@ -184,10 +192,11 @@
                         </div>
 
                         <!-- Additional Information Card -->
-                        <div class="kv-checkout-card">
-                            <h3 class="kv-checkout-card-title">
-                                <span class="kv-step">2</span>
-                                <i class="fas fa-clipboard-list"></i>
+                        <div class="kv-checkout-card co-card">
+                            <span class="co-card__accent" aria-hidden="true"></span>
+                            <span class="co-card__num" aria-hidden="true">02</span>
+                            <h3 class="kv-checkout-card-title co-card__title">
+                                <span class="co-card__title-ico"><i class="fas fa-clipboard-list"></i></span>
                                 {{ __('common.additional_information') }}
                             </h3>
                             <div class="kv-checkout-form-group kv-checkout-form-group-full">
@@ -197,10 +206,11 @@
                         </div>
 
                         <!-- Payment Card -->
-                        <div class="kv-checkout-card">
-                            <h3 class="kv-checkout-card-title">
-                                <span class="kv-step">3</span>
-                                <i class="fas fa-credit-card"></i>
+                        <div class="kv-checkout-card co-card">
+                            <span class="co-card__accent" aria-hidden="true"></span>
+                            <span class="co-card__num" aria-hidden="true">03</span>
+                            <h3 class="kv-checkout-card-title co-card__title">
+                                <span class="co-card__title-ico"><i class="fas fa-credit-card"></i></span>
                                 {{ __('common.card_details') }}
                             </h3>
                             <div class="kv-checkout-form-grid">
@@ -240,10 +250,11 @@
                         </div>
 
                         <!-- Terms & Conditions -->
-                        <div class="kv-checkout-card kv-checkout-terms">
-                            <h3 class="kv-checkout-card-title">
-                                <span class="kv-step">4</span>
-                                <i class="fas fa-file-signature"></i>
+                        <div class="kv-checkout-card kv-checkout-terms co-card">
+                            <span class="co-card__accent" aria-hidden="true"></span>
+                            <span class="co-card__num" aria-hidden="true">04</span>
+                            <h3 class="kv-checkout-card-title co-card__title">
+                                <span class="co-card__title-ico"><i class="fas fa-file-signature"></i></span>
                                 {{ __('common.terms_conditions') }}
                             </h3>
                             <div class="kv-terms-group">
@@ -311,12 +322,18 @@
                     </div>
 
                     <!-- Order Summary Column -->
-                    <div class="kv-checkout-summary">
-                        <div class="kv-checkout-card kv-checkout-order">
-                            <h3 class="kv-checkout-card-title">
-                                <i class="fas fa-shopping-bag"></i>
-                                {{ __('common.your_order') }}
-                            </h3>
+                    <div class="kv-checkout-summary co-summary">
+                        <div class="kv-checkout-card kv-checkout-order co-summary__card">
+                            <span class="co-summary__glow" aria-hidden="true"></span>
+                            <div class="co-summary__head">
+                                <span class="co-summary__eyebrow">
+                                    <span class="co-summary__eyebrow-dot" aria-hidden="true"></span>
+                                    {{ __('common.your_order') }}
+                                </span>
+                                <h3 class="kv-checkout-card-title co-summary__title">
+                                    {{ __('common.your_order') }}
+                                </h3>
+                            </div>
                             <div class="kv-checkout-order-table">
                                 <div class="kv-checkout-order-header">
                                     <span>{{ __('common.product') }}</span>
@@ -370,17 +387,17 @@
                             @endif
 
                             <!-- Submit Button -->
-                            <button type="submit" class="kv-btn kv-btn-accent kv-btn-lg w-100" id="button-confirm">
-                                <i class="fas fa-shield-alt"></i>
-                                {{ __('common.place_order') }}
+                            <button type="submit" class="kv-btn kv-btn-accent kv-btn-lg w-100 co-summary__cta" id="button-confirm">
+                                <span>{{ __('common.place_order') }}</span>
+                                <i class="fas fa-arrow-right"></i>
                             </button>
 
-                            <a href="{{ route('home') }}" class="kv-btn kv-btn-outline kv-btn-lg w-100">
+                            <a href="{{ route('home') }}" class="kv-btn kv-btn-outline kv-btn-lg w-100 co-summary__back">
                                 <i class="fas fa-arrow-left"></i>
-                                {{ __('common.continue_shopping') }}
+                                <span>{{ __('common.continue_shopping') }}</span>
                             </a>
 
-                            <div class="kv-summary-assure">
+                            <div class="kv-summary-assure co-summary__assure">
                                 <i class="fas fa-lock"></i> {{ __('common.cart.secure_checkout') }}
                             </div>
                         </div>

@@ -1,0 +1,104 @@
+<aside id="cookies-policy" class="cookies cookies--no-js artify-cookies" data-text="{{ json_encode(__('cookieConsent::cookies.details')) }}">
+    <div class="artify-cookies__overlay"></div>
+
+    <div class="artify-cookies__card">
+        <!-- Main row: icon block | copy | actions -->
+        <div class="artify-cookies__main">
+
+            <!-- LEFT: bold ember icon block -->
+            <div class="artify-cookies__media">
+                <span class="artify-cookies__icon"><i class="fas fa-cookie-bite"></i></span>
+            </div>
+
+            <!-- CENTER: copy -->
+            <div class="artify-cookies__body">
+                <span class="artify-cookies__eyebrow">
+                    <span class="artify-cookies__eyebrow-dot"></span>
+                    @lang('cookieConsent::cookies.title')
+                </span>
+                <p class="artify-cookies__intro">@lang('cookieConsent::cookies.intro')</p>
+                @if($policy)
+                    <p class="artify-cookies__policy-link">
+                        @lang('cookieConsent::cookies.link', ['url' => $policy])
+                    </p>
+                @endif
+            </div>
+
+            <!-- RIGHT: actions -->
+            <div class="artify-cookies__actions">
+                @cookieconsentbutton(action: 'accept.essentials', label: __('cookieConsent::cookies.essentials'), attributes: ['class' => 'artify-cookies__btn artify-cookies__btn--secondary'])
+                @cookieconsentbutton(action: 'accept.all', label: __('cookieConsent::cookies.all'), attributes: ['class' => 'artify-cookies__btn artify-cookies__btn--primary'])
+            </div>
+
+            <!-- Close -->
+            <button class="artify-cookies__close" aria-label="Close cookie consent" onclick="document.getElementById('cookies-policy').remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Customize toggle -->
+        <button class="artify-cookies__customize-toggle" onclick="document.getElementById('cookies-policy-customize').classList.toggle('artify-cookies__expand--open'); this.classList.toggle('artify-cookies__customize-toggle--open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down')">
+            <span class="artify-cookies__customize-label">@lang('cookieConsent::cookies.customize')</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+
+        <!-- Customize expand panel -->
+        <div class="artify-cookies__expand" id="cookies-policy-customize">
+            <form action="{{ route('cookieconsent.accept.configuration') }}" method="post" class="artify-cookies__customize">
+                @csrf
+                <div class="artify-cookies__sections">
+                    @foreach($cookies->getCategories() as $category)
+                    <div class="artify-cookies__section">
+                        <div class="artify-cookies__category-wrapper">
+                            <div class="artify-cookies__category-header">
+                                <strong class="artify-cookies__cat-title">{{ $category->title }}</strong>
+                                <label class="artify-cookies__switch" for="cookies-policy-check-{{ $category->key() }}">
+                                    @if ($category->key() === 'essentials')
+                                        <input type="hidden" name="categories[]" value="{{ $category->key() }}" />
+                                        <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" checked="checked" disabled="disabled" />
+                                    @else
+                                        <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" />
+                                    @endif
+                                    <span class="artify-cookies__slider"></span>
+                                </label>
+                            </div>
+                            @if($category->description)
+                                <p class="artify-cookies__cat-desc">{{ $category->description }}</p>
+                            @endif
+                        </div>
+
+                        @if(count($category->getCookies()) > 0)
+                        <button type="button" class="artify-cookies__more-toggle" onclick="this.parentElement.querySelector('.artify-cookies__details').classList.toggle('artify-cookies__details--open'); this.querySelector('i').classList.toggle('fa-plus'); this.querySelector('i').classList.toggle('fa-minus')">
+                            @lang('cookieConsent::cookies.details.more')
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="artify-cookies__details">
+                            <ul class="artify-cookies__cookies-list">
+                                @foreach($category->getCookies() as $cookie)
+                                <li class="artify-cookies__cookie-item">
+                                    <strong class="artify-cookies__cookie-name">{{ $cookie->name }}</strong>
+                                    <span class="artify-cookies__cookie-duration">{{ \Carbon\CarbonInterval::minutes($cookie->duration)->cascade() }}</span>
+                                    @if($cookie->description)
+                                        <p class="artify-cookies__cookie-desc">{{ $cookie->description }}</p>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="artify-cookies__footer">
+                    <button type="submit" class="artify-cookies__save">@lang('cookieConsent::cookies.save')</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</aside>
+
+<script data-cookie-consent>
+    {!! file_get_contents(LCC_ROOT . '/dist/script.js') !!}
+</script>
+{{-- vendor styles intentionally NOT inlined; all styling provided by app.css --}}

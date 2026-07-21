@@ -8689,7 +8689,7 @@ Page Title
 ====================================================================
 
 ***/
-@-webkit-keyframes "ripple" {
+@-webkit-keyframes ripple {
   70% {
     -webkit-box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
@@ -8699,7 +8699,7 @@ Page Title
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
-@keyframes "ripple" {
+@keyframes ripple {
   70% {
     -webkit-box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
@@ -11653,10 +11653,13 @@ Sidebar
     height: 1.25rem;
     margin-left: auto;
     content: "";
-    background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-size: 1.25rem;
     transition: transform .2s ease-in-out;
+}
+.course-tile-badge {
+    display: none !important;
 }
     .accunt-info .nav-vertical {
         display: none;
@@ -11995,7 +11998,7 @@ transform: translateY(0px);
 .cartcanvas__close i
 {
     text-align: center;
-    color: var(--theme-color2);
+    color: var(--color-ember-red);
      cursor: pointer;
     font-size: 21px;
     display: flex;
@@ -12493,7 +12496,7 @@ td.pro__price strong {
 }
 .prduct-info
 {
-  background-color: var(--theme-color-bg);
+      background-color: #f9f9f9;
 }
 .product-yprce
 {
@@ -14472,4 +14475,7 @@ ul.tl-breadcrumb-nav.d-flex {
 }
 label#captcha-error {
     position: absolute;
+}
+.page-product-lists .cat-hero .container, .page-product-lists #catalog .container {
+    padding: 0 !important;
 }

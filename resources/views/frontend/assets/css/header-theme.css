@@ -21,12 +21,17 @@ header.main-header {
   width: 100%;
 }
 
-header.main-header:hover {
-  box-shadow: var(--shadow-subtle);
+header.main-header.sticky-top {
+  box-shadow: none !important;
 }
 
-header.main-header.sticky-top {
-  box-shadow: var(--shadow-subtle);
+header.main-header:hover,
+header.main-header.scrolled {
+  background-color: rgba(254, 253, 252, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 18px rgba(37, 34, 30, 0.08) !important;
+  border-bottom: 1px solid var(--color-stone) !important;
 }
 
 header.main-header .auto-container {

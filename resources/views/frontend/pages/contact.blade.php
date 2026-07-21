@@ -10,153 +10,133 @@
     ]"
 />
 
-<section class="contact-page-section">
-    <!-- Ambient blurred background shapes for warm atmosphere -->
-    <div class="contact-bg-blob blob-1"></div>
-    <div class="contact-bg-blob blob-2"></div>
+<section class="ct-hero">
+    <span class="ct-hero__blob ct-hero__blob--a" aria-hidden="true"></span>
+    <span class="ct-hero__blob ct-hero__blob--b" aria-hidden="true"></span>
 
-    <div class="container contact-content-container">
-        <!-- Single Unified Premium Card with Asymmetric Layout -->
-        <div class="unified-contact-card">
-            <div class="row g-0 h-100">
-                <!-- Left half: Brand Canvas & Company Details (No Phone) -->
-                <div class="col-lg-5 brand-details-panel">
-                    <div class="panel-content">
-                        <div>
-                            <span class="modern-badge mb-3">{{ __('common.get_in_touch') }}</span>
-                            <h2 class="panel-title mb-4">{{ __('common.contact_header') }}</h2>
-                            <p class="panel-text mb-5">
-                                {{ __('common.contact.panel_description') }}
-                            </p>
-                        </div>
+    <div class="container ct-hero__inner">
+        {{-- Heading --}}
+        <div class="ct-hero__heading text-center">
+            <span class="ct-eyebrow">
+                <span class="ct-eyebrow__dot" aria-hidden="true"></span>
+                {{ __('common.get_in_touch') }}
+            </span>
+            <h1 class="ct-hero__title">{{ __('common.contact_header') }}</h1>
+            <p class="ct-hero__lede">{{ __('common.contact.panel_description') }}</p>
+            <span class="ct-hero__rule" aria-hidden="true"></span>
+        </div>
 
-                        <!-- Company Metadata List -->
-                        <div class="company-info-list">
-                            <!-- Company Name -->
-                            <div class="info-item mb-4">
-                                <div class="info-icon">
-                                    <i class="fas fa-building"></i>
-                                </div>
-                                <div class="info-body">
-                                    <span class="info-label">{{ __('common.company') }}</span>
-                                    <span class="info-value">{{ $misc['Company Name'] ?? __('common.company_name') }}</span>
-                                </div>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="info-item mb-4">
-                                <div class="info-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="info-body">
-                                    <span class="info-label">{{ __('common.email') }}</span>
-                                    <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}" class="info-value link-value">
-                                        {{ $misc['Company Email'] ?? __('common.company_email') }}
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Address -->
-                            <div class="info-item">
-                                <div class="info-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="info-body">
-                                    <span class="info-label">{{ __('common.our_location') }}</span>
-                                    <span class="info-value">{{ $misc['Company Address'] ?? __('common.company_Address') }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Brand Mark -->
-                        <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">{{ __('common.contact.brand_name') }}</span>
-                            <span class="brand-mark-desc">{{ __('common.contact.brand_tagline') }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right half: Clean Form Panel -->
-                <div class="col-lg-7 form-panel">
-                    <div class="panel-content">
-                        <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.contact.form_title') }}</h3>
-                            <p class="form-subtitle">
-                                <i class="fas fa-info-circle text-muted me-1"></i>
-                                {{ __('common.contact.form_subtitle') }}
-                            </p>
-                        </div>
-
-                        <form method="POST" action="{{ route('contact.send') }}" id="contactform" onsubmit="return handleSubmit(event)">
-                            @csrf
-                            <div class="row g-4">
-                                <!-- Name -->
-                                <div class="col-md-6">
-                                    <label class="premium-input-label" for="name">
-                                        <i class="fas fa-user me-2"></i>{{ __('common.name') }}
-                                    </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.contact.field_name_placeholder') }}" class="premium-form-input @error('name') is-invalid @enderror">
-                                    @error('name')
-                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
-
-                                <!-- Email -->
-                                <div class="col-md-6">
-                                    <label class="premium-input-label" for="email">
-                                        <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
-                                    </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.contact.field_email_placeholder') }}" class="premium-form-input @error('email') is-invalid @enderror">
-                                    @error('email')
-                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
-
-                                <!-- Subject -->
-                                <div class="col-12">
-                                    <label class="premium-input-label" for="subject">
-                                        <i class="fas fa-tag me-2"></i>{{ __('common.your_subject') }}
-                                    </label>
-                                    <input type="text" name="subject" id="subject" placeholder="{{ __('common.contact.field_subject_placeholder') }}" class="premium-form-input">
-                                </div>
-
-                                <!-- Message -->
-                                <div class="col-12">
-                                    <label class="premium-input-label" for="message">
-                                        <i class="fas fa-comment-dots me-2"></i>{{ __('common.your_message') }}
-                                    </label>
-                                    <textarea name="message" id="message" rows="5" placeholder="{{ __('common.contact.field_message_placeholder') }}" class="premium-form-input"></textarea>
-                                </div>
-
-                                <!-- Captcha (optional) -->
-                                @if(env('CAPTCHA_ENABLED', true))
-                                    <div class="col-12 pt-2">
-                                        <label class="premium-input-label">{{ __('common.security_verification') }}</label>
-                                        <div class="row align-items-center g-3">
-                                            <div class="col-md-8">
-                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.fill_captcha') }}">
-                                            </div>
-                                            <div class="col-md-4 captcha-image-container text-center">
-                                                @captcha
-                                            </div>
-                                        </div>
-                                        @error('captcha')
-                                            <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
-                                        @enderror
-                                    </div>
-                                @endif
-
-                                <!-- Submit Button -->
-                                <div class="col-12 mt-4">
-                                    <button type="submit" class="premium-submit-btn">
-                                        <i class="fas fa-paper-plane me-2"></i> {{ __('common.send_message') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        {{-- Contact info cards --}}
+        <div class="ct-info-grid">
+            <div class="ct-info">
+                <span class="ct-info__icon"><i class="fas fa-building"></i></span>
+                <span class="ct-info__label">{{ __('common.company') }}</span>
+                <span class="ct-info__value">{{ $misc['Company Name'] ?? __('common.company_name') }}</span>
             </div>
+            <div class="ct-info">
+                <span class="ct-info__icon"><i class="fas fa-envelope"></i></span>
+                <span class="ct-info__label">{{ __('common.email') }}</span>
+                <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}" class="ct-info__value ct-info__value--link">
+                    {{ $misc['Company Email'] ?? __('common.company_email') }}
+                </a>
+            </div>
+            <div class="ct-info">
+                <span class="ct-info__icon"><i class="fas fa-map-marker-alt"></i></span>
+                <span class="ct-info__label">{{ __('common.our_location') }}</span>
+                <span class="ct-info__value">{{ $misc['Company Address'] ?? __('common.company_Address') }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ct-form-section">
+    <span class="ct-form-section__blob" aria-hidden="true"></span>
+
+    <div class="auto-container ct-form-section__inner">
+        <div class="ct-form-heading text-center">
+            <span class="ct-eyebrow">
+                <span class="ct-eyebrow__dot" aria-hidden="true"></span>
+                {{ __('common.contact.form_title') }}
+            </span>
+            <h2 class="ct-form-heading__title">{{ __('common.contact.form_title') }}</h2>
+            <p class="ct-form-heading__sub">{{ __('common.contact.form_subtitle') }}</p>
+        </div>
+
+        <div class="ct-form-card">
+            <form method="POST" action="{{ route('contact.send') }}" id="contactform" onsubmit="return handleSubmit(event)" class="ct-form">
+                @csrf
+                <div class="ct-form__row">
+                    {{-- Name --}}
+                    <div class="ct-form__field">
+                        <label class="ct-form__label" for="name">
+                            <i class="fas fa-user"></i>{{ __('common.name') }}
+                        </label>
+                        <input type="text" name="name" id="name"
+                               placeholder="{{ __('common.contact.field_name_placeholder') }}"
+                               class="premium-form-input ct-form__input @error('name') is-invalid @enderror">
+                        @error('name')
+                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
+                        @enderror
+                    </div>
+
+                    {{-- Email --}}
+                    <div class="ct-form__field">
+                        <label class="ct-form__label" for="email">
+                            <i class="fas fa-envelope"></i>{{ __('common.email') }}
+                        </label>
+                        <input type="email" name="email" id="email"
+                               placeholder="{{ __('common.contact.field_email_placeholder') }}"
+                               class="premium-form-input ct-form__input @error('email') is-invalid @enderror">
+                        @error('email')
+                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                {{-- Subject --}}
+                <div class="ct-form__field">
+                    <label class="ct-form__label" for="subject">
+                        <i class="fas fa-tag"></i>{{ __('common.your_subject') }}
+                    </label>
+                    <input type="text" name="subject" id="subject"
+                           placeholder="{{ __('common.contact.field_subject_placeholder') }}"
+                           class="premium-form-input ct-form__input">
+                </div>
+
+                {{-- Message --}}
+                <div class="ct-form__field">
+                    <label class="ct-form__label" for="message">
+                        <i class="fas fa-comment-dots"></i>{{ __('common.your_message') }}
+                    </label>
+                    <textarea name="message" id="message" rows="6"
+                              placeholder="{{ __('common.contact.field_message_placeholder') }}"
+                              class="premium-form-input ct-form__input ct-form__textarea"></textarea>
+                </div>
+
+                {{-- Captcha --}}
+                @if(env('CAPTCHA_ENABLED', true))
+                    <div class="ct-form__field">
+                        <label class="ct-form__label" for="captcha">
+                            <i class="fas fa-shield-alt"></i>{{ __('common.security_verification') }}
+                        </label>
+                        <div class="ct-form__captcha">
+                            <input type="text" id="captcha" name="captcha" autocomplete="off"
+                                   placeholder="{{ __('common.fill_captcha') }}"
+                                   class="premium-form-input ct-form__input">
+                            <div class="ct-form__captcha-img">@captcha</div>
+                        </div>
+                        @error('captcha')
+                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{ __('common.captcha_error') }}</span>
+                        @enderror
+                    </div>
+                @endif
+
+                {{-- Submit --}}
+                <button type="submit" class="ct-form__submit">
+                    <span>{{ __('common.send_message') }}</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
         </div>
     </div>
 </section>

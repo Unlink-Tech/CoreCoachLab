@@ -321,10 +321,22 @@ class FrontendController extends Controller
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
         // Sort by number
         if(!empty($_GET['show'])){
-            $products=$products->where('status','active')->paginate($_GET['show']);
+            $products=$products->where('status','active')->with(['levels' => function($query) {
+                if (App::getLocale() == 'ja') {
+                    $query->select('id', 'course_id', 'skill_level_jp as skill_level', 'purpose_jp as purpose', 'learn_info_jp as learn_info', 'outcome_jp as outcome', 'price', 'price_jp', 'price_hk', 'price_in_points');
+                } else {
+                    $query->select('id', 'course_id', 'skill_level', 'purpose', 'learn_info', 'outcome', 'price', 'price_jp', 'price_hk', 'price_in_points');
+                }
+            }])->paginate($_GET['show']);
         }
         else{
-            $products=$products->where('status','active')->paginate(50);
+            $products=$products->where('status','active')->with(['levels' => function($query) {
+                if (App::getLocale() == 'ja') {
+                    $query->select('id', 'course_id', 'skill_level_jp as skill_level', 'purpose_jp as purpose', 'learn_info_jp as learn_info', 'outcome_jp as outcome', 'price', 'price_jp', 'price_hk', 'price_in_points');
+                } else {
+                    $query->select('id', 'course_id', 'skill_level', 'purpose', 'learn_info', 'outcome', 'price', 'price_jp', 'price_hk', 'price_in_points');
+                }
+            }])->paginate(50);
         }
         // Sort by name , price, category
 

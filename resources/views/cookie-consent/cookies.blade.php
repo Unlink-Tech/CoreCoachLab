@@ -3,7 +3,7 @@
     <div class="artify-cookies__card">
         <!-- Header -->
         <div class="artify-cookies__header">
-            <div class="artify-cookies__icon"><i class="fas fa-cookie"></i></div>
+            <div class="artify-cookies__icon"><i class="fas fa-cookie-bite"></i></div>
             <h2 class="artify-cookies__title">@lang('cookieConsent::cookies.title')</h2>
             <button class="artify-cookies__close" aria-label="Close cookie consent" onclick="document.getElementById('cookies-policy').remove()">
                 <i class="fas fa-times"></i>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Customize toggle -->
-        <button class="artify-cookies__customize-toggle" onclick="document.getElementById('cookies-policy-customize').classList.toggle('artify-cookies__expand--open')">
+        <button class="artify-cookies__customize-toggle" onclick="document.getElementById('cookies-policy-customize').classList.toggle('artify-cookies__expand--open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down')">
             <span>@lang('cookieConsent::cookies.customize')</span>
             <i class="fas fa-chevron-down"></i>
         </button>
@@ -39,22 +39,26 @@
                 <div class="artify-cookies__sections">
                     @foreach($cookies->getCategories() as $category)
                     <div class="artify-cookies__section">
-                        <label for="cookies-policy-check-{{ $category->key() }}" class="artify-cookies__category">
-                            @if ($category->key() === 'essentials')
-                                <input type="hidden" name="categories[]" value="{{ $category->key() }}" />
-                                <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" checked="checked" disabled="disabled" />
-                            @else
-                                <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" />
+                        <div class="artify-cookies__category-wrapper">
+                            <div class="artify-cookies__category-header">
+                                <strong class="artify-cookies__cat-title">{{ $category->title }}</strong>
+                                <label class="artify-cookies__switch" for="cookies-policy-check-{{ $category->key() }}">
+                                    @if ($category->key() === 'essentials')
+                                        <input type="hidden" name="categories[]" value="{{ $category->key() }}" />
+                                        <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" checked="checked" disabled="disabled" />
+                                    @else
+                                        <input type="checkbox" name="categories[]" value="{{ $category->key() }}" id="cookies-policy-check-{{ $category->key() }}" />
+                                    @endif
+                                    <span class="artify-cookies__slider"></span>
+                                </label>
+                            </div>
+                            @if($category->description)
+                                <p class="artify-cookies__cat-desc">{{ $category->description }}</p>
                             @endif
-                            <span class="artify-cookies__checkbox"></span>
-                            <strong class="artify-cookies__cat-title">{{ $category->title }}</strong>
-                        </label>
-                        @if($category->description)
-                            <p class="artify-cookies__cat-desc">{{ $category->description }}</p>
-                        @endif
+                        </div>
 
-                        @if($category->getCookies()->count() > 0)
-                        <button type="button" class="artify-cookies__more-toggle" onclick="this.parentElement.querySelector('.artify-cookies__details').classList.toggle('artify-cookies__details--open')">
+                        @if(count($category->getCookies()) > 0)
+                        <button type="button" class="artify-cookies__more-toggle" onclick="this.parentElement.querySelector('.artify-cookies__details').classList.toggle('artify-cookies__details--open'); this.querySelector('i').classList.toggle('fa-plus'); this.querySelector('i').classList.toggle('fa-minus')">
                             @lang('cookieConsent::cookies.details.more')
                             <i class="fas fa-plus"></i>
                         </button>

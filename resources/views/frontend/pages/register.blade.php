@@ -10,169 +10,150 @@
     ]"
 />
 
-<section class="auth-page-section">
-    <!-- Ambient blurred background shapes for warm atmosphere -->
-    <div class="auth-bg-blob blob-1"></div>
-    <div class="auth-bg-blob blob-2"></div>
+<section class="auth-v2">
+    <span class="auth-v2__blob auth-v2__blob--a" aria-hidden="true"></span>
+    <span class="auth-v2__blob auth-v2__blob--b" aria-hidden="true"></span>
 
-    <div class="container auth-content-container">
-        <!-- Single Unified Premium Card with Asymmetric Layout -->
-        <div class="unified-auth-card">
-            <div class="row g-0 h-100">
-                <!-- Left half: Brand Canvas & Community Benefits -->
-                <div class="col-lg-5 brand-details-panel">
-                    <div class="panel-content">
-                        <div>
-                            <span class="modern-badge mb-3">{{ __('common.join_community') }}</span>
-                            <h2 class="panel-title mb-4">{{ __('common.register.panel_title') }}</h2>
-                            <p class="panel-text mb-5">
-                                {{ __('common.register.panel_description') }}
-                            </p>
-                        </div>
+    <div class="container auth-v2__inner">
+        <div class="auth-v2__card">
 
-                        <!-- Benefit List -->
-                        <div class="benefits-info-list">
-                            <!-- Benefit 1 -->
-                            <div class="benefit-item mb-4">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <div class="benefit-body">
-                                    <span class="benefit-title">{{ __('common.register.benefit_1_title') }}</span>
-                                    <span class="benefit-desc">{{ __('common.register.benefit_1_description') }}</span>
-                                </div>
-                            </div>
+            {{-- LEFT: dark editorial aside --}}
+            <aside class="auth-v2__aside">
+                <span class="auth-v2__aside-glow" aria-hidden="true"></span>
+                <div class="auth-v2__aside-inner">
+                    <div class="auth-v2__aside-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <span class="auth-v2__eyebrow auth-v2__eyebrow--dark">
+                        <span class="auth-v2__eyebrow-dot" aria-hidden="true"></span>
+                        {{ __('common.account.register') }}
+                    </span>
+                    <h2 class="auth-v2__aside-title">{{ __('common.register.panel_title') }}</h2>
+                    <p class="auth-v2__aside-desc">{{ __('common.register.panel_description') }}</p>
 
-                            <!-- Benefit 2 -->
-                            <div class="benefit-item mb-4">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-book-open"></i>
+                    <ul class="auth-v2__benefits">
+                        @foreach([1,2,3] as $n)
+                            <li class="auth-v2__benefit">
+                                <span class="auth-v2__benefit-check"><i class="fas fa-check"></i></span>
+                                <div>
+                                    <strong>{{ __('common.register.benefit_' . $n . '_title') }}</strong>
+                                    <p>{{ __('common.register.benefit_' . $n . '_description') }}</p>
                                 </div>
-                                <div class="benefit-body">
-                                    <span class="benefit-title">{{ __('common.register.benefit_2_title') }}</span>
-                                    <span class="benefit-desc">{{ __('common.register.benefit_2_description') }}</span>
-                                </div>
-                            </div>
+                            </li>
+                        @endforeach
+                    </ul>
 
-                            <!-- Benefit 3 -->
-                            <div class="benefit-item">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <div class="benefit-body">
-                                    <span class="benefit-title">{{ __('common.register.benefit_3_title') }}</span>
-                                    <span class="benefit-desc">{{ __('common.register.benefit_3_description') }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Brand Mark -->
-                        <div class="panel-brand-mark mt-5">
-                            <span class="brand-mark-title">{{ __('common.register.brand_name') }}</span>
-                            <span class="brand-mark-desc">{{ __('common.register.brand_tagline') }}</span>
-                        </div>
+                    <div class="auth-v2__brand-mark">
+                        <span class="auth-v2__brand-name">{{ __('common.register.brand_name') }}</span>
+                        <span class="auth-v2__brand-tagline">{{ __('common.register.brand_tagline') }}</span>
                     </div>
                 </div>
+            </aside>
 
-                <!-- Right half: Clean Sign Up Panel -->
-                <div class="col-lg-7 form-panel">
-                    <div class="panel-content">
-                        <div class="form-panel-intro mb-4">
-                            <h3 class="form-title">{{ __('common.register.form_title') }}</h3>
-                            <p class="form-subtitle">
-                                <i class="fas fa-info-circle text-muted me-1"></i>
-                                {{ __('common.register.form_subtitle') }}
-                            </p>
-                        </div>
+            {{-- RIGHT: form panel --}}
+            <div class="auth-v2__panel">
+                <div class="auth-v2__panel-head">
+                    <span class="auth-v2__eyebrow">
+                        <span class="auth-v2__eyebrow-dot" aria-hidden="true"></span>
+                        {{ __('common.register.form_title') }}
+                    </span>
+                    <h1 class="auth-v2__panel-title">{{ __('common.register.form_title') }}</h1>
+                    <p class="auth-v2__panel-sub">{{ __('common.register.form_subtitle') }}</p>
+                </div>
 
-                        <form name="frmRegister" id="frmRegister" action="{{route('register.submit')}}" method="post">
-                            @csrf
-                            <div class="row g-4">
-                                <!-- Name -->
-                                <div class="col-12">
-                                    <label class="premium-input-label" for="name">
-                                        <i class="fas fa-user me-2"></i>{{ __('common.name') }}
-                                    </label>
-                                    <input type="text" name="name" id="name" placeholder="{{ __('common.register.field_name_placeholder') }}" value="{{old('name')}}" class="premium-form-input @error('name') is-invalid @enderror">
-                                    @error('name')
-                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
+                <form name="frmRegister" id="frmRegister" action="{{route('register.submit')}}" method="post" class="auth-v2__form">
+                    @csrf
 
-                                <!-- Email -->
-                                <div class="col-12">
-                                    <label class="premium-input-label" for="email">
-                                        <i class="fas fa-envelope me-2"></i>{{ __('common.email') }}
-                                    </label>
-                                    <input type="email" name="email" id="email" placeholder="{{ __('common.register.field_email_placeholder') }}" value="{{old('email')}}" class="premium-form-input @error('email') is-invalid @enderror" required>
-                                    @error('email')
-                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
+                    <div class="auth-v2__field">
+                        <label class="auth-v2__label" for="name">
+                            <i class="fas fa-user"></i>{{ __('common.name') }}
+                        </label>
+                        <input type="text" name="name" id="name"
+                               placeholder="{{ __('common.register.field_name_placeholder') }}"
+                               value="{{old('name')}}"
+                               class="premium-form-input auth-v2__input @error('name') is-invalid @enderror">
+                        @error('name')
+                            <span class="auth-v2__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
+                        @enderror
+                    </div>
 
-                                <!-- Password -->
-                                <div class="col-md-6">
-                                    <label class="premium-input-label" for="password">
-                                        <i class="fas fa-lock me-2"></i>{{ __('common.password') }}
-                                    </label>
-                                    <input type="password" name="password" id="password" placeholder="{{ __('common.register.field_password_placeholder') }}" class="premium-form-input @error('password') is-invalid @enderror" required>
-                                    @error('password')
-                                        <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{$message}}</span>
-                                    @enderror
-                                </div>
+                    <div class="auth-v2__field">
+                        <label class="auth-v2__label" for="email">
+                            <i class="fas fa-envelope"></i>{{ __('common.email') }}
+                        </label>
+                        <input type="email" name="email" id="email"
+                               placeholder="{{ __('common.register.field_email_placeholder') }}"
+                               value="{{old('email')}}"
+                               class="premium-form-input auth-v2__input @error('email') is-invalid @enderror" required>
+                        @error('email')
+                            <span class="auth-v2__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
+                        @enderror
+                    </div>
 
-                                <!-- Confirm Password -->
-                                <div class="col-md-6">
-                                    <label class="premium-input-label" for="password_confirmation">
-                                        <i class="fas fa-lock-open me-2"></i>{{ __('common.confirm_password') }}
-                                    </label>
-                                    <input type="password" name="password_confirmation" id="password_confirmation" placeholder="{{ __('common.register.field_confirm_password_placeholder') }}" class="premium-form-input">
-                                </div>
-
-                                <!-- Captcha -->
-                                @if(env('CAPTCHA_ENABLED', true))
-                                    <div class="col-12 pt-2">
-                                        <label class="premium-input-label">{{ __('common.security_verification') }}</label>
-                                        <div class="row align-items-center g-3">
-                                            <div class="col-md-8">
-                                                <input type="text" id="captcha" name="captcha" autocomplete="off" class="premium-form-input" placeholder="{{ __('common.fill_captcha') }}">
-                                            </div>
-                                            <div class="col-md-4 captcha-image-container text-center">
-                                                @captcha
-                                            </div>
-                                        </div>
-                                        @error('captcha')
-                                            <span class="premium-error-msg mt-2 d-block"><i class="fas fa-info-circle me-1"></i>{{ __('common.captcha_error') }}</span>
-                                        @enderror
-                                    </div>
-                                @endif
-
-                                <!-- Submit Register Button -->
-                                <div class="col-12 mt-4">
-                                    <button class="premium-submit-btn" type="submit" name="submit-form">
-                                        <i class="fas fa-user-plus me-2"></i> {{ __('common.register.submit_button') }}
-                                    </button>
-                                </div>
+                    <div class="auth-v2__row">
+                        <div class="auth-v2__field">
+                            <label class="auth-v2__label" for="password">
+                                <i class="fas fa-lock"></i>{{ __('common.password') }}
+                            </label>
+                            <div class="auth-v2__pw-wrap">
+                                <input type="password" name="password" id="password"
+                                       placeholder="{{ __('common.register.field_password_placeholder') }}"
+                                       class="premium-form-input auth-v2__input @error('password') is-invalid @enderror" required>
+                                <button type="button" class="auth-v2__pw-eye" data-toggle="password" aria-label="Toggle password visibility">
+                                    <i class="fas fa-eye"></i>
+                                </button>
                             </div>
-                        </form>
-
-                        <!-- Divider -->
-                        <div class="my-4 d-flex align-items-center">
-                            <div style="flex: 1; height: 1px; background: var(--color-stone, #d7d6d4);"></div>
-                            <span class="mx-3 small text-muted">{{ __('common.or') }}</span>
-                            <div style="flex: 1; height: 1px; background: var(--color-stone, #d7d6d4);"></div>
+                            @error('password')
+                                <span class="auth-v2__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
+                            @enderror
                         </div>
 
-                        <!-- Login Link -->
-                        <div class="text-center">
-                            <p class="text-muted mb-0">
-                                {{ __('common.already_account') }}
-                                <a href="{{route('login.form')}}" class="login-redirect-link fw-bold text-decoration-none">{{ __('common.account.login') }}</a>
-                            </p>
+                        <div class="auth-v2__field">
+                            <label class="auth-v2__label" for="password_confirmation">
+                                <i class="fas fa-lock-open"></i>{{ __('common.confirm_password') }}
+                            </label>
+                            <div class="auth-v2__pw-wrap">
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                       placeholder="{{ __('common.register.field_confirm_password_placeholder') }}"
+                                       class="premium-form-input auth-v2__input">
+                                <button type="button" class="auth-v2__pw-eye" data-toggle="password_confirmation" aria-label="Toggle confirm password visibility">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    @if(env('CAPTCHA_ENABLED', true))
+                        <div class="auth-v2__field">
+                            <label class="auth-v2__label" for="captcha">
+                                <i class="fas fa-shield-alt"></i>{{ __('common.security_verification') }}
+                            </label>
+                            <div class="auth-v2__captcha">
+                                <input type="text" id="captcha" name="captcha" autocomplete="off"
+                                       placeholder="{{ __('common.fill_captcha') }}"
+                                       class="premium-form-input auth-v2__input">
+                                <div class="auth-v2__captcha-img">@captcha</div>
+                            </div>
+                            @error('captcha')
+                                <span class="auth-v2__error"><i class="fas fa-info-circle"></i> {{ __('common.captcha_error') }}</span>
+                            @enderror
+                        </div>
+                    @endif
+
+                    <button type="submit" name="submit-form" class="auth-v2__submit">
+                        <span>{{ __('common.register.submit_button') }}</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="auth-v2__divider"><span>{{ __('common.or') }}</span></div>
+
+                <p class="auth-v2__switch">
+                    {{ __('common.already_account') }}
+                    <a href="{{route('login.form')}}">{{ __('common.account.login') }}</a>
+                </p>
             </div>
+
         </div>
     </div>
 </section>
@@ -183,6 +164,22 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 <script>
+    // Password eye toggle
+    document.querySelectorAll('.auth-v2__pw-eye').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var targetId = btn.getAttribute('data-toggle');
+            var input = document.getElementById(targetId);
+            var icon  = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    });
+
     $(document).ready(function() {
         $("#frmRegister").validate({
             rules: {
@@ -224,7 +221,6 @@
                 @endif
             },
             errorPlacement: function(error, element) {
-                // custom error placement to avoid breaking the layout
                 error.appendTo(element.parent());
             },
             highlight: function(element, errorClass, validClass) {

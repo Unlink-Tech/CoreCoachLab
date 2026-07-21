@@ -1,5 +1,5 @@
 /**
- * ARTIFY ACADEMY THEME
+ * Core Coach Lab THEME
  * Based on Todoist Design System
  * Light theme with warm paper aesthetic
  *
@@ -352,7 +352,7 @@ a, .link {
 
 a:hover, .link:hover {
   color: var(--color-deep-ember);
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 a:focus, .link:focus {

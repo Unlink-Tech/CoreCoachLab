@@ -1,19 +1,20 @@
 <!-- Main Footer -->
 {{-- Footer styles moved to assets/css/app.css --}}
 
-<footer class="af-footer" role="contentinfo">
-    <span class="af-footer__glow" aria-hidden="true"></span>
-    <div class="af-footer__top">
-        <div class="af-container">
+<footer class="artf-footer" role="contentinfo">
+    <span class="artf-footer__glow" aria-hidden="true"></span>
+
+    <div class="artf-footer__inner">
+        <div class="artf-footer__top">
 
             <!-- Featured newsletter CTA -->
-            <section class="af-cta" aria-label="Newsletter">
-                <div class="af-cta__copy">
-                    <span class="af-cta__eyebrow">{{ __('common.footer.newsletter_eyebrow') }}</span>
-                    <h3 class="af-cta__title">{{ __('common.footer.newsletter_title') }}</h3>
-                    <p class="af-cta__desc">{{ __('common.footer.newsletter_description') }}</p>
+            <section class="artf-newsletter" aria-label="Newsletter">
+                <div class="artf-newsletter__copy">
+                    <span class="artf-newsletter__eyebrow">{{ __('common.footer.newsletter_eyebrow') }}</span>
+                    <h3 class="artf-newsletter__title">{{ __('common.footer.newsletter_title') }}</h3>
+                    <p class="artf-newsletter__desc">{{ __('common.footer.newsletter_description') }}</p>
                 </div>
-                <div class="af-cta__form">
+                <div class="artf-newsletter__form">
                     <div class="subscribe-form">
                         <form>
                             <div class="form-group">
@@ -26,14 +27,14 @@
                 </div>
             </section>
 
-            <div class="af-footer__grid">
+            <div class="artf-footer__grid">
 
                 <!-- Column 1: Brand -->
-                <div class="af-footer__brand">
-                    <a href="{{route('home')}}" class="af-footer__logo">
-                        <img src="{{url('assets/images/logo.jpg')}}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
+                <div class="artf-footer__brand">
+                    <a href="{{ route('home') }}" class="artf-footer__logo">
+                        <img src="{{ url('assets/images/logo-light.png') }}" alt="{{ $misc['Company Name'] ?? __('common.company_name') }}">
                     </a>
-                    <ul class="af-footer__contact">
+                    <ul class="artf-footer__contact">
                         <li>
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                             <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}">{{ $misc['Company Email'] ?? __('common.company_email') }}</a>
@@ -46,39 +47,37 @@
                 </div>
 
                 <!-- Column 2: Platform -->
-                <nav class="af-footer__col" aria-label="{{ __('common.footer.platform') }}">
-                    <h4 class="af-footer__heading">{{ __('common.footer.platform') }}</h4>
-                    <ul class="af-footer__links">
-                        <li><a href="{{route('home')}}">{{ __('common.footer.home') }}</a></li>
-                        <li><a href="{{route('product-lists')}}">{{ __('common.footer.catalog') }}</a></li>
-                        <li><a href="{{route('about-us')}}">{{ __('common.footer.about') }}</a></li>
-                        <li><a href="{{route('contact')}}">{{ __('common.footer.contact') }}</a></li>
+                <nav class="artf-footer__col" aria-label="{{ __('common.footer.platform') }}">
+                    <h4 class="artf-footer__heading">{{ __('common.footer.platform') }}</h4>
+                    <ul class="artf-footer__links">
+                        <li><a href="{{ route('home') }}">{{ __('common.footer.home') }}</a></li>
+                        <li><a href="{{ route('product-lists') }}">{{ __('common.footer.catalog') }}</a></li>
+                        <li><a href="{{ route('about-us') }}">{{ __('common.footer.about') }}</a></li>
+                        <li><a href="{{ route('contact') }}">{{ __('common.footer.contact') }}</a></li>
                     </ul>
                 </nav>
 
                 <!-- Column 3: Support -->
-                <nav class="af-footer__col" aria-label="{{ __('common.footer.support') }}">
-                    <h4 class="af-footer__heading">{{ __('common.footer.support') }}</h4>
-                    <ul class="af-footer__links">
-                        <li><a href="{{route('pages','privacy-policy')}}">{{ __('common.footer.privacy_policy') }}</a></li>
-                        <li><a href="{{route('pages','terms-conditions')}}">{{ __('common.footer.terms_policy') }}</a></li>
-                        <li><a href="{{route('pages','refund-policy')}}">{{ __('common.footer.refund_policy') }}</a></li>
-                        <li><a href="{{route('pages','delivery-policy')}}">{{ __('common.footer.delivery_policy') }}</a></li>
+                <nav class="artf-footer__col" aria-label="{{ __('common.footer.support') }}">
+                    <h4 class="artf-footer__heading">{{ __('common.footer.support') }}</h4>
+                    <ul class="artf-footer__links">
+                        <li><a href="{{ route('pages','privacy-policy') }}">{{ __('common.footer.privacy_policy') }}</a></li>
+                        <li><a href="{{ route('pages','terms-conditions') }}">{{ __('common.footer.terms_policy') }}</a></li>
+                        <li><a href="{{ route('pages','refund-policy') }}">{{ __('common.footer.refund_policy') }}</a></li>
+                        <li><a href="{{ route('pages','delivery-policy') }}">{{ __('common.footer.delivery_policy') }}</a></li>
                     </ul>
                 </nav>
 
             </div>
         </div>
-    </div>
 
-    <!-- Footer Bottom -->
-    <div class="af-footer__bottom">
-        <div class="af-container">
-            <div class="af-footer__bottom-inner">
-                <div class="af-footer__copyright">
-                    &copy; {{ date('Y') }} <a href="{{route('home')}}">{{ $misc['Company Name'] ?? __('common.company_name') }}.</a> {{ __('common.footer.copyright_text') }}
+        <!-- Footer Bottom -->
+        <div class="artf-footer__bottom">
+            <div class="artf-footer__bottom-inner">
+                <div class="artf-footer__copyright">
+                    &copy; {{ date('Y') }} <a href="{{ route('home') }}">{{ $misc['Company Name'] ?? __('common.company_name') }}.</a> {{ __('common.footer.copyright_text') }}
                 </div>
-                <div class="af-footer__payment">
+                <div class="artf-footer__payment">
                     <img src="{{ asset('assets/images/payment.webp') }}" alt="{{ __('common.footer.accepted_payment_methods') }}">
                 </div>
             </div>

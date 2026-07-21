@@ -3,82 +3,134 @@
 
 @section('main-content')
 
-<section class="artify-hero">
-    <div class="artify-hero__bg"></div>
+<section class="artify-hero artify-hero--arch artify-hero--carousel" data-hero-carousel data-interval="6000">
+    {{-- Decorative botanical line-art --}}
+    <span class="artify-hero--arch__leaf artify-hero--arch__leaf--left" aria-hidden="true"></span>
+    <span class="artify-hero--arch__leaf artify-hero--arch__leaf--right" aria-hidden="true"></span>
 
-    <div class="auto-container artify-hero__container">
-        <div class="artify-hero__content">
-            <div class="artify-hero__badge">
-                <i class="fas fa-palette"></i> {{ $misc['Company Name'] ?? __('Artify Academy') }}
+    @php
+        // Each slide = one category. Same image reused for now — swap per-slide later.
+        $heroSlides = [
+            ['lead' => 'gal_hero_s1_lead', 'accent' => 'gal_hero_s1_accent', 'tagline' => 'gal_hero_s1_tagline', 'desc' => 'gal_hero_s1_desc', 'title' => 'gal_hero_s1_title', 'img' => 'assets/images/yoga.webp'],
+            ['lead' => 'gal_hero_s2_lead', 'accent' => 'gal_hero_s2_accent', 'tagline' => 'gal_hero_s2_tagline', 'desc' => 'gal_hero_s2_desc', 'title' => 'gal_hero_s2_title', 'img' => 'assets/images/calm.webp'],
+            ['lead' => 'gal_hero_s3_lead', 'accent' => 'gal_hero_s3_accent', 'tagline' => 'gal_hero_s3_tagline', 'desc' => 'gal_hero_s3_desc', 'title' => 'gal_hero_s3_title', 'img' => 'assets/images/strength.webp'],
+        ];
+    @endphp
+
+    <div class="auto-container artify-hero--arch__stage">
+        <div class="artify-hero--arch__slides">
+            @foreach($heroSlides as $i => $slide)
+            <div class="artify-hero--arch__slide {{ $i === 0 ? 'is-active' : '' }}" data-hero-slide="{{ $i }}">
+                <div class="artify-hero--arch__container">
+
+                    {{-- LEFT: Content --}}
+                    <div class="artify-hero--arch__left">
+
+                        {{-- Headline: serif + script accent --}}
+                        <h1 class="artify-hero--arch__title">
+                            <span class="artify-hero--arch__title-serif">{{ __('common.'.$slide['lead']) }}</span>
+                            <span class="artify-hero--arch__title-script">{{ __('common.'.$slide['accent']) }}</span>
+                        </h1>
+
+                        {{-- Tagline with rule --}}
+                        <div class="artify-hero--arch__tagline">
+                            <span class="artify-hero--arch__rule"></span>
+                            <span class="artify-hero--arch__tagline-text">{{ __('common.'.$slide['tagline']) }}</span>
+                        </div>
+
+                        {{-- Intro description --}}
+                        <div class="artify-hero--arch__intro">
+                            <p class="artify-hero--arch__desc">{{ __('common.'.$slide['desc']) }}</p>
+                        </div>
+
+                        {{-- CTA Buttons --}}
+                        <div class="artify-hero--arch__buttons">
+                            <a href="{{ route('product-lists') }}" class="artify-hero--arch__btn artify-hero--arch__btn--primary">
+                                {{ __('common.gal_hero_cta') }}
+                            </a>
+                            <a href="{{ route('contact') }}" class="artify-hero--arch__btn artify-hero--arch__btn--secondary">
+                                {{ __('common.index.browse_courses') }}
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- RIGHT: Arched portrait --}}
+                    <div class="artify-hero--arch__right">
+                        <div class="artify-hero--arch__frame">
+                            <img src="{{ asset($slide['img']) }}" alt="{{ __('common.'.$slide['title']) }}" class="artify-hero--arch__img" {{ $i === 0 ? '' : 'loading=lazy' }}>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-
-            <h1 class="artify-hero__title">{{ __('common.gal_hero_title') }}</h1>
-            <p class="artify-hero__subtitle">{{ __('common.gal_hero_subtitle') }}</p>
-
-            <div class="artify-hero__buttons">
-                <a href="{{ route('product-lists') }}" class="artify-hero__btn artify-hero__btn--primary">
-                    {{ __('common.gal_hero_cta') }} <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#" class="artify-hero__btn artify-hero__btn--secondary">
-                    <i class="fas fa-play"></i> {{ __('common.index.watch_showreel') }}
-                </a>
-            </div>
-
-           
+            @endforeach
         </div>
 
-        <div class="artify-hero__gallery">
-            <div class="artify-hero__grid">
-                <!-- Row 1: Hero video (16:9) + tall portrait (1.webp: 1920x2404 / 0.8:1) -->
-                <div class="artify-hero__card" style="grid-column: span 2; aspect-ratio: 16/9;">
-                    <video autoplay muted loop playsinline preload="metadata">
-                        <source src="{{ asset('assets/art-classes/hero.mp4') }}" type="video/mp4">
-                    </video>
-                    
-                </div>
-                <div class="artify-hero__card" style="aspect-ratio: 1920/2404;">
-                    <img src="{{ asset('assets/art-classes/1.webp') }}" alt="Art gallery" loading="lazy">
-                </div>
-
-                <!-- Row 2: Wide landscape (2.webp: 1920x1320 / 1.45:1) + nearly square (3.webp: 1200x1112 / 1.08:1) -->
-                <div class="artify-hero__card" style="grid-column: span 2; aspect-ratio: 1920/1320;">
-                    <img src="{{ asset('assets/art-classes/2.webp') }}" alt="Landscape artwork" loading="lazy">
-                </div>
-                <div class="artify-hero__card" style="aspect-ratio: 1200/1112;">
-                    <img src="{{ asset('assets/art-classes/3.webp') }}" alt="Creative work" loading="lazy">
-                </div>
-
-                <!-- Row 3: Three portraits (5.webp: 690x1011 / 0.68:1) + (4.webp: 918x1299 / 0.71:1) + (9.webp: 960x1280 / 0.75:1) -->
-                <div class="artify-hero__card" style="aspect-ratio: 690/1011;">
-                    <img src="{{ asset('assets/art-classes/5.webp') }}" alt="Artistic piece" loading="lazy">
-                </div>
-                <div class="artify-hero__card" style="aspect-ratio: 918/1299;">
-                    <img src="{{ asset('assets/art-classes/4.webp') }}" alt="Featured artwork" loading="lazy">
-                </div>
-                <div class="artify-hero__card" style="aspect-ratio: 960/1280;">
-                    <img src="{{ asset('assets/art-classes/9.webp') }}" alt="Gallery showcase" loading="lazy">
-                </div>
-            </div>
+        {{-- Navigation dots --}}
+        <div class="artify-hero--arch__dots" role="tablist" aria-label="Hero slides">
+            @foreach($heroSlides as $i => $slide)
+            <button type="button" class="artify-hero--arch__dot {{ $i === 0 ? 'is-active' : '' }}" data-hero-dot="{{ $i }}" role="tab" aria-label="{{ __('common.'.$slide['accent']) }}" aria-selected="{{ $i === 0 ? 'true' : 'false' }}"></button>
+            @endforeach
         </div>
     </div>
 </section>
 
-<!-- CATEGORY SECTION -->
-<section class="category-section pt-120 pb-120" style="background: var(--surface-cream-wash, #fff6f0); border-top: 1px solid var(--color-stone, #d7d6d4); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
+@push('scripts')
+<script>
+(function () {
+    var root = document.querySelector('[data-hero-carousel]');
+    if (!root) return;
+    var slides = Array.prototype.slice.call(root.querySelectorAll('[data-hero-slide]'));
+    var dots   = Array.prototype.slice.call(root.querySelectorAll('[data-hero-dot]'));
+    if (slides.length < 2) return;
+
+    var current = 0;
+    var interval = parseInt(root.getAttribute('data-interval'), 10) || 6000;
+    var timer = null;
+
+    function show(next) {
+        next = (next + slides.length) % slides.length;
+        if (next === current) return;
+        slides[current].classList.remove('is-active');
+        dots[current] && dots[current].classList.remove('is-active');
+        dots[current] && dots[current].setAttribute('aria-selected', 'false');
+        slides[next].classList.add('is-active');
+        dots[next] && dots[next].classList.add('is-active');
+        dots[next] && dots[next].setAttribute('aria-selected', 'true');
+        current = next;
+    }
+    function nextSlide() { show(current + 1); }
+    function start() { stop(); timer = setInterval(nextSlide, interval); }
+    function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { show(i); start(); });
+    });
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', function () {
+        document.hidden ? stop() : start();
+    });
+
+    start();
+})();
+</script>
+@endpush
+
+<section class="category-bento-section pt-120 pb-120">
     <div class="auto-container">
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_category_badge') }}</span>
+        <div class="bento-heading text-center mb-5">
             <h2 class="modern-h2 mt-3">{{ __('common.gal_category_title') }}</h2>
             <p class="text-muted mx-auto mt-3" style="max-width: 600px;">
                 {{ __('common.gal_category_subtitle') }}
             </p>
         </div>
 
-        <div class="row g-4">
-            @if(isset($category_lists) && $category_lists->count() > 0)
+        @if(isset($category_lists) && $category_lists->count() > 0)
+            <div class="bento-grid">
                 @foreach($category_lists as $category)
                     @php
-                        $category_icon = 'fas fa-palette';
+                        $category_icon = 'fas fa-book-open';
                         $slug = strtolower($category->slug);
                         if (strpos($slug, 'blockchain') !== false || strpos($slug, 'web3') !== false) {
                             $category_icon = 'fas fa-cubes';
@@ -88,385 +140,437 @@
                             $category_icon = 'fas fa-shield-alt';
                         } elseif (strpos($slug, 'transformation') !== false || strpos($slug, 'enterprise') !== false || strpos($slug, 'erp') !== false) {
                             $category_icon = 'fas fa-network-wired';
-                        } elseif (strpos($slug, 'ai') !== false || strpos($slug, 'machine') !== false || strpos($slug, 'brain') !== false) {
+                        } elseif (strpos($slug, 'machine-learning') !== false || strpos($slug, 'artificial') !== false || strpos($slug, '-ai-') !== false || strpos($slug, 'brain') !== false) {
                             $category_icon = 'fas fa-brain';
+                        } elseif (strpos($slug, 'marketing') !== false || strpos($slug, 'advertising') !== false || strpos($slug, 'seo') !== false || strpos($slug, 'social') !== false || strpos($slug, 'search') !== false || strpos($slug, 'optim') !== false) {
+                            $category_icon = 'fas fa-bullhorn';
                         } elseif (strpos($slug, 'design') !== false || strpos($slug, 'art') !== false || strpos($slug, 'painting') !== false) {
                             $category_icon = 'fas fa-paint-brush';
+                        } elseif (strpos($slug, 'data') !== false || strpos($slug, 'analytics') !== false) {
+                            $category_icon = 'fas fa-chart-bar';
+                        } elseif (strpos($slug, 'development') !== false || strpos($slug, 'code') !== false || strpos($slug, 'programming') !== false) {
+                            $category_icon = 'fas fa-code';
                         }
                     @endphp
-                    <div class="col-custom-5">
-                        <div class="category-card-premium category-card-premium--tint-{{ $loop->index % 3 }}">
-                            <div class="category-card-image">
-                                @if($category->photo)
-                                    <img src="{{ $category->photo }}" alt="{{ $category->title }}" class="category-img">
-                                @else
-                                    <div class="category-img-placeholder">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                @endif
-                                <div class="category-overlay">
-                                    <a href="{{ route('product-lists', $category->slug) }}" class="category-explore-btn">
-                                        {{ __('common.gal_category_explore') }}
-                                        <i class="fas fa-arrow-right ms-2"></i>
-                                    </a>
-                                </div>
-                            </div>
 
-                            <div class="category-card-content">
-                                <div class="category-meta-row d-flex align-items-center justify-content-between mb-3">
-                                    <div class="category-icon-badge">
+                    @if($loop->first)
+                        <a href="{{ route('product-lists', $category->slug) }}"
+                           class="bento-tile bento-tile--featured">
+                            <div class="bento-tile__media">
+                                @if($category->photo)
+                                    <img src="{{ $category->photo }}"
+                                         alt="{{ $category->title }}"
+                                         class="bento-tile__img">
+                                @else
+                                    <div class="bento-tile__img-fallback">
                                         <i class="{{ $category_icon }}"></i>
                                     </div>
-                                    <span class="category-count mb-0">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        {{ $category->products_count }} {{ __('common.gal_category_courses') }}
+                                @endif
+                                <span class="bento-tile__scrim"></span>
+                            </div>
+
+                            <div class="bento-tile__body">
+                                <span class="bento-tile__eyebrow">
+                                    <i class="fas fa-star"></i>
+                                    {{ __('common.gal_category_badge') }}
+                                </span>
+                                <h3 class="bento-tile__headline">{{ $category->title }}</h3>
+                                @if($category->summary)
+                                    <p class="bento-tile__lede">
+                                        {{ Str::limit($category->summary, 95) }}
+                                    </p>
+                                @endif
+                                <div class="bento-tile__footer">
+                                    <span class="bento-tile__cta">
+                                        {{ __('common.gal_category_explore') }}
+                                        <i class="fas fa-arrow-right"></i>
                                     </span>
                                 </div>
-
-                                <h3 class="category-title">
-                                    <a href="{{ route('product-lists', $category->slug) }}">
-                                        {{ $category->title }}
-                                    </a>
-                                </h3>
+                            </div>
+                        </a>
+                    @else
+                        <a href="{{ route('product-lists', $category->slug) }}"
+                           class="bento-tile bento-tile--compact bento-tile--tint-{{ ($loop->index - 1) % 4 }}">
+                            <div class="bento-tile__thumb">
+                                @if($category->photo)
+                                    <img src="{{ $category->photo }}"
+                                         alt="{{ $category->title }}"
+                                         class="bento-tile__thumb-img">
+                                @else
+                                    <div class="bento-tile__thumb-fallback">
+                                        <i class="{{ $category_icon }}"></i>
+                                    </div>
+                                @endif
+                                <span class="bento-tile__thumb-scrim"></span>
+                                <span class="bento-tile__icon-chip">
+                                    <i class="{{ $category_icon }}"></i>
+                                </span>
+                            </div>
+                            <div class="bento-tile__body-sm">
+                                <h4 class="bento-tile__label">{{ $category->title }}</h4>
                                 @if($category->summary)
-                                    <p class="category-description">
+                                    <p class="bento-tile__desc-sm">
                                         {{ Str::limit($category->summary, 80) }}
                                     </p>
                                 @endif
+                                <div class="bento-tile__foot-sm">
+                                    <span class="bento-tile__more">
+                                        {{ __('common.gal_category_explore') }}
+                                    </span>
+                                    <span class="bento-tile__arrow" aria-hidden="true">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </a>
+                    @endif
                 @endforeach
-            @endif
+            </div>
+        @endif
+    </div>
+</section>
+
+<section class="about-info about-info--new pt-120 pb-120">
+    <div class="auto-container">
+        <div class="about-info--new__grid">
+
+            {{-- LEFT: Content --}}
+            <div class="about-info--new__left">
+                <h2 class="about-info--new__title">{{ __('common.gal_about_section_title') }}</h2>
+                <p class="about-info--new__desc">{{ __('common.gal_about_section_description') }}</p>
+
+                <ul class="about-info--new__features">
+                    <li class="about-info--new__feature">
+                        <div class="about-info--new__check"><i class="fas fa-check"></i></div>
+                        <div>
+                            <strong class="about-info--new__feat-title">{{ __('common.gal_about_wide_courses_title') }}</strong>
+                            <p class="about-info--new__feat-desc">{{ __('common.gal_about_wide_courses_desc') }}</p>
+                        </div>
+                    </li>
+                    <li class="about-info--new__feature">
+                        <div class="about-info--new__check"><i class="fas fa-check"></i></div>
+                        <div>
+                            <strong class="about-info--new__feat-title">{{ __('common.gal_about_cost_effective_title') }}</strong>
+                            <p class="about-info--new__feat-desc">{{ __('common.gal_about_cost_effective_desc') }}</p>
+                        </div>
+                    </li>
+                    <li class="about-info--new__feature">
+                        <div class="about-info--new__check"><i class="fas fa-check"></i></div>
+                        <div>
+                            <strong class="about-info--new__feat-title">{{ __('common.gal_about_networking_title') }}</strong>
+                            <p class="about-info--new__feat-desc">{{ __('common.gal_about_networking_desc') }}</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <a href="{{ route('register.form') }}" class="about-info--new__cta">
+                    {{ __('common.gal_about_cta_btn') }}
+                </a>
+            </div>
+
+            {{-- RIGHT: Photo Collage --}}
+            <div class="about-info--new__right">
+                {{-- Column 1: tall rounded card --}}
+                <div class="about-info--new__col">
+                    <div class="about-info--new__photo about-info--new__photo--tall about-info--new__photo--green">
+                        <img src="{{ asset('assets/images/yoga.webp') }}" alt="{{ __('common.index.student_1_alt') }}">
+                    </div>
+                </div>
+
+                {{-- Column 2: tallest card (center) --}}
+                <div class="about-info--new__col about-info--new__col--center">
+                    <div class="about-info--new__photo about-info--new__photo--tallest about-info--new__photo--pink">
+                        <img src="{{ asset('assets/images/strength.webp') }}" alt="{{ __('common.index.student_2_alt') }}">
+                    </div>
+                </div>
+
+                {{-- Column 3: circle top + shorter card bottom --}}
+                <div class="about-info--new__col about-info--new__col--stack">
+                    <div class="about-info--new__photo about-info--new__photo--circle about-info--new__photo--teal">
+                        <img src="{{ asset('assets/images/calm.webp') }}" alt="{{ __('common.index.student_2_alt') }}">
+                    </div>
+                    <div class="about-info--new__photo about-info--new__photo--short about-info--new__photo--amber">
+                        <img src="{{ asset('assets/images/diet.webp') }}" alt="{{ __('common.index.student_3_alt') }}">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
 
-
-<section class="prduct-info pt-120 pb-120" style="background: var(--color-paper, #fefdfc); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
+<section class="prduct-info pgrid-section pt-120 pb-120">
     <div class="auto-container">
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_programs_badge') }}</span>
-            <h2 class="modern-h2 mt-3">{{ __('common.gal_programs_title') }}</h2>
-            <p class="text-muted mx-auto mt-3" style="max-width: 600px;">{{ __('common.gal_programs_subtitle') }}</p>
+
+        {{-- Section Header --}}
+        <div class="pgrid-section__head">
+            <div>
+                <!-- <span class="modern-badge">{{ __('common.gal_programs_badge') }}</span> -->
+                <h2 class="pgrid-section__title">{{ __('common.gal_programs_title') }}</h2>
+                <p class="pgrid-section__sub">{{ __('common.gal_programs_subtitle') }}</p>
+            </div>
+            <a href="{{ route('product-lists') }}" class="pgrid-section__all-btn">
+                {{ __('common.gal_programs_cta') }} <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
-        <div class="courses-carousel owl-carousel owl-theme">
-            @php $products = Helper::getRandomProduct(6); @endphp
+        {{-- Course Grid --}}
+        @php $products = Helper::getRandomProduct(6); @endphp
+        <div class="pgrid">
+            @foreach($products as $index => $product)
+                @php
+                    $photo = array_filter(explode(',', $product->photo ?? ''));
+                    $img   = !empty($photo) ? trim(reset($photo)) : asset('assets/images/placeholder.jpg');
+                    // Accent colours cycle per card
+                    $accents = ['#1abc9c','#e85d8a','#f5c518','#0f66ae','#446c3d','#c1940d'];
+                    $accent  = $accents[$index % count($accents)];
+                @endphp
+                <article class="pgrid__card" style="--card-accent: {{ $accent }};">
+                    <a href="{{ route('product-detail', $product->slug) }}" class="pgrid__img-wrap">
+                        <img src="{{ $img }}"
+                             alt="{{ $product->title }}"
+                             class="pgrid__img"
+                             onerror="this.src='{{ asset('assets/images/placeholder.jpg') }}'">
+                        <div class="pgrid__img-overlay"></div>
+                    </a>
 
-            @foreach($products as $product)
-                <div class="modern-course-card">
-                    <div class="course-img-container">
-                        @php $photo = explode(',', $product->photo); @endphp
-                        <img src="{{ $photo[0] }}" alt="{{ $product->title }}">
-                    </div>
-                    
-                    <div class="course-content">
-                        <h4 class="course-title">
+                    <div class="pgrid__body">
+                        <h3 class="pgrid__title">
                             <a href="{{ route('product-detail', $product->slug) }}">{{ $product->title }}</a>
-                        </h4>
-                        <p class="course-summary">{{ Str::limit($product->summary, 85) }}</p>
+                        </h3>
+                        <p class="pgrid__summary">{{ Str::limit($product->summary, 90) }}</p>
 
-                        <div class="course-footer">
-                            <a href="{{ route('product-detail', $product->slug) }}" class="course-enroll-link">
-                                {{ __('common.enroll_now') }} <i class="fas fa-chevron-right ms-2"></i>
+                        <div class="pgrid__foot">
+                            <a href="{{ route('product-detail', $product->slug) }}" class="pgrid__enroll">
+                                {{ __('common.enroll_now') }}
+                                <span class="pgrid__enroll-ico"><i class="fas fa-arrow-right"></i></span>
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
             @endforeach
         </div>
 
-        <div class="text-center mt-5">
+        {{-- Mobile CTA --}}
+        <div class="text-center mt-5 d-lg-none">
             <a href="{{ route('product-lists') }}" class="modern-btn modern-btn-outline">
                 {{ __('common.gal_programs_cta') }} <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>
+
     </div>
 </section>
 
-<section class="chse_secton pt-120 pb-120" style="background: var(--color-paper, #fefdfc); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
+<!-- CATEGORY SECTION -->
+
+
+
+
+<section class="why-choose-section pt-120 pb-120">
     <div class="auto-container">
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_why_badge') }}</span>
+        <div class="why-choose-heading text-center mb-5">
             <h2 class="modern-h2 mt-3">{{ __('common.gal_why_title') }}</h2>
         </div>
 
-        <div class="row g-4">
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="why-card-premium why-card-premium--tint-0">
-                    <div class="why-icon-badge">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="why-title">{{ __('common.gal_why_expert_title') }}</h3>
-                    <p class="why-desc">{{ __('common.gal_why_expert_desc') }}</p>
+        <div class="why-choose-grid">
+            <article class="why-choose-card why-choose-card--tint-0">
+                <span class="why-choose-card__accent" aria-hidden="true"></span>
+                <span class="why-choose-card__number" aria-hidden="true">01</span>
+                <div class="why-choose-card__icon">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
-            </div>
+                <h3 class="why-choose-card__title">{{ __('common.gal_why_expert_title') }}</h3>
+                <p class="why-choose-card__desc">{{ __('common.gal_why_expert_desc') }}</p>
+            </article>
 
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="why-card-premium why-card-premium--tint-1">
-                    <div class="why-icon-badge">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="why-title">{{ __('common.gal_why_industry_title') }}</h3>
-                    <p class="why-desc">{{ __('common.gal_why_industry_desc') }}</p>
+            <article class="why-choose-card why-choose-card--tint-1">
+                <span class="why-choose-card__accent" aria-hidden="true"></span>
+                <span class="why-choose-card__number" aria-hidden="true">02</span>
+                <div class="why-choose-card__icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-            </div>
+                <h3 class="why-choose-card__title">{{ __('common.gal_why_industry_title') }}</h3>
+                <p class="why-choose-card__desc">{{ __('common.gal_why_industry_desc') }}</p>
+            </article>
 
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="why-card-premium why-card-premium--tint-2">
-                    <div class="why-icon-badge">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <h3 class="why-title">{{ __('common.gal_why_projects_title') }}</h3>
-                    <p class="why-desc">{{ __('common.gal_why_projects_desc') }}</p>
+            <article class="why-choose-card why-choose-card--tint-2">
+                <span class="why-choose-card__accent" aria-hidden="true"></span>
+                <span class="why-choose-card__number" aria-hidden="true">03</span>
+                <div class="why-choose-card__icon">
+                    <i class="fas fa-project-diagram"></i>
                 </div>
-            </div>
+                <h3 class="why-choose-card__title">{{ __('common.gal_why_projects_title') }}</h3>
+                <p class="why-choose-card__desc">{{ __('common.gal_why_projects_desc') }}</p>
+            </article>
         </div>
     </div>
 </section>
 
-<section class="about-info pt-120 pb-120" style="background: var(--color-cream, #fff6f0); border-top: 1px solid var(--color-stone, #d7d6d4); border-bottom: 1px solid var(--color-stone, #d7d6d4);">
-    <div class="auto-container">
-        <div class="row align-items-center g-5">
-            <!-- LEFT: Content -->
-            <div class="col-xl-7 col-lg-7 col-md-12 pe-xl-5">
-                <span class="modern-badge mb-3">{{ __('common.gal_about_section_badge') }}</span>
-                <h2 class="modern-h2 mb-4" style="color: var(--color-ink, #25221e);">{{ __('common.gal_about_section_title') }}</h2>
-                <p class="mb-5 text-muted" style="font-size: 15px; color: var(--color-pencil, #6f6c69) !important; font-weight: 500; line-height: 1.8;">{{ __('common.gal_about_section_description') }}</p>
 
-                <div class="row g-4">
-                    <div class="col-md-12">
-                        <div class="about-feature-item">
-                            <div class="about-feature-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h4 class="about-feature-title">{{ __('common.gal_why_expert_title') }}</h4>
-                                <p class="about-feature-desc">{{ __('common.gal_about_expert_instruction') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="about-feature-item">
-                            <div class="about-feature-icon icon-forest">
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <div>
-                                <h4 class="about-feature-title">{{ __('common.gal_about_certifications') }}</h4>
-                                <p class="about-feature-desc">{{ __('common.gal_about_certifications_desc') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- POINTS TOP UP SECTION - EDITORIAL STUDIO DESIGN -->
+<section class="topup-studio-section pt-120 pb-120" id="topup">
+    <span class="topup-studio__blob topup-studio__blob--a" aria-hidden="true"></span>
+    <span class="topup-studio__blob topup-studio__blob--b" aria-hidden="true"></span>
 
-            <!-- RIGHT: Video (Portrait) -->
-            <div class="col-xl-5 col-lg-5 col-md-12">
-                <div class="modern-video-wrapper" style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--color-stone, #d7d6d4); max-width: 350px; margin: 0 auto; aspect-ratio: 9/16; background: #000;">
-                    <video class="w-100 h-100" autoplay loop muted playsinline style="object-fit: cover; display: block;">
-                        <source src="{{ asset('assets/art-classes/v1.mp4') }}" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- POINTS TOP UP SECTION - CREATIVE progression DESIGN -->
-<section class="points-topup-section pt-120 pb-120" id="topup" style="background-color: var(--color-paper, #fefdfc) !important; border-top: 1px solid var(--color-stone, #d7d6d4);">
-    <div class="auto-container">
-        <!-- 1. Section Header -->
-        <div class="text-center mb-5">
-            <span class="modern-badge">{{ __('common.gal_topup_badge') }}</span>
-            <h2 class="modern-h2 mt-3" style="color: var(--color-ink, #25221e);">{{ __('common.gal_topup_title') }}</h2>
-            <p class="text-muted mx-auto mt-3" style="max-width: 600px; color: var(--color-pencil, #6f6c69) !important; font-size: 15px;">
-                {{ __('common.gal_topup_description') }}
-            </p>
+    <div class="auto-container topup-studio__inner">
+        <!-- Header -->
+        <div class="topup-studio__heading text-center">
+            <h2 class="modern-h2">{{ __('common.gal_topup_title') }}</h2>
+            <p class="topup-studio__lede mt-3">{{ __('common.gal_topup_description') }}</p>
         </div>
 
-        <!-- 2. Benefits Row -->
-        <div class="row g-4 mb-5 justify-content-center">
-            <div class="col-6 col-md-3">
-                <div class="learning-benefit-card">
-                    <span class="benefit-emoji"><i class="fas fa-palette"></i></span>
-                    <h5 class="benefit-title">{{ __('common.index.unlock_courses') }}</h5>
-                </div>
+        <!-- Benefit chips -->
+        <div class="topup-studio__chips">
+            <div class="topup-studio__chip">
+                <span class="topup-studio__chip-icon"><i class="fas fa-unlock-alt"></i></span>
+                <span class="topup-studio__chip-label">{{ __('common.index.unlock_courses') }}</span>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="learning-benefit-card">
-                    <span class="benefit-emoji"><i class="fas fa-book-open"></i></span>
-                    <h5 class="benefit-title">{{ __('common.index.access_paths') }}</h5>
-                </div>
+            <div class="topup-studio__chip">
+                <span class="topup-studio__chip-icon"><i class="fas fa-book-open"></i></span>
+                <span class="topup-studio__chip-label">{{ __('common.index.access_paths') }}</span>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="learning-benefit-card">
-                    <span class="benefit-emoji"><i class="fas fa-trophy"></i></span>
-                    <h5 class="benefit-title">{{ __('common.index.earn_rewards') }}</h5>
-                </div>
+            <div class="topup-studio__chip">
+                <span class="topup-studio__chip-icon"><i class="fas fa-trophy"></i></span>
+                <span class="topup-studio__chip-label">{{ __('common.index.earn_rewards') }}</span>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="learning-benefit-card">
-                    <span class="benefit-emoji"><i class="fas fa-chart-line"></i></span>
-                    <h5 class="benefit-title">{{ __('common.index.accelerate_growth') }}</h5>
-                </div>
+            <div class="topup-studio__chip">
+                <span class="topup-studio__chip-icon"><i class="fas fa-chart-line"></i></span>
+                <span class="topup-studio__chip-label">{{ __('common.index.accelerate_growth') }}</span>
             </div>
         </div>
 
-        <div class="row align-items-stretch g-5">
-            <!-- 3. Learning Tier System (Left Column) -->
-            <div class="col-xl-6 col-lg-6">
-                <div class="learning-pathway-card h-100">
-                    <div class="pathway-header mb-4">
-                        <div class="header-icon-modern">
-                            <i class="fas fa-compass"></i>
-                        </div>
-                        <div>
-                            <h3 class="pathway-title">{{ __('common.index.pathways_title') }}</h3>
-                            <p class="pathway-subtitle">{{ __('common.index.pathways_subtitle') }}</p>
-                        </div>
-                    </div>
-
-                    <!-- Visual Progression Timeline / Grid -->
-                    <div class="visual-progression-timeline">
-                        <!-- Step 1: Standard -->
-                        <div class="timeline-step" id="step_standard">
-                            <div class="step-badge">1</div>
-                            <div class="step-content">
-                                <div class="step-header">
-                                    <h4 class="step-title">{{ __('common.index.tier_standard_title') }}</h4>
-                                    <span class="step-bonus">×1.0</span>
-                                </div>
-                                <p class="step-desc">{{ __('common.index.tier_standard_desc') }}</p>
-                                <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '1 - 79,999 ¥' : '$1 - $499' }}</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- Step 2: Premium -->
-                        <div class="timeline-step" id="step_premium">
-                            <div class="step-badge">2</div>
-                            <div class="step-content">
-                                <div class="step-header">
-                                    <h4 class="step-title">{{ __('common.index.tier_premium_title') }}</h4>
-                                    <span class="step-bonus">×2.0 {{ __('common.index.bonus') }}</span>
-                                </div>
-                                <p class="step-desc">{{ __('common.index.tier_premium_desc') }}</p>
-                                <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '80,000 - 159,999 ¥' : '$500 - $999' }}</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Elite -->
-                        <div class="timeline-step" id="step_elite">
-                            <div class="step-badge">3</div>
-                            <div class="step-content">
-                                <div class="step-header">
-                                    <h4 class="step-title">{{ __('common.index.tier_elite_title') }}</h4>
-                                    <span class="step-bonus">×2.5 {{ __('common.index.bonus') }}</span>
-                                </div>
-                                <p class="step-desc">{{ __('common.index.tier_elite_desc') }}</p>
-                                <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '160,000 - 239,999 ¥' : '$1,000 - $1,499' }}</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: VIP -->
-                        <div class="timeline-step" id="step_vip">
-                            <div class="step-badge">4</div>
-                            <div class="step-content">
-                                <div class="step-header">
-                                    <h4 class="step-title">{{ __('common.index.tier_vip_title') }}</h4>
-                                    <span class="step-bonus">×3.0 {{ __('common.index.bonus') }}</span>
-                                </div>
-                                <p class="step-desc">{{ __('common.index.tier_vip_desc') }}</p>
-                                <div class="step-range"><strong>{{ session('currency') == 'JPY' ? '240,000+ ¥' : '$1,500+' }}</strong></div>
-                            </div>
-                        </div>
+        <!-- Studio panel: tiers left, calculator right -->
+        <div class="topup-studio__panel">
+            <!-- Tier ladder -->
+            <div class="topup-studio__tiers">
+                <div class="topup-studio__tiers-head">
+                    <span class="topup-studio__tiers-icon"><i class="fas fa-compass"></i></span>
+                    <div>
+                        <h3 class="topup-studio__tiers-title">{{ __('common.index.pathways_title') }}</h3>
+                        <p class="topup-studio__tiers-sub">{{ __('common.index.pathways_subtitle') }}</p>
                     </div>
                 </div>
+
+                <ol class="topup-studio__ladder">
+                    <li class="topup-studio__step timeline-step" id="step_standard">
+                        <span class="topup-studio__step-marker">01</span>
+                        <div class="topup-studio__step-body">
+                            <div class="topup-studio__step-head">
+                                <h4 class="topup-studio__step-title">{{ __('common.index.tier_standard_title') }}</h4>
+                                <span class="topup-studio__step-multi">×1.0</span>
+                            </div>
+                            <p class="topup-studio__step-desc">{{ __('common.index.tier_standard_desc') }}</p>
+                            <span class="topup-studio__step-range">{{ session('currency') == 'JPY' ? '1 - 79,999 ¥' : '$1 - $499' }}</span>
+                        </div>
+                    </li>
+
+                    <li class="topup-studio__step timeline-step" id="step_premium">
+                        <span class="topup-studio__step-marker">02</span>
+                        <div class="topup-studio__step-body">
+                            <div class="topup-studio__step-head">
+                                <h4 class="topup-studio__step-title">{{ __('common.index.tier_premium_title') }}</h4>
+                                <span class="topup-studio__step-multi">×2.0 {{ __('common.index.bonus') }}</span>
+                            </div>
+                            <p class="topup-studio__step-desc">{{ __('common.index.tier_premium_desc') }}</p>
+                            <span class="topup-studio__step-range">{{ session('currency') == 'JPY' ? '80,000 - 159,999 ¥' : '$500 - $999' }}</span>
+                        </div>
+                    </li>
+
+                    <li class="topup-studio__step timeline-step" id="step_elite">
+                        <span class="topup-studio__step-marker">03</span>
+                        <div class="topup-studio__step-body">
+                            <div class="topup-studio__step-head">
+                                <h4 class="topup-studio__step-title">{{ __('common.index.tier_elite_title') }}</h4>
+                                <span class="topup-studio__step-multi">×2.5 {{ __('common.index.bonus') }}</span>
+                            </div>
+                            <p class="topup-studio__step-desc">{{ __('common.index.tier_elite_desc') }}</p>
+                            <span class="topup-studio__step-range">{{ session('currency') == 'JPY' ? '160,000 - 239,999 ¥' : '$1,000 - $1,499' }}</span>
+                        </div>
+                    </li>
+
+                    <li class="topup-studio__step timeline-step" id="step_vip">
+                        <span class="topup-studio__step-marker">04</span>
+                        <div class="topup-studio__step-body">
+                            <div class="topup-studio__step-head">
+                                <h4 class="topup-studio__step-title">{{ __('common.index.tier_vip_title') }}</h4>
+                                <span class="topup-studio__step-multi">×3.0 {{ __('common.index.bonus') }}</span>
+                            </div>
+                            <p class="topup-studio__step-desc">{{ __('common.index.tier_vip_desc') }}</p>
+                            <span class="topup-studio__step-range">{{ session('currency') == 'JPY' ? '240,000+ ¥' : '$1,500+' }}</span>
+                        </div>
+                    </li>
+                </ol>
             </div>
 
-            <!-- 4. Credits Calculator (Right Column) -->
-            <div class="col-xl-6 col-lg-6">
-                <div class="luxury-calculator-wrapper h-100">
-                    <div class="luxury-calculator d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <!-- Header -->
-                            <div class="calc-header-premium mb-4">
-                                <div>
-                                    <h3 class="calc-title-premium">{{ __('common.gal_calc_title') }}</h3>
-                                    <p class="calc-tagline">{{ __('common.gal_calc_tagline') }}</p>
-                                </div>
-                                <div class="calc-currency-badge"><strong>{{ session('currency') == 'JPY' ? '¥' : '$' }}</strong></div>
-                            </div>
+            <!-- Calculator -->
+            <div class="topup-studio__calc">
+                <div class="topup-studio__calc-head">
+                    <div>
+                        <span class="topup-studio__calc-eyebrow">
+                            <i class="fas fa-bolt"></i> {{ __('common.gal_calc_tagline') }}
+                        </span>
+                        <h3 class="topup-studio__calc-title">{{ __('common.gal_calc_title') }}</h3>
+                    </div>
+                    <span class="topup-studio__calc-badge">
+                        <strong>{{ session('currency') == 'JPY' ? '¥' : '$' }}</strong>
+                    </span>
+                </div>
 
-                            <!-- Main Form -->
-                            <form action="{{ route('points.add-to-cart') }}" method="POST" class="luxury-calc-form enroll-form" data-topup-form="1">
-                                @csrf
+                <form action="{{ route('points.add-to-cart') }}" method="POST" class="topup-studio__form enroll-form" data-topup-form="1">
+                    @csrf
 
-                                <!-- Amount Input -->
-                                <div class="premium-input-section mb-4">
-                                    <label class="input-label-premium">{{ __('common.index.calc_label') }}</label>
-                                    <div class="premium-amount-input-wrapper">
-                                        <input
-                                            type="number"
-                                            name="amount"
-                                            id="topup_amount"
-                                            class="premium-amount-input"
-                                            placeholder="0"
-                                            min="1"
-                                            required
-                                        >
-                                        <span class="input-currency"><strong>{{ session('currency') == 'JPY' ? '¥' : '$' }}</strong></span>
-                                    </div>
-                                </div>
+                    <label class="topup-studio__field-label" for="topup_amount">{{ __('common.index.calc_label') }}</label>
+                    <div class="topup-studio__amount">
+                        <span class="topup-studio__amount-sym">{{ session('currency') == 'JPY' ? '¥' : '$' }}</span>
+                        <input
+                            type="number"
+                            name="amount"
+                            id="topup_amount"
+                            class="topup-studio__amount-input"
+                            placeholder="0"
+                            min="1"
+                            required
+                        >
+                    </div>
 
-                                <!-- Points Breakdown -->
-                                <div class="points-breakdown-card mb-4">
-                                    <div class="breakdown-row">
-                                        <span class="breakdown-label">{{ __('common.index.base_credits') }}</span>
-                                        <span class="breakdown-value" id="base_points">0</span>
-                                    </div>
-                                    <div class="breakdown-row">
-                                        <span class="breakdown-label">{{ __('common.index.multiplier_bonus') }}</span>
-                                        <span class="breakdown-value bonus-badge" id="multiplier_display">×1</span>
-                                    </div>
-                                    <div class="breakdown-divider"></div>
-                                    <div class="breakdown-row breakdown-total">
-                                        <span class="breakdown-label">{{ __('common.index.unlocking_potential') }}</span>
-                                        <span class="breakdown-value-total" id="total_points">0</span>
-                                    </div>
-                                </div>
-
-                                <!-- Large Credits Display -->
-                                <div class="points-display-premium mb-4">
-                                    <span class="points-number" id="total_points_large">0</span>
-                                    <span class="points-unit">{{ __('common.index.credits_unlocked') }}</span>
-                                </div>
-
-                                <!-- Premium Button inside form -->
-                                <button type="submit" class="btn-premium-checkout enroll-btn w-100">
-                                    <span class="btn-label">{{ __('common.gal_calc_button') }}</span>
-                                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
-                                    <span class="btn-shine"></span>
-                                </button>
-                            </form>
-                            <!-- Dynamic Currency Conversion Note -->
-                            <div class="currency-note-calc mt-3 text-center" style="font-size: 12px; color: var(--color-graphite, #94928f); font-weight: 600;">
-                                <strong>{{ session('currency') == 'JPY' ? __('common.index.credit_note_jpy') : __('common.index.credit_note_usd') }}</strong>
-                            </div>
+                    <div class="topup-studio__breakdown">
+                        <div class="topup-studio__break-row">
+                            <span class="topup-studio__break-label">{{ __('common.index.base_credits') }}</span>
+                            <span class="topup-studio__break-value" id="base_points">0</span>
                         </div>
-
-                        <!-- Trust Badge -->
-                        <div class="trust-indicator mt-3 text-center">
-                            <i class="fas fa-lock me-1"></i>
-                            <span>{{ __('common.gal_calc_trust_message') }}</span>
+                        <div class="topup-studio__break-row">
+                            <span class="topup-studio__break-label">{{ __('common.index.multiplier_bonus') }}</span>
+                            <span class="topup-studio__break-value topup-studio__multi-pill" id="multiplier_display">×1</span>
+                        </div>
+                        <div class="topup-studio__break-divider"></div>
+                        <div class="topup-studio__break-row topup-studio__break-row--total">
+                            <span class="topup-studio__break-label">{{ __('common.index.unlocking_potential') }}</span>
+                            <span class="topup-studio__break-value" id="total_points">0</span>
                         </div>
                     </div>
+
+                    <div class="topup-studio__result">
+                        <span class="topup-studio__result-num" id="total_points_large">0</span>
+                        <span class="topup-studio__result-unit">{{ __('common.index.credits_unlocked') }}</span>
+                    </div>
+
+                    <button type="submit" class="topup-studio__cta enroll-btn">
+                        <span class="topup-studio__cta-label">{{ __('common.gal_calc_button') }}</span>
+                        <span class="topup-studio__cta-icon"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+                </form>
+
+                <p class="topup-studio__note">
+                    <strong>{{ session('currency') == 'JPY' ? __('common.index.credit_note_jpy') : __('common.index.credit_note_usd') }}</strong>
+                </p>
+
+                <div class="topup-studio__trust">
+                    <i class="fas fa-lock"></i>
+                    <span>{{ __('common.gal_calc_trust_message') }}</span>
                 </div>
             </div>
         </div>
-
-
     </div>
 </section>
 

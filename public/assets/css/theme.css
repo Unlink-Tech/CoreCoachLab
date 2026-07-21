@@ -1,5 +1,5 @@
 /**
- * ARTIFY ACADEMY THEME
+ * Core Coach Lab THEME
  * Based on Todoist Design System
  * Light theme with warm paper aesthetic
  *
@@ -15,15 +15,15 @@
   /* Primary Text & Surfaces */
   --color-ink: #25221e;
   --color-paper: #fefdfc;
-  --color-cream: #fff6f0;
+  --color-cream: #fffcf2;
   --color-stone: #d7d6d4;
   --color-pencil: #6f6c69;
   --color-graphite: #94928f;
   --color-charcoal: #4a4744;
 
   /* Brand Accents */
-  --color-ember-red: #e34432;
-  --color-deep-ember: #cf3520;
+  --color-ember-red: #ffc107;
+  --color-deep-ember: #c1940d;
   --color-cobalt-link: #0f66ae;
   --color-teal-dusk: #497d7e;
 
@@ -34,7 +34,7 @@
 
   /* Surface Layers */
   --surface-paper-canvas: #fefdfc;
-  --surface-cream-wash: #fff6f0;
+  --surface-cream-wash: #f0f6df;
   --surface-tinted-wave: #f0f6df;
   --surface-card-surface: #fefdfc;
 
@@ -352,7 +352,7 @@ a, .link {
 
 a:hover, .link:hover {
   color: var(--color-deep-ember);
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 a:focus, .link:focus {
@@ -525,11 +525,11 @@ section {
 }
 
 section:nth-child(even) {
-  background-color: var(--surface-cream-wash);
+  background-color: transparent;
 }
 
 section:nth-child(3n) {
-  background-color: var(--surface-tinted-wave);
+  background-color: transparent;
 }
 
 .container {
