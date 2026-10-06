@@ -1,0 +1,596 @@
+[
+  {
+    "id": "execution",
+    "title": "Best Execution Policy",
+    "gradient": "linear-gradient(135deg, rgba(46,123,255,0.10) 0%, rgba(28,203,139,0.06) 100%)",
+    "border": "1px solid rgba(46,123,255,0.18)",
+    "iconBg": "linear-gradient(135deg, #2E7BFF, #1FCB8B)",
+    "icon": "<path d=\"M3 7h18v12H3zM3 11h18M8 7V5a2 2 0 0 1 4 0v2\"/>",
+    "heading": "Best Execution Policy",
+    "subtitle": "Venture Asia - Effective for all trading services",
+    "intro": "This Best Execution Policy explains how Venture Asia seeks to achieve fair, efficient, and competitive outcomes when receiving, transmitting, and executing client orders across available trading venues and liquidity providers. The policy applies to all trading services provided by Venture Asia and should be read together with the Client Agreement and other legal documents.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Purpose and Scope",
+        "text": "Venture Asia is committed to taking all reasonable measures to obtain the best possible trading result for clients while considering price, execution speed, liquidity, transaction costs, order size, and prevailing market conditions.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "02",
+        "title": "Client Categories",
+        "text": "Clients may be classified as Retail Clients, Professional Clients, or Eligible Counterparties according to applicable regulations and internal onboarding standards.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "03",
+        "title": "Execution Venues",
+        "text": "Orders may be routed to selected liquidity providers, market makers, or trading venues that are assessed on pricing quality, execution reliability, financial strength, and regulatory standing.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "04",
+        "title": "Execution Factors",
+        "text": "Execution decisions may consider price, transaction costs, execution speed, settlement probability, available liquidity, order characteristics, and market volatility.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "05",
+        "title": "Price Slippage",
+        "text": "Market movements or limited liquidity may result in orders being executed at prices different from those requested. Slippage may be positive or negative and is considered a normal market occurrence.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "06",
+        "title": "Fees and Charges",
+        "text": "Applicable spreads, commissions, financing charges, and other trading costs are disclosed through the trading platform or official company communication channels.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "07",
+        "title": "CFDs",
+        "text": "Prices for CFD instruments are derived from underlying market prices and may include applicable spreads or commissions determined by Venture Asia.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "08",
+        "title": "Conflicts of Interest",
+        "text": "The company maintains internal procedures designed to identify, manage, and mitigate actual or potential conflicts of interest affecting client transactions.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "09",
+        "title": "Monitoring and Review",
+        "text": "Execution arrangements are reviewed periodically and updated whenever material changes occur in market structure, liquidity arrangements, or regulatory requirements.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "10",
+        "title": "No Fiduciary Relationship",
+        "text": "Clients remain responsible for their own investment decisions and trading activities unless otherwise agreed in writing.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "11",
+        "title": "Exceptions",
+        "text": "Specific client instructions or regulatory exemptions may affect the application of this Best Execution Policy.",
+        "color": "#2CD4E6"
+      }
+    ]
+  },
+  {
+    "id": "agreement",
+    "title": "Client Agreement",
+    "gradient": "linear-gradient(135deg, rgba(44,212,230,0.10) 0%, rgba(46,123,255,0.06) 100%)",
+    "border": "1px solid rgba(44,212,230,0.18)",
+    "iconBg": "linear-gradient(135deg, #2CD4E6, #2E7BFF)",
+    "icon": "<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14,2 14,8 20,8\"/><line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"/><line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"/><polyline points=\"10,9 9,9 8,9\"/>",
+    "heading": "Client Agreement",
+    "subtitle": "Venture Asia - Governing terms for all trading services",
+    "intro": "This Client Agreement sets out the terms and conditions under which Venture Asia provides trading services. By registering and using our platform, you confirm acceptance of these binding terms along with all referenced legal disclosures.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Definitions",
+        "text": "Key legal, operational, and trading terms used throughout this agreement shall carry the meanings assigned to them within this document.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "02",
+        "title": "Client Representations",
+        "text": "Clients confirm that information supplied during onboarding is complete, accurate, and updated whenever material changes occur.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "03",
+        "title": "Account Opening",
+        "text": "Trading access is granted only after successful completion of onboarding and compliance verification procedures.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "04",
+        "title": "Deposits and Withdrawals",
+        "text": "Funding and withdrawal requests are subject to internal controls, anti-money laundering checks, and payment provider requirements.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "05",
+        "title": "Client Funds",
+        "text": "Client balances may be held in segregated arrangements or alternative structures as permitted under applicable regulations.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "06",
+        "title": "Trading Services",
+        "text": "Orders may be submitted electronically or through approved communication channels and remain subject to acceptance by the company.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "07",
+        "title": "Margin and Leverage",
+        "text": "Clients are responsible for maintaining sufficient account equity to support open positions and leverage exposure.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "08",
+        "title": "Margin Close-Out",
+        "text": "Positions may be reduced or liquidated automatically if account equity falls below maintenance thresholds.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "09",
+        "title": "Financing and Swap Charges",
+        "text": "Overnight positions may attract financing adjustments, swap debits, or swap credits depending on instrument specifications.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "10",
+        "title": "Swap-Free Accounts",
+        "text": "Swap-free accounts may be offered under specific eligibility criteria and are intended for legitimate use only.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "11",
+        "title": "Platform Usage",
+        "text": "Clients are responsible for safeguarding login credentials and ensuring the security of connected devices.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "12",
+        "title": "Restricted Trading Practices",
+        "text": "The company may investigate or restrict activities considered manipulative, abusive, exploitative, or inconsistent with fair trading standards.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "13",
+        "title": "Events of Default",
+        "text": "Failure to comply with contractual obligations may result in suspension, limitation, or termination of trading services.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "14",
+        "title": "Force Majeure",
+        "text": "The company shall not be liable for failures arising from extraordinary events beyond reasonable control.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "15",
+        "title": "Liability and Risk",
+        "text": "Trading leveraged financial instruments carries significant risk and may not be suitable for all investors.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "16",
+        "title": "Amendments",
+        "text": "The company may revise this agreement periodically and will communicate material updates through official channels.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "17",
+        "title": "Governing Law",
+        "text": "This agreement shall be interpreted according to the laws applicable to the operating legal entity.",
+        "color": "#2CD4E6"
+      }
+    ]
+  },
+  {
+    "id": "conflicts",
+    "title": "Conflicts of Interest Policy",
+    "gradient": "linear-gradient(135deg, rgba(155,81,224,0.10) 0%, rgba(46,123,255,0.06) 100%)",
+    "border": "1px solid rgba(155,81,224,0.20)",
+    "iconBg": "linear-gradient(135deg, #9b51e0, #2E7BFF)",
+    "icon": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+    "heading": "Conflicts of Interest Policy",
+    "subtitle": "Venture Asia - Ethical standards in financial services",
+    "intro": "This Conflicts of Interest Policy describes the principles and procedures adopted by Venture Asia to identify, prevent, manage, and disclose actual or potential conflicts of interest that may arise during the provision of financial services.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Introduction",
+        "text": "A conflict of interest may arise whenever the interests of the company, its employees, representatives, or associated parties differ from the interests of clients or other stakeholders.",
+        "color": "#9b51e0"
+      },
+      {
+        "num": "02",
+        "title": "Governance and Responsibility",
+        "text": "The Compliance Department is responsible for overseeing conflict management arrangements, maintaining relevant records, and monitoring policy effectiveness.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "03",
+        "title": "Core Principles",
+        "text": "Venture Asia seeks to avoid conflicts wherever possible and, where unavoidable, applies appropriate controls, monitoring measures, and disclosures.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "04",
+        "title": "Gifts, Hospitality and Benefits",
+        "text": "Employees and representatives must avoid accepting or providing benefits that could impair objective decision-making or create inappropriate influence.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "05",
+        "title": "Compensation and Incentives",
+        "text": "Remuneration structures are designed to support long-term client outcomes and are not intended to encourage unfair treatment of clients.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "06",
+        "title": "External Business Interests",
+        "text": "Employees, directors, and associated persons are required to disclose external appointments, investments, and relationships that could create conflicts.",
+        "color": "#9b51e0"
+      },
+      {
+        "num": "07",
+        "title": "Conflict Register and Record Keeping",
+        "text": "Potential and actual conflicts are documented in an internal register and retained in accordance with record retention requirements.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "08",
+        "title": "Identification of Conflicts",
+        "text": "The company assesses situations where financial gain, preferential treatment, competing interests, or external incentives may compromise impartiality.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "09",
+        "title": "Conflict Management Measures",
+        "text": "Information barriers, independent supervision, compliance monitoring, restricted access controls, and governance procedures are used to manage conflicts.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "10",
+        "title": "Disclosure to Clients",
+        "text": "Where internal controls are insufficient to eliminate material risks, relevant conflicts will be disclosed to affected clients in sufficient detail to support informed decisions.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "11",
+        "title": "Employee Awareness and Training",
+        "text": "Employees are required to understand their disclosure obligations and promptly report actual or potential conflicts to Compliance.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "12",
+        "title": "Review and Amendments",
+        "text": "This policy is reviewed periodically and may be amended to reflect regulatory developments, operational changes, or emerging risks.",
+        "color": "#9b51e0"
+      }
+    ]
+  },
+  {
+    "id": "facts",
+    "title": "Key Facts Summary",
+    "gradient": "linear-gradient(135deg, rgba(255,199,44,0.10) 0%, rgba(31,203,139,0.06) 100%)",
+    "border": "1px solid rgba(255,199,44,0.20)",
+    "iconBg": "linear-gradient(135deg, #FFC72C, #1FCB8B)",
+    "icon": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4M12 16h.01\"/>",
+    "heading": "Key Facts Summary",
+    "subtitle": "Venture Asia - Essential pre-trading disclosure",
+    "intro": "This Key Facts Summary provides an overview of the principal terms, risks, features, costs, and obligations associated with trading products offered by Venture Asia. It should be read together with the Client Agreement, Risk Disclosure Statement, Best Execution Policy, and other applicable legal documents.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Company Information",
+        "text": "Clients enter into a contractual relationship with Venture Asia and should review all legal documentation before opening an account.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "02",
+        "title": "Execution-Only Services",
+        "text": "The company provides execution-only trading services and does not provide investment advice, portfolio management, or personal recommendations unless specifically agreed otherwise.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "03",
+        "title": "Leverage and Margin Trading",
+        "text": "Trading leveraged products requires an initial margin deposit and may amplify both gains and losses significantly.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "04",
+        "title": "Key Trading Risks",
+        "text": "Trading forex, CFDs, commodities, indices, and cryptocurrencies involves market, liquidity, leverage, and operational risks that may result in substantial losses.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "05",
+        "title": "Foreign Exchange Exposure",
+        "text": "Accounts and products denominated in foreign currencies may be affected by exchange rate fluctuations.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "06",
+        "title": "Margin Requirements",
+        "text": "Clients are responsible for maintaining sufficient available margin to support open positions and avoid automatic liquidation.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "07",
+        "title": "Stop Loss and Risk Controls",
+        "text": "Stop loss and take profit orders are risk management tools but cannot guarantee execution at the requested price under all market conditions.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "08",
+        "title": "Platform and Technology Risks",
+        "text": "Internet disruptions, system outages, delays, or third-party service failures may affect order execution and account access.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "09",
+        "title": "Automated Trading Risks",
+        "text": "The use of expert advisors, trading robots, copy trading systems, or third-party software is undertaken entirely at the client's own risk.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "10",
+        "title": "Product Features",
+        "text": "Products offered may include Forex, Indices, Commodities, Shares, Metals, Energies, and Cryptocurrency CFDs subject to availability.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "11",
+        "title": "Fees and Charges",
+        "text": "Trading costs may include spreads, commissions, financing charges, administration fees, and market data subscriptions where applicable.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "12",
+        "title": "Best Execution",
+        "text": "The company seeks to achieve fair and competitive outcomes when executing client orders in accordance with its execution arrangements.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "13",
+        "title": "KYC and Due Diligence",
+        "text": "Clients must provide identity verification, address verification, and other information required under applicable laws and regulations.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "14",
+        "title": "Market Abuse and Prohibited Activity",
+        "text": "Manipulative trading practices, misuse of market information, or abusive trading strategies may result in restrictions or account closure.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "15",
+        "title": "Breach and Termination",
+        "text": "The company may suspend or terminate services where contractual obligations are breached or regulatory concerns arise.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "16",
+        "title": "Force Majeure",
+        "text": "Events outside the company's reasonable control may affect trading services, order execution, or market access.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "17",
+        "title": "Complaints Handling",
+        "text": "Clients may submit complaints through official support channels and complaints will be reviewed according to internal procedures.",
+        "color": "#2CD4E6"
+      }
+    ]
+  },
+  {
+    "id": "privacy",
+    "title": "Privacy Policy",
+    "gradient": "linear-gradient(135deg, rgba(44,212,230,0.10) 0%, rgba(31,203,139,0.06) 100%)",
+    "border": "1px solid rgba(44,212,230,0.20)",
+    "iconBg": "linear-gradient(135deg, #2CD4E6, #1FCB8B)",
+    "icon": "<rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>",
+    "heading": "Privacy Policy",
+    "subtitle": "Venture Asia - How we handle your personal information",
+    "intro": "This Privacy Policy explains how Venture Asia collects, uses, stores, protects, and discloses personal information obtained through our website, trading platforms, applications, and customer interactions.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Privacy Commitment",
+        "text": "Venture Asia is committed to safeguarding personal information and maintaining transparent privacy practices in accordance with applicable data protection requirements.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "02",
+        "title": "Information We Collect",
+        "text": "We may collect identification details, contact information, financial information, trading activity, device information, and website usage data necessary to provide our services.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "03",
+        "title": "Sources of Information",
+        "text": "Information may be collected directly from clients, through account applications, trading activity, website interactions, cookies, and third-party verification providers.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "04",
+        "title": "Purpose of Processing",
+        "text": "Personal information may be used for account administration, identity verification, transaction processing, customer support, compliance obligations, risk management, and service improvements.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "05",
+        "title": "Marketing Communications",
+        "text": "Clients may receive product updates, market insights, and promotional communications where permitted by law and may opt out at any time.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "06",
+        "title": "Sharing and Disclosure",
+        "text": "Information may be shared with regulators, payment providers, liquidity providers, auditors, professional advisers, and service providers where required to deliver services or comply with legal obligations.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "07",
+        "title": "International Transfers",
+        "text": "Where operational requirements make it necessary, personal information may be transferred across jurisdictions subject to appropriate safeguards and security measures.",
+        "color": "#9b51e0"
+      },
+      {
+        "num": "08",
+        "title": "Data Accuracy and Updates",
+        "text": "Clients are responsible for informing Venture Asia of changes to their personal information to ensure records remain accurate and current.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "09",
+        "title": "Cookies and Tracking Technologies",
+        "text": "Cookies and similar technologies may be used to improve website functionality, analyze usage patterns, enhance security, and personalize user experiences.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "10",
+        "title": "Third-Party Websites",
+        "text": "External websites linked from our services operate independently and are governed by their own privacy practices and policies.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "11",
+        "title": "Information Security",
+        "text": "Technical, organizational, and administrative safeguards are implemented to protect personal information against unauthorized access, misuse, disclosure, or loss.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "12",
+        "title": "Data Subject Rights",
+        "text": "Depending on applicable law, individuals may have rights relating to access, correction, deletion, restriction, portability, or objection to the processing of personal information.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "13",
+        "title": "Retention Periods",
+        "text": "Personal information is retained only for as long as necessary to fulfill business, legal, regulatory, and compliance obligations.",
+        "color": "#9b51e0"
+      },
+      {
+        "num": "14",
+        "title": "Consent",
+        "text": "By using our services, clients acknowledge and consent to the collection and processing of personal information as described in this policy.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "15",
+        "title": "Policy Updates",
+        "text": "This Privacy Policy may be amended periodically to reflect legal, regulatory, technological, or operational developments.",
+        "color": "#1FCB8B"
+      }
+    ]
+  },
+  {
+    "id": "risk",
+    "title": "Risk Warning Notice",
+    "gradient": "linear-gradient(135deg, rgba(255,93,108,0.12) 0%, rgba(255,199,44,0.06) 100%)",
+    "border": "1px solid rgba(255,93,108,0.25)",
+    "iconBg": "linear-gradient(135deg, #FF5D6C, #FFC72C)",
+    "icon": "<path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/>",
+    "heading": "Risk Disclosure Notice",
+    "subtitle": "Venture Asia - Please read carefully before trading",
+    "intro": "This Risk Disclosure Notice outlines the principal risks associated with trading leveraged financial instruments offered by Venture Asia. Clients should carefully assess their financial circumstances, objectives, and experience before trading.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Introduction",
+        "text": "Forex and derivative products are complex instruments that may not be suitable for all investors due to the risks associated with leverage and market volatility.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "02",
+        "title": "Margin Trading Risks",
+        "text": "Trading on margin enables larger market exposure with smaller deposits but can significantly amplify both profits and losses.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "03",
+        "title": "Additional Margin Requirements",
+        "text": "Clients may be required to deposit additional funds at short notice to maintain open positions during adverse market movements.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "04",
+        "title": "Foreign Exchange Products",
+        "text": "Currency markets are affected by economic, political, and market events which may result in rapid and unexpected price changes.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "05",
+        "title": "Contracts for Difference (CFDs)",
+        "text": "CFDs allow clients to speculate on price movements without owning the underlying asset and can generate losses exceeding deposited margin.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "06",
+        "title": "Currency and Exchange Risk",
+        "text": "Exchange rate fluctuations may affect account balances, profit calculations, and margin requirements for products denominated in foreign currencies.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "07",
+        "title": "Liquidity Risk",
+        "text": "Periods of low market liquidity may result in wider spreads, delayed execution, partial fills, or execution at unfavorable prices.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "08",
+        "title": "Market Volatility",
+        "text": "Economic announcements, geopolitical events, and market disruptions can create sharp price movements and increased trading risk.",
+        "color": "#FF5D6C"
+      },
+      {
+        "num": "09",
+        "title": "Weekend and Holiday Exposure",
+        "text": "Markets may reopen after closures at significantly different prices, increasing the likelihood of slippage and gapping.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "10",
+        "title": "Costs and Charges",
+        "text": "Trading costs such as spreads, commissions, swaps, financing charges, and administrative fees may affect overall profitability.",
+        "color": "#2CD4E6"
+      },
+      {
+        "num": "11",
+        "title": "Client Money Arrangements",
+        "text": "Client funds may be maintained under applicable regulatory and operational arrangements designed to safeguard balances.",
+        "color": "#1FCB8B"
+      },
+      {
+        "num": "12",
+        "title": "Execution-Only Services",
+        "text": "The company provides execution-only services and does not provide investment advice or portfolio recommendations.",
+        "color": "#2E7BFF"
+      },
+      {
+        "num": "13",
+        "title": "Technology and Connectivity Risks",
+        "text": "Internet failures, software interruptions, hardware issues, or third-party outages may impact access to trading services.",
+        "color": "#FFC72C"
+      },
+      {
+        "num": "14",
+        "title": "General Warning",
+        "text": "Clients should only trade with funds they can afford to lose and should seek independent professional advice if uncertain about any risks.",
+        "color": "#FF5D6C"
+      }
+    ]
+  }
+]

@@ -8,7 +8,7 @@
 .page_weror
 {
   padding:80px 0px;
-  background-color:#f9f4f1;
+  background-color: transparent;
 }
  
 #notfound .notfound {
@@ -48,7 +48,7 @@ p.nfound_cntnt
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
    -webkit-background-clip: text;
-  -webkit-text-fill-color: #335371;
+  -webkit-text-fill-color: var(--text);
   background-size: cover;
   background-position: center;
   white-space:nowrap;

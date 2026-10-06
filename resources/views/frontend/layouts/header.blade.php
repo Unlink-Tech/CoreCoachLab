@@ -16,266 +16,238 @@
      MAIN HEADER
      ============================================= -->
 @php
-	$navCategories = \App\Models\Category::where('status', 'active')->where('is_parent', 1)->orderBy('title', 'ASC')->get();
+	$isJa = session('app_locale') == 'ja' || app()->getLocale() == 'ja';
+
+	// Mega menu definitions. Replace '#' with real routes as the pages are built.
+	$vhMarkets = [
+		['icon' => 'fa-solid fa-arrow-trend-up', 'title' => __('Forex'), 'desc' => __('60+ major, minor & exotic FX pairs'), 'url' => route('markets.forex')],
+		['icon' => 'fa-solid fa-chart-simple', 'title' => __('Indices'), 'desc' => __('Global equity index CFDs'), 'url' => route('markets.indices')],
+		['icon' => 'fa-solid fa-coins', 'title' => __('Commodities'), 'desc' => __('Gold, silver, oil & energies'), 'url' => route('markets.commodities')],
+		['icon' => 'fa-solid fa-chart-line', 'title' => __('Shares'), 'desc' => __('Trade US & global stock CFDs'), 'url' => route('markets.shares')],
+	];
+
+	$vhTrading = [
+		['title' => __('Trading Platforms'), 'url' => route('under-construction'), 'items' => [
+			['icon' => 'fa-regular fa-window-maximize', 'title' => __('MetaTrader 4'), 'url' => 'https://www.metatrader4.com/en/download', 'external' => true],
+			['icon' => 'fa-regular fa-window-maximize', 'title' => __('MetaTrader 5'), 'url' => 'https://www.metatrader5.com/en/download', 'external' => true],
+			['icon' => 'fa-solid fa-globe', 'title' => __('WebTrader'), 'url' => route('under-construction')],
+		]],
+		['title' => __('Copy Trading'), 'url' => route('copy-trading'), 'items' => [
+			['icon' => 'fa-solid fa-user-group', 'title' => __('Copy Trading Pro'), 'url' => route('copy-trading') . '#copy-trading-pro'],
+			['icon' => 'fa-solid fa-chart-line', 'title' => __('Myfxbook'), 'url' => route('copy-trading') . '#myfxbook'],
+		]],
+		['title' => __('Account'), 'url' => route('accounts'), 'items' => [
+			['icon' => 'fa-solid fa-layer-group', 'title' => __('Account Types'), 'url' => route('accounts')],
+			['icon' => 'fa-regular fa-star', 'title' => __('Standard'), 'url' => route('accounts.standard')],
+			['icon' => 'fa-solid fa-flask', 'title' => __('Demo Account'), 'url' => route('accounts.demo')],
+		]],
+		['title' => __('Deposits & Withdrawals'), 'url' => route('funding'), 'items' => [
+			['icon' => 'fa-solid fa-arrow-right-arrow-left fa-rotate-90', 'title' => __('Deposits & Withdrawals'), 'url' => route('funding')],
+		]],
+	];
+
+	$vhResources = [
+		['title' => __('Market Outlook'), 'url' => route('under-construction'), 'items' => [
+			['icon' => 'fa-solid fa-graduation-cap', 'title' => __('Academy'), 'url' => route('under-construction')],
+			['icon' => 'fa-regular fa-newspaper', 'title' => __('News'), 'url' => route('news')],
+			['icon' => 'fa-solid fa-chart-line', 'title' => __('Analysis'), 'url' => route('under-construction')],
+		]],
+		['title' => __('Tools'), 'url' => route('under-construction'), 'items' => [
+			['icon' => 'fa-solid fa-bullseye', 'title' => __('Trading Central'), 'url' => route('under-construction')],
+			['icon' => 'fa-regular fa-calendar', 'title' => __('Economic Calendar'), 'url' => route('under-construction')],
+			['icon' => 'fa-solid fa-calculator', 'title' => __('Trading Calculator'), 'url' => route('calculator')],
+			['icon' => 'fa-regular fa-file-lines', 'title' => __('Contract Specifications'), 'url' => route('under-construction')],
+			['icon' => 'fa-solid fa-server', 'title' => __('VPS'), 'url' => route('vps')],
+		]],
+	];
+
+	$vhAbout = [
+		['icon' => 'fa-solid fa-graduation-cap', 'title' => __('About Us'), 'desc' => __('Learn about our vision and journey'), 'url' => route('about-us')],
+		['icon' => 'fa-regular fa-id-card', 'title' => __('Legal Documents'), 'desc' => __('Read terms, privacy, and disclosures'), 'url' => route('legal.documents')],
+		['icon' => 'fa-regular fa-circle-question', 'title' => __('Help Centre'), 'desc' => __('Frequently asked questions & support'), 'url' => route('help')],
+		['icon' => 'fa-regular fa-rectangle-list', 'title' => __('Contact Us'), 'desc' => __('Get in touch with our global support'), 'url' => route('contact')],
+	];
+
+	$vhMenus = [
+		['key' => 'markets', 'label' => __('Markets'), 'type' => 'cards', 'data' => $vhMarkets, 'active' => Route::is('markets.*')],
+		['key' => 'trading', 'label' => __('Trading'), 'type' => 'columns', 'data' => $vhTrading],
+		['key' => 'resources', 'label' => __('Resources'), 'type' => 'columns', 'data' => $vhResources],
+		['key' => 'about', 'label' => __('About Us'), 'type' => 'cards', 'data' => $vhAbout, 'active' => Route::is('about-us', 'contact', 'faqs', 'help', 'legal.documents')],
+	];
 @endphp
-<header class="nh" id="nh">
-	<div class="nh__inner">
+<header class="vh" id="vh">
+	{{-- LIVE TICKER (TradingView ticker tape — same symbols as ventureasiamarkets.com) --}}
+	<div class="vh-ticker" aria-label="Live market prices">
+		<div class="vh-ticker__inner">
+			<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" async></script>
+			<tv-ticker-tape
+				symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,FX:EURUSD,CMCMARKETS:GOLD,FX:GBPUSD,FX:USDJPY,FX_IDC:USDHKD,FX_IDC:USDSGD"
+				hide-chart="true" item-size="compact" transparent="true" theme="dark"></tv-ticker-tape>
+		</div>
+	</div>
+
+	<div class="vh__inner">
 
 		{{-- LOGO --}}
-		<a href="{{ route('home') }}" class="nh__logo" aria-label="Core Coach Lab">
-			<img src="{{ url('assets/images/logo-dark.png') }}" alt="Core Coach Lab" class="nh__logo-img">
+		<a href="{{ route('home') }}" class="vh__logo" aria-label="Venture Asia">
+			<img src="{{ url('assets/images/venture-logo.png') }}" alt="Venture Asia" class="vh__logo-img">
 		</a>
 
 		{{-- CENTER NAV (desktop) --}}
-		<nav class="nh__nav" aria-label="Main navigation">
-			<ul class="nh__nav-list">
+		<nav class="vh__nav" aria-label="Main navigation">
+			<ul class="vh__nav-list">
+				@foreach($vhMenus as $menu)
+					<li class="vh__item" data-vh-item>
+						<button type="button" class="vh__link {{ !empty($menu['active']) ? 'vh__link--current' : '' }}"
+							aria-expanded="false" aria-controls="vh-panel-{{ $menu['key'] }}">
+							{{ $menu['label'] }}
+							<svg class="vh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+								<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+									stroke-linejoin="round" />
+							</svg>
+						</button>
 
-				<li class="nh__nav-item nh__nav-item--drop">
-					<a href="{{ route('product-lists') }}"
-						class="nh__nav-link {{ Route::is('product-lists') ? 'nh__nav-link--active' : '' }}">
-						{{ __('common.header.catalog') }}
-						<svg class="nh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none">
-							<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-								stroke-linejoin="round" />
-						</svg>
-					</a>
-					<div class="nh__dropdown nh__dropdown--catalog">
-						<div class="nh__dropdown-inner">
-							@forelse($navCategories as $cat)
-								<a class="nh__drop-item" href="{{ route('product-lists', $cat->slug) }}">
-									<span class="nh__drop-ico"><i class="fas fa-graduation-cap"></i></span>
-									<span>{{ $cat->title }}</span>
-								</a>
-							@empty
-								<span
-									class="nh__drop-item nh__drop-item--muted">{{ __('common.categories.no_categories') }}</span>
-							@endforelse
-							<hr class="nh__drop-divider">
-							<a class="nh__drop-item nh__drop-item--all" href="{{ route('product-lists') }}">
-								<span class="nh__drop-ico"><i class="fas fa-th"></i></span>
-								<span>{{ __('common.categories.view_all') }}</span>
-							</a>
+						<div class="vh__panel vh__panel--{{ $menu['type'] }}" id="vh-panel-{{ $menu['key'] }}">
+							@if($menu['type'] === 'cards')
+								<div class="vh__cards">
+									@foreach($menu['data'] as $card)
+										<a class="vh__card" href="{{ $card['url'] }}">
+											<span class="vh__card-ico"><i class="{{ $card['icon'] }}"></i></span>
+											<span class="vh__card-text">
+												<span class="vh__card-title">{{ $card['title'] }}</span>
+												<span class="vh__card-desc">{{ $card['desc'] }}</span>
+											</span>
+										</a>
+									@endforeach
+								</div>
+							@else
+								<div class="vh__cols" style="--vh-cols: {{ count($menu['data']) }}">
+									@foreach($menu['data'] as $col)
+										<div class="vh__col">
+											<a class="vh__col-head" href="{{ $col['url'] }}">
+												{{ $col['title'] }}
+												<i class="fa-solid fa-chevron-right"></i>
+											</a>
+											<ul class="vh__col-list">
+												@foreach($col['items'] as $sub)
+													<li>
+														<a class="vh__col-link" href="{{ $sub['url'] }}" @if(!empty($sub['external'])) target="_blank" rel="noopener noreferrer" @endif>
+															<i class="{{ $sub['icon'] }}"></i>
+															<span>{{ $sub['title'] }}</span>
+														</a>
+													</li>
+												@endforeach
+											</ul>
+										</div>
+									@endforeach
+								</div>
+							@endif
 						</div>
-					</div>
-				</li>
-
-				<li class="nh__nav-item">
-					<a href="{{ route('about-us') }}"
-						class="nh__nav-link {{ Route::is('about-us') ? 'nh__nav-link--active' : '' }}">
-						{{ __('common.header.about') }}
-					</a>
-				</li>
-
-				<li class="nh__nav-item">
-					<a href="{{ route('contact') }}"
-						class="nh__nav-link {{ Route::is('contact') ? 'nh__nav-link--active' : '' }}">
-						{{ __('common.header.contact') }}
-					</a>
-				</li>
-
+					</li>
+				@endforeach
 			</ul>
 		</nav>
 
 		{{-- RIGHT ACTIONS --}}
-		<div class="nh__actions">
+		<div class="vh__actions">
+			@if(Auth::check())
+				<a href="{{ route('user.logout') }}" class="vh__btn vh__btn--ghost vh__hide-sm">{{ __('common.account.logout') }}</a>
+				<a href="{{ route('user') }}" class="vh__btn vh__btn--primary vh__hide-xs">
+					{{ __('common.account.my_account') }}
+					<i class="fa-solid fa-arrow-right"></i>
+				</a>
+			@else
+				<a href="{{ route('login.form') }}" class="vh__btn vh__btn--ghost vh__hide-sm">{{ __('Login') }}</a>
+				<a href="{{ route('register.form') }}" class="vh__btn vh__btn--primary vh__hide-xs">
+					{{ __('Open Account') }}
+					<i class="fa-solid fa-arrow-right"></i>
+				</a>
+			@endif
 
 			{{-- Language --}}
-			@php $isJa = session('app_locale') == 'ja' || app()->getLocale() == 'ja'; @endphp
-			<div class="nh__pill-drop nh__pill-drop--lang">
-				<button class="nh__pill-btn" type="button" aria-label="Language">
-					<span class="fi {{ $isJa ? 'fi-jp' : 'fi-gb' }} nh__flag"></span>
-					<span class="nh__pill-label">{{ $isJa ? 'JP' : 'EN' }}</span>
-					<svg class="nh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none">
+			<div class="vh__lang" data-vh-item>
+				<button type="button" class="vh__lang-btn" aria-expanded="false" aria-label="Language">
+					<span class="fi {{ $isJa ? 'fi-jp' : 'fi-gb' }} vh__flag"></span>
+					<span>{{ $isJa ? 'JP' : 'EN' }}</span>
+					<svg class="vh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
 						<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
 							stroke-linejoin="round" />
 					</svg>
 				</button>
-				<div class="nh__dropdown nh__dropdown--end">
-					<div class="nh__dropdown-inner">
-						<a class="nh__drop-item {{ !$isJa ? 'nh__drop-item--active' : '' }}"
-							href="{{ route('change.language', 'en') }}">
-							<span
-								class="fi fi-gb nh__drop-ico-flag"></span><span>{{ __('common.language.english') }}</span>
-							<i class="fas fa-check nh__drop-check"></i>
-						</a>
-						<a class="nh__drop-item {{ $isJa ? 'nh__drop-item--active' : '' }}"
-							href="{{ route('change.language', 'ja') }}">
-							<span
-								class="fi fi-jp nh__drop-ico-flag"></span><span>{{ __('common.language.japanese') }}</span>
-							<i class="fas fa-check nh__drop-check"></i>
-						</a>
-					</div>
+				<div class="vh__panel vh__panel--lang">
+					<a class="vh__lang-item {{ !$isJa ? 'vh__lang-item--active' : '' }}" href="{{ route('change.language', 'en') }}">
+						<span class="fi fi-gb vh__flag"></span><span>{{ __('common.language.english') }}</span>
+						<i class="fa-solid fa-check"></i>
+					</a>
+					<a class="vh__lang-item {{ $isJa ? 'vh__lang-item--active' : '' }}" href="{{ route('change.language', 'ja') }}">
+						<span class="fi fi-jp vh__flag"></span><span>{{ __('common.language.japanese') }}</span>
+						<i class="fa-solid fa-check"></i>
+					</a>
 				</div>
 			</div>
-
-			{{-- Currency --}}
-			@php
-				$currentCurrency = session('currency', 'USD');
-				$currencies = Helper::CurrenciesList();
-			@endphp
-			<div class="nh__pill-drop nh__pill-drop--currency nh__hide-md">
-				<button class="nh__pill-btn" type="button" aria-label="Currency">
-					<span class="nh__pill-label">{{ Helper::getCurrencySymbol($currentCurrency) }}
-						{{ $currentCurrency }}</span>
-					<svg class="nh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none">
-						<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
-				<div class="nh__dropdown nh__dropdown--end">
-					<div class="nh__dropdown-inner">
-						@foreach($currencies as $cur)
-							@if($cur->code != 'HKD')
-								<a class="nh__drop-item {{ $currentCurrency == $cur->code ? 'nh__drop-item--active' : '' }}"
-									href="{{ route('change.currency', $cur->code) }}">
-									<span class="nh__drop-ico"><i class="fas fa-coins"></i></span>
-									<span>{{ $cur->code }} {{ Helper::getCurrencySymbol($cur->code) }}</span>
-									<i class="fas fa-check nh__drop-check"></i>
-								</a>
-							@endif
-						@endforeach
-					</div>
-				</div>
-			</div>
-
-			{{-- Account --}}
-			<div class="nh__pill-drop nh__pill-drop--account">
-				<button class="nh__acct-btn" type="button" aria-label="Account">
-					@if(Auth::check())
-						<span class="nh__acct-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
-						<span class="nh__acct-name nh__hide-sm">{{ Str::limit(Auth::user()->name, 12) }}</span>
-					@else
-						<i class="fas fa-user nh__acct-ico"></i>
-						<span class="nh__acct-name nh__hide-sm">{{ __('common.account.login') }}</span>
-					@endif
-					<svg class="nh__caret" width="10" height="6" viewBox="0 0 10 6" fill="none">
-						<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
-				<div class="nh__dropdown nh__dropdown--end nh__dropdown--account">
-					<div class="nh__dropdown-inner">
-						@if(Auth::check())
-							<div class="nh__acct-head">
-								<div class="nh__acct-head-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
-								<div>
-									<div class="nh__acct-head-name">{{ Auth::user()->name }}</div>
-									<div class="nh__acct-head-credits"><i class="fas fa-coins"></i>
-										{{ Auth::user()->points_balance ?? 0 }} {{ __('common.account.creds') }}</div>
-								</div>
-							</div>
-							<hr class="nh__drop-divider">
-							<a class="nh__drop-item" href="{{ route('user') }}"><span class="nh__drop-ico"><i
-										class="fas fa-tachometer-alt"></i></span><span>{{ __('common.account.my_account') }}</span></a>
-							<a class="nh__drop-item" href="{{ route('points.topup') }}"><span class="nh__drop-ico"><i
-										class="fas fa-coins"></i></span><span>{{ __('common.account.points_top_up') }}</span></a>
-							<hr class="nh__drop-divider">
-							<a class="nh__drop-item nh__drop-item--danger" href="{{ route('user.logout') }}"><span
-									class="nh__drop-ico"><i
-										class="fas fa-sign-out-alt"></i></span><span>{{ __('common.account.logout') }}</span></a>
-						@else
-							<a class="nh__drop-item" href="{{ route('login.form') }}"><span class="nh__drop-ico"><i
-										class="fas fa-sign-in-alt"></i></span><span>{{ __('common.account.login') }}</span></a>
-							<hr class="nh__drop-divider">
-							<div class="nh__acct-cta">
-								<a href="{{ route('register.form') }}"
-									class="nh__cta-register">{{ __('common.account.register') }}</a>
-							</div>
-						@endif
-					</div>
-				</div>
-			</div>
-
-			{{-- Cart --}}
-			<a href="javascript:void(0)" class="nh__cart-btn cart-btn modern-cart-btn"
-				aria-label="{{ __('common.cart.shopping_cart') }}">
-				<i class="fas fa-shopping-bag"></i>
-				<span class="nh__cart-badge cart-badge cart-count">{{ Helper::totalCartQuantity() }}</span>
-			</a>
-
-			{{-- Start Learning CTA --}}
-			<a href="{{ route('product-lists') }}" class="nh__start-btn nh__hide-md">
-				{{ __('common.header.start_learning') }}
-			</a>
 
 			{{-- Hamburger --}}
-			<button class="nh__burger" id="nhBurger" aria-label="Open menu" aria-expanded="false">
+			<button class="vh__burger" id="vhBurger" type="button" aria-label="Open menu" aria-expanded="false"
+				aria-controls="vhDrawer">
 				<span></span><span></span><span></span>
 			</button>
 		</div>
 
-	</div>{{-- /.nh__inner --}}
+	</div>{{-- /.vh__inner --}}
 
 	{{-- MOBILE DRAWER --}}
-	<div class="nh__drawer" id="nhDrawer" aria-hidden="true">
-		<div class="nh__drawer-overlay" id="nhOverlay"></div>
-		<div class="nh__drawer-panel">
-			<div class="nh__drawer-head">
-				<a href="{{ route('home') }}"><img src="{{ url('assets/images/logo-dark.png') }}" alt="Core Coach Lab"
-						class="nh__drawer-logo"></a>
-				<button class="nh__drawer-close" id="nhDrawerClose" aria-label="Close menu"><i
-						class="fas fa-times"></i></button>
+	<div class="vh__drawer" id="vhDrawer" aria-hidden="true">
+		<div class="vh__drawer-overlay" data-vh-close></div>
+		<div class="vh__drawer-panel">
+			<div class="vh__drawer-head">
+				<a href="{{ route('home') }}"><img src="{{ url('assets/images/venture-logo.png') }}" alt="Venture Asia"
+						class="vh__drawer-logo"></a>
+				<button class="vh__drawer-close" type="button" data-vh-close aria-label="Close menu"><i
+						class="fa-solid fa-xmark"></i></button>
 			</div>
-			<nav class="nh__drawer-nav">
-				{{-- Catalog (expandable) --}}
-				<div class="nh__drawer-group">
-					<button type="button" class="nh__drawer-link nh__drawer-toggle" aria-expanded="false"
-						onclick="this.classList.toggle('nh__drawer-toggle--open'); this.setAttribute('aria-expanded', this.classList.contains('nh__drawer-toggle--open')); this.nextElementSibling.classList.toggle('nh__drawer-sub--open');">
-						<span class="nh__drawer-link-inner">
-							<i class="fas fa-th-large"></i>
-							{{ __('common.header.catalog') }}
-						</span>
-						<svg class="nh__drawer-caret" width="12" height="7" viewBox="0 0 10 6" fill="none"
-							aria-hidden="true">
-							<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-								stroke-linejoin="round" />
-						</svg>
-					</button>
-					<div class="nh__drawer-sub">
-						@forelse($navCategories as $cat)
-							<a class="nh__drawer-sub-link" href="{{ route('product-lists', $cat->slug) }}">
-								<span class="nh__drawer-sub-ico"><i class="fas fa-graduation-cap"></i></span>
-								<span>{{ $cat->title }}</span>
-							</a>
-						@empty
-							<span
-								class="nh__drawer-sub-link nh__drawer-sub-link--muted">{{ __('common.categories.no_categories') }}</span>
-						@endforelse
-						<a class="nh__drawer-sub-link nh__drawer-sub-link--all" href="{{ route('product-lists') }}">
-							<span class="nh__drawer-sub-ico"><i class="fas fa-th"></i></span>
-							<span>{{ __('common.categories.view_all') }}</span>
-						</a>
-					</div>
-				</div>
 
-				<a class="nh__drawer-link" href="{{ route('about-us') }}">
-					<span class="nh__drawer-link-inner">
-						<i class="fas fa-info-circle"></i>
-						{{ __('common.header.about') }}
-					</span>
-				</a>
-				<a class="nh__drawer-link" href="{{ route('contact') }}">
-					<span class="nh__drawer-link-inner">
-						<i class="fas fa-envelope"></i>
-						{{ __('common.header.contact') }}
-					</span>
-				</a>
+			<nav class="vh__drawer-nav" aria-label="Mobile navigation">
+				@foreach($vhMenus as $menu)
+					<div class="vh__acc">
+						<button type="button" class="vh__acc-btn" aria-expanded="false">
+							{{ $menu['label'] }}
+							<svg class="vh__caret" width="12" height="7" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+								<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+									stroke-linejoin="round" />
+							</svg>
+						</button>
+						<div class="vh__acc-body">
+							@if($menu['type'] === 'cards')
+								@foreach($menu['data'] as $card)
+									<a class="vh__acc-link" href="{{ $card['url'] }}">
+										<i class="{{ $card['icon'] }}"></i><span>{{ $card['title'] }}</span>
+									</a>
+								@endforeach
+							@else
+								@foreach($menu['data'] as $col)
+									<span class="vh__acc-head">{{ $col['title'] }}</span>
+									@foreach($col['items'] as $sub)
+										<a class="vh__acc-link" href="{{ $sub['url'] }}" @if(!empty($sub['external'])) target="_blank" rel="noopener noreferrer" @endif>
+											<i class="{{ $sub['icon'] }}"></i><span>{{ $sub['title'] }}</span>
+										</a>
+									@endforeach
+								@endforeach
+							@endif
+						</div>
+					</div>
+				@endforeach
 			</nav>
-			<div class="nh__drawer-footer">
+
+			<div class="vh__drawer-footer">
 				@if(Auth::check())
-					<a class="nh__drawer-link" href="{{ route('user') }}"><i class="fas fa-tachometer-alt"></i>
-						{{ __('common.account.my_account') }}</a>
-					<a class="nh__drawer-link" href="{{ route('points.topup') }}"><i class="fas fa-coins"></i>
-						{{ __('common.account.points_top_up') }}</a>
-					<a class="nh__drawer-link nh__drawer-link--danger" href="{{ route('user.logout') }}"><i
-							class="fas fa-sign-out-alt"></i> {{ __('common.account.logout') }}</a>
+					<a href="{{ route('user') }}" class="vh__btn vh__btn--primary">{{ __('common.account.my_account') }}
+						<i class="fa-solid fa-arrow-right"></i></a>
+					<a href="{{ route('user.logout') }}" class="vh__btn vh__btn--ghost">{{ __('common.account.logout') }}</a>
 				@else
-					<a class="nh__drawer-link" href="{{ route('login.form') }}"><i class="fas fa-sign-in-alt"></i>
-						{{ __('common.account.login') }}</a>
-					<a class="nh__drawer-btn" href="{{ route('register.form') }}">{{ __('common.account.register') }}</a>
+					<a href="{{ route('register.form') }}" class="vh__btn vh__btn--primary">{{ __('Open Account') }}
+						<i class="fa-solid fa-arrow-right"></i></a>
+					<a href="{{ route('login.form') }}" class="vh__btn vh__btn--ghost">{{ __('Login') }}</a>
 				@endif
-				<a class="nh__drawer-btn nh__drawer-btn--outline"
-					href="{{ route('product-lists') }}">{{ __('common.header.start_learning') }}</a>
 			</div>
 		</div>
 	</div>
@@ -490,24 +462,81 @@
 			}, 5000);
 		}
 
-		/* Scroll glass */
-		var nh = document.getElementById('nh');
-		if (nh) {
-			function onScroll() { nh.classList.toggle('nh--scrolled', window.scrollY > 20); }
+		/* Scroll state */
+		var vh = document.getElementById('vh');
+		if (vh) {
+			function onScroll() { vh.classList.toggle('vh--scrolled', window.scrollY > 20); }
 			window.addEventListener('scroll', onScroll, { passive: true });
 			onScroll();
 		}
 
+		/* Desktop mega menus: hover on pointer devices, click/keyboard everywhere */
+		var items = document.querySelectorAll('[data-vh-item]');
+		var hoverable = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+		function fitPanel(item) {
+			var panel = item.querySelector('.vh__panel');
+			if (!panel || panel.classList.contains('vh__panel--lang')) return;
+			panel.style.setProperty('--vh-shift', '0px');
+			var r = panel.getBoundingClientRect();
+			var gutter = 16, vw = document.documentElement.clientWidth, shift = 0;
+			if (r.left < gutter) shift = gutter - r.left;
+			else if (r.right > vw - gutter) shift = (vw - gutter) - r.right;
+			panel.style.setProperty('--vh-shift', shift + 'px');
+		}
+		function setOpen(item, open) {
+			item.classList.toggle('vh--open', open);
+			var btn = item.querySelector('button');
+			if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+			if (open) fitPanel(item);
+		}
+		function closeAll(except) {
+			items.forEach(function (it) { if (it !== except) setOpen(it, false); });
+		}
+
+		items.forEach(function (item) {
+			var btn = item.querySelector('button');
+			var timer;
+			btn.addEventListener('click', function (e) {
+				e.stopPropagation();
+				var open = !item.classList.contains('vh--open');
+				closeAll(item);
+				setOpen(item, open);
+			});
+			item.addEventListener('mouseenter', function () {
+				if (!hoverable.matches) return;
+				clearTimeout(timer);
+				closeAll(item);
+				setOpen(item, true);
+			});
+			item.addEventListener('mouseleave', function () {
+				if (!hoverable.matches) return;
+				timer = setTimeout(function () { setOpen(item, false); }, 120);
+			});
+		});
+		document.addEventListener('click', function (e) {
+			if (!e.target.closest('[data-vh-item]')) closeAll();
+		});
+
 		/* Mobile drawer */
-		var burger = document.getElementById('nhBurger');
-		var drawer = document.getElementById('nhDrawer');
-		var overlay = document.getElementById('nhOverlay');
-		var closeBtn = document.getElementById('nhDrawerClose');
-		function openDrawer() { drawer.classList.add('nh__drawer--open'); burger.setAttribute('aria-expanded', 'true'); drawer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
-		function closeDrawer() { drawer.classList.remove('nh__drawer--open'); burger.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
-		if (burger) burger.addEventListener('click', openDrawer);
-		if (overlay) overlay.addEventListener('click', closeDrawer);
-		if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-		document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+		var burger = document.getElementById('vhBurger');
+		var drawer = document.getElementById('vhDrawer');
+		function openDrawer() { drawer.classList.add('vh__drawer--open'); burger.setAttribute('aria-expanded', 'true'); drawer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+		function closeDrawer() { drawer.classList.remove('vh__drawer--open'); burger.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+		if (burger && drawer) {
+			burger.addEventListener('click', openDrawer);
+			drawer.querySelectorAll('[data-vh-close]').forEach(function (el) { el.addEventListener('click', closeDrawer); });
+			drawer.querySelectorAll('.vh__acc-btn').forEach(function (btn) {
+				btn.addEventListener('click', function () {
+					var acc = btn.parentElement;
+					var open = !acc.classList.contains('vh__acc--open');
+					acc.classList.toggle('vh__acc--open', open);
+					btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+				});
+			});
+		}
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape') { closeAll(); if (drawer) closeDrawer(); }
+		});
 	})();
 </script>

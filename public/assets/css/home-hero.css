@@ -1,0 +1,947 @@
+/* ============================================================
+   VA HERO — homepage hero + live market board
+   Values mirror ventureasiamarkets.com.
+   ============================================================ */
+
+.va-hero {
+    position: relative;
+    padding: clamp(48px, 6vw, 86px) 0 clamp(64px, 5vw, 130px);
+    overflow: visible;
+    background: transparent;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: .1px;
+    color: var(--text);
+}
+.va-hero *, .va-hero *::before, .va-hero *::after { box-sizing: border-box; }
+.va-hero p { margin: 0; }
+.va-hero a { text-decoration: none; }
+
+.va-hero__container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+}
+.va-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+}
+
+/* Chip */
+.va-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 22px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: rgba(255, 255, 255, .03);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--muted);
+}
+.va-chip__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--up);
+    box-shadow: 0 0 0 4px rgba(31, 203, 139, .16);
+}
+
+/* Headline */
+.va-hero__title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-hero__title-accent {
+    background: linear-gradient(120deg, #7fb0ff, #2cd4e6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.va-hero__lede {
+    color: var(--muted);
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.6;
+    margin-top: 24px !important;
+    max-width: 520px;
+}
+
+/* Buttons */
+.va-hero__ctas { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.va-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    line-height: 1.6;
+    border: 1px solid transparent;
+    transition: .22s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.va-btn svg { width: 17px; height: 17px; }
+.va-btn--primary {
+    background: linear-gradient(135deg, var(--accent) 0%, #1E5FE0 100%);
+    color: #fff;
+    box-shadow: 0 14px 34px -12px rgba(46, 123, 255, .7);
+}
+.va-btn--primary:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 20px 42px -12px rgba(46, 123, 255, .85); }
+.va-btn--ghost { background: rgba(255, 255, 255, .03); color: var(--text); border-color: var(--line-2); }
+.va-btn--ghost:hover { color: var(--text); border-color: var(--accent); background: rgba(46, 123, 255, .1); }
+.va-btn--lg { padding: 17px 34px; font-size: 16.5px; }
+.va-btn--sm { padding: 10px 18px; font-size: 14px; }
+
+/* Trust row */
+.va-hero__trust { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 38px; }
+.va-hero__trust-item { display: flex; align-items: center; gap: 9px; }
+.va-hero__trust-item span { font-size: 14px; color: var(--muted); }
+
+/* Market board */
+.va-hero__board-wrap { position: relative; }
+.va-glassbox {
+    background: linear-gradient(180deg, rgba(12, 33, 56, .9), rgba(8, 22, 38, .9));
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+.va-board { padding: 22px; }
+.va-board__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.va-board__title { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 15px; }
+.va-board__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--up);
+    box-shadow: 0 0 0 4px rgba(31, 203, 139, .16);
+}
+.va-board__meta {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    color: var(--muted-2);
+}
+.va-board__widget {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    background: rgba(255, 255, 255, .02);
+    min-height: 514px; /* 480px widget + padding, avoids layout jump while it loads */
+}
+.va-board__widget .tradingview-widget-copyright { display: none; }
+/* The page uses color-scheme: dark; matching the iframe to the embed's own (light) scheme keeps it transparent */
+.va-board__widget iframe { color-scheme: light; }
+.va-board__all { width: 100%; margin-top: 16px; }
+.va-hero__glow {
+    position: absolute;
+    inset: -30px -30px auto auto;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(44, 212, 230, .4), transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+    .va-hero__grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 720px) {
+    .va-hero { font-size: 16px; }
+}
+@media (max-width: 480px) {
+    .va-board { padding: 16px; }
+    .va-board__widget { padding: 12px; }
+    .va-board__meta { display: none; }
+}
+
+/* ============================================================
+   HOME SECTIONS — stats strip + markets (values from ventureasiamarkets.com)
+   ============================================================ */
+.va-section {
+    position: relative;
+    padding: clamp(64px, 5vw, 130px) 0;
+    background: transparent;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: .1px;
+    color: var(--text);
+}
+.va-section--tight { padding: clamp(44px, 6vw, 80px) 0; }
+.va-section *, .va-section *::before, .va-section *::after { box-sizing: border-box; }
+.va-section p { margin: 0; }
+.va-section a { text-decoration: none; }
+
+/* Stats */
+.va-trust {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    text-align: center;
+    padding: 30px clamp(22px, 4vw, 46px);
+}
+.va-stat__num {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 4.6vw, 56px);
+    line-height: 1;
+    background: linear-gradient(135deg, #fff, #9fc4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-variant-numeric: tabular-nums;
+}
+.va-stat__label { color: var(--muted); font-size: 14.5px; margin-top: 10px; }
+
+/* Section heading */
+.va-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 18px;
+}
+.va-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+}
+.va-section-head { max-width: 680px; }
+.va-section-head h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-section-head p { color: var(--muted); margin-top: 18px !important; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; }
+
+/* Markets */
+.va-markets__head { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.va-grid { display: grid; gap: 22px; }
+.va-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.va-markets__grid { margin-top: 46px; width: 100%; }
+.va-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: .25s ease;
+    position: relative;
+    overflow: hidden;
+}
+.va-card:hover { border-color: var(--line-2); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+.va-sector { padding: 24px 22px; }
+.va-sector__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0 0 16px;
+    color: var(--text);
+}
+.va-sector__widget { width: 100%; }
+.va-sector tv-market-summary {
+    border: none !important;
+    width: 100% !important;
+    zoom: 0.90;
+    display: block;
+    --tv-color-toolbar-button-background-active: rgba(46, 123, 255, 0.12) !important;
+    --tv-color-toolbar-button-background-active-hover: rgba(46, 123, 255, 0.20) !important;
+}
+
+/* Reveal-on-scroll (armed only by JS for items below the fold) */
+.va-armed { opacity: 0; transform: translateY(26px); transition: .7s cubic-bezier(.2, .7, .2, 1); }
+.va-armed.va-in { opacity: 1; transform: none; }
+/* Cards keep their hover lift once revealed */
+.va-card.va-armed.va-in:hover { transform: translateY(-4px); }
+
+
+/* ============================================================
+   WHY / PLATFORM / STEPS (values from ventureasiamarkets.com)
+   ============================================================ */
+.va-why { background: linear-gradient(180deg, transparent, rgba(8, 26, 48, .5), transparent); }
+.va-center { text-align: center; margin-inline: auto; }
+.va-center p { margin-inline: auto !important; }
+.va-center .va-eyebrow { justify-content: center; }
+.va-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.va-why__grid { margin-top: 50px; }
+.va-feat-ico {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(46, 123, 255, .2), rgba(44, 212, 230, .1));
+    border: 1px solid var(--line-2);
+}
+.va-feat-ico svg { width: 25px; height: 25px; color: var(--accent-2); }
+.va-feat-title, .va-platform__title, .va-steps__title, .va-step h3 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-feat-title { font-size: 20px; }
+.va-feat-text { color: var(--muted); margin-top: 10px !important; font-size: 15px; line-height: 1.6; }
+
+/* Platform */
+.va-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.va-platform__title { font-size: clamp(30px, 4vw, 46px); }
+.va-platform__lede { color: var(--muted); margin-top: 20px !important; font-size: 17px; line-height: 1.6; }
+.va-checks { margin-top: 26px; display: flex; flex-direction: column; gap: 14px; }
+.va-check { display: flex; align-items: center; gap: 12px; }
+.va-check svg { flex-shrink: 0; }
+.va-check span { font-size: 17px; line-height: 1.6; color: var(--text); }
+.va-platform__btn { margin-top: 24px; }
+.va-platform__media { position: relative; }
+.va-img-ph {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .025) 0 12px, rgba(255, 255, 255, .05) 12px 24px);
+    border: 1px dashed var(--line-2);
+}
+.va-img-ph img { display: block; width: 100%; height: 100%; object-fit: cover; max-width: 100%; }
+.va-pl { position: absolute; right: -14px; bottom: -20px; padding: 14px 18px; width: 210px; }
+.va-pl__label, .va-pl__value, .va-pl__meta {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+}
+.va-pl__label { font-size: 12px; color: var(--muted-2); }
+.va-pl__value { font-size: 24px; font-weight: 700; margin-top: 4px; color: var(--up); line-height: 1.6; }
+.va-pl__meta { font-size: 12px; color: var(--muted); }
+
+/* Steps */
+.va-steps__title { font-size: clamp(28px, 4vw, 42px); text-align: center; margin-bottom: 48px; }
+.va-steps__title span {
+    background: linear-gradient(120deg, var(--accent-2), #4edf8e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.va-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px; }
+.va-step {
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    border-radius: 20px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all .24s ease;
+}
+.va-step:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .15); box-shadow: 0 10px 30px rgba(0, 0, 0, .2); }
+.va-step__num-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+.va-step__num { font-family: 'Sora', sans-serif; font-size: 38px; font-weight: 800; line-height: 1; color: var(--text); opacity: .9; }
+.va-step__step { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--muted-2); text-transform: uppercase; }
+.va-step__mock {
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+    overflow: visible;
+}
+.va-step__dots { position: absolute; top: 8px; left: 12px; display: flex; gap: 4px; }
+.va-step__dots span { width: 5px; height: 5px; border-radius: 50%; background: rgba(255, 255, 255, .2); }
+.va-step__row { display: flex; align-items: center; gap: 10px; width: 100%; }
+.va-step__ico {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .06);
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.va-step__ico svg { width: 16px; height: 16px; }
+.va-step__label { font-size: 12px; font-weight: 600; color: var(--muted-2); }
+.va-step__pill {
+    position: absolute;
+    bottom: -10px;
+    right: -8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: linear-gradient(90deg, var(--accent-2) 0%, #4edf8e 100%);
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #030912;
+    box-shadow: 0 4px 12px rgba(44, 212, 230, .3);
+}
+.va-step__pill svg { width: 10px; height: 10px; stroke-width: 3px; display: block; }
+.va-step h3 { font-size: 19px; margin-bottom: 8px; }
+.va-step p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.va-steps__cta { display: flex; justify-content: center; margin-top: 40px; }
+.va-steps__btn { padding: 16px 36px; gap: 10px; }
+.va-steps__btn svg { width: 16px; height: 16px; }
+
+/* CTA */
+.va-cta { padding: clamp(36px, 5vw, 64px); text-align: center; position: relative; overflow: hidden; }
+.va-cta__glow {
+    position: absolute;
+    inset: auto auto -40% 50%;
+    transform: translateX(-50%);
+    width: 520px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(46, 123, 255, .4), transparent 65%);
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+}
+.va-cta__body { position: relative; z-index: 1; }
+.va-cta__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-cta__text { color: var(--muted); margin: 18px auto 0 !important; max-width: 560px; font-size: 18px; line-height: 1.6; }
+.va-cta__actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+/* ============================================================
+   INNER PAGES — page hero, about-page blocks (values from ventureasiamarkets.com/about)
+   ============================================================ */
+.va-page-hero {
+    position: relative;
+    padding: clamp(64px, 8vw, 120px) 0 clamp(40px, 5vw, 70px);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: .1px;
+    color: var(--text);
+}
+.va-page-hero p { margin: 0; }
+.va-breadcrumb {
+    font-size: 13px;
+    color: var(--muted-2);
+    margin-bottom: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: .04em;
+}
+.va-breadcrumb a { color: inherit; text-decoration: none; }
+.va-breadcrumb a:hover { color: var(--accent-2); }
+.va-page-hero__body { max-width: 820px; }
+.va-page-hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-lead { color: var(--muted); font-size: clamp(17px, 1.7vw, 21px); margin-top: 22px !important; max-width: 640px; line-height: 1.6; }
+
+.va-h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0;
+    color: var(--text);
+    text-wrap: balance;
+}
+.va-body-text { color: var(--muted); font-size: 17px; line-height: 1.6; }
+.va-trust--about { padding: 34px clamp(22px, 4vw, 46px); }
+.va-section--bordered { border-top: 1px solid var(--line-2); }
+
+.va-split--start { align-items: start; }
+.va-split--resources { grid-template-columns: .85fr 1.15fr; }
+.va-sticky-col { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 20px; }
+.va-eight { position: relative; width: 100%; height: 320px; display: flex; align-items: center; justify-content: center; margin-top: 20px; }
+.va-eight__glow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+    opacity: .15;
+    filter: blur(30px);
+}
+.va-eight svg { position: relative; }
+.va-adv-list { display: flex; flex-direction: column; gap: 16px; }
+.va-adv { display: flex; gap: 20px; padding: 24px 28px; align-items: flex-start; }
+.va-adv__ico { width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0; margin-bottom: 0; }
+.va-adv__ico svg { width: 22px; height: 22px; }
+.va-adv__title {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0 0 6px;
+    color: var(--text);
+}
+.va-adv__text { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+
+.va-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.va-details { margin-top: 34px; align-items: start; }
+.va-details__rows { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
+.va-details__row { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.va-details__row:last-child { padding-bottom: 0; border-bottom: 0; }
+.va-details__key { color: var(--muted); font-size: 14px; }
+.va-details__val { text-align: right; font-weight: 600; }
+.va-details__note { color: var(--muted); font-weight: 400; font-size: 13px; }
+.va-details__list { margin: 14px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; line-height: 1.9; list-style: disc; }
+.va-details__list li { color: var(--muted); }
+
+.va-talk { padding: clamp(32px, 4vw, 52px); text-align: center; }
+.va-talk__text { color: var(--muted); margin: 14px auto 0 !important; max-width: 520px; line-height: 1.6; }
+
+/* ============================================================
+   LEGAL DOCUMENTS (values from ventureasiamarkets.com/legal/documents)
+   ============================================================ */
+.va-legal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: start; }
+.va-legal__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .08) transparent;
+}
+.va-legal__sidebar::-webkit-scrollbar { width: 4px; }
+.va-legal__sidebar::-webkit-scrollbar-track { background: transparent; }
+.va-legal__sidebar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .08); border-radius: 4px; }
+.va-legal__sidebar-head { padding: 8px 12px 14px; border-bottom: 1px solid var(--line-2); margin-bottom: 8px; }
+.va-legal__eyebrow { font-size: 11px; letter-spacing: .1em; margin-bottom: 18px; }
+.va-legal__sidebar-title {
+    margin: 4px 0 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: .1px;
+    color: var(--text);
+}
+.va-legal__tab {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid var(--line-2);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all .2s ease;
+    width: 100%;
+    font: inherit;
+}
+.va-legal__tab-ind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--bg-2);
+    border-radius: 50%;
+    color: var(--accent-2);
+    flex-shrink: 0;
+    transition: all .2s ease;
+}
+.va-legal__tab-ind svg { width: 10px; height: 10px; transition: transform .2s ease; display: block; }
+.va-legal__tab-text { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 600; line-height: normal; color: var(--muted); transition: all .2s ease; }
+.va-legal__tab:hover { background: rgba(255, 255, 255, .04); border-color: rgba(255, 255, 255, .15); }
+.va-legal__tab:hover .va-legal__tab-ind { background: rgba(44, 212, 230, .1); }
+.va-legal__tab:hover .va-legal__tab-ind svg { transform: translate(1px); }
+.va-legal__tab:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.va-legal__tab.is-active { background: rgba(44, 212, 230, .05); border-color: var(--accent-2); }
+.va-legal__tab.is-active .va-legal__tab-ind { background: var(--accent-2); color: var(--bg-2); }
+.va-legal__tab.is-active .va-legal__tab-text { color: var(--text); }
+
+.va-legal__content { grid-column: span 2; width: 100%; padding: clamp(28px, 4vw, 44px); }
+.va-legal__panel[hidden] { display: none; }
+.va-legal__intro { border-radius: 16px; padding: 28px 32px; margin-bottom: 32px; }
+.va-legal__intro-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.va-legal__intro-ico { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.va-legal__intro-title {
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: var(--text);
+}
+.va-legal__intro-sub { margin: 3px 0 0 !important; font-size: 13px; line-height: 1.65; color: var(--muted); }
+.va-legal__intro-text { margin: 0 !important; font-size: 15px; line-height: 1.75; color: var(--text); }
+.va-legal__item {
+    display: flex;
+    gap: 18px;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid var(--line);
+    border-left: 3px solid;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: background .2s;
+}
+.va-legal__item:hover { background: rgba(255, 255, 255, .04); }
+.va-legal__item-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+    opacity: .8;
+    min-width: 28px;
+    padding-top: 2px;
+    letter-spacing: .05em;
+}
+.va-legal__item-body { flex: 1; }
+.va-legal__item-title {
+    margin: 0 0 6px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: .1px;
+    color: var(--text);
+}
+.va-legal__item-text { margin: 0 !important; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.va-legal-steps { background: linear-gradient(180deg, transparent, rgba(8, 26, 48, .15), transparent); }
+
+/* ============================================================
+   CONTACT + HELP CENTRE (values from ventureasiamarkets.com/contact, /resources/help)
+   ============================================================ */
+.va-split--contact { grid-template-columns: 1fr 1.1fr; }
+.va-contact-line { display: flex; gap: 14px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.va-contact-line:last-child { border-bottom: 0; }
+.va-ci {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, rgba(46, 123, 255, .2), rgba(44, 212, 230, .1));
+    border: 1px solid var(--line-2);
+}
+.va-ci svg { width: 20px; height: 20px; color: var(--accent-2); }
+.va-contact-line__key { font-size: 13px; color: var(--muted-2); }
+.va-contact-line__link, .va-contact-line__link:hover { font-weight: 600; color: var(--accent-2); }
+.va-contact-line__val { font-weight: 600; color: var(--text); }
+.va-card-billing { margin-top: 20px; background: linear-gradient(135deg, rgba(46, 123, 255, .1), rgba(44, 212, 230, .04)); }
+.va-card-billing__badges { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.va-pay-badge { height: 34px; padding: 0 12px; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; }
+.va-pay-badge svg { height: 20px; width: auto; display: block; }
+.va-card-billing__text { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.va-card-billing__text strong { color: var(--text); }
+
+.va-form__intro { color: var(--muted); font-size: 14px; margin-bottom: 20px !important; line-height: 1.6; }
+.va-form__row { gap: 16px; }
+.va-field { display: flex; flex-direction: column; gap: 8px; }
+.va-field label { font-size: 13.5px; font-weight: 600; color: var(--muted); line-height: 1.6; margin: 0; }
+.va-field input, .va-field select, .va-field textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border-radius: 11px;
+    border: 1px solid var(--line-2);
+    background: rgba(255, 255, 255, .03);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    line-height: normal;
+    height: auto;
+    box-shadow: none;
+    transition: .18s;
+}
+.va-field input:focus, .va-field select:focus, .va-field textarea:focus { outline: none; border-color: var(--accent); background: rgba(46, 123, 255, .06); }
+.va-field select option { background: var(--panel); color: var(--text); }
+.va-field textarea { resize: vertical; min-height: 120px; }
+.va-field__err { color: var(--down); font-size: 13px; }
+.va-form__agree { display: flex; gap: 10px; margin-top: 16px; align-items: flex-start; cursor: pointer; }
+.va-form__agree input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
+.va-form__agree span { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.va-form__agree a { color: var(--accent-2); }
+.va-form__submit { width: 100%; margin-top: 22px; }
+.va-form-ok, .va-form-err { padding: 16px 18px; border-radius: 12px; color: var(--text); font-size: 15px; margin-bottom: 20px; }
+.va-form-ok { background: rgba(31, 203, 139, .12); border: 1px solid rgba(31, 203, 139, .35); }
+.va-form-err { background: rgba(255, 93, 108, .12); border: 1px solid rgba(255, 93, 108, .35); }
+
+.va-help-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+.va-help-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-2);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all .2s ease;
+    text-align: center;
+    gap: 12px;
+    font: inherit;
+    color: inherit;
+}
+.va-help-tab svg { width: 32px; height: 32px; color: var(--accent-2); opacity: .8; transition: all .2s ease; }
+.va-help-tab span { font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.6; color: var(--muted); transition: all .2s ease; }
+.va-help-tab:hover { background: rgba(255, 255, 255, .02); border-color: rgba(255, 255, 255, .15); }
+.va-help-tab:hover svg { opacity: 1; transform: translateY(-2px); }
+.va-help-tab:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.va-help-tab.is-active { background: rgba(44, 212, 230, .05); border-color: var(--accent-2); }
+.va-help-tab.is-active svg { color: var(--accent-2); opacity: 1; }
+.va-help-tab.is-active span { color: var(--text); }
+
+.va-help-side { display: block; }
+.va-help-side__btn { margin-top: 24px; }
+.va-faqs { min-height: 300px; }
+.va-faqs__group { display: flex; flex-direction: column; gap: 8px; }
+.va-faqs__group[hidden] { display: none; }
+.va-faq {
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .3s ease;
+    margin-bottom: 12px;
+}
+.va-faq[open] { background: rgba(46, 123, 255, .05); border-color: rgba(46, 123, 255, .3); box-shadow: 0 4px 20px rgba(0, 0, 0, .15); }
+.va-faq summary {
+    padding: 20px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: 'Sora', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+    transition: color .2s ease;
+}
+.va-faq summary::-webkit-details-marker { display: none; }
+.va-faq summary:hover { color: var(--accent-2); }
+.va-faq summary::after {
+    content: "+";
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--accent-2);
+    transition: transform .25s ease;
+    display: inline-block;
+    line-height: 1;
+}
+.va-faq[open] summary::after { transform: rotate(45deg); }
+.va-faq__content { padding: 0 24px 20px; font-size: 15px; line-height: 1.6; color: var(--muted); animation: va-slide-down .25s ease-out; }
+.va-faq__content p { font-size: 15px; margin: 0; color: var(--muted); line-height: 1.6; }
+@keyframes va-slide-down { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1024px) {
+    .va-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .va-legal { grid-template-columns: 1fr; }
+    .va-legal__content { grid-column: span 1; }
+    .va-grid-3 { grid-template-columns: 1fr; }
+    .va-split, .va-split--resources, .va-split--contact { grid-template-columns: 1fr; gap: 40px; }
+    .va-sticky-col { position: static; }
+    .va-trust { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media (max-width: 720px) {
+    .va-section, .va-page-hero { font-size: 16px; }
+    .va-grid-2 { grid-template-columns: 1fr; }
+    .va-grid-4 { grid-template-columns: 1fr; }
+}
+@media (max-width: 991px) {
+    .va-steps { grid-template-columns: repeat(2, 1fr); }
+    .va-legal__sidebar { position: static; max-height: none; overflow-y: visible; }
+}
+@media (max-width: 568px) {
+    .va-steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .va-trust { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* Theme-wide p/li rules add extra letter-spacing and shrink sizes; keep the reference's values */
+.va-hero p, .va-section p, .va-section li, .va-page-hero p { letter-spacing: inherit; }
+.va-details__list { margin-bottom: 15px; }
+.va-feat-text.va-feat-text--spaced { margin-top: 12px !important; }
+.va-talk__text { font-size: 17px; }
+
+@media (max-width: 768px) {
+    .va-help-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+    .va-help-tabs { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   MARKET NEWS (values from ventureasiamarkets.com/resources/news)
+   ============================================================ */
+.va-news { padding: 24px; background: var(--panel); border: 1px solid var(--line-2); border-radius: var(--radius); width: 100%; }
+.va-news__tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.va-news__tab {
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-2);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: .1px;
+    transition: background .15s ease, color .15s ease;
+}
+.va-news__tab.is-active { background: var(--accent); color: #fff; font-weight: 600; }
+.va-news__tab:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.va-news__feed { width: 100%; min-height: 580px; }
+.va-news__feed iframe { color-scheme: light; }
+
+/* ============================================================
+   LEGAL POLICY PAGES — document body (values from ventureasiamarkets.com/legal/*)
+   ============================================================ */
+.va-doc-meta { font-size: 13.5px; color: var(--muted-2); font-family: 'IBM Plex Mono', monospace; }
+.va-page-hero .va-doc-meta { margin-top: 16px; }
+.va-page-hero--doc { padding-bottom: 0; }
+.va-page-hero--doc h1 { font-size: clamp(32px, 5vw, 52px); }
+.va-doc { max-width: 840px; }
+.va-doc h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    color: var(--text);
+    margin: 44px 0 14px;
+}
+.va-doc p, .va-doc li { color: var(--muted); font-size: 16px; line-height: 1.8; }
+.va-doc ul { padding-left: 20px; margin: 12px 0; list-style: disc; }
+.va-doc li { margin-bottom: 8px; }
+.va-doc strong { color: var(--text); font-weight: 700; }
+.va-doc a { color: var(--accent-2); }
+.va-doc a:hover { text-decoration: underline; }
+.va-callout {
+    border: 1px solid var(--line-2);
+    border-left: 3px solid var(--accent);
+    background: rgba(46, 123, 255, .06);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 22px 0;
+}
+.va-callout p { color: var(--text); font-size: 15px; }
+.va-callout--risk { border-left-color: var(--down); background: rgba(255, 93, 108, .07); }
+
+/* ============================================================
+   UNDER CONSTRUCTION (values from ventureasiamarkets.com/under-construction)
+   ============================================================ */
+.va-uc {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 60px;
+    overflow: hidden;
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: var(--text);
+}
+.va-uc__glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    max-width: 100%;
+    background: radial-gradient(circle, rgba(46, 123, 255, .15) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+.va-uc__inner { position: relative; z-index: 1; text-align: center; max-width: 640px; }
+.va-uc__art { display: flex; justify-content: center; align-items: center; animation: va-uc-float 6s ease-in-out infinite; }
+.va-uc__art img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    position: relative;
+    left: 50px;
+    filter: drop-shadow(0 10px 20px rgba(46, 123, 255, .2));
+}
+.va-uc__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(46, 123, 255, .1);
+    border: 1px solid rgba(46, 123, 255, .2);
+    padding: 6px 16px;
+    border-radius: 99px;
+    margin-bottom: 24px;
+}
+.va-uc__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); display: inline-block; animation: va-uc-pulse 2s infinite; }
+.va-uc__badge-text { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-2); }
+.va-uc h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    margin: 0 0 16px;
+    color: var(--text);
+}
+.va-uc__text { color: var(--muted); font-size: 17px; line-height: 1.6; margin: 0 0 32px; }
+.va-uc__actions { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+@keyframes va-uc-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes va-uc-pulse { 0% { transform: scale(.9); opacity: .6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(.9); opacity: .6; } }
+@media (max-width: 480px) { .va-uc__art img { left: 0; } }

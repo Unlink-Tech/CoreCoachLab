@@ -3,237 +3,138 @@
 @section('title','Contact Us')
 @section('main-content')
 
-<x-breadcrumb
-    :title="__('common.header.contact')"
-    :routes="[
-        ['label' => __('common.header.contact')]
-    ]"
-/>
+{{-- Layout and content mirror ventureasiamarkets.com/contact. Styles: public/assets/css/home-hero.css --}}
+@php
+    $vaTopics = ['Opening an account', 'Markets & instruments', 'Funding & withdrawals', 'Platform & technical', 'Refunds & cancellations', 'Something else'];
+@endphp
 
-<section class="ct-hero">
-    <span class="ct-hero__blob ct-hero__blob--a" aria-hidden="true"></span>
-    <span class="ct-hero__blob ct-hero__blob--b" aria-hidden="true"></span>
-
-    <div class="container ct-hero__inner">
-        {{-- Heading --}}
-        <div class="ct-hero__heading text-center">
-            <span class="ct-eyebrow">
-                <span class="ct-eyebrow__dot" aria-hidden="true"></span>
-                {{ __('common.get_in_touch') }}
-            </span>
-            <h1 class="ct-hero__title">{{ __('common.contact_header') }}</h1>
-            <p class="ct-hero__lede">{{ __('common.contact.panel_description') }}</p>
-            <span class="ct-hero__rule" aria-hidden="true"></span>
-        </div>
-
-        {{-- Contact info cards --}}
-        <div class="ct-info-grid">
-            <div class="ct-info">
-                <span class="ct-info__icon"><i class="fas fa-building"></i></span>
-                <span class="ct-info__label">{{ __('common.company') }}</span>
-                <span class="ct-info__value">{{ $misc['Company Name'] ?? __('common.company_name') }}</span>
-            </div>
-            <div class="ct-info">
-                <span class="ct-info__icon"><i class="fas fa-envelope"></i></span>
-                <span class="ct-info__label">{{ __('common.email') }}</span>
-                <a href="mailto:{{ $misc['Company Email'] ?? __('common.company_email') }}" class="ct-info__value ct-info__value--link">
-                    {{ $misc['Company Email'] ?? __('common.company_email') }}
-                </a>
-            </div>
-            <div class="ct-info">
-                <span class="ct-info__icon"><i class="fas fa-map-marker-alt"></i></span>
-                <span class="ct-info__label">{{ __('common.our_location') }}</span>
-                <span class="ct-info__value">{{ $misc['Company Address'] ?? __('common.company_Address') }}</span>
-            </div>
+{{-- Page hero --}}
+<section class="va-page-hero" style="padding-bottom: 0;">
+    <div class="va-hero__container">
+        <div class="va-breadcrumb" data-va-reveal><a href="{{ route('home') }}">Home</a> / Contact</div>
+        <div style="max-width: 720px;">
+            <h1 data-va-reveal>Talk to us.</h1>
+            <p class="va-lead" data-va-reveal>Questions about markets, accounts or funding? Our multilingual team is available 24 hours a day, five days a week.</p>
         </div>
     </div>
 </section>
 
-<section class="ct-form-section">
-    <span class="ct-form-section__blob" aria-hidden="true"></span>
+<section class="va-section">
+    <div class="va-hero__container va-split va-split--start va-split--contact">
 
-    <div class="auto-container ct-form-section__inner">
-        <div class="ct-form-heading text-center">
-            <span class="ct-eyebrow">
-                <span class="ct-eyebrow__dot" aria-hidden="true"></span>
-                {{ __('common.contact.form_title') }}
-            </span>
-            <h2 class="ct-form-heading__title">{{ __('common.contact.form_title') }}</h2>
-            <p class="ct-form-heading__sub">{{ __('common.contact.form_subtitle') }}</p>
+        {{-- Contact details --}}
+        <div data-va-reveal>
+            <div class="va-card">
+                <h3 class="va-feat-title">Customer service</h3>
+                <div class="va-contact-line">
+                    <span class="va-ci">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                    </span>
+                    <div>
+                        <div class="va-contact-line__key">Email</div>
+                        <a class="va-contact-line__link" href="mailto:support@ventureasiamarkets.com">support@ventureasiamarkets.com</a>
+                    </div>
+                </div>
+                <div class="va-contact-line">
+                    <span class="va-ci">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                    </span>
+                    <div>
+                        <div class="va-contact-line__key">Permanent establishment</div>
+                        <div class="va-contact-line__val">Venture Asia,<br>3 Emerald Park, Trianon, Quatre Bornes, 72257, Mauritius.</div>
+                    </div>
+                </div>
+                <div class="va-contact-line">
+                    <span class="va-ci">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    </span>
+                    <div>
+                        <div class="va-contact-line__key">Support hours</div>
+                        <div class="va-contact-line__val">24 hours / 5 days (Mon–Fri)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="va-card va-card-billing">
+                <div class="va-card-billing__badges">
+                    <span class="va-pay-badge">
+                        <svg viewBox="0 0 48 16" xmlns="http://www.w3.org/2000/svg" aria-label="Visa"><text x="0" y="13" font-family="Arial, sans-serif" font-weight="700" font-style="italic" font-size="15" fill="#1A1F71" style="font-size: 15px">VISA</text></svg>
+                    </span>
+                    <span class="va-pay-badge">
+                        <svg viewBox="0 0 40 24" xmlns="http://www.w3.org/2000/svg" aria-label="Mastercard"><circle cx="15" cy="12" r="9" fill="#EB001B"/><circle cx="25" cy="12" r="9" fill="#F79E1B"/><path d="M20 5.2a9 9 0 000 13.6 9 9 0 000-13.6z" fill="#FF5F00"/></svg>
+                    </span>
+                </div>
+                <p class="va-card-billing__text">
+                    Card transactions are billed by <strong>Venture Asia</strong> (merchant outlet country: <strong>Republic of Mauritius</strong>) and processed in <strong>US Dollars (USD, $)</strong> over a secure, encrypted connection.
+                </p>
+            </div>
         </div>
 
-        <div class="ct-form-card">
-            <form method="POST" action="{{ route('contact.send') }}" id="contactform" onsubmit="return handleSubmit(event)" class="ct-form">
+        {{-- Message form --}}
+        <div data-va-reveal>
+            <form class="va-card va-form" id="contact-form" method="POST" action="{{ route('contact.send') }}" novalidate>
                 @csrf
-                <div class="ct-form__row">
-                    {{-- Name --}}
-                    <div class="ct-form__field">
-                        <label class="ct-form__label" for="name">
-                            <i class="fas fa-user"></i>{{ __('common.name') }}
-                        </label>
-                        <input type="text" name="name" id="name"
-                               placeholder="{{ __('common.contact.field_name_placeholder') }}"
-                               class="premium-form-input ct-form__input @error('name') is-invalid @enderror">
-                        @error('name')
-                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
-                        @enderror
-                    </div>
+                <h3 class="va-feat-title" style="margin-bottom: 6px;">Send us a message</h3>
+                <p class="va-form__intro">We'll get back to you within one business day.</p>
 
-                    {{-- Email --}}
-                    <div class="ct-form__field">
-                        <label class="ct-form__label" for="email">
-                            <i class="fas fa-envelope"></i>{{ __('common.email') }}
-                        </label>
-                        <input type="email" name="email" id="email"
-                               placeholder="{{ __('common.contact.field_email_placeholder') }}"
-                               class="premium-form-input ct-form__input @error('email') is-invalid @enderror">
-                        @error('email')
-                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{$message}}</span>
-                        @enderror
-                    </div>
-                </div>
-
-                {{-- Subject --}}
-                <div class="ct-form__field">
-                    <label class="ct-form__label" for="subject">
-                        <i class="fas fa-tag"></i>{{ __('common.your_subject') }}
-                    </label>
-                    <input type="text" name="subject" id="subject"
-                           placeholder="{{ __('common.contact.field_subject_placeholder') }}"
-                           class="premium-form-input ct-form__input">
-                </div>
-
-                {{-- Message --}}
-                <div class="ct-form__field">
-                    <label class="ct-form__label" for="message">
-                        <i class="fas fa-comment-dots"></i>{{ __('common.your_message') }}
-                    </label>
-                    <textarea name="message" id="message" rows="6"
-                              placeholder="{{ __('common.contact.field_message_placeholder') }}"
-                              class="premium-form-input ct-form__input ct-form__textarea"></textarea>
-                </div>
-
-                {{-- Captcha --}}
-                @if(env('CAPTCHA_ENABLED', true))
-                    <div class="ct-form__field">
-                        <label class="ct-form__label" for="captcha">
-                            <i class="fas fa-shield-alt"></i>{{ __('common.security_verification') }}
-                        </label>
-                        <div class="ct-form__captcha">
-                            <input type="text" id="captcha" name="captcha" autocomplete="off"
-                                   placeholder="{{ __('common.fill_captcha') }}"
-                                   class="premium-form-input ct-form__input">
-                            <div class="ct-form__captcha-img">@captcha</div>
-                        </div>
-                        @error('captcha')
-                            <span class="ct-form__error"><i class="fas fa-info-circle"></i> {{ __('common.captcha_error') }}</span>
-                        @enderror
-                    </div>
+                @if(session('success'))
+                    <div class="va-form-ok" role="status">Thanks! Your message has been noted. Our team will be in touch shortly.</div>
+                @endif
+                @if(session('error'))
+                    <div class="va-form-err" role="alert">{{ session('error') }}</div>
                 @endif
 
-                {{-- Submit --}}
-                <button type="submit" class="ct-form__submit">
-                    <span>{{ __('common.send_message') }}</span>
-                    <i class="fas fa-paper-plane"></i>
+                <div class="va-grid va-grid-2 va-form__row" style="margin-top: 4px;">
+                    <div class="va-field">
+                        <label for="fn">First name</label>
+                        <input id="fn" name="first_name" type="text" value="{{ old('first_name') }}" autocomplete="given-name" required>
+                        @error('first_name')<span class="va-field__err">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="va-field">
+                        <label for="ln">Last name</label>
+                        <input id="ln" name="last_name" type="text" value="{{ old('last_name') }}" autocomplete="family-name" required>
+                        @error('last_name')<span class="va-field__err">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+                <div class="va-grid va-grid-2 va-form__row" style="margin-top: 16px;">
+                    <div class="va-field">
+                        <label for="em">Email</label>
+                        <input id="em" name="email" type="email" value="{{ old('email') }}" autocomplete="email" required>
+                        @error('email')<span class="va-field__err">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="va-field">
+                        <label for="ph">Phone (optional)</label>
+                        <input id="ph" name="phone" type="tel" value="{{ old('phone') }}" autocomplete="tel">
+                        @error('phone')<span class="va-field__err">{{ $message }}</span>@enderror
+                    </div>
+                </div>
+                <div class="va-field" style="margin-top: 16px;">
+                    <label for="topic">Topic</label>
+                    <select id="topic" name="topic">
+                        @foreach($vaTopics as $topic)
+                            <option {{ old('topic', $vaTopics[0]) === $topic ? 'selected' : '' }}>{{ $topic }}</option>
+                        @endforeach
+                    </select>
+                    @error('topic')<span class="va-field__err">{{ $message }}</span>@enderror
+                </div>
+                <div class="va-field" style="margin-top: 16px;">
+                    <label for="msg">Message</label>
+                    <textarea id="msg" name="message" placeholder="How can we help?" required>{{ old('message') }}</textarea>
+                    @error('message')<span class="va-field__err">{{ $message }}</span>@enderror
+                </div>
+                <label class="va-form__agree">
+                    <input type="checkbox" id="agree" name="agree" value="1" {{ old('agree') ? 'checked' : '' }} required>
+                    <span>I agree to the processing of my data in line with the <a href="{{ route('legal.documents') }}#privacy">Privacy Policy</a> and understand trading carries risk.</span>
+                </label>
+                @error('agree')<span class="va-field__err">{{ $message }}</span>@enderror
+                <button class="va-btn va-btn--primary va-btn--lg va-form__submit" type="submit">
+                    Send message
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </button>
             </form>
         </div>
+
     </div>
 </section>
 
 @endsection
-
-
-@push('scripts')
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        // Get form values
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        // Clear previous error messages
-        document.querySelectorAll('.custom-error-message').forEach(el => el.remove());
-        document.querySelectorAll('.premium-form-input').forEach(el => el.classList.remove('is-invalid'));
-
-        let hasErrors = false;
-        const errors = [];
-
-        // Validation checks
-        if (!name) {
-            errors.push({ field: 'name', message: '{{ __('common.contact.validation_name_required') }}' });
-            hasErrors = true;
-        }
-
-        if (!email) {
-            errors.push({ field: 'email', message: '{{ __('common.contact.validation_email_required') }}' });
-            hasErrors = true;
-        } else if (!isValidEmail(email)) {
-            errors.push({ field: 'email', message: '{{ __('common.contact.validation_email_invalid') }}' });
-            hasErrors = true;
-        }
-
-        if (!subject) {
-            errors.push({ field: 'subject', message: '{{ __('common.contact.validation_subject_required') }}' });
-            hasErrors = true;
-        }
-
-        if (!message) {
-            errors.push({ field: 'message', message: '{{ __('common.contact.validation_message_required') }}' });
-            hasErrors = true;
-        }
-
-        // Show error messages
-        if (hasErrors) {
-            errors.forEach(error => {
-                const field = document.getElementById(error.field);
-                if (field) {
-                    field.classList.add('is-invalid');
-                    const errorDiv = document.createElement('span');
-                    errorDiv.className = 'text-danger small mt-2 d-block custom-error-message';
-                    errorDiv.innerHTML = `<i class="fas fa-info-circle me-1"></i>${error.message}`;
-                    field.parentElement.appendChild(errorDiv);
-                }
-            });
-            return false;
-        }
-
-        // If no errors, submit the form
-        document.getElementById('contactform').submit();
-    }
-
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    // Add real-time validation
-    document.getElementById('name')?.addEventListener('change', function() {
-        this.classList.toggle('is-invalid', !this.value.trim());
-        const errorMsg = this.parentElement.querySelector('.custom-error-message');
-        if (errorMsg && this.value.trim()) errorMsg.remove();
-    });
-
-    document.getElementById('email')?.addEventListener('change', function() {
-        const isValid = this.value.trim() && isValidEmail(this.value.trim());
-        this.classList.toggle('is-invalid', !isValid);
-        const errorMsg = this.parentElement.querySelector('.custom-error-message');
-        if (errorMsg && isValid) errorMsg.remove();
-    });
-
-    document.getElementById('subject')?.addEventListener('change', function() {
-        this.classList.toggle('is-invalid', !this.value.trim());
-        const errorMsg = this.parentElement.querySelector('.custom-error-message');
-        if (errorMsg && this.value.trim()) errorMsg.remove();
-    });
-
-    document.getElementById('message')?.addEventListener('change', function() {
-        this.classList.toggle('is-invalid', !this.value.trim());
-        const errorMsg = this.parentElement.querySelector('.custom-error-message');
-        if (errorMsg && this.value.trim()) errorMsg.remove();
-    });
-</script>
-@endpush

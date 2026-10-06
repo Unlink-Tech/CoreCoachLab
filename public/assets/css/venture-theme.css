@@ -1,0 +1,211 @@
+/* ============================================================
+   VENTURE ASIA — DESIGN TOKENS
+   Loaded after every other frontend stylesheet so these win.
+   Fonts are loaded via <link> in frontend/layouts/head.blade.php.
+   ============================================================ */
+
+:root {
+    --bg: #05101F;
+    --bg-2: #081A30;
+    --panel: #0C2138;
+    --panel-2: #102A45;
+    --panel-3: #15324F;
+    --line: rgba(140, 178, 224, .14);
+    --line-2: rgba(140, 178, 224, .24);
+    --text: #EAF2FC;
+    --muted: #A4BAD6;
+    --muted-2: #6E87A8;
+    --accent: #2E7BFF;
+    --accent-2: #2CD4E6;
+    --accent-ink: #EAF4FF;
+    --gold: #E7BE7A;
+    --up: #1FCB8B;
+    --down: #FF5D6C;
+    --glow-blue: 0 0 0 1px rgba(46, 123, 255, .35), 0 18px 50px -12px rgba(46, 123, 255, .45);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+    --container: 1240px;
+    --pad: clamp(20px, 5vw, 64px);
+    --shadow: 0 24px 60px -24px rgba(0, 0, 0, .65);
+    --shadow-sm: 0 10px 30px -12px rgba(0, 0, 0, .55);
+
+    --font-display: 'Sora', 'Manrope', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ============================================================
+   LEGACY TOKEN REMAP
+   The older stylesheets (theme.css, global.css, style.css, app.css)
+   read these variables; pointing them at the palette above
+   retheme those files without editing them.
+   ============================================================ */
+:root {
+    /* theme.css — drives most of app.css */
+    --color-ink: var(--text);
+    --color-paper: var(--bg);
+    --color-cream: var(--bg-2);
+    --color-stone: var(--line-2);
+    --color-pencil: var(--muted);
+    --color-graphite: var(--muted-2);
+    --color-charcoal: #C9D7EA;
+    --color-ember-red: var(--accent);
+    --color-deep-ember: #1F63E0;
+    --color-cobalt-link: var(--accent-2);
+    --color-teal-dusk: var(--accent-2);
+    --color-mint-wash: var(--panel);
+    --color-sky-wash: var(--panel-2);
+    --color-forest: var(--up);
+    --color-lighter: var(--bg-2);
+    --surface-paper-canvas: var(--bg);
+    --surface-cream-wash: var(--panel);
+    --surface-tinted-wave: var(--bg-2);
+    --surface-card-surface: var(--panel);
+    --font-inter: var(--font-body);
+    --font-graphik: var(--font-display);
+    --font-caecilia: var(--font-body);
+    --font-shantell-sans: var(--font-display);
+
+    /* global.css */
+    --primary: var(--accent);
+    --secondary: #1F63E0;
+    --background-light: var(--bg-2);
+    --dark-blue: var(--bg);
+    --text-dark: var(--text);
+    --text-light: var(--muted);
+    --border-light: var(--line-2);
+    --bg-light: var(--bg-2);
+    --font-family-base: var(--font-body);
+    --font-family-heading: var(--font-display);
+
+    /* style.css */
+    --theme-color1: var(--accent);
+    --theme-color2: var(--accent);
+    --theme-color3: var(--panel-2);
+    --theme-color4: var(--panel);
+    --theme-color5: var(--accent-2);
+    --theme-color-bg: var(--bg-2);
+    --text-color: var(--muted);
+    --text-color1: var(--muted);
+    --text-color2: var(--accent);
+    --headings-color: var(--text);
+    --link-color: var(--accent-2);
+    --link-hover-color: var(--accent);
+    --bcolor: var(--muted-2);
+    --bcolor1: var(--line-2);
+    --theme-light-background: var(--bg-2);
+    --theme-black: var(--bg);
+    --text-font: var(--font-body);
+    --title-font: var(--font-display);
+    --style-font: var(--font-body);
+    --hd-brand: var(--accent);
+    --hd-brand-soft: rgba(46, 123, 255, .10);
+    --hd-brand-glow: rgba(46, 123, 255, .35);
+    --modern-primary: var(--accent);
+    --modern-bg-gradient: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+    --modern-glass-bg: rgba(12, 33, 56, .6);
+    --modern-glass-border: var(--line-2);
+    --modern-text-dark: var(--text);
+    --modern-text-muted: var(--muted);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html { color-scheme: dark; }
+body {
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(1200px 700px at 78% -8%, rgba(46, 123, 255, .20), transparent 60%),
+        radial-gradient(900px 600px at 8% 4%, rgba(44, 212, 230, .12), transparent 55%),
+        linear-gradient(180deg, #05101F 0%, #050D18 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Manrope', system-ui, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+}
+code, kbd, pre, samp { font-family: var(--font-mono); }
+::selection { background: rgba(46, 123, 255, .35); color: var(--text); }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--panel-3); border-color: var(--bg-2); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); box-shadow: none; }
+
+/* ============================================================
+   COMPONENT OVERRIDES
+   Sections that hardcode light colours instead of using tokens.
+   ============================================================ */
+
+/* Bootstrap surfaces & forms */
+.card, .modern-card {
+    background-color: var(--panel) !important;
+    border-color: var(--line) !important;
+    color: var(--text);
+}
+.form-control, .form-select, .premium-form-input, .premium-form-input:focus,
+.premium-form-input:not(:placeholder-shown) {
+    background-color: var(--bg-2) !important;
+    border-color: var(--line-2) !important;
+    color: var(--text) !important;
+}
+.form-control:focus, .form-select:focus, .premium-form-input:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(46, 123, 255, .2) !important;
+}
+.form-control::placeholder, .premium-form-input::placeholder { color: var(--muted-2) !important; }
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-text-fill-color: var(--text);
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-2) inset;
+}
+.accordion-item, .accordion-header, .accordion-button, .accordion-body {
+    background-color: var(--panel) !important;
+    color: var(--text) !important;
+    border-color: var(--line) !important;
+}
+.accordion-button:not(.collapsed) { background-color: var(--panel-2) !important; box-shadow: none !important; }
+.accordion-button::after { filter: invert(1) brightness(1.4); }
+.faq-section, .prduct-info { background-color: var(--bg) !important; }
+
+/* Home hero */
+.artify-hero--arch__frame { background: var(--panel-2); }
+.artify-hero--arch__title-serif { color: var(--text); }
+.artify-hero--arch__tagline-text { color: var(--muted); }
+.artify-hero--arch__desc { color: var(--muted); }
+.artify-hero--arch__btn--secondary { color: var(--text); border-color: var(--line-2); }
+.artify-hero--arch__btn--secondary:hover { background: var(--panel-2); color: var(--text); }
+
+/* Course / product grid */
+.pgrid__card { background: var(--panel); border-color: var(--line); }
+.pgrid-section__sub, .pgrid__summary { color: var(--muted); }
+.pgrid__enroll { filter: brightness(1.25); }
+
+/* About blocks */
+.about-info--new__title, .about-info--new__feat-title, .abt-why__title { color: var(--text); }
+.abt-why__lede { color: var(--muted); }
+.abt-pillars, .abt-why { background: var(--bg-2); }
+
+/* Points top-up calculator */
+.topup-studio__field-label, .topup-studio__break-label { color: var(--muted) !important; }
+
+/* Policy / legal pages */
+.doc-section { background-color: var(--bg); }
+.doc-sheet, .doc-rail-inner { background: var(--panel); border-color: var(--line); }
+.doc-print-btn { background: var(--panel-2); color: var(--text); }
+.doc-print-btn:hover { background: var(--accent); color: var(--accent-ink); }
+.doc-chip { color: var(--accent-2); background: rgba(44, 212, 230, .12); }
+.doc-rail-title, .doc-meta-value { color: var(--text); }
+.doc-meta-label, .doc-rail-note { color: var(--muted-2); }
+.policy-rich-text, .policy-rich-text p, .policy-rich-text li { color: var(--muted); }
+.policy-rich-text h1, .policy-rich-text h2, .policy-rich-text h3, .policy-rich-text h4 { color: var(--text); }
+
+/* Bootstrap colour utilities used in Blade templates */
+.text-dark, .text-black { color: var(--text) !important; }
+.text-muted, .text-secondary { color: var(--muted) !important; }
+.bg-white, .bg-light { background-color: var(--panel) !important; }
+.border-light { border-color: var(--line) !important; }
+.btn-light { background-color: var(--panel-2) !important; border-color: var(--line-2) !important; color: var(--text) !important; }
+.table { --bs-table-bg: transparent; --bs-table-color: var(--text); --bs-table-border-color: var(--line); color: var(--text); }
+.table-light { --bs-table-bg: var(--panel-2); --bs-table-color: var(--text); }
+.policy-rich-text strong, .policy-rich-text b { color: var(--text); }

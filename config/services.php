@@ -45,4 +45,8 @@ return [
         'redirect' => 'http://localhost:8000/login/facebook/callback',
      ],
 
+    // Hosted payment page opened by the deposit form on /deposits.
+    // The default is the (test) checkout used by ventureasiamarkets.com; set DEPOSIT_CHECKOUT_URL for live.
+    'deposit_checkout_url' => env('DEPOSIT_CHECKOUT_URL', 'https://checkout-dev.key2payment.com/HostedPaymentPage/co7xhjI3'),
+
 ];

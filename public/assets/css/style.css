@@ -1380,7 +1380,7 @@ li.current-page i
     color: #ffffff;
     border-radius: 50px;
     z-index: 1;
-    background: var(--modern-text-dark);
+    background: var(--accent);
     -webkit-transition: all 300ms ease;
     transition: all 300ms ease;
 }
@@ -9146,7 +9146,7 @@ Page Title
   background: var(--theme-color2);
 }
 .course-sidebar .course-sidebar-single-contact-box .icon:hover {
-  background-color: var(--headings-color);
+  background-color: var(--accent);
 }
 .course-sidebar .course-sidebar-single-contact-box .icon:hover span::before {
   color: #fff;
@@ -9728,7 +9728,7 @@ Page Title
   background: var(--theme-color2);
 }
 .service-sidebar .service-sidebar-single-contact-box .icon:hover {
-  background-color: var(--headings-color);
+  background-color: var(--accent);
 }
 .service-sidebar .service-sidebar-single-contact-box .icon:hover span::before {
   color: #fff;
@@ -13973,7 +13973,7 @@ ul.tl-breadcrumb-nav.d-flex {
 }
 
 .modern-btn-outline:hover {
-    background: var(--modern-text-dark);
+    background: var(--accent);
     color: #fff !important;
 }
 
@@ -14317,7 +14317,7 @@ ul.tl-breadcrumb-nav.d-flex {
     width: 50px;
     height: 50px;
     border-radius: 12px;
-    background: var(--modern-text-dark);
+    background: var(--accent);
     color: #fff;
     transition: all 0.3s ease;
 }

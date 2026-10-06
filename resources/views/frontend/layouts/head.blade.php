@@ -8,10 +8,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 	<!-- Meta: Title & Description -->
-	<title>@yield('title', 'Core Coach Lab - Online Art Classes & Digital Illustration Courses')</title>
-	<meta name="title" content="Core Coach Lab - Professional Online Art Courses">
+	<title>@yield('title', 'Venture Asia - Trade Forex, Indices, Commodities & Shares')</title>
+	<meta name="title" content="Venture Asia - Trade Forex, Indices, Commodities &amp; Shares">
 	<meta name="description"
-		content="Learn professional art skills at Core Coach Lab. Explore online courses in digital illustration, traditional fine arts, character design, graphic design, and advanced drawing techniques.">
+		content="Venture Asia is a multi-asset broker offering CFD trading on forex, indices, commodities and shares with deep liquidity, fast execution and 24/5 support.">
 	<meta name="keywords"
 		content="online art classes, digital illustration, character design, graphic design, drawing courses, painting tutorials, concept art, animation design, artistic education, professional art training">
 	<meta name="author" content="Core Coach Lab">
@@ -55,7 +55,7 @@
 
 	<!-- Stylesheets: Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		integrity="sha512-iecdLmaskl7CVJkEZSMUkrQ6usKu8zIstOWilQLyUChqkZ1DywcksPfdSV1XJ9FSUQTcnWEk5Zr2v+n7Pp1/0A=="
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Stylesheets: Flag Icons (language selector) -->
@@ -63,6 +63,11 @@
 
 	<!-- Stylesheets: Google Fonts -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;475;500;600;625;700&display=swap"
+		rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
 		rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Caecilia:wght@400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400&display=swap" rel="stylesheet">
@@ -77,6 +82,12 @@
 	<link href="{{ url('assets/css/color-utilities.css') }}" rel="stylesheet">
 	<link href="{{ url('assets/css/theme.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url('assets/css/app.css') }}">
+	<link rel="stylesheet" href="{{ url('assets/css/header.css') }}">
+	<link rel="stylesheet" href="{{ url('assets/css/footer.css') }}">
+	<link rel="stylesheet" href="{{ url('assets/css/home-hero.css') }}">
+	<link rel="stylesheet" href="{{ url('assets/css/venture-theme.css') }}">
+	{{-- Scoped reference styles: must load after the theme (see top of file) --}}
+	<link rel="stylesheet" href="{{ url('assets/css/markets.css') }}">
 
 	<!-- Cookie Consent Scripts -->
 	@cookieconsentscripts

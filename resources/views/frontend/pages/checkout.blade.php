@@ -261,7 +261,7 @@
                                 <div class="kv-terms-row">
                                     <input type="checkbox" id="terms" name="terms" class="kv-checkbox">
                                     <label for="terms">
-                                        {{__('common.agree_terms_conditions')}} <a href="{{ route('pages', 'terms-conditions') }}" target='_blank'>{{ __('common.terms_conditions') }}</a>
+                                        {{__('common.agree_terms_conditions')}} <a href="{{ route('legal.terms') }}" target='_blank'>{{ __('common.terms_conditions') }}</a>
                                     </label>
                                 </div>
                                 @error('terms')
@@ -272,7 +272,7 @@
                                 <div class="kv-terms-row">
                                     <input type="checkbox" id="privacy" name="privacy" class="kv-checkbox">
                                     <label for="privacy">
-                                        {{__('common.agree_privacy_policy')}} <a href="{{ route('pages', 'privacy-policy') }}" target='_blank'>{{ __('common.privacy_policy') }}</a>
+                                        {{__('common.agree_privacy_policy')}} <a href="{{ route('legal.privacy-policy') }}" target='_blank'>{{ __('common.privacy_policy') }}</a>
                                     </label>
                                 </div>
                                 @error('privacy')
@@ -283,7 +283,7 @@
                                 <div class="kv-terms-row">
                                     <input type="checkbox" id="delivery" name="delivery" class="kv-checkbox">
                                     <label for="delivery">
-                                        {{__('common.agree_delivery_policy')}} <a href="{{ route('pages', 'delivery-policy') }}" target='_blank'>{{ __('common.delivery_policy') }}</a>
+                                        {{__('common.agree_delivery_policy')}} <a href="{{ route('legal.delivery-policy') }}" target='_blank'>{{ __('common.delivery_policy') }}</a>
                                     </label>
                                 </div>
                                 @error('delivery')
@@ -294,7 +294,7 @@
                                 <div class="kv-terms-row">
                                     <input type="checkbox" id="refund" name="refund" class="kv-checkbox">
                                     <label for="refund">
-                                        {{__('common.agree_refund_policy')}} <a href="{{ route('pages', 'refund-policy') }}" target='_blank'>{{ __('common.refund_policy') }}</a>
+                                        {{__('common.agree_refund_policy')}} <a href="{{ route('legal.refund-policy') }}" target='_blank'>{{ __('common.refund_policy') }}</a>
                                     </label>
                                 </div>
                                 @error('refund')
