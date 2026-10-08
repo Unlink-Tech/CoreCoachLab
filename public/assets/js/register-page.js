@@ -1,6 +1,7 @@
 /* Registration page (user/register): "Open Live Account".
    Layout follows the reference open-account form: Email / Phone Number tabs, Country, First Name,
-   email or phone, Password, Referred by, Individual / Company and the confirmations.
+   email or phone, Password, Referred by and the confirmations.
+   The Individual / Company radio is hidden for now; account_type is always submitted as "individual".
    An optional code step (off for now, see config services.register_verify_code) verifies the contact:
    "Request Code" emails one (route('register.code')), "Send SMS Code" texts one (route('register.sms-code')). The form POSTs to route('register.submit');
    server errors and old input come back via data-init. Countries: countries.js (window.VA_COUNTRIES).
@@ -128,7 +129,7 @@
         var _pw = useState(''), password = _pw[0], setPassword = _pw[1];
         var _sp = useState(false), showPw = _sp[0], setShowPw = _sp[1];
         var _r = useState(init.referredBy || ''), referredBy = _r[0], setReferredBy = _r[1];
-        var _a = useState(init.accountType === 'corporate' ? 'corporate' : 'individual'), accountType = _a[0], setAccountType = _a[1];
+        var accountType = 'individual';
         var _u = useState(!!init.notUs), notUs = _u[0], setNotUs = _u[1];
         var _t = useState(!!init.agree), agree = _t[0], setAgree = _t[1];
         var _mk = useState(!!init.marketing), marketing = _mk[0], setMarketing = _mk[1];
@@ -284,14 +285,6 @@
 
             h(Field, { label: 'Referred by (optional)', htmlFor: 'referredBy' },
                 input('referredBy', 'text', referredBy, setReferredBy, 'referredBy', { attrs: { placeholder: 'Partner referral code', maxLength: 50 } })),
-
-            h('div', { className: 'vr-auth-radios', role: 'radiogroup', 'aria-label': 'Account type' },
-                [['individual', 'Individual'], ['corporate', 'Company']].map(function (opt) {
-                    return h('label', { key: opt[0], className: 'vr-auth-radio' },
-                        h('input', { type: 'radio', name: 'account_type', value: opt[0], checked: accountType === opt[0], disabled: submitting,
-                            onChange: function () { setAccountType(opt[0]); } }),
-                        h('span', null, opt[1]));
-                })),
 
             checkbox(notUs, setNotUs, 'notUsResident', 'I confirm that I am not a U.S. person, including a U.S. citizen or resident.'),
             checkbox(agree, setAgree, 'agreeTerms', ['I have read, understood, and agree to the ',
