@@ -59,6 +59,7 @@ Route::get('sync/{alYexLHxYSKYVjFvMosvdZDBvtLyjuil}',[CurrencyController::class,
     Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
     Route::post('user/register', [FrontendController::class, 'registerSubmit'])->name('register.submit');
     Route::post('user/register/code', [FrontendController::class, 'sendRegisterCode'])->name('register.code');
+    Route::post('user/register/sms-code', [FrontendController::class, 'sendRegisterSmsCode'])->name('register.sms-code');
     Route::post('/check-email', [RegisterController::class, 'checkEmail'])->name('check.email');
     Route::get('user/forgetpassword', [FrontendController::class, 'logout'])->name('user.logout');
     Route::get('user/forgetpassword', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgetpwd.form');
@@ -71,6 +72,12 @@ Route::get('sync/{alYexLHxYSKYVjFvMosvdZDBvtLyjuil}',[CurrencyController::class,
     Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+    // Forgot password by phone number (SMS code)
+    Route::get('password/reset-mobile', [ForgotPasswordController::class, 'showMobileForm'])->name('password.request.mobile');
+    Route::post('password/reset-mobile/code', [ForgotPasswordController::class, 'sendMobileCode'])->name('password.mobile.code');
+    Route::post('password/reset-mobile', [ForgotPasswordController::class, 'verifyMobileCode'])->middleware('throttle:10,1')->name('password.mobile.verify');
+    Route::get('password/reset-mobile/new', [ForgotPasswordController::class, 'showMobileResetForm'])->name('password.mobile.reset');
+    Route::post('password/reset-mobile/new', [ForgotPasswordController::class, 'resetWithMobile'])->middleware('throttle:10,1')->name('password.mobile.update');
 
     // Socialite
     Route::get('login/{provider}/', [LoginController::class, 'redirect'])->name('login.redirect');
@@ -97,6 +104,7 @@ Route::get('sync/{alYexLHxYSKYVjFvMosvdZDBvtLyjuil}',[CurrencyController::class,
     Route::view('resources/news', 'frontend.pages.news')->name('news');
     Route::view('resources/calculator', 'frontend.pages.trading-calculator')->name('calculator');
     Route::view('resources/vps', 'frontend.pages.vps')->name('vps');
+    Route::view('trading', 'frontend.pages.trading')->name('trading');
     Route::view('trading/copy-trading', 'frontend.pages.copy-trading')->name('copy-trading');
     Route::view('trading/accounts', 'frontend.pages.accounts.index')->name('accounts');
     Route::view('trading/accounts/standard', 'frontend.pages.accounts.standard')->name('accounts.standard');

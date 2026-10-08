@@ -25,6 +25,9 @@ use App\Mail\RegisterMail;
 use App\Mail\RegisterCodeMail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Services\PhoneNumber;
+use App\Services\SmsSender;
+use App\Services\VerificationCode;
 class FrontendController extends Controller
 {
    
@@ -598,23 +601,21 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
         //    return $request;
         $data = $request->all();
 
-        // The login form offers email or phone (with country code). Phone logins are matched against
-        // users.phone stored either with or without the dialling code, digits only.
+        // The login form offers email or phone (with country code). Phone logins are matched on
+        // users.phone (see PhoneNumber::findUser) and then authenticated by user id, so accounts
+        // registered with a phone number and no email can log in too.
+        $credentials = null;
         if (($data['login_method'] ?? 'email') === 'phone') {
-            $digits = preg_replace('/\D+/', '', $data['phone'] ?? '');
-            $code = preg_replace('/\D+/', '', $data['phone_code'] ?? '');
-            $user = $digits === '' ? null : User::where('status', 'active')
-                ->whereNotNull('phone')
-                ->get()
-                ->first(function ($u) use ($digits, $code) {
-                    $stored = preg_replace('/\D+/', '', $u->phone);
-                    return $stored === $digits || $stored === $code . $digits;
-                });
-            $data['email'] = $user ? $user->email : '';
+            $user = PhoneNumber::findUser($data['phone_code'] ?? '', $data['phone'] ?? '');
+            if ($user) {
+                $credentials = ['id' => $user->id];
+            }
+        } elseif (!empty($data['email'])) {
+            $credentials = ['email' => $data['email']];
         }
 
-        if(!empty($data['email']) && Auth::attempt(['email' => $data['email'], 'password' => $data['password'] ?? '','status'=>'active'])){
-            Session::put('user',$data['email']);
+        if($credentials && Auth::attempt($credentials + ['password' => $data['password'] ?? '','status'=>'active'])){
+            Session::put('user', Auth::user()->email ?: Auth::user()->phone);
             
             if(session('guest'))
             {
@@ -651,14 +652,27 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
     public function register(){
         return view('frontend.pages.register');
     }
-    /** Email verification codes for the registration form. */
+    /** Verification codes for the registration form (emailed on the Email tab, SMS on the Phone tab). */
     private const REGISTER_CODE_TTL_MINUTES = 10;
-    private const REGISTER_CODE_MAX_ATTEMPTS = 5;
+    private const REGISTER_SMS_TTL_MINUTES = 5;
 
     /**
-     * "Request Code" on the registration form: email a 6-digit code to the address.
-     * The code is kept hashed in the session (with expiry and an attempt counter).
+     * Rate limit for "Request Code" / "Send SMS Code": one request per 60s per session (matches the
+     * form's countdown) and 6 per hour per IP. Returns the seconds to wait, or 0 when allowed.
      */
+    private function codeRequestWait(Request $request, string $kind): int
+    {
+        $sessionKey = $kind . ':' . $request->session()->getId();
+        $ipKey = $kind . '-ip:' . $request->ip();
+        if (RateLimiter::tooManyAttempts($sessionKey, 1) || RateLimiter::tooManyAttempts($ipKey, 6)) {
+            return max(RateLimiter::availableIn($sessionKey), RateLimiter::tooManyAttempts($ipKey, 6) ? RateLimiter::availableIn($ipKey) : 0);
+        }
+        RateLimiter::hit($sessionKey, 60);
+        RateLimiter::hit($ipKey, 3600);
+        return 0;
+    }
+
+    /** "Request Code" on the Email tab: email a 6-digit code to the address. */
     public function sendRegisterCode(Request $request){
         $validator = \Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users,email',
@@ -670,15 +684,11 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
         }
 
         $email = strtolower(trim($request->input('email')));
-        // 1 request per 60s per session (matches the form's countdown) and 6 per hour per IP.
-        $sessionKey = 'register-code:' . $request->session()->getId();
-        $ipKey = 'register-code-ip:' . $request->ip();
-        if (RateLimiter::tooManyAttempts($sessionKey, 1) || RateLimiter::tooManyAttempts($ipKey, 6)) {
-            $wait = max(RateLimiter::availableIn($sessionKey), RateLimiter::tooManyAttempts($ipKey, 6) ? RateLimiter::availableIn($ipKey) : 0);
+        if ($wait = $this->codeRequestWait($request, 'register-code')) {
             return response()->json(['ok' => false, 'field' => 'verificationCode', 'message' => 'Please wait ' . $wait . 's before requesting another code'], 429);
         }
 
-        $code = (string) random_int(100000, 999999);
+        $code = VerificationCode::issue($request, 'register_code', $email, self::REGISTER_CODE_TTL_MINUTES);
         try {
             // config/mail.php leaves the SMTP timeout unset (60s socket default), which outlasts PHP's
             // 30s limit when the mail server is unreachable; cap it so failures surface as a message.
@@ -688,6 +698,7 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
         } catch (\Throwable $e) {
             Log::error('Registration code email failed: ' . $e->getMessage());
             if (!app()->environment('local')) {
+                VerificationCode::forget($request, 'register_code');
                 return response()->json(['ok' => false, 'field' => 'verificationCode', 'message' => 'We could not send the code right now. Please try again shortly.'], 503);
             }
         }
@@ -696,62 +707,98 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
             Log::info('Registration verification code for ' . $email . ': ' . $code);
         }
 
-        RateLimiter::hit($sessionKey, 60);
-        RateLimiter::hit($ipKey, 3600);
-        $request->session()->put('register_code', [
-            'email' => $email,
-            'hash' => Hash::make($code),
-            'expires_at' => now()->addMinutes(self::REGISTER_CODE_TTL_MINUTES)->timestamp,
-            'attempts' => 0,
-        ]);
+        return response()->json(['ok' => true]);
+    }
+
+    /** "Send SMS Code" on the Phone Number tab: text a 6-digit code to the number. */
+    public function sendRegisterSmsCode(Request $request, SmsSender $sms){
+        $phone = PhoneNumber::normalize($request->input('phone_code'), $request->input('phone'));
+        if (!$phone || !preg_match('/^\+\d{7,15}$/', $phone)) {
+            return response()->json(['ok' => false, 'field' => 'phone', 'message' => 'Please enter a valid phone number'], 422);
+        }
+        if (PhoneNumber::findUser($request->input('phone_code'), $request->input('phone'), false)) {
+            return response()->json(['ok' => false, 'field' => 'phone', 'message' => 'An account with this phone number already exists'], 422);
+        }
+        if (!$sms->available()) {
+            return response()->json(['ok' => false, 'field' => 'verificationCode', 'message' => 'Sign-up by phone is not available yet. Please use the Email tab.'], 503);
+        }
+        if ($wait = $this->codeRequestWait($request, 'register-sms')) {
+            return response()->json(['ok' => false, 'field' => 'verificationCode', 'message' => 'Please wait ' . $wait . 's before requesting another code'], 429);
+        }
+
+        $code = VerificationCode::issue($request, 'register_sms_code', $phone, self::REGISTER_SMS_TTL_MINUTES);
+        if (!$sms->send($phone, 'Your Venture Asia verification code is ' . $code . '. It expires in ' . self::REGISTER_SMS_TTL_MINUTES . ' minutes.')) {
+            VerificationCode::forget($request, 'register_sms_code');
+            return response()->json(['ok' => false, 'field' => 'verificationCode', 'message' => 'We could not send the code right now. Please try again shortly.'], 503);
+        }
 
         return response()->json(['ok' => true]);
     }
 
     public function registerSubmit(Request $request){
-        // Fields/messages mirror the ventureasiamarkets.com registration form.
+        // Fields follow the "Open Live Account" form: Email or Phone Number tab, each verified by a code.
+        $byPhone = $request->input('register_method') === 'phone';
+        $verifyCode = (bool) config('services.register_verify_code');
+        $phone = $byPhone ? PhoneNumber::normalize($request->input('phone_code'), $request->input('phone')) : null;
         $rules = [
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'verification_code' => 'required|digits_between:4,8',
+            'register_method' => 'required|in:email,phone',
+            'country' => 'required|string|max:100',
+            'first_name' => 'required|string|max:100',
             'password' => ['required', 'string', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};\':"\\\\|,.<>\/?]).{8,15}$/'],
             'not_us_resident' => 'accepted',
             'agree_terms' => 'accepted',
-            'country' => 'nullable|string|max:100',
             'account_type' => 'nullable|in:individual,corporate',
             'referred_by' => 'nullable|string|max:50',
         ];
-        // The redesigned form has no captcha (email verification replaces it); set CAPTCHA_ENABLED=true only if one is added back.
+        if ($verifyCode) {
+            $rules['verification_code'] = 'required|digits_between:4,8';
+        }
+        if ($byPhone) {
+            $rules['phone_code'] = ['required', 'regex:/^\+\d{1,4}$/'];
+            $rules['phone'] = ['required', 'string', 'max:20'];
+        } else {
+            $rules['email'] = 'required|string|email|max:255|unique:users,email';
+        }
+        // The redesigned form has no captcha (code verification replaces it); set CAPTCHA_ENABLED=true only if one is added back.
         if (env('CAPTCHA_ENABLED', false)) {
             $rules['captcha'] = 'required|captcha';
         }
         $validator = \Validator::make($request->all(), $rules, [
+            'first_name.required' => 'First name is required',
+            'country.required' => 'Please select your country',
             'email.unique' => 'An account with this email already exists',
-            'verification_code.required' => 'Please enter a valid email verification code',
+            'verification_code.required' => $byPhone ? 'Please enter the SMS verification code' : 'Please enter a valid email verification code',
             'verification_code.digits_between' => 'Verification code must be numeric (4-8 digits)',
             'password.regex' => 'Password must be 8-15 characters, including uppercase letters, lowercase letters, numbers, and special characters.',
             'not_us_resident.accepted' => 'Please tick the checkbox to proceed',
             'agree_terms.accepted' => 'You must agree to the terms of the registration agreement to proceed',
         ]);
 
-        // Check the emailed code (same email, not expired, limited attempts).
-        $validator->after(function ($v) use ($request) {
-            if ($v->errors()->has('verification_code') || $v->errors()->has('email')) {
+        $validator->after(function ($v) use ($request, $byPhone, $phone, $verifyCode) {
+            if ($byPhone) {
+                if ($v->errors()->has('phone') || $v->errors()->has('phone_code')) {
+                    return;
+                }
+                if (!$phone || !preg_match('/^\+\d{7,15}$/', $phone)) {
+                    $v->errors()->add('phone', 'Please enter a valid phone number');
+                    return;
+                }
+                if (PhoneNumber::findUser($request->input('phone_code'), $request->input('phone'), false)) {
+                    $v->errors()->add('phone', 'An account with this phone number already exists');
+                    return;
+                }
+            } elseif ($v->errors()->has('email')) {
                 return;
             }
-            $stored = $request->session()->get('register_code');
-            $email = strtolower(trim($request->input('email')));
-            if (!$stored || $stored['email'] !== $email) {
-                $v->errors()->add('verification_code', 'Please request a verification code first');
-            } elseif ($stored['expires_at'] < now()->timestamp) {
-                $request->session()->forget('register_code');
-                $v->errors()->add('verification_code', 'This code has expired. Please request a new one');
-            } elseif ($stored['attempts'] >= self::REGISTER_CODE_MAX_ATTEMPTS) {
-                $request->session()->forget('register_code');
-                $v->errors()->add('verification_code', 'Too many incorrect attempts. Please request a new code');
-            } elseif (!Hash::check((string) $request->input('verification_code'), $stored['hash'])) {
-                $stored['attempts']++;
-                $request->session()->put('register_code', $stored);
-                $v->errors()->add('verification_code', 'The verification code is incorrect');
+            if (!$verifyCode || $v->errors()->has('verification_code')) {
+                return;
+            }
+            // Check the code sent to the same email / phone (not expired, limited attempts).
+            $error = $byPhone
+                ? VerificationCode::check($request, 'register_sms_code', $phone, (string) $request->input('verification_code'))
+                : VerificationCode::check($request, 'register_code', strtolower(trim($request->input('email'))), (string) $request->input('verification_code'));
+            if ($error) {
+                $v->errors()->add('verification_code', $error);
             }
         });
 
@@ -759,7 +806,11 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
             return back()->withErrors($validator)->withInput($request->except('password', 'verification_code'));
         }
 
-        $data=$request->all();
+        $data = $request->all();
+        $data['phone'] = $phone;
+        if ($byPhone) {
+            $data['email'] = null;
+        }
         $usercount = User::where('created_at', '>=', Carbon::now()->subHours(24))->count();
         $user_limit = DB::table('miscs')->where('name', 'User_Limit')->value('value') ?? 2;
         if($usercount>=$user_limit) {
@@ -767,9 +818,9 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
             return back()->withInput($request->except('password', 'verification_code'));
         }
         $check=$this->create($data);
-        Session::put('user',$data['email']);
+        Session::put('user', $data['email'] ?: $phone);
         if($check){
-            $request->session()->forget('register_code');
+            VerificationCode::forget($request, $byPhone ? 'register_sms_code' : 'register_code');
             // Mail::to($data['email'])->send(new RegisterMail($data));
             request()->session()->flash('success',__('common.register_success'));
             return redirect()->route('login.form');
@@ -780,19 +831,13 @@ $sub_cat = Category::whereNotNull('parent_id')->get();
         }
     }
     public function create(array $data){
-        // The registration form has no name field; use the part of the email before "@".
-        $name = $data['name'] ?? Str::before($data['email'], '@');
         return User::create([
-            'name'=>$name,
-            'email'=>$data['email'],
+            'name'=>trim($data['first_name'] ?? '') ?: Str::before((string) $data['email'], '@'),
+            'email'=>$data['email'] ?? null,
+            'phone'=>$data['phone'] ?? null,
             'password'=>Hash::make($data['password']),
             'status'=>'active',
             'country'=>$data['country'] ?? null,
-            // 'phone'=>$data['phone'],
-            // 'address'=>$data['address'],
-            // 'city'=>$data['city'],
-            // 'state'=>$data['state'],
-            // 'zip'=>$data['post_code']
             ]);
     }
     // Reset password

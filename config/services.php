@@ -49,4 +49,15 @@ return [
     // The default is the (test) checkout used by ventureasiamarkets.com; set DEPOSIT_CHECKOUT_URL for live.
     'deposit_checkout_url' => env('DEPOSIT_CHECKOUT_URL', 'https://checkout-dev.key2payment.com/HostedPaymentPage/co7xhjI3'),
 
+    // SMS verification codes (phone sign-up and forgot password by phone).
+    // "log" writes the message to the Laravel log and only works in the local environment;
+    // add a provider driver to App\Services\SmsSender and set SMS_DRIVER to send real SMS.
+    'sms' => [
+        'driver' => env('SMS_DRIVER', 'log'),
+    ],
+
+    // Registration: require an email / SMS verification code before creating the account.
+    // Off for now (the code field is hidden on the form); set REGISTER_VERIFY_CODE=true to turn it back on.
+    'register_verify_code' => env('REGISTER_VERIFY_CODE', false),
+
 ];

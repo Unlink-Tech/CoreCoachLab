@@ -179,10 +179,12 @@
 						<span class="fi fi-gb vh__flag"></span><span>{{ __('common.language.english') }}</span>
 						<i class="fa-solid fa-check"></i>
 					</a>
+					{{-- Japanese hidden for now; re-enable when translations are ready
 					<a class="vh__lang-item {{ $isJa ? 'vh__lang-item--active' : '' }}" href="{{ route('change.language', 'ja') }}">
 						<span class="fi fi-jp vh__flag"></span><span>{{ __('common.language.japanese') }}</span>
 						<i class="fa-solid fa-check"></i>
 					</a>
+					--}}
 				</div>
 			</div>
 
@@ -468,6 +470,12 @@
 			function onScroll() { vh.classList.toggle('vh--scrolled', window.scrollY > 20); }
 			window.addEventListener('scroll', onScroll, { passive: true });
 			onScroll();
+
+			/* --vh-height: live header height, so full-screen pages (login / register) fit under it */
+			function setHeight() { document.documentElement.style.setProperty('--vh-height', vh.offsetHeight + 'px'); }
+			setHeight();
+			if (window.ResizeObserver) new ResizeObserver(setHeight).observe(vh);
+			else window.addEventListener('resize', setHeight);
 		}
 
 		/* Desktop mega menus: hover on pointer devices, click/keyboard everywhere */

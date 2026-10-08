@@ -14,6 +14,11 @@
     letter-spacing: .1px;
     color: var(--text);
 }
+
+/* Login, register and forgot / reset password pages: footer sits flush against the page */
+.page-login .vf,
+.page-register .vf,
+.page-forget-pwd-form .vf { margin-top: 0; }
 .vf *, .vf *::before, .vf *::after { box-sizing: border-box; }
 .vf p { margin: 0; }
 .vf a { text-decoration: none; transition: color .16s; }

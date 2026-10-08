@@ -251,7 +251,7 @@
                     </div>
                 @endforeach
             </div>
-            <a class="va-btn va-btn--primary va-platform__btn" href="{{ route('under-construction') }}">
+            <a class="va-btn va-btn--primary va-platform__btn" href="{{ route('trading') }}#platforms">
                 Explore the platform
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>

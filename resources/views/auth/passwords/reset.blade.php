@@ -1,65 +1,37 @@
-@extends('layouts.app')
+@extends('frontend.layouts.auth')
+@section('page-body-class', 'page-forget-pwd-form')
+@section('title','Reset Password')
+@section('auth-heading', 'Set a New Password')
+@section('auth-subheading', 'Choose a new password for your account.')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+{{-- Landing page of the emailed reset link (ResetPasswordController). --}}
+@section('auth-form')
+    <form method="POST" action="{{ route('password.update') }}" class="vr-login-form" novalidate>
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <div class="vr-login-field">
+            <label for="email">Email<span class="vr-auth-req">*</span></label>
+            <div class="vr-login-input-wrap">
+                <input id="email" type="email" name="email" value="{{ $email ?? old('email') }}" autocomplete="email" required
+                    class="vr-login-input @error('email') vr-error @enderror">
             </div>
+            @error('email')<div class="vr-login-error-msg">{{ $message }}</div>@enderror
         </div>
+
+        @include('frontend.pages.partials.new-password-fields')
+
+        <button type="submit" class="vr-btn vr-btn--primary" style="width:100%;padding:15px">Reset Password</button>
+    </form>
+
+    <div class="vr-auth-links">
+        <a href="{{ route('login.form') }}" class="vr-auth-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to log in
+        </a>
     </div>
-</div>
 @endsection
+
+@push('scripts')
+<script src="{{ url('assets/js/forgot-password.js') }}"></script>
+@endpush
