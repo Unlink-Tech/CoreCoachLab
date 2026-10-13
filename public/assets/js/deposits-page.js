@@ -55,7 +55,7 @@
     var nm = ({children:t})=>{const[s,n]=m.useState(()=>sm.map(a=>({...a,live:a.p,chg:Math.random()*2.4-1})));m.useEffect(()=>{const a=setInterval(()=>{n(l=>l.map(o=>{const c=o.live*45e-5,d=o.live+(Math.random()-.5)*c*6,f=o.chg+(Math.random()-.5)*.05;return{...o,live:d,chg:f}}))},1400);return()=>clearInterval(a)},[]);const i=(a,l)=>a.toLocaleString("en-US",{minimumFractionDigits:l,maximumFractionDigits:l}),r=a=>(a>=0?"+":"")+a.toFixed(2)+"%";return e.jsx(gp.Provider,{value:{instruments:s,formatPrice:i,formatChange:r},children:t})};
 
     var im = ()=>{const t=m.useContext(gp);if(!t)throw new Error("useMarket must be used within a MarketProvider");return t};
-
+    
     var Oo = [{key:"forex",label:"Forex",category:"fx"},{key:"indices",label:"Indices",category:"ix"},{key:"commodities",label:"Commodities",category:"cm"},{key:"shares",label:"Shares",category:"eq"}];
 
     var Im = ["USD","GBP","CAD","AUD","EUR","SGD","NZD","HKD","JPY","PLN"];
