@@ -1,4 +1,4 @@
-/* Deposits page (/deposits).
+/* Deposits page JS (/deposits).
    Everything below the adapter is taken verbatim from the ventureasiamarkets.com bundle:
    the account dashboard component (Gm), its simulated market-data provider (nm: prices
    random-walk every 1.4s from a fixed table, no external feed), data tables and helpers.
@@ -6,6 +6,8 @@
    markets.css and turns router links into normal links. Requires React 18 (UMD).
    The deposit form opens the hosted payment page given in data-checkout-url
    (config('services.deposit_checkout_url'), env DEPOSIT_CHECKOUT_URL). */
+
+
 (function () {
     var root = document.getElementById('vaDeposits');
     if (!root || !window.React || !window.ReactDOM) return;
